@@ -6,11 +6,11 @@ module.exports = {
 		https: true,
 		proxy: {
 			'/api/seacat_auth': {
-				target: "http://localhost:8083",
+				target: "http://localhost:8082",
 				pathRewrite: {'^/api/seacat_auth' : ''}
 			},
-			'/api': {
-				target: "http://127.0.0.1:8083",
+			'/api/openidconnect': {
+				target: "http://127.0.0.1:8082",
 				pathRewrite: {'^/api' : ''},
 			}
 		}
