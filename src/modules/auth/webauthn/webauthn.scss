@@ -1,0 +1,50 @@
+.div-key-wordwrap {
+	white-space: nowrap;
+	max-width: 20ch !important;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin-bottom: 0;
+}
+.div-button-center {
+	justify-content: center;
+	display: flex;
+}
+
+.button-webauthn-register {
+	width: 20em;
+}
+
+@media screen and (max-width: 493px) {
+	.col-webauthn-card {
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+	}
+
+	/*Does not display some table columns on small screens*/
+	.td-not-display {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.col-webauthn-card {
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+	}
+}
+
+@media screen and (max-width: 996px) {
+	.col-webauthn-card {
+		flex: 0 0 85%;
+		max-width: 85%;
+	}
+}
+
+.col-webauthn-card {
+	flex: 0 0 65%;
+	max-width: 65%;
+}
+
+.p-td {
+	display: none;
+}
