@@ -8,6 +8,10 @@ module.exports = {
 			'/api/seacat_auth': {
 				target: "http://localhost:8083",
 				pathRewrite: {'^/api/seacat_auth' : ''}
+			},
+			'/api': {
+				target: "http://127.0.0.1:8083",
+				pathRewrite: {'^/api' : ''},
 			}
 		}
 	}
