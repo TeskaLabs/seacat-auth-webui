@@ -1,6 +1,6 @@
 {
 	"short_name": "Auth",
-	"name": "SeaCat Auth WebUI",
+	"name": "SeaCat Auth",
 	"icons": [
 		{
 			"src": ".\/media\/teskalabs\/img\/favicon\/android-icon-36x36.png",
