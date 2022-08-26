@@ -173,11 +173,6 @@
 		"OTP code is too short": "OTP code is too short",
 		"Enter the code from authenticator app": "Enter the code from authenticator app"
 	},
-	"RegistrationSuccessScreen": {
-		"Successful registration": "Your registration was successful",
-		"Welcome": "Welcome!",
-		"Continue": "Continue"
-	},
 	"MessageScreen" : {
 		"Setup completed successfully": "Setup completed successfully",
 		"You will be redirected to the Login page": "You will be redirected to the Login page",

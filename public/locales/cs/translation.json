@@ -173,11 +173,6 @@
 		"OTP code is too short": "OTP code je příliš krátký",
 		"Enter the code from authenticator app": "Vložte kód z autentizační aplikace"
 	},
-	"RegistrationSuccessScreen":{
-		"Successful registration": "Vaše registrace proběhla úspěšně",
-		"Welcome": "Vítejte!",
-		"Continue": "Pokračujte"
-	},
 	"MessageScreen" :{
 		"Setup completed successfully": "Nastavení úspěšně dokončeno",
 		"You will be redirected to the Login page": "Nyní budete přesměrováni zpět na přihlášení",
