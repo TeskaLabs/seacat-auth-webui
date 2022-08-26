@@ -114,7 +114,7 @@ function LoginScreen(props) {
 						stateCode={stateCode}
 					/>
 				</Col>}
-
+				{/*TODO: Registration has not been fully implemented yet*/}
 				{("registration" in features) && <Col md="5">
 					<RegistrationCard app={props.app} features={features["registration"]} />
 				</Col>}
