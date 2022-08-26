@@ -16,11 +16,6 @@ const WebAuthnScreen =  lazy(() => import('./webauthn/WebAuthnScreen'));
 
 const MessageScreen =  lazy(() => import('./utils/MessageScreen'));
 
-// import RegistrationContainer from './containers/RegistrationContainer';
-// import RegistrationSuccessScreen from './containers/RegistrationSuccessScreen';
-// import InvitationContainer from './containers/InvitationContainer';
-// import EntryContainer from './containers/EntryContainer';
-
 import reducer from 'asab-webui/modules/auth/reducer';
 import { types } from 'asab-webui/modules/auth/actions';
 import './home/HomeScreen.scss';
@@ -45,35 +40,6 @@ export default class SeaCatAuthModule extends Module {
 			name: 'Home',
 			component: HomeScreen
 		});
-
-		// TODO: Enable commented routes when affected containers will be fully implemented
-		// app.Router.addRoute({
-		// 	path: '/registration',
-		// 	exact: true,
-		// 	name: 'Registration',
-		// 	component: RegistrationContainer
-		// });
-
-		// app.Router.addRoute({
-		// 	path: '/registration/success',
-		// 	exact: true,
-		// 	name: 'Registration',
-		// 	component: RegistrationSuccessScreen
-		// });
-
-		// app.Router.addRoute({
-		// 	path: '/invitation',
-		// 	exact: true,
-		// 	name: 'Invitation',
-		// 	component: InvitationContainer
-		// });
-
-		// app.Router.addRoute({
-		// 	path: '/invitation/:token',
-		// 	exact: true,
-		// 	name: 'Invitation',
-		// 	component: EntryContainer
-		// });
 
 		app.Router.addRoute({
 			path: '/login',
