@@ -1,0 +1,3 @@
+[submodule "asab-webui"]
+	path = asab-webui
+	url = https://github.com/TeskaLabs/asab-webui.git

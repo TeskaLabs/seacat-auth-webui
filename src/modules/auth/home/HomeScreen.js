@@ -1,0 +1,373 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { Link, useHistory } from "react-router-dom";
+
+import {
+	Container, Row, Col,
+	Card, CardHeader, CardTitle,
+	CardSubtitle, CardBody, ListGroup,
+	ListGroupItem, CustomInput
+} from 'reactstrap';
+
+import { DateTime } from 'asab-webui';
+
+import { factorChaining } from "../utils/factorChaining";
+
+function HomeScreen(props) {
+	const [features, setFeatures] = useState({ });
+	const [updateFeatures, setUpdateFeatures] = useState({ });
+	const [userinfo, external_login_enabled] = useSelector(state => [
+		state.auth?.userinfo,
+		state.auth?.userinfo?.external_login_enabled
+	]);
+	const { t } = useTranslation();
+	const history = useHistory();
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+
+	useEffect(() => {
+		fetchFeatures();
+		fetchUpdateFeatures();
+		redirectAfterExtLogin();
+	}, []);
+
+	const fetchFeatures = async () => {
+		try {
+			const response = await SeaCatAuthAPI.get("/public/features");
+
+			if (response.data.result != "OK") throw response;
+
+			setFeatures(response.data.data);
+		} catch (e) {
+			console.error(e);
+		}
+	};
+
+	const fetchUpdateFeatures = async () => {
+		try {
+			const response = await SeaCatAuthAPI.get("/public/provider");
+
+			if (response.data.result != "OK") throw response;
+
+			const newUpdateFeatures = response.data.data?.update?.reduce((prev, curr) => {
+				prev[curr.type] = { ...curr }
+				return prev;
+			}, { });
+
+			setUpdateFeatures(prev => ({ ...prev, ...newUpdateFeatures }));
+		} catch (e) {
+			console.error(e);
+		}
+	};
+
+	const redirectAfterExtLogin = () => {
+		// extract search params
+		const params = new URLSearchParams(window.location.search)
+
+		// check for state code
+		if (!params.has("state") && !localStorage.getItem("redirect_code")) return ;
+
+		const stateParam = params.get("state");
+		const stateLocale = JSON.parse(localStorage.getItem("redirect_code"));
+		localStorage.removeItem("redirect_code");
+
+		// if state code is the same as we get from search params then redirect
+		// to initial page
+		if (stateLocale[stateParam]) {
+			window.location.href = stateLocale[stateParam]["redirectUri"];
+		}
+	}
+
+	// User is not logged in
+	if (userinfo == null) {
+		history.replace('/login');
+		return (null);
+	}
+
+	let redirect_uri;
+	let setup;
+	let i = window.location.hash.indexOf('?');
+	if (i > -1) {
+		let qs = window.location.hash.substring(i+1);
+		let params = new URLSearchParams(qs);
+		redirect_uri = params.get("redirect_uri");
+		setup = params.get("setup");
+	}
+
+	if (redirect_uri === undefined || redirect_uri === null) {
+		redirect_uri = props.app.Config.get('login')?.redirect_uri || '/';
+	}
+
+	// If setup in params, trigger factor chaining
+	if (setup) {
+		factorChaining(setup, redirect_uri, history);
+	}
+
+	const confirmLogoutAll = () => {
+		let msg = t("HomeScreen|Do you want to logout from all devices?")
+		var r = confirm(msg);
+		if (r == true) {
+			logoutAll();
+		}
+	}
+
+	const logoutAll = async () => {
+		let response;
+		try {
+			response = await SeaCatAuthAPI.delete('/public/sessions');
+			if (response.data.result !== "OK") {
+				throw new Error(t("HomeScreen|Something went wrong when logging you out from all devices"));
+			}
+			props.app.addAlert("success", t("HomeScreen|You have been logged out from all devices, you will be redirected to Login in a while"));
+			setTimeout(() => {
+				window.location.reload();
+			}, 5000);
+		} catch (err) {
+			console.error("Failed to terminate all user's sessions", err);
+			props.app.addAlert(
+				"danger",
+				t("HomeScreen|Something went wrong when logging you out from all devices")
+			);
+		}
+	}
+
+	const logout = async () => {
+		props.app.addSplashScreenRequestor(this);
+		try {
+			await SeaCatAuthAPI.put('/public/logout');
+			window.location.reload();
+		}
+		catch (err) {
+			console.error("Failed to fetch userinfo", err);
+			props.app.addAlert(
+				"danger",
+				t("HomeScreen|Silly as it sounds, the logout failed")
+			);
+			setTimeout(() => {
+				window.location.reload();
+			}, 5000);
+		}
+	}
+
+	const removeExternalService = async (provider) => {
+		const verification = confirm(t(`HomeScreen|Do you want to disconnect from ${provider.replace(provider[0], provider[0].toUpperCase())}?`))
+		if (verification) {
+			try {
+				await SeaCatAuthAPI.delete("/public/ext-login/" + provider);
+				props.app.addAlert("success", t("Connect|Service was successfully disconnected"));
+				// reload in order to get updated userinfo
+				window.location.reload();
+			} catch (e) {
+				console.error(e);
+				props.app.addAlert("warning", t("Connect|Failed to disconnect service"));
+			}
+		}
+	}
+
+	const externalServiceOnChange = ({ item, isConnected }) => {
+		// remove external service sign in
+		if (isConnected) removeExternalService(item.type);
+		// add external service sign in
+		else window.location.replace(item.authorize_uri);
+	}
+
+	return (
+		<Container>
+			<Row className="justify-content-center">
+
+					<Card className="shadow animated fadeIn homescreen-card auth-card">
+						<CardHeader className="border-bottom card-header-login">
+							<div className="card-header-title" >
+								<CardTitle className="text-primary" tag="h2">{t('HomeScreen|My account')}</CardTitle>
+							</div>
+						</CardHeader>
+						<CardBody>
+							<ListGroup flush>
+
+								<ListGroupItem className="mb-0">
+									<CardSubtitle tag="h5" title={userinfo?.sub}>
+										{userinfo?.preferred_username}
+									</CardSubtitle>
+									<React.Fragment>
+										<Row className="pt-2">
+											<Col sm={6}>{t('HomeScreen|Last successful login')}</Col>
+											<Col sm={6}>
+												{userinfo?.last_successful_login ?
+													<div className="float-right"><DateTime value={userinfo?.last_successful_login}/></div>
+												:
+													<div className="float-right">N/A</div>
+												}
+											</Col>
+										</Row>
+										<Row>
+											<Col sm={6}>{t('HomeScreen|Last failed login')}</Col>
+											<Col sm={6}>
+												{userinfo?.last_failed_login ?
+													<div className="float-right"><DateTime value={userinfo?.last_failed_login}/></div>
+												:
+													<div className="float-right">N/A</div>
+												}
+											</Col>
+										</Row>
+										<Row>
+											<Col sm={6}>{t('HomeScreen|Session expiration')}</Col>
+											<Col sm={6}>
+												{userinfo?.exp ?
+													<div className="float-right"><DateTime value={userinfo?.exp}/></div>
+													:
+													<div className="float-right">N/A</div>
+												}
+											</Col>
+										</Row>
+									</React.Fragment>
+								</ListGroupItem>
+
+								{features.my_account?.external_login?.map(item => {
+									const isConnected = external_login_enabled?.includes(item.type);
+
+									return (
+										<ListGroupItem className="mb-0">
+											<Row onClick={() => externalServiceOnChange({ item, isConnected })}>
+												<Col sm={6}>
+													<a className="external-service-title">
+														{t(`HomeScreen|${item.label}`)}
+													</a>
+												</Col>
+												<Col sm={6}>
+													<CustomInput
+														className="float-right"
+														type="switch"
+														defaultChecked={isConnected}
+													/>
+												</Col>
+											</Row>
+										</ListGroupItem>
+									)
+								})}
+
+								<ListGroupItem className="mb-0">
+									<Link to="/change-password" className="d-block">
+										{t('HomeScreen|Password change')}
+									</Link>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0">
+									<Row>
+										<Col sm={5}>
+											{updateFeatures.email?.policy === "anybody" ? (
+												<Link to="/manage-email" className="d-block">
+													{t('HomeScreen|Manage email address')}
+												</Link>
+											) : (
+												<div className="text-muted">
+													{t('HomeScreen|Manage email address')}
+												</div>
+											)}
+										</Col>
+										<Col sm={7}>
+											<div
+												className="float-right char-limit char-limit-text"
+												id="emailAddress"
+												name="emailAddress"
+												title={userinfo?.email ?? "" }
+											>
+												{!userinfo?.email || userinfo?.email === "" ?
+													'N/A'
+												:
+													userinfo?.email
+												}
+											</div>
+										</Col>
+									</Row>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0">
+									<Row>
+										<Col sm={6}>
+											{updateFeatures.phone?.policy === "anybody" ? (
+												<Link to="/manage-number" className="d-block">
+													{t('HomeScreen|Manage phone number')}
+												</Link>
+											) : (
+												<div className="text-muted">
+													{t('HomeScreen|Manage phone number')}
+												</div>
+											)}
+										</Col>
+										<Col sm={6}>
+											<div
+												className="float-right text-muted pointer char-limit char-limit-number"
+												id="phoneNumber"
+												name="phoneNumber"
+												title={userinfo?.phone_number ?? ""}
+											>
+												{!userinfo?.phone_number || userinfo?.phone_number === "" ?
+													'N/A'
+												:
+													userinfo?.phone_number
+												}
+											</div>
+										</Col>
+									</Row>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0">
+									<Link to="/manage-totp" className="d-block">
+										{t('HomeScreen|Manage OTP')}
+										<CustomInput
+											className="float-right"
+											type="switch"
+											id="otpSwitch"
+											name="otpSwitch"
+											defaultChecked={userinfo?.available_factors && userinfo.available_factors.indexOf("totp") != -1 ? true : false}
+										/>
+									</Link>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0">
+									<Link to="/manage-webauthn" className="d-block">
+										{t('HomeScreen|Manage FIDO2/WebAuthn')}
+										<CustomInput
+											className="float-right"
+											type="switch"
+											id="webAuthnSwitch"
+											name="webAuthnsSwitch"
+											defaultChecked={userinfo?.available_factors && userinfo.available_factors.indexOf("webauthn") != -1 ? true : false}
+										/>
+									</Link>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0 pb-0">
+									<p>
+										<a
+											href="#"
+											className="d-block text-danger"
+											onClick={(e) => {e.preventDefault(); confirmLogoutAll();}}
+										>
+											{t('HomeScreen|Logout from all devices')}
+										</a>
+									</p>
+								</ListGroupItem>
+
+								<ListGroupItem>
+									<h5>
+										<a
+											href="#"
+											className="d-block text-danger"
+											onClick={(e) => {e.preventDefault(); logout();}}
+										>
+											{t('HomeScreen|Logout')}
+										</a>
+									</h5>
+								</ListGroupItem>
+
+							</ListGroup>
+						</CardBody>
+					</Card>
+
+			</Row>
+		</Container>
+	);
+}
+
+export default HomeScreen;
