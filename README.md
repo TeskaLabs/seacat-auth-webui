@@ -1,6 +1,6 @@
 # SeaCat Auth WebUI
 
-SeaCat Auth WebUI provides a login and self-care portal for users as a superstructure for [SeaCat Auth service](https://github.com/TeskaLabs/seacat-auth).
+SeaCat Auth WebUI provides a login and self-care portal for users as a superstructure for [SeaCat Auth](https://github.com/TeskaLabs/seacat-auth).
 
 ## Password login
 
