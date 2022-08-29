@@ -1,6 +1,6 @@
 # SeaCat Auth WebUI
 
-SeaCat Auth WebUI is a frontend login and user management application created as a superstructure for [SeaCat Auth service](https://github.com/TeskaLabs/seacat-auth).
+SeaCat Auth WebUI provides a login and self-care portal for users as a superstructure for [SeaCat Auth service](https://github.com/TeskaLabs/seacat-auth).
 
 ## Password login
 
