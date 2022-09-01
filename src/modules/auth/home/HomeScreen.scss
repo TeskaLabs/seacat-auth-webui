@@ -18,6 +18,18 @@
 	@media (max-width: 576px) {
 		width: 90vw;
 	}
+	.status-circle {
+		width: 0.8rem;
+		height: 0.8rem;
+		background: $secondary;
+		border-radius: 50%
+	}
+	.status-green {
+		background: $light-green;
+	}
+	.status-gray {
+		background: $off-white;
+	}
 }
 
 .external-service-title {
