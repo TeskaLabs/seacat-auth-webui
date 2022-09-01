@@ -311,7 +311,7 @@ function HomeScreen(props) {
 							</ListGroupItem>
 
 							<ListGroupItem className="mb-0">
-								<Row>
+								<Row className="align-items-center">
 									<Col sm={6}>
 										<Link to="/manage-totp" className="d-block">
 											{t('HomeScreen|Manage OTP')}
@@ -324,9 +324,9 @@ function HomeScreen(props) {
 											name="totp"
 										>
 											{(userinfo?.available_factors && userinfo.available_factors.indexOf("totp") != -1) ?
-												"Added"
+												<div className="status-circle status-green" title={t("HomeScreen|Added OTP")}/>
 												:
-												"N/A"
+												<div className="status-circle status-gray" title={t("HomeScreen|No added OTP")}/>
 											}
 										</div>
 									</Col>
@@ -334,7 +334,7 @@ function HomeScreen(props) {
 							</ListGroupItem>
 
 							<ListGroupItem className="mb-0">
-								<Row>
+								<Row className="align-items-center">
 									<Col sm={6}>
 										<Link to="/manage-webauthn" className="d-block">
 											{t('HomeScreen|Manage FIDO2/WebAuthn')}
@@ -347,9 +347,9 @@ function HomeScreen(props) {
 											name="webauthn"
 										>
 											{(userinfo?.available_factors && userinfo.available_factors.indexOf("webauthn") != -1) ?
-												"Added"
+												<div className="status-circle status-green" title={t("HomeScreen|Added WebAuthn")}/>
 												:
-												"N/A"
+												<div className="status-circle status-gray" title={t("HomeScreen|No added WebAuthn")}/>
 											}
 										</div>
 									</Col>
