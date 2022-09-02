@@ -46,10 +46,8 @@
 		"Sign in with Github": "Přihlaste se pomocí Github",
 		"Sign in with Office365": "Přihlaste se pomocí Office365",
 		"Manage FIDO2/WebAuthn": "Správa FIDO2/WebAuthn",
-		"Added WebAuthn": "Přidán WebAuthn",
-		"No added WebAuthn": "Není přidán žádný WebAuthn",
-		"Added OTP": "Přidán OTP",
-		"No added OTP": "Není přidán žádný OTP"
+		"Active": "Aktivní",
+		"Inactive": "Neaktivní"
 	},
 	"LoginCard": {
 		"Login": "Přihlášení",
