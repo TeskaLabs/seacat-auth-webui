@@ -174,6 +174,7 @@ function HomeScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
+
 				<Card className="shadow animated fadeIn homescreen-card auth-card">
 					<CardHeader className="border-bottom card-header-login">
 						<div className="card-header-title" >
@@ -318,16 +319,8 @@ function HomeScreen(props) {
 										</Link>
 									</Col>
 									<Col sm={6}>
-										<div
-											className="float-right text-muted pointer"
-											id="totp"
-											name="totp"
-										>
-											{(userinfo?.available_factors && userinfo.available_factors.indexOf("totp") != -1) ?
-												<div className="status-circle status-green" title={t("HomeScreen|Added OTP")}/>
-												:
-												<div className="status-circle status-gray" title={t("HomeScreen|No added OTP")}/>
-											}
+										<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
+											<div className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ? `status-circle status-green` : `status-circle`} title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ? t("HomeScreen|Active") : t("HomeScreen|Inactive")}/>
 										</div>
 									</Col>
 								</Row>
@@ -341,16 +334,8 @@ function HomeScreen(props) {
 										</Link>
 									</Col>
 									<Col sm={6}>
-										<div
-											className="float-right text-muted pointer"
-											id="webauthn"
-											name="webauthn"
-										>
-											{(userinfo?.available_factors && userinfo.available_factors.indexOf("webauthn") != -1) ?
-												<div className="status-circle status-green" title={t("HomeScreen|Added WebAuthn")}/>
-												:
-												<div className="status-circle status-gray" title={t("HomeScreen|No added WebAuthn")}/>
-											}
+										<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
+											<div className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ? `status-circle status-green` : `status-circle`} title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ? t("HomeScreen|Active") : t("HomeScreen|Inactive")}/>
 										</div>
 									</Col>
 								</Row>
@@ -379,9 +364,11 @@ function HomeScreen(props) {
 									</a>
 								</h5>
 							</ListGroupItem>
+
 						</ListGroup>
 					</CardBody>
 				</Card>
+
 			</Row>
 		</Container>
 	);
