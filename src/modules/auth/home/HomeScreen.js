@@ -194,7 +194,7 @@ function HomeScreen(props) {
 											<Col sm={6}>
 												{userinfo?.last_successful_login ?
 													<div className="float-right"><DateTime value={userinfo?.last_successful_login}/></div>
-													:
+												:
 													<div className="float-right">N/A</div>
 												}
 											</Col>
@@ -204,7 +204,7 @@ function HomeScreen(props) {
 											<Col sm={6}>
 												{userinfo?.last_failed_login ?
 													<div className="float-right"><DateTime value={userinfo?.last_failed_login}/></div>
-													:
+												:
 													<div className="float-right">N/A</div>
 												}
 											</Col>
@@ -214,7 +214,7 @@ function HomeScreen(props) {
 											<Col sm={6}>
 												{userinfo?.exp ?
 													<div className="float-right"><DateTime value={userinfo?.exp}/></div>
-													:
+												:
 													<div className="float-right">N/A</div>
 												}
 											</Col>
@@ -273,7 +273,7 @@ function HomeScreen(props) {
 											>
 												{!userinfo?.email || userinfo?.email === "" ?
 													'N/A'
-													:
+												:
 													userinfo?.email
 												}
 											</div>
@@ -303,7 +303,7 @@ function HomeScreen(props) {
 											>
 												{!userinfo?.phone_number || userinfo?.phone_number === "" ?
 													'N/A'
-													:
+												:
 													userinfo?.phone_number
 												}
 											</div>
