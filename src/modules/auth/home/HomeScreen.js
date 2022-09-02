@@ -175,199 +175,199 @@ function HomeScreen(props) {
 		<Container>
 			<Row className="justify-content-center">
 
-				<Card className="shadow animated fadeIn homescreen-card auth-card">
-					<CardHeader className="border-bottom card-header-login">
-						<div className="card-header-title" >
-							<CardTitle className="text-primary" tag="h2">{t('HomeScreen|My account')}</CardTitle>
-						</div>
-					</CardHeader>
-					<CardBody>
-						<ListGroup flush>
+					<Card className="shadow animated fadeIn homescreen-card auth-card">
+						<CardHeader className="border-bottom card-header-login">
+							<div className="card-header-title" >
+								<CardTitle className="text-primary" tag="h2">{t('HomeScreen|My account')}</CardTitle>
+							</div>
+						</CardHeader>
+						<CardBody>
+							<ListGroup flush>
 
-							<ListGroupItem className="mb-0">
-								<CardSubtitle tag="h5" title={userinfo?.sub}>
-									{userinfo?.preferred_username}
-								</CardSubtitle>
-								<React.Fragment>
-									<Row className="pt-2">
-										<Col sm={6}>{t('HomeScreen|Last successful login')}</Col>
-										<Col sm={6}>
-											{userinfo?.last_successful_login ?
-												<div className="float-right"><DateTime value={userinfo?.last_successful_login}/></div>
-												:
-												<div className="float-right">N/A</div>
-											}
-										</Col>
-									</Row>
-									<Row>
-										<Col sm={6}>{t('HomeScreen|Last failed login')}</Col>
-										<Col sm={6}>
-											{userinfo?.last_failed_login ?
-												<div className="float-right"><DateTime value={userinfo?.last_failed_login}/></div>
-												:
-												<div className="float-right">N/A</div>
-											}
-										</Col>
-									</Row>
-									<Row>
-										<Col sm={6}>{t('HomeScreen|Session expiration')}</Col>
-										<Col sm={6}>
-											{userinfo?.exp ?
-												<div className="float-right"><DateTime value={userinfo?.exp}/></div>
-												:
-												<div className="float-right">N/A</div>
-											}
-										</Col>
-									</Row>
-								</React.Fragment>
-							</ListGroupItem>
-
-							{features.my_account?.external_login?.map(item => {
-								const isConnected = external_login_enabled?.includes(item.type);
-
-								return (
-									<ListGroupItem className="mb-0">
-										<Row onClick={() => externalServiceOnChange({ item, isConnected })}>
+								<ListGroupItem className="mb-0">
+									<CardSubtitle tag="h5" title={userinfo?.sub}>
+										{userinfo?.preferred_username}
+									</CardSubtitle>
+									<React.Fragment>
+										<Row className="pt-2">
+											<Col sm={6}>{t('HomeScreen|Last successful login')}</Col>
 											<Col sm={6}>
-												<a className="external-service-title">
-													{t(`HomeScreen|${item.label}`)}
-												</a>
-											</Col>
-											<Col sm={6}>
-												<CustomInput
-													className="float-right"
-													type="switch"
-													defaultChecked={isConnected}
-												/>
+												{userinfo?.last_successful_login ?
+													<div className="float-right"><DateTime value={userinfo?.last_successful_login}/></div>
+													:
+													<div className="float-right">N/A</div>
+												}
 											</Col>
 										</Row>
-									</ListGroupItem>
-								)
-							})}
+										<Row>
+											<Col sm={6}>{t('HomeScreen|Last failed login')}</Col>
+											<Col sm={6}>
+												{userinfo?.last_failed_login ?
+													<div className="float-right"><DateTime value={userinfo?.last_failed_login}/></div>
+													:
+													<div className="float-right">N/A</div>
+												}
+											</Col>
+										</Row>
+										<Row>
+											<Col sm={6}>{t('HomeScreen|Session expiration')}</Col>
+											<Col sm={6}>
+												{userinfo?.exp ?
+													<div className="float-right"><DateTime value={userinfo?.exp}/></div>
+													:
+													<div className="float-right">N/A</div>
+												}
+											</Col>
+										</Row>
+									</React.Fragment>
+								</ListGroupItem>
 
-							<ListGroupItem className="mb-0">
-								<Link to="/change-password" className="d-block">
-									{t('HomeScreen|Password change')}
-								</Link>
-							</ListGroupItem>
+								{features.my_account?.external_login?.map(item => {
+									const isConnected = external_login_enabled?.includes(item.type);
 
-							<ListGroupItem className="mb-0">
-								<Row>
-									<Col sm={5}>
-										{updateFeatures.email?.policy === "anybody" ? (
-											<Link to="/manage-email" className="d-block">
-												{t('HomeScreen|Manage email address')}
-											</Link>
-										) : (
-											<div className="text-muted">
-												{t('HomeScreen|Manage email address')}
+									return (
+										<ListGroupItem className="mb-0">
+											<Row onClick={() => externalServiceOnChange({ item, isConnected })}>
+												<Col sm={6}>
+													<a className="external-service-title">
+														{t(`HomeScreen|${item.label}`)}
+													</a>
+												</Col>
+												<Col sm={6}>
+													<CustomInput
+														className="float-right"
+														type="switch"
+														defaultChecked={isConnected}
+													/>
+												</Col>
+											</Row>
+										</ListGroupItem>
+									)
+								})}
+
+								<ListGroupItem className="mb-0">
+									<Link to="/change-password" className="d-block">
+										{t('HomeScreen|Password change')}
+									</Link>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0">
+									<Row>
+										<Col sm={5}>
+											{updateFeatures.email?.policy === "anybody" ? (
+												<Link to="/manage-email" className="d-block">
+													{t('HomeScreen|Manage email address')}
+												</Link>
+											) : (
+												<div className="text-muted">
+													{t('HomeScreen|Manage email address')}
+												</div>
+											)}
+										</Col>
+										<Col sm={7}>
+											<div
+												className="float-right char-limit char-limit-text"
+												id="emailAddress"
+												name="emailAddress"
+												title={userinfo?.email ?? "" }
+											>
+												{!userinfo?.email || userinfo?.email === "" ?
+													'N/A'
+													:
+													userinfo?.email
+												}
 											</div>
-										)}
-									</Col>
-									<Col sm={7}>
-										<div
-											className="float-right char-limit char-limit-text"
-											id="emailAddress"
-											name="emailAddress"
-											title={userinfo?.email ?? "" }
-										>
-											{!userinfo?.email || userinfo?.email === "" ?
-												'N/A'
-												:
-												userinfo?.email
-											}
-										</div>
-									</Col>
-								</Row>
-							</ListGroupItem>
+										</Col>
+									</Row>
+								</ListGroupItem>
 
-							<ListGroupItem className="mb-0">
-								<Row>
-									<Col sm={6}>
-										{updateFeatures.phone?.policy === "anybody" ? (
-											<Link to="/manage-number" className="d-block">
-												{t('HomeScreen|Manage phone number')}
-											</Link>
-										) : (
-											<div className="text-muted">
-												{t('HomeScreen|Manage phone number')}
+								<ListGroupItem className="mb-0">
+									<Row>
+										<Col sm={6}>
+											{updateFeatures.phone?.policy === "anybody" ? (
+												<Link to="/manage-number" className="d-block">
+													{t('HomeScreen|Manage phone number')}
+												</Link>
+											) : (
+												<div className="text-muted">
+													{t('HomeScreen|Manage phone number')}
+												</div>
+											)}
+										</Col>
+										<Col sm={6}>
+											<div
+												className="float-right text-muted pointer char-limit char-limit-number"
+												id="phoneNumber"
+												name="phoneNumber"
+												title={userinfo?.phone_number ?? ""}
+											>
+												{!userinfo?.phone_number || userinfo?.phone_number === "" ?
+													'N/A'
+													:
+													userinfo?.phone_number
+												}
 											</div>
-										)}
-									</Col>
-									<Col sm={6}>
-										<div
-											className="float-right text-muted pointer char-limit char-limit-number"
-											id="phoneNumber"
-											name="phoneNumber"
-											title={userinfo?.phone_number ?? ""}
+										</Col>
+									</Row>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0">
+									<Row className="align-items-center">
+										<Col sm={6}>
+											<Link to="/manage-totp" className="d-block">
+												{t('HomeScreen|Manage OTP')}
+											</Link>
+										</Col>
+										<Col sm={6}>
+											<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
+												<div className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ? `status-circle status-green` : `status-circle`} title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ? t("HomeScreen|Active") : t("HomeScreen|Inactive")}/>
+											</div>
+										</Col>
+									</Row>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0">
+									<Row className="align-items-center">
+										<Col sm={6}>
+											<Link to="/manage-webauthn" className="d-block">
+												{t('HomeScreen|Manage FIDO2/WebAuthn')}
+											</Link>
+										</Col>
+										<Col sm={6}>
+											<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
+												<div className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ? `status-circle status-green` : `status-circle`} title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ? t("HomeScreen|Active") : t("HomeScreen|Inactive")}/>
+											</div>
+										</Col>
+									</Row>
+								</ListGroupItem>
+
+								<ListGroupItem className="mb-0 pb-0">
+									<p>
+										<a
+											href="#"
+											className="d-block text-danger"
+											onClick={(e) => {e.preventDefault(); confirmLogoutAll();}}
 										>
-											{!userinfo?.phone_number || userinfo?.phone_number === "" ?
-												'N/A'
-												:
-												userinfo?.phone_number
-											}
-										</div>
-									</Col>
-								</Row>
-							</ListGroupItem>
+											{t('HomeScreen|Logout from all devices')}
+										</a>
+									</p>
+								</ListGroupItem>
 
-							<ListGroupItem className="mb-0">
-								<Row className="align-items-center">
-									<Col sm={6}>
-										<Link to="/manage-totp" className="d-block">
-											{t('HomeScreen|Manage OTP')}
-										</Link>
-									</Col>
-									<Col sm={6}>
-										<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
-											<div className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ? `status-circle status-green` : `status-circle`} title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ? t("HomeScreen|Active") : t("HomeScreen|Inactive")}/>
-										</div>
-									</Col>
-								</Row>
-							</ListGroupItem>
+								<ListGroupItem>
+									<h5>
+										<a
+											href="#"
+											className="d-block text-danger"
+											onClick={(e) => {e.preventDefault(); logout();}}
+										>
+											{t('HomeScreen|Logout')}
+										</a>
+									</h5>
+								</ListGroupItem>
 
-							<ListGroupItem className="mb-0">
-								<Row className="align-items-center">
-									<Col sm={6}>
-										<Link to="/manage-webauthn" className="d-block">
-											{t('HomeScreen|Manage FIDO2/WebAuthn')}
-										</Link>
-									</Col>
-									<Col sm={6}>
-										<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
-											<div className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ? `status-circle status-green` : `status-circle`} title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ? t("HomeScreen|Active") : t("HomeScreen|Inactive")}/>
-										</div>
-									</Col>
-								</Row>
-							</ListGroupItem>
-
-							<ListGroupItem className="mb-0 pb-0">
-								<p>
-									<a
-										href="#"
-										className="d-block text-danger"
-										onClick={(e) => {e.preventDefault(); confirmLogoutAll();}}
-									>
-										{t('HomeScreen|Logout from all devices')}
-									</a>
-								</p>
-							</ListGroupItem>
-
-							<ListGroupItem>
-								<h5>
-									<a
-										href="#"
-										className="d-block text-danger"
-										onClick={(e) => {e.preventDefault(); logout();}}
-									>
-										{t('HomeScreen|Logout')}
-									</a>
-								</h5>
-							</ListGroupItem>
-
-						</ListGroup>
-					</CardBody>
-				</Card>
+							</ListGroup>
+						</CardBody>
+					</Card>
 
 			</Row>
 		</Container>
