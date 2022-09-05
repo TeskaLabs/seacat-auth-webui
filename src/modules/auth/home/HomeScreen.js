@@ -320,7 +320,16 @@ function HomeScreen(props) {
 										</Col>
 										<Col sm={6}>
 											<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
-												<div className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ? `status-circle status-green` : `status-circle`} title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ? t("HomeScreen|Active") : t("HomeScreen|Inactive")}/>
+												<div
+													className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ?
+														`status-circle status-active`
+													:
+														`status-circle`}
+													title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ?
+														t("HomeScreen|Active")
+													:
+														t("HomeScreen|Inactive")}
+												/>
 											</div>
 										</Col>
 									</Row>
@@ -335,7 +344,16 @@ function HomeScreen(props) {
 										</Col>
 										<Col sm={6}>
 											<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
-												<div className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ? `status-circle status-green` : `status-circle`} title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ? t("HomeScreen|Active") : t("HomeScreen|Inactive")}/>
+												<div
+													className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ?
+														`status-circle status-active`
+													:
+														`status-circle`}
+													title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ?
+														t("HomeScreen|Active")
+													:
+														t("HomeScreen|Inactive")}
+												/>
 											</div>
 										</Col>
 									</Row>
