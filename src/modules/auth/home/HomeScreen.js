@@ -214,7 +214,7 @@ function HomeScreen(props) {
 											<Col sm={6}>
 												{userinfo?.exp ?
 													<div className="float-right"><DateTime value={userinfo?.exp}/></div>
-													:
+												:
 													<div className="float-right">N/A</div>
 												}
 											</Col>
@@ -312,29 +312,51 @@ function HomeScreen(props) {
 								</ListGroupItem>
 
 								<ListGroupItem className="mb-0">
-									<Link to="/manage-totp" className="d-block">
-										{t('HomeScreen|Manage OTP')}
-										<CustomInput
-											className="float-right"
-											type="switch"
-											id="otpSwitch"
-											name="otpSwitch"
-											defaultChecked={userinfo?.available_factors && userinfo.available_factors.indexOf("totp") != -1 ? true : false}
-										/>
-									</Link>
+									<Row className="align-items-center">
+										<Col sm={6}>
+											<Link to="/manage-totp" className="d-block">
+												{t('HomeScreen|Manage OTP')}
+											</Link>
+										</Col>
+										<Col sm={6}>
+											<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
+												<div
+													className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ?
+														`status-circle status-active`
+													:
+														`status-circle`}
+													title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ?
+														t("HomeScreen|Active")
+													:
+														t("HomeScreen|Inactive")}
+												/>
+											</div>
+										</Col>
+									</Row>
 								</ListGroupItem>
 
 								<ListGroupItem className="mb-0">
-									<Link to="/manage-webauthn" className="d-block">
-										{t('HomeScreen|Manage FIDO2/WebAuthn')}
-										<CustomInput
-											className="float-right"
-											type="switch"
-											id="webAuthnSwitch"
-											name="webAuthnsSwitch"
-											defaultChecked={userinfo?.available_factors && userinfo.available_factors.indexOf("webauthn") != -1 ? true : false}
-										/>
-									</Link>
+									<Row className="align-items-center">
+										<Col sm={6}>
+											<Link to="/manage-webauthn" className="d-block">
+												{t('HomeScreen|Manage FIDO2/WebAuthn')}
+											</Link>
+										</Col>
+										<Col sm={6}>
+											<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
+												<div
+													className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ?
+														`status-circle status-active`
+													:
+														`status-circle`}
+													title={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ?
+														t("HomeScreen|Active")
+													:
+														t("HomeScreen|Inactive")}
+												/>
+											</div>
+										</Col>
+									</Row>
 								</ListGroupItem>
 
 								<ListGroupItem className="mb-0 pb-0">

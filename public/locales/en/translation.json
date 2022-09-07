@@ -45,7 +45,9 @@
 		"Sign in with Google": "Sign in with Google",
 		"Sign in with Github": "Sign in with Github",
 		"Sign in with Office365": "Sign in with Office365",
-		"Manage FIDO2/WebAuthn": "Manage FIDO2/WebAuthn"
+		"Manage FIDO2/WebAuthn": "Manage FIDO2/WebAuthn",
+		"Active": "Active",
+		"Inactive": "Inactive"
 	},
 	"LoginCard": {
 		"Login": "Login",
