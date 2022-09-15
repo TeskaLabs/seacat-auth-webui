@@ -34,6 +34,10 @@ const ConfigDefaults = {
 
 const modules = [];
 
+window.addEventListener('load', (event) => {
+	document.body.classList.add('loaded')
+})
+
 // Add internationalization module
 import I18nModule from 'asab-webui/modules/i18n';
 modules.push(I18nModule);
