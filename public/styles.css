@@ -1,3 +1,7 @@
 body {
     background-color: #f3f4fa;
+    background-image: url("media/spinner/spinner.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 200px;
 }
