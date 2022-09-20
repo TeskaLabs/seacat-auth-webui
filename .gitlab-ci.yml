@@ -30,7 +30,7 @@ yarn:
       - seacat-auth-webui.tar.lzma
 
 
-azure master:
+azure main:
   stage: distribute
   image: mcr.microsoft.com/azure-cli
 
@@ -42,7 +42,7 @@ azure master:
     - yarn
 
   only:
-    - master
+    - main
 
   script:
     - az storage blob upload --overwrite --file seacat-auth-webui.tar.lzma --container-name "\$web" --name "seacat-auth/master/seacat-auth-webui.tar.lzma" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"

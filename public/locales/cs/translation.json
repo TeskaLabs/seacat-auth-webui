@@ -45,7 +45,9 @@
 		"Sign in with Google": "Přihlaste se pomocí Google",
 		"Sign in with Github": "Přihlaste se pomocí Github",
 		"Sign in with Office365": "Přihlaste se pomocí Office365",
-		"Manage FIDO2/WebAuthn": "Správa FIDO2/WebAuthn"
+		"Manage FIDO2/WebAuthn": "Správa FIDO2/WebAuthn",
+		"Active": "Aktivní",
+		"Inactive": "Neaktivní"
 	},
 	"LoginCard": {
 		"Login": "Přihlášení",
