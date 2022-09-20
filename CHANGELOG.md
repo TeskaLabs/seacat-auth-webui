@@ -8,6 +8,4 @@
 
 ### Features
 
-### Refactoring
-
 ### Bugfix
