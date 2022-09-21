@@ -2,7 +2,15 @@
 
 ## Release Candidate
 
+## v22.38
+
+### Breaking changes
+
+- From release `v22.38`, only same (`v22.38`) or newer release tags of SeaCat Auth service is compatible with SeaCat Auth WebUI due to changes in `userinfo` response
+
 ### Features
+
+- ASAB WebUI submodule version bump [[22ab54c](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/22ab54c22c61d247702a6912db84ed81836497ab)] commit (INDIGO Sprint 220916, [!5](https://github.com/TeskaLabs/seacat-auth-webui/pull/5))
 
 ### Refactoring
 
