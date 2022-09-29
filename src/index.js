@@ -39,6 +39,11 @@ window.addEventListener('load', (event) => {
 	document.body.classList.add('loaded')
 })
 
+// The load event is fired when the page has loaded, doesn't wait for styles and images to be loaded.
+document.addEventListener("DOMContentLoaded", () => {
+	document.body.classList.add('spinner-off')
+});
+
 // Add internationalization module
 import I18nModule from 'asab-webui/modules/i18n';
 modules.push(I18nModule);
