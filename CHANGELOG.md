@@ -10,6 +10,11 @@
 
 - ASAB WebUI submodule version bump [[ebe0fc3](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/ebe0fc31f00b6f75ea8aab4dc39e032f095b6f1c)] commit (INDIGO Sprint 220916, [!4](https://github.com/TeskaLabs/seacat-auth-webui/pull/4))
 
+### Bugfix
+
+- Add listener DOMContentLoaded, add class name which needed for turn off spinner image (INDIGO Sprint 220916, [!6](https://github.com/TeskaLabs/seacat-auth-webui/pull/6))
+
+
 ## v22.38
 
 ### Breaking changes
