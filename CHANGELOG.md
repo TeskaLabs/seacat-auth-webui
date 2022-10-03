@@ -2,13 +2,17 @@
 
 ## Release Candidate
 
-## Refactoring
+### Refactoring
 
 - Add correct gray background and spinner when the page is loaded (INDIGO Sprint 220916, [!4](https://github.com/TeskaLabs/seacat-auth-webui/pull/4))
 
 ### Features
 
 - ASAB WebUI submodule version bump [[ebe0fc3](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/ebe0fc31f00b6f75ea8aab4dc39e032f095b6f1c)] commit (INDIGO Sprint 220916, [!4](https://github.com/TeskaLabs/seacat-auth-webui/pull/4))
+
+### Bugfix
+
+- Google Chrome issue - browser assumed login card username input was a credit card number. (INDIGO Sprint 220930, [!8](https://github.com/TeskaLabs/seacat-auth-webui/pull/8))
 
 ## v22.38
 
