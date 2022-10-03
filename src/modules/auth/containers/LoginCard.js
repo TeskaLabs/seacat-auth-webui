@@ -23,7 +23,7 @@ function LoginCard(props) {
 	const { t } = useTranslation();
 
 	const { handleSubmit, register, getValues, reset, formState: { errors, isSubmitting } } = useForm({defaultValues: {
-			'ident': (rememberedIdent !== null ? rememberedIdent : ""),
+			'username': (rememberedIdent !== null ? rememberedIdent : ""),
 			'rememberme': rememberedIdent !== null,
 		}});
 
@@ -43,7 +43,7 @@ function LoginCard(props) {
 	const [ isOnClickSubmitting, setIsOnClickSubmitting ] = useState(false);
 
 	// Register ident
-	const identRegister = register('ident');
+	const usernameRegister = register('username');
 
 	// We generate a shared secret key (AES) with the server for this login session
 	useEffect(() => {
@@ -136,7 +136,7 @@ function LoginCard(props) {
 
 		jwk.expiration = expiration === null ? undefined : expiration;
 
-		jwk.ident = getValues().ident;
+		jwk.ident = getValues().username;
 
 		let SeaCatAuthPrologueAPI = props.app.axiosCreate('seacat_auth');
 		let response;
@@ -192,7 +192,7 @@ function LoginCard(props) {
 		values.descriptor = descriptor.id;
 		// Store or remove Ident from localstorage based on checked / unchecked checkbox Remember me
 		if (values.rememberme !== undefined && values.rememberme) {
-			window.localStorage.setItem('SeaCatIdent', values.ident);
+			window.localStorage.setItem('SeaCatIdent', values.username);
 		} else {
 			if ('SeaCatIdent' in window.localStorage) {
 				window.localStorage.removeItem('SeaCatIdent')
@@ -268,10 +268,10 @@ function LoginCard(props) {
 		setSharedSecretKey(null);
 		setLoginButtonHidden(false);
 		reset({
-			ident: ""
+			username: ""
 		});
 
-		document.getElementById("ident").focus();
+		document.getElementById("username").focus();
 	}
 
 	const onCantLogin = () => {
@@ -313,13 +313,13 @@ function LoginCard(props) {
 					{/* ident */}
 					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className="text-center">
 						<h5>
-							<Label for="ident" style={{display: "block"}}>
+							<Label for="username" style={{display: "block"}}>
 								{t('LoginCard|Username, email or phone')}
 							</Label>
 						</h5>
 						<Input
-							id="ident"
-							name="ident"
+							id="username"
+							name="username"
 							type="text"
 							title={t('LoginCard|Please fill this field')}
 							autoComplete="off"
@@ -328,9 +328,9 @@ function LoginCard(props) {
 							autoFocus={descriptor === undefined}
 							required="required"
 							readOnly={lsid !== undefined}
-							onChange={identRegister.onChange}
-							onBlur={identRegister.onBlur}
-							innerRef={identRegister.ref}
+							onChange={usernameRegister.onChange}
+							onBlur={usernameRegister.onBlur}
+							innerRef={usernameRegister.ref}
 						/>
 						<FormText>{t('LoginCard|Fill in your login credentials')}</FormText>
 					</FormGroup>
