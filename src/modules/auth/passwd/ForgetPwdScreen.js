@@ -35,9 +35,10 @@ function ForgetPwdCard(props) {
 	const [ completed, setCompleted ] = useState(false);
 	let invalidCode = getParams("invalid_code");
 
-	const identRegister = register('ident');
+	const usernameRegister = register('username');
 
-	const onSubmit = async (values) => {
+	const onSubmit = async (data) => {
+		let values = { ident: data.username };
 		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 		let redirect_uri = getParams("redirect_uri");
 
@@ -153,23 +154,23 @@ function ForgetPwdCard(props) {
 					{/* ident */}
 					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
 						<h5>
-							<Label for="ident" style={{display: "block"}}>
+							<Label for="username" style={{display: "block"}}>
 								{t('ForgetPwdScreen|Username, email or phone')}
 							</Label>
 						</h5>
 						<Input
 							autoFocus
-							id="ident"
-							name="ident"
+							id="username"
+							name="username"
 							type="text"
 							title={t('ForgetPwdScreen|Please fill this field')}
-							autoComplete="username"
+							autoComplete="off"
 							autocapitalization="off"
 							autoCorrect="off"
 							required="required"
-							onChange={identRegister.onChange}
-							onBlur={identRegister.onBlur}
-							innerRef={identRegister.ref}
+							onChange={usernameRegister.onChange}
+							onBlur={usernameRegister.onBlur}
+							innerRef={usernameRegister.ref}
 						/>
 						<FormText>{t('ForgetPwdScreen|Fill in your login credentials')}</FormText>
 					</FormGroup>
