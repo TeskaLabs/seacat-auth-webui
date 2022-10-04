@@ -37,8 +37,9 @@ function ForgetPwdCard(props) {
 
 	const usernameRegister = register('username');
 
-	const onSubmit = async (data) => {
-		let values = { ident: data.username };
+	const onSubmit = async (values) => {
+		values.ident = values.username;
+		delete values.username;
 		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 		let redirect_uri = getParams("redirect_uri");
 
