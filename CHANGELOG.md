@@ -8,7 +8,7 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[ebe0fc3](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/ebe0fc31f00b6f75ea8aab4dc39e032f095b6f1c)] commit (INDIGO Sprint 220916, [!4](https://github.com/TeskaLabs/seacat-auth-webui/pull/4))
+- ASAB WebUI submodule version bump [[c66ed48](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/c66ed48e292b1af711336fa8991babc0c5b37fe4)] commit (INDIGO Sprint 220930, [!8](https://github.com/TeskaLabs/seacat-auth-webui/pull/8))
 
 ### Bugfix
 
