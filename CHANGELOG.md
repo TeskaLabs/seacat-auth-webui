@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[c66ed48](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/c66ed48e292b1af711336fa8991babc0c5b37fe4)] commit (INDIGO Sprint 220916, [!7](https://github.com/TeskaLabs/seacat-auth-webui/pull/7))
+
 ## Refactoring
 
 - Add correct gray background and spinner when the page is loaded (INDIGO Sprint 220916, [!4](https://github.com/TeskaLabs/seacat-auth-webui/pull/4))
