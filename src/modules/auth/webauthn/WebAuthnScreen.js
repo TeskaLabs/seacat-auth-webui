@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 import { CellContentLoader, DateTime } from 'asab-webui';
 
@@ -11,8 +12,8 @@ import publicKeyValuesToJSON from "./publicKeyValuesToJSON";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Input, Button,
-	Table, InputGroup, InputGroupAddon
+	Input, Button, ButtonGroup,
+	Table, InputGroup, InputGroupAddon, Form, FormText, FormFeedback
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -42,6 +43,27 @@ function WebAuthnCard(props) {
 	const [ isSubmitting, setIsSubmitting ] = useState(false);
 	const [ authenticators, setAuthenticators ] = useState([]);
 	const [ editing, setEditing ] = useState(false);
+	const [editMode, setEditMode] = useState(false);
+
+	const { handleSubmit, register, formState: { errors }, setValue } = useForm();
+
+	const reg = register(
+		"keyname",
+		{
+			validate: {
+				emptyInput: value => (value && value.toString().length !== 0) || t("TenantCreateContainer|Tenant name cannot be empty!"),
+			}
+		}
+	);
+
+	useEffect(() => {
+		if (authenticators) {
+			authenticators.map((obj, idx) => {
+				setValue("keyname", obj.name)
+			})
+		}
+
+	}, [authenticators]);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -181,6 +203,34 @@ function WebAuthnCard(props) {
 		}
 	}
 
+	// Edit keyname
+	const changeKeyName = async (values) => {
+		console.log(values,"change name");
+		setEditMode(false);
+		// setEditMode(!editMode);
+		// let response;
+		// try {
+		// 	response = await SeaCatAuthAPI.put(`/public/webauthn/${id}`, {"name": "frantuv-klic"});
+		// 	// TODO: enable validation, when ready in SA service
+		// 	if (response.data.result != 'OK') {
+		// 		throw new Error(t("WebAuthnScreen|Something went wrong, can't edit authenticator"));
+		// 	}
+		// 	props.app.addAlert("success", t("WebAuthnScreen|Authenticator successfully changed"));
+		// } catch(e) {
+		// 	console.error(e);
+		// 	props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't changed authenticator"));
+		// 	// setIsSubmitting(false);
+		// 	// return;
+		// }
+	}
+
+	const cancelChanges = () => {
+		const confirmation = confirm(t("ASABLibraryModule|Are you sure you want to cancel changes?"));
+		if (confirmation) {
+			setEditMode(false);
+		}
+	}
+
 	// Confirmation popup window for activation/deactivation of OTP
 	const confirmWebAuthnUnregister = (id) => {
 		setIsSubmitting(true);
@@ -204,79 +254,139 @@ function WebAuthnCard(props) {
 					</CardSubtitle>
 				</div>
 			</CardHeader>
-				<CardBody>
-					{authenticators.length > 0 ?
-					<Table responsive borderless>
-						<thead>
-							<tr>
-								<th>
-									{t('WebAuthnScreen|Key name')}
-								</th>
-								<th className="td-not-display">
-									{t('WebAuthnScreen|Sign count')}
-								</th>
-								<th className="td-not-display">
-									{t('WebAuthnScreen|Last successful login')}
-								</th>
-								<td>
-								</td>
-							</tr>
-						</thead>
-						<tbody>
-							{authenticators.map((obj, idx) => {
-								return (
-									<tr key={idx}>
-										<td className="p-2 align-middle">
-											{/*TODO: Implement keyname edit*/}
+			<CardBody>
+				{authenticators.length > 0 ?
+				<Table responsive borderless>
+					<thead>
+						<tr>
+							<th>
+								{t('WebAuthnScreen|Key name')}
+							</th>
+							<th className="td-not-display">
+								{t('WebAuthnScreen|Sign count')}
+							</th>
+							<th className="td-not-display">
+								{t('WebAuthnScreen|Last successful login')}
+							</th>
+							<td>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						{authenticators.map((obj, idx) => {
+							return (
+								<tr key={idx}>
+									<td className="p-2 align-middle">
+										{editMode ?
+											<>
+												<Input
+													id="keyname"
+													name="keyname"
+													type="text"
+													autoComplete="off"
+													invalid={errors.id}
+													placeholder={t("WebAuthnScreen|Name of the key")}
+													onChange={reg.onChange}
+													onBlur={reg.onBlur}
+													innerRef={reg.ref}
+												/>
+												{/*{errors.id ?*/}
+												{/*	<FormFeedback>{errors.id.message}</FormFeedback>*/}
+												{/*	:*/}
+												{/*	<FormText>{t("WebAuthnScreen|blalbalba")}</FormText>*/}
+												{/*}*/}
+											</>
+										:
 											<div className="div-key-wordwrap" title={obj?.name}>
 												<span className="cil-shield-alt pr-1" />{obj?.name}
 											</div>
-										</td>
-										<td className="p-2 td-not-display align-middle">
-											{obj?.sign_count}
-										</td>
-										<td className="p-2 td-not-display align-middle">
-											<DateTime value={obj?.last_login}/>
-										</td>
-										<td className="p-2 align-middle">
-											<Button
-												outline
-												size="sm"
-												color="danger"
-												title={t("WebAuthnScreen|Unregister authenticator")}
-												onClick={(e) => {confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
-												className="float-right"
-												disabled={isSubmitting}
-											>
-												{t("WebAuthnScreen|Unregister")}
-											</Button>
-										</td>
-									</tr>
-								)
-							})}
-						</tbody>
-					</Table>
+										}
+
+									</td>
+									<td className="p-2 td-not-display align-middle">
+										{obj?.sign_count}
+									</td>
+									<td className="p-2 td-not-display align-middle">
+										<DateTime value={obj?.last_login}/>
+									</td>
+									<td className="p-2 align-middle">
+										<ButtonGroup>
+											{editMode ?
+												<>
+													<Button
+														outline
+														color="success"
+														size="sm"
+														type="submit"
+													>
+														{t("ASABLibraryModule|Save")}
+													</Button>
+													<Button
+														outline
+														color="danger"
+														size="sm"
+														type="button"
+														onClick={cancelChanges}
+													>
+														{t("ASABLibraryModule|Cancel")}
+													</Button>
+												</>
+												:
+												<>
+													<Button
+														outline
+														type="button"
+														title={t("WebAuthnScreen|Edit")}
+														size="sm"
+														color="secondary"
+														icon="cil-cloud-download"
+														onClick={() => setEditMode(true)}
+													>
+														<span className="cil-color-border"></span>
+													</Button>
+													<Button
+														outline
+														size="sm"
+														color="danger"
+														type="button"
+														title={t("WebAuthnScreen|Unregister authenticator")}
+														onClick={(e) => {confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
+														className="float-right"
+														disabled={isSubmitting}
+													>
+														{t("WebAuthnScreen|Unregister")}
+													</Button>
+												</>
+											}
+
+										</ButtonGroup>
+									</td>
+								</tr>
+							)
+						})}
+					</tbody>
+				</Table>
+				:
+				isLoading ?
+					<CellContentLoader cols={1} rows={2} title={t("WebAuthnScreen|Loading")}/>
 					:
-					isLoading ?
-						<CellContentLoader cols={1} rows={2} title={t("WebAuthnScreen|Loading")}/>
-						:
-						<p className="text-center">
-							{t("WebAuthnScreen|No authenticator registered")}
-						</p>
-					}
-					<div className="div-button-center">
-						<Button
-							block
-							className="button-webauthn-register justify-content-center"
-							color="primary"
-							type="button"
-							disabled={isSubmitting}
-							onClick={(e) => {onRegister(), setIsSubmitting(true), e.preventDefault()}}
-						>
-							{t("WebAuthnScreen|Register new authenticator")}
-						</Button>
-					</div>
-				</CardBody>
+					<p className="text-center">
+						{t("WebAuthnScreen|No authenticator registered")}
+					</p>
+				}
+				<div className="div-button-center">
+					<Button
+						block
+						className="button-webauthn-register justify-content-center"
+						color="primary"
+						type="button"
+						disabled={isSubmitting}
+						onClick={(e) => {onRegister(), setIsSubmitting(true), e.preventDefault()}}
+					>
+						{t("WebAuthnScreen|Register new authenticator")}
+					</Button>
+				</div>
+			</CardBody>
 			{!redirect_uri &&
 				<CardFooter className="border-top">
 					<Button
@@ -291,5 +401,6 @@ function WebAuthnCard(props) {
 				</CardFooter>
 			}
 		</Card>
+
 	);
 }
