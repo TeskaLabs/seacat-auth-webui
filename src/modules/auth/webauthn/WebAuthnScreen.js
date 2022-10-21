@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 
 import { CellContentLoader, DateTime } from 'asab-webui';
 
@@ -42,28 +42,11 @@ function WebAuthnCard(props) {
 	const [ isLoading, setIsLoading ] = useState(true);
 	const [ isSubmitting, setIsSubmitting ] = useState(false);
 	const [ authenticators, setAuthenticators ] = useState([]);
-	const [ editing, setEditing ] = useState(false);
-	const [editMode, setEditMode] = useState(false);
+	const [ globalEditMode, setGlobalEditMode ] = useState(false);
 
-	const { handleSubmit, register, formState: { errors }, setValue } = useForm();
+	const { handleSubmit, register, formState: { errors }, setValue, control, resetField, reset, unregister, getValues } = useForm();
 
-	const reg = register(
-		"keyname",
-		{
-			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || t("TenantCreateContainer|Tenant name cannot be empty!"),
-			}
-		}
-	);
-
-	useEffect(() => {
-		if (authenticators) {
-			authenticators.map((obj, idx) => {
-				setValue("keyname", obj.name)
-			})
-		}
-
-	}, [authenticators]);
+	const regName = register("name");
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -74,6 +57,21 @@ function WebAuthnCard(props) {
 	const getAuthenticators = async () => {
 		let response;
 		try {
+			// response = [
+			// 	{
+			// 		"id": "M7Ldym4umjP2KsWf9ZYjaS6NTc7huk7lpHzUCi4cFpg9Jg1JMXOMcpz4GWIem8l0lQRT3fGYCWistuR4v3mi8Q",
+			// 		"name": "key-221020-110531",
+			// 		"sign_count": 2,
+			// 		"created": "2022-10-20T11:05:31.609000Z"
+			// 	},
+			// 	{
+			// 		"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pg",
+			// 		"name": "key-221019-091516",
+			// 		"sign_count": 1,
+			// 		"created": "2022-10-19T09:15:16.142000Z"
+			// 	}
+			// ]
+			// setAuthenticators(response);
 			response = await SeaCatAuthAPI.get('/public/webauthn');
 			// TODO: enable validation, when ready in SA service
 			if (response.data.result != 'OK') {
@@ -204,30 +202,34 @@ function WebAuthnCard(props) {
 	}
 
 	// Edit keyname
-	const changeKeyName = async (values) => {
-		console.log(values,"change name");
-		setEditMode(false);
-		// setEditMode(!editMode);
-		// let response;
-		// try {
-		// 	response = await SeaCatAuthAPI.put(`/public/webauthn/${id}`, {"name": "frantuv-klic"});
-		// 	// TODO: enable validation, when ready in SA service
-		// 	if (response.data.result != 'OK') {
-		// 		throw new Error(t("WebAuthnScreen|Something went wrong, can't edit authenticator"));
+	const onSubmit = async (values) => {
+		// setGlobalEditMode(false);
+		// Object.keys(values).map((item, idx) => {
+		// 	if (item.indexOf("name") !== -1) {
+		// 		unregister(item);
 		// 	}
-		// 	props.app.addAlert("success", t("WebAuthnScreen|Authenticator successfully changed"));
-		// } catch(e) {
-		// 	console.error(e);
-		// 	props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't changed authenticator"));
-		// 	// setIsSubmitting(false);
-		// 	// return;
-		// }
+		// })
+		console.log(values,"change name");
+		let response;
+		try {
+			response = await SeaCatAuthAPI.put(`/public/webauthn/${values.id}`, {"name": `${values.name}`});
+			// TODO: enable validation, when ready in SA service
+			if (response.data.result != 'OK') {
+				throw new Error(t("WebAuthnScreen|Something went wrong, can't edit authenticator"));
+			}
+			props.app.addAlert("success", t("WebAuthnScreen|Authenticator successfully changed"));
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't changed authenticator"));
+		}
+		setIsSubmitting(false);
+		getAuthenticators();
 	}
 
 	const cancelChanges = () => {
 		const confirmation = confirm(t("ASABLibraryModule|Are you sure you want to cancel changes?"));
 		if (confirmation) {
-			setEditMode(false);
+			setGlobalEditMode(false);
 		}
 	}
 
@@ -256,6 +258,7 @@ function WebAuthnCard(props) {
 			</CardHeader>
 			<CardBody>
 				{authenticators.length > 0 ?
+				<Form onSubmit={handleSubmit(onSubmit)}>
 				<Table responsive borderless>
 					<thead>
 						<tr>
@@ -275,97 +278,17 @@ function WebAuthnCard(props) {
 					<tbody>
 						{authenticators.map((obj, idx) => {
 							return (
-								<tr key={idx}>
-									<td className="p-2 align-middle">
-										{editMode ?
-											<>
-												<Input
-													id="keyname"
-													name="keyname"
-													type="text"
-													autoComplete="off"
-													invalid={errors.id}
-													placeholder={t("WebAuthnScreen|Name of the key")}
-													onChange={reg.onChange}
-													onBlur={reg.onBlur}
-													innerRef={reg.ref}
-												/>
-												{/*{errors.id ?*/}
-												{/*	<FormFeedback>{errors.id.message}</FormFeedback>*/}
-												{/*	:*/}
-												{/*	<FormText>{t("WebAuthnScreen|blalbalba")}</FormText>*/}
-												{/*}*/}
-											</>
-										:
-											<div className="div-key-wordwrap" title={obj?.name}>
-												<span className="cil-shield-alt pr-1" />{obj?.name}
-											</div>
-										}
-
-									</td>
-									<td className="p-2 td-not-display align-middle">
-										{obj?.sign_count}
-									</td>
-									<td className="p-2 td-not-display align-middle">
-										<DateTime value={obj?.last_login}/>
-									</td>
-									<td className="p-2 align-middle">
-										<ButtonGroup>
-											{editMode ?
-												<>
-													<Button
-														outline
-														color="success"
-														size="sm"
-														type="submit"
-													>
-														{t("ASABLibraryModule|Save")}
-													</Button>
-													<Button
-														outline
-														color="danger"
-														size="sm"
-														type="button"
-														onClick={cancelChanges}
-													>
-														{t("ASABLibraryModule|Cancel")}
-													</Button>
-												</>
-												:
-												<>
-													<Button
-														outline
-														type="button"
-														title={t("WebAuthnScreen|Edit")}
-														size="sm"
-														color="secondary"
-														icon="cil-cloud-download"
-														onClick={() => setEditMode(true)}
-													>
-														<span className="cil-color-border"></span>
-													</Button>
-													<Button
-														outline
-														size="sm"
-														color="danger"
-														type="button"
-														title={t("WebAuthnScreen|Unregister authenticator")}
-														onClick={(e) => {confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
-														className="float-right"
-														disabled={isSubmitting}
-													>
-														{t("WebAuthnScreen|Unregister")}
-													</Button>
-												</>
-											}
-
-										</ButtonGroup>
-									</td>
-								</tr>
+								<TableRow
+									key={idx}
+									obj={obj}
+									idx={idx}
+								/>
 							)
 						})}
 					</tbody>
+
 				</Table>
+				</Form>
 				:
 				isLoading ?
 					<CellContentLoader cols={1} rows={2} title={t("WebAuthnScreen|Loading")}/>
@@ -401,6 +324,113 @@ function WebAuthnCard(props) {
 				</CardFooter>
 			}
 		</Card>
-
 	);
+
+
+	function TableRow ({ obj }) {
+		const [localEditMode, setLocalEditMode] = useState(false);
+
+
+		return (
+			<tr>
+				<td className="p-2 align-middle">
+					{(localEditMode == true && obj?.id == getValues("id")) ?
+						<>
+							{/*<Controller*/}
+							{/*	render={({field}) => <Input {...field} type="text"/>}*/}
+							{/*	name={`name-${idx}`}*/}
+							{/*	control={control}*/}
+							{/*/>*/}
+							<Input
+								id="name"
+								name="name"
+								title={obj?.name}
+								type="text"
+								onChange={regName.onChange}
+								onBlur={regName.onBlur}
+								innerRef={regName.ref}
+								defaultValue={obj?.name}
+							/>
+						</>
+						:
+						<div className="div-key-wordwrap" title={obj?.name}>
+							<span className="cil-shield-alt pr-1" />{obj?.name}
+						</div>
+					}
+
+				</td>
+				<td className="p-2 td-not-display align-middle">
+					{obj?.sign_count}
+				</td>
+				<td className="p-2 td-not-display align-middle">
+					<DateTime value={obj?.last_login}/>
+				</td>
+				<td className="p-2 align-middle">
+					{console.log(localEditMode, getValues("id"), obj.id)}
+					<ButtonGroup>
+						{(localEditMode == true && (obj?.id == getValues("id"))) ?
+							<>
+								<Button
+									outline
+									color="success"
+									size="sm"
+									type="submit"
+									title={t("ASABLibraryModule|Save")}
+								>
+									{t("ASABLibraryModule|Save")}
+								</Button>
+								<Button
+									outline
+									color="danger"
+									size="sm"
+									type="button"
+									title={t("ASABLibraryModule|Cancel")}
+									onClick={() => {
+										cancelChanges,
+										setLocalEditMode(false)
+									}}
+								>
+									{t("ASABLibraryModule|Cancel")}
+								</Button>
+							</>
+							:
+							<>
+								<Button
+									outline
+									type="button"
+									title={t("WebAuthnScreen|Edit")}
+									size="sm"
+									color="secondary"
+									icon="cil-cloud-download"
+									disabled={isSubmitting || globalEditMode}
+									onClick={(e) => {
+										e.preventDefault(),
+										setLocalEditMode(true),
+										// setGlobalEditMode(true),
+										setValue("id", obj?.id)
+										console.log(obj.id, "id")
+									}}
+								>
+									<span className="cil-color-border"></span>
+								</Button>
+								<Button
+									outline
+									size="sm"
+									color="danger"
+									type="button"
+									title={t("WebAuthnScreen|Unregister authenticator")}
+									onClick={(e) => {confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
+									className="float-right"
+									disabled={isSubmitting || globalEditMode}
+								>
+									{t("WebAuthnScreen|Unregister")}
+								</Button>
+							</>
+						}
+					</ButtonGroup>
+				</td>
+			</tr>
+		)
+	}
 }
+
