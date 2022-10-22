@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from "react-router-dom";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { CellContentLoader, DateTime } from 'asab-webui';
 
@@ -13,7 +13,7 @@ import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
 	Input, Button, ButtonGroup,
-	Table, InputGroup, InputGroupAddon, Form, FormText, FormFeedback
+	Table, Form, FormText, FormFeedback
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -44,7 +44,7 @@ function WebAuthnCard(props) {
 	const [ authenticators, setAuthenticators ] = useState([]);
 	const [ globalEditMode, setGlobalEditMode ] = useState(false);
 
-	const { handleSubmit, register, formState: { errors }, setValue, control, resetField, reset, unregister, getValues } = useForm();
+	const { handleSubmit, register, formState: { errors }, setValue, resetField, getValues } = useForm();
 
 	const regName = register("name");
 
@@ -204,11 +204,6 @@ function WebAuthnCard(props) {
 	// Edit keyname
 	const onSubmit = async (values) => {
 		// setGlobalEditMode(false);
-		// Object.keys(values).map((item, idx) => {
-		// 	if (item.indexOf("name") !== -1) {
-		// 		unregister(item);
-		// 	}
-		// })
 		console.log(values,"change name");
 		let response;
 		try {
@@ -222,6 +217,7 @@ function WebAuthnCard(props) {
 			console.error(e);
 			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't changed authenticator"));
 		}
+		resetField("name");
 		setIsSubmitting(false);
 		getAuthenticators();
 	}
@@ -278,11 +274,7 @@ function WebAuthnCard(props) {
 					<tbody>
 						{authenticators.map((obj, idx) => {
 							return (
-								<TableRow
-									key={idx}
-									obj={obj}
-									idx={idx}
-								/>
+								<TableRow key={idx} obj={obj} idx={idx}/>
 							)
 						})}
 					</tbody>
@@ -334,13 +326,8 @@ function WebAuthnCard(props) {
 		return (
 			<tr>
 				<td className="p-2 align-middle">
-					{(localEditMode == true && obj?.id == getValues("id")) ?
+					{(localEditMode && obj?.id == getValues("id")) ?
 						<>
-							{/*<Controller*/}
-							{/*	render={({field}) => <Input {...field} type="text"/>}*/}
-							{/*	name={`name-${idx}`}*/}
-							{/*	control={control}*/}
-							{/*/>*/}
 							<Input
 								id="name"
 								name="name"
@@ -366,9 +353,8 @@ function WebAuthnCard(props) {
 					<DateTime value={obj?.last_login}/>
 				</td>
 				<td className="p-2 align-middle">
-					{console.log(localEditMode, getValues("id"), obj.id)}
 					<ButtonGroup>
-						{(localEditMode == true && (obj?.id == getValues("id"))) ?
+						{(localEditMode && (obj?.id == getValues("id"))) ?
 							<>
 								<Button
 									outline
@@ -385,9 +371,9 @@ function WebAuthnCard(props) {
 									size="sm"
 									type="button"
 									title={t("ASABLibraryModule|Cancel")}
-									onClick={() => {
-										cancelChanges,
-										setLocalEditMode(false)
+									onClick={() => {cancelChanges,
+										setLocalEditMode(false),
+										resetField("name")
 									}}
 								>
 									{t("ASABLibraryModule|Cancel")}
@@ -406,9 +392,7 @@ function WebAuthnCard(props) {
 									onClick={(e) => {
 										e.preventDefault(),
 										setLocalEditMode(true),
-										// setGlobalEditMode(true),
 										setValue("id", obj?.id)
-										console.log(obj.id, "id")
 									}}
 								>
 									<span className="cil-color-border"></span>
