@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 
 import { CellContentLoader, DateTime } from 'asab-webui';
 
-import { connect } from 'react-redux';
-
 import publicKeyValuesToJSON from "./publicKeyValuesToJSON";
 
 import {
@@ -258,16 +256,16 @@ function WebAuthnCard(props) {
 				<Table responsive borderless>
 					<thead>
 						<tr>
-							<th>
+							<th style={{width: "30%"}}>
 								{t('WebAuthnScreen|Key name')}
 							</th>
-							<th className="td-not-display">
+							<th style={{width: "20%"}} className="td-not-display">
 								{t('WebAuthnScreen|Sign count')}
 							</th>
-							<th className="td-not-display">
+							<th style={{width: "30%"}} className="td-not-display">
 								{t('WebAuthnScreen|Last successful login')}
 							</th>
-							<td>
+							<td style={{width: "20%"}}>
 							</td>
 						</tr>
 					</thead>
@@ -329,6 +327,7 @@ function WebAuthnCard(props) {
 					{(localEditMode && obj?.id == getValues("id")) ?
 						<>
 							<Input
+								style={{height: "35px"}}
 								id="name"
 								name="name"
 								title={obj?.name}
@@ -352,8 +351,8 @@ function WebAuthnCard(props) {
 				<td className="p-2 td-not-display align-middle">
 					<DateTime value={obj?.last_login}/>
 				</td>
-				<td className="p-2 align-middle">
-					<ButtonGroup>
+				<td className="p-2 align-middle text-right">
+					<ButtonGroup className="table-button-group">
 						{(localEditMode && (obj?.id == getValues("id"))) ?
 							<>
 								<Button

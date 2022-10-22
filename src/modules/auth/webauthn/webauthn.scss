@@ -1,3 +1,5 @@
+@import "~asab-webui/styles/constants/index.scss";
+
 .div-key-wordwrap {
 	white-space: nowrap;
 	max-width: 20ch !important;
@@ -12,6 +14,10 @@
 
 .button-webauthn-register {
 	width: 20em;
+}
+
+.table-button-group .btn:nth-child(1) {
+	border-right: 1px solid $border-color !important;
 }
 
 @media screen and (max-width: 493px) {
