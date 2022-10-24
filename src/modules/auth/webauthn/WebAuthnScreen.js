@@ -42,41 +42,66 @@ function WebAuthnCard(props) {
 	const [ authenticators, setAuthenticators ] = useState([]);
 	const [ globalEditMode, setGlobalEditMode ] = useState(false);
 
-	const { handleSubmit, register, formState: { errors }, setValue, resetField, getValues } = useForm();
+	const { handleSubmit, register, formState, setValue, resetField, getValues } = useForm();
 
-	const regName = register("name");
+	const regName = register(
+		"name",
+		{
+			// validate: {
+			// 	emptyInput: value => (value && value.toString().length !== 0) || t("WebAuthnScreen|Username cannot be empty!"),
+			// 	vlidation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]$/).test(value) || t("WebAuthnScreen|blalblalba"),
+			// }
+		});
 
 	useEffect(() => {
 		setIsLoading(true);
 		getAuthenticators();
-	}, [])
+	}, []);
+
+	// useEffect(() => {
+	// 	if (formState.errors.name) {
+	// 		console.log("dlkfjaldkjf")
+	// 	}
+	// }, [formState])
 
 	// Get authenticators
 	const getAuthenticators = async () => {
 		let response;
 		try {
-			// response = [
-			// 	{
-			// 		"id": "M7Ldym4umjP2KsWf9ZYjaS6NTc7huk7lpHzUCi4cFpg9Jg1JMXOMcpz4GWIem8l0lQRT3fGYCWistuR4v3mi8Q",
-			// 		"name": "key-221020-110531",
-			// 		"sign_count": 2,
-			// 		"created": "2022-10-20T11:05:31.609000Z"
-			// 	},
-			// 	{
-			// 		"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pg",
-			// 		"name": "key-221019-091516",
-			// 		"sign_count": 1,
-			// 		"created": "2022-10-19T09:15:16.142000Z"
-			// 	}
-			// ]
-			// setAuthenticators(response);
-			response = await SeaCatAuthAPI.get('/public/webauthn');
-			// TODO: enable validation, when ready in SA service
-			if (response.data.result != 'OK') {
-				throw new Error(t("WebAuthnScreen|Something went wrong, can't retrieve authenticators"));
-			}
-			setAuthenticators(response.data.data);
-			setIsLoading(false);
+			response = [
+				{
+					"id": "M7Ldym4umjP2KsWf9ZYjaS6NTc7huk7lpHzUCi4cFpg9Jg1JMXOMcpz4GWIem8l0lQRT3fGYCWistuR4v3mi8Q",
+					"name": "key-221020-110531",
+					"sign_count": 2,
+					"created": "2022-10-20T11:05:31.609000Z"
+				},
+				{
+					"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pg",
+					"name": "key-221019-091516",
+					"sign_count": 1,
+					"created": "2022-10-19T09:15:16.142000Z"
+				},
+				{
+					"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pa",
+					"name": "key-221019-091517",
+					"sign_count": 1,
+					"created": "2022-10-19T09:15:16.142000Z"
+				},
+				{
+					"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6cg",
+					"name": "key-221019-091518",
+					"sign_count": 1,
+					"created": "2022-10-19T09:15:16.142000Z"
+				}
+			]
+			setAuthenticators(response);
+			// response = await SeaCatAuthAPI.get('/public/webauthn');
+			// // TODO: enable validation, when ready in SA service
+			// if (response.data.result != 'OK') {
+			// 	throw new Error(t("WebAuthnScreen|Something went wrong, can't retrieve authenticators"));
+			// }
+			// setAuthenticators(response.data.data);
+			// setIsLoading(false);
 		} catch(e) {
 			// TODO: add error message for already registered credentials
 			console.error(e);
@@ -200,7 +225,7 @@ function WebAuthnCard(props) {
 	}
 
 	// Edit keyname
-	const onSubmit = async (values) => {
+	const onSubmitKeyName = async (values) => {
 		// setGlobalEditMode(false);
 		console.log(values,"change name");
 		let response;
@@ -220,12 +245,12 @@ function WebAuthnCard(props) {
 		getAuthenticators();
 	}
 
-	const cancelChanges = () => {
-		const confirmation = confirm(t("ASABLibraryModule|Are you sure you want to cancel changes?"));
-		if (confirmation) {
-			setGlobalEditMode(false);
-		}
-	}
+	// const cancelChanges = () => {
+	// 	const confirmation = confirm(t("ASABLibraryModule|Are you sure you want to cancel changes?"));
+	// 	if (confirmation) {
+	// 		setGlobalEditMode(false);
+	// 	}
+	// }
 
 	// Confirmation popup window for activation/deactivation of OTP
 	const confirmWebAuthnUnregister = (id) => {
@@ -252,40 +277,53 @@ function WebAuthnCard(props) {
 			</CardHeader>
 			<CardBody>
 				{authenticators.length > 0 ?
-				<Form onSubmit={handleSubmit(onSubmit)}>
-				<Table responsive borderless>
-					<thead>
-						<tr>
-							<th style={{width: "30%"}}>
-								{t('WebAuthnScreen|Key name')}
-							</th>
-							<th style={{width: "20%"}} className="td-not-display">
-								{t('WebAuthnScreen|Sign count')}
-							</th>
-							<th style={{width: "30%"}} className="td-not-display">
-								{t('WebAuthnScreen|Last successful login')}
-							</th>
-							<td style={{width: "20%"}}>
-							</td>
-						</tr>
-					</thead>
-					<tbody>
-						{authenticators.map((obj, idx) => {
-							return (
-								<TableRow key={idx} obj={obj} idx={idx}/>
-							)
-						})}
-					</tbody>
+					<Form onSubmit={handleSubmit(onSubmitKeyName)}>
+						<Table responsive borderless>
+							<thead>
+								<tr>
+									<th style={{width: "30%"}}>
+										{t('WebAuthnScreen|Key name')}
+									</th>
+									<th style={{width: "20%"}} className="td-not-display">
+										{t('WebAuthnScreen|Sign count')}
+									</th>
+									<th style={{width: "30%"}} className="td-not-display">
+										{t('WebAuthnScreen|Last successful login')}
+									</th>
+									<td style={{width: "20%"}}>
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								{authenticators.map((obj, idx) => {
+									return (
+										<TableRow
+											key={idx}
+											obj={obj}
+											regName={regName}
+											formState={formState}
+											setValue={setValue}
+											resetField={resetField}
+											getValues={getValues}
+											isSubmitting={isSubmitting}
+											globalEditMode={globalEditMode}
+											setGlobalEditMode={setGlobalEditMode}
+											confirmWebAuthnUnregister={confirmWebAuthnUnregister}
 
-				</Table>
-				</Form>
+										/>
+									)
+								})}
+							</tbody>
+
+						</Table>
+					</Form>
 				:
-				isLoading ?
-					<CellContentLoader cols={1} rows={2} title={t("WebAuthnScreen|Loading")}/>
-					:
-					<p className="text-center">
-						{t("WebAuthnScreen|No authenticator registered")}
-					</p>
+					isLoading ?
+							<CellContentLoader cols={1} rows={2} title={t("WebAuthnScreen|Loading")}/>
+						:
+							<p className="text-center">
+								{t("WebAuthnScreen|No authenticator registered")}
+							</p>
 				}
 				<div className="div-button-center">
 					<Button
@@ -293,7 +331,7 @@ function WebAuthnCard(props) {
 						className="button-webauthn-register justify-content-center"
 						color="primary"
 						type="button"
-						disabled={isSubmitting}
+						disabled={isSubmitting || globalEditMode == true}
 						onClick={(e) => {onRegister(), setIsSubmitting(true), e.preventDefault()}}
 					>
 						{t("WebAuthnScreen|Register new authenticator")}
@@ -317,103 +355,117 @@ function WebAuthnCard(props) {
 	);
 
 
-	function TableRow ({ obj }) {
-		const [localEditMode, setLocalEditMode] = useState(false);
+}
 
+function TableRow (props) {
+	const { t, i18n } = useTranslation();
+	const [localEditMode, setLocalEditMode] = useState(false);
+	let obj = props.obj;
 
-		return (
-			<tr>
-				<td className="p-2 align-middle">
-					{(localEditMode && obj?.id == getValues("id")) ?
+	const cancelChanges = () => {
+		const confirmation = confirm(t("ASABLibraryModule|Are you sure you want to cancel changes?"));
+		if (confirmation) {
+			props.setGlobalEditMode(false);
+			setLocalEditMode(false),
+				props.resetField("name")
+		}
+	}
+
+	const editKey = (e, id) => {
+		e.preventDefault();
+		props.setGlobalEditMode(true);
+		setLocalEditMode(true);
+		props.setValue("id", id);
+	}
+
+	return (
+		<tr>
+			<td className="p-2 align-middle">
+				{(localEditMode && obj?.id == props.getValues("id")) ?
+					<>
+						<Input
+							style={{height: "35px"}}
+							id="name"
+							name="name"
+							type="text"
+							title={obj?.name}
+							invalid={props.formState.errors.name}
+							onChange={props.regName.onChange}
+							onBlur={props.regName.onBlur}
+							innerRef={props.regName.ref}
+							defaultValue={obj?.name}
+						/>
+
+						{props.formState.errors.name && <FormFeedback>{props.formState.errors.name.message}</FormFeedback>}
+					</>
+					:
+					<div className="div-key-wordwrap" title={obj?.name}>
+						<span className="cil-shield-alt pr-1" />{obj?.name}
+					</div>
+				}
+
+			</td>
+			<td className="p-2 td-not-display align-middle">
+				{obj?.sign_count}
+			</td>
+			<td className="p-2 td-not-display align-middle">
+				<DateTime value={obj?.last_login}/>
+			</td>
+			<td className="p-2 align-middle text-right">
+				<ButtonGroup className="table-button-group">
+					{(localEditMode && props.globalEditMode && (obj?.id == props.getValues("id"))) ?
 						<>
-							<Input
-								style={{height: "35px"}}
-								id="name"
-								name="name"
-								title={obj?.name}
-								type="text"
-								onChange={regName.onChange}
-								onBlur={regName.onBlur}
-								innerRef={regName.ref}
-								defaultValue={obj?.name}
-							/>
+							<Button
+								outline
+								color="success"
+								size="sm"
+								type="submit"
+								title={t("ASABLibraryModule|Save")}
+							>
+								{t("ASABLibraryModule|Save")}
+							</Button>
+							<Button
+								outline
+								color="danger"
+								size="sm"
+								type="button"
+								title={t("ASABLibraryModule|Cancel")}
+								onClick={() => {cancelChanges()}}
+							>
+								{t("ASABLibraryModule|Cancel")}
+							</Button>
 						</>
 						:
-						<div className="div-key-wordwrap" title={obj?.name}>
-							<span className="cil-shield-alt pr-1" />{obj?.name}
-						</div>
+						<>
+							<Button
+								outline
+								type="button"
+								title={t("WebAuthnScreen|Edit")}
+								size="sm"
+								color="secondary"
+								icon="cil-cloud-download"
+								disabled={props.isSubmitting || (props.globalEditMode == true)}
+								onClick={(e) => editKey(e, obj?.id)}
+							>
+								<span className="cil-color-border"></span>
+							</Button>
+							<Button
+								outline
+								size="sm"
+								color="danger"
+								type="button"
+								title={t("WebAuthnScreen|Unregister authenticator")}
+								onClick={(e) => {props.confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
+								className="float-right"
+								disabled={props.isSubmitting || (props.globalEditMode == true)}
+							>
+								{t("WebAuthnScreen|Unregister")}
+							</Button>
+						</>
 					}
-
-				</td>
-				<td className="p-2 td-not-display align-middle">
-					{obj?.sign_count}
-				</td>
-				<td className="p-2 td-not-display align-middle">
-					<DateTime value={obj?.last_login}/>
-				</td>
-				<td className="p-2 align-middle text-right">
-					<ButtonGroup className="table-button-group">
-						{(localEditMode && (obj?.id == getValues("id"))) ?
-							<>
-								<Button
-									outline
-									color="success"
-									size="sm"
-									type="submit"
-									title={t("ASABLibraryModule|Save")}
-								>
-									{t("ASABLibraryModule|Save")}
-								</Button>
-								<Button
-									outline
-									color="danger"
-									size="sm"
-									type="button"
-									title={t("ASABLibraryModule|Cancel")}
-									onClick={() => {cancelChanges,
-										setLocalEditMode(false),
-										resetField("name")
-									}}
-								>
-									{t("ASABLibraryModule|Cancel")}
-								</Button>
-							</>
-							:
-							<>
-								<Button
-									outline
-									type="button"
-									title={t("WebAuthnScreen|Edit")}
-									size="sm"
-									color="secondary"
-									icon="cil-cloud-download"
-									disabled={isSubmitting || globalEditMode}
-									onClick={(e) => {
-										e.preventDefault(),
-										setLocalEditMode(true),
-										setValue("id", obj?.id)
-									}}
-								>
-									<span className="cil-color-border"></span>
-								</Button>
-								<Button
-									outline
-									size="sm"
-									color="danger"
-									type="button"
-									title={t("WebAuthnScreen|Unregister authenticator")}
-									onClick={(e) => {confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
-									className="float-right"
-									disabled={isSubmitting || globalEditMode}
-								>
-									{t("WebAuthnScreen|Unregister")}
-								</Button>
-							</>
-						}
-					</ButtonGroup>
-				</td>
-			</tr>
-		)
-	}
+				</ButtonGroup>
+			</td>
+		</tr>
+	)
 }
 
