@@ -20,10 +20,6 @@
 	border-right: 1px solid $border-color !important;
 }
 
-.webauthn-table-tr {
-	height: 73px;
-}
-
 .webauthn-th-keyname, .webauthn-th-last-login {
 	width: 30%;
 }
@@ -33,34 +29,10 @@
 }
 
 @media screen and (max-width: 493px) {
-	.col-webauthn-card {
-		//flex: 0 0 100% !important;
-		//max-width: 100% !important;
-	}
-
 	/*Does not display some table columns on small screens*/
 	.td-not-display {
 		display: none;
 	}
-}
-
-@media screen and (max-width: 768px) {
-	.col-webauthn-card {
-		//flex: 0 0 100% !important;
-		//max-width: 100% !important;
-	}
-}
-
-@media screen and (max-width: 996px) {
-	.col-webauthn-card {
-		//flex: 0 0 85%;
-		//max-width: 85%;
-	}
-}
-
-.col-webauthn-card {
-	//flex: 0 0 65%;
-	//max-width: 65%;
 }
 
 .p-td {
