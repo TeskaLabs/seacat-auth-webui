@@ -20,7 +20,7 @@ export default function WebAuthnScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col className="col-webauthn-card">
+				<Col lg={12} className="col-webauthn-card">
 					<WebAuthnCard app={props.app}/>
 				</Col>
 			</Row>
@@ -47,22 +47,19 @@ function WebAuthnCard(props) {
 	const regName = register(
 		"name",
 		{
-			// validate: {
-			// 	emptyInput: value => (value && value.toString().length !== 0) || t("WebAuthnScreen|Username cannot be empty!"),
-			// 	vlidation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]$/).test(value) || t("WebAuthnScreen|blalblalba"),
-			// }
+			validate: {
+				emptyInput: value => (value && value.toString().length !== 0) || t("WebAuthnScreen|Username cannot be empty!"),
+				startWithNumber: value => !(/^\d/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a number"),
+				startWithDash: value => !(/^[-]$/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a dash"),
+				startWithUnderscore: value => !(/^[_]$/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a underscore"),
+				validation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]/).test(value) || t("WebAuthnScreen|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
+			}
 		});
 
 	useEffect(() => {
 		setIsLoading(true);
 		getAuthenticators();
 	}, []);
-
-	// useEffect(() => {
-	// 	if (formState.errors.name) {
-	// 		console.log("dlkfjaldkjf")
-	// 	}
-	// }, [formState])
 
 	// Get authenticators
 	const getAuthenticators = async () => {
@@ -109,6 +106,7 @@ function WebAuthnCard(props) {
 			setIsLoading(false);
 			return;
 		}
+		setGlobalEditMode(false);
 	}
 
 	// TODO: implement on authenticator detail change
@@ -245,13 +243,6 @@ function WebAuthnCard(props) {
 		getAuthenticators();
 	}
 
-	// const cancelChanges = () => {
-	// 	const confirmation = confirm(t("ASABLibraryModule|Are you sure you want to cancel changes?"));
-	// 	if (confirmation) {
-	// 		setGlobalEditMode(false);
-	// 	}
-	// }
-
 	// Confirmation popup window for activation/deactivation of OTP
 	const confirmWebAuthnUnregister = (id) => {
 		setIsSubmitting(true);
@@ -281,17 +272,16 @@ function WebAuthnCard(props) {
 						<Table responsive borderless>
 							<thead>
 								<tr>
-									<th style={{width: "30%"}}>
+									<th className="webauthn-th-keyname">
 										{t('WebAuthnScreen|Key name')}
 									</th>
-									<th style={{width: "20%"}} className="td-not-display">
+									<th className="webauthn-th-sign-count td-not-display">
 										{t('WebAuthnScreen|Sign count')}
 									</th>
-									<th style={{width: "30%"}} className="td-not-display">
+									<th className="webauthn-th-last-login td-not-display">
 										{t('WebAuthnScreen|Last successful login')}
 									</th>
-									<td style={{width: "20%"}}>
-									</td>
+									<td className="webauthn-th-button"></td>
 								</tr>
 							</thead>
 							<tbody>
@@ -301,15 +291,14 @@ function WebAuthnCard(props) {
 											key={idx}
 											obj={obj}
 											regName={regName}
-											formState={formState}
 											setValue={setValue}
-											resetField={resetField}
+											formState={formState}
 											getValues={getValues}
+											resetField={resetField}
 											isSubmitting={isSubmitting}
 											globalEditMode={globalEditMode}
 											setGlobalEditMode={setGlobalEditMode}
 											confirmWebAuthnUnregister={confirmWebAuthnUnregister}
-
 										/>
 									)
 								})}
@@ -366,8 +355,8 @@ function TableRow (props) {
 		const confirmation = confirm(t("ASABLibraryModule|Are you sure you want to cancel changes?"));
 		if (confirmation) {
 			props.setGlobalEditMode(false);
-			setLocalEditMode(false),
-				props.resetField("name")
+			setLocalEditMode(false);
+			props.resetField("name");
 		}
 	}
 
@@ -379,9 +368,9 @@ function TableRow (props) {
 	}
 
 	return (
-		<tr>
-			<td className="p-2 align-middle">
-				{(localEditMode && obj?.id == props.getValues("id")) ?
+		<tr className="webauthn-table-tr">
+			<td className="p-2 align-top">
+				{(localEditMode && props.globalEditMode && obj?.id == props.getValues("id")) ?
 					<>
 						<Input
 							style={{height: "35px"}}
@@ -398,20 +387,20 @@ function TableRow (props) {
 
 						{props.formState.errors.name && <FormFeedback>{props.formState.errors.name.message}</FormFeedback>}
 					</>
-					:
+				:
 					<div className="div-key-wordwrap" title={obj?.name}>
 						<span className="cil-shield-alt pr-1" />{obj?.name}
 					</div>
 				}
 
 			</td>
-			<td className="p-2 td-not-display align-middle">
+			<td className="p-2 td-not-display align-top">
 				{obj?.sign_count}
 			</td>
-			<td className="p-2 td-not-display align-middle">
+			<td className="p-2 td-not-display align-top">
 				<DateTime value={obj?.last_login}/>
 			</td>
-			<td className="p-2 align-middle text-right">
+			<td className="p-2 align-top text-right">
 				<ButtonGroup className="table-button-group">
 					{(localEditMode && props.globalEditMode && (obj?.id == props.getValues("id"))) ?
 						<>
@@ -435,7 +424,7 @@ function TableRow (props) {
 								{t("ASABLibraryModule|Cancel")}
 							</Button>
 						</>
-						:
+					:
 						<>
 							<Button
 								outline
