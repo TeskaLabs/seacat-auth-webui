@@ -20,7 +20,7 @@ export default function WebAuthnScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col lg={12} className="col-webauthn-card">
+				<Col lg={11} className="col-webauthn-card">
 					<WebAuthnCard app={props.app}/>
 				</Col>
 			</Row>
@@ -48,7 +48,7 @@ function WebAuthnCard(props) {
 		"name",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || t("WebAuthnScreen|Username cannot be empty!"),
+				emptyInput: value => (value && value.toString().length !== 0) || t("WebAuthnScreen|Key name cannot be empty!"),
 				startWithNumber: value => !(/^\d/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a number"),
 				startWithDash: value => !(/^[-]$/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a dash"),
 				startWithUnderscore: value => !(/^[_]$/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a underscore"),
@@ -65,40 +65,40 @@ function WebAuthnCard(props) {
 	const getAuthenticators = async () => {
 		let response;
 		try {
-			response = [
-				{
-					"id": "M7Ldym4umjP2KsWf9ZYjaS6NTc7huk7lpHzUCi4cFpg9Jg1JMXOMcpz4GWIem8l0lQRT3fGYCWistuR4v3mi8Q",
-					"name": "key-221020-110531",
-					"sign_count": 2,
-					"created": "2022-10-20T11:05:31.609000Z"
-				},
-				{
-					"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pg",
-					"name": "key-221019-091516",
-					"sign_count": 1,
-					"created": "2022-10-19T09:15:16.142000Z"
-				},
-				{
-					"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pa",
-					"name": "key-221019-091517",
-					"sign_count": 1,
-					"created": "2022-10-19T09:15:16.142000Z"
-				},
-				{
-					"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6cg",
-					"name": "key-221019-091518",
-					"sign_count": 1,
-					"created": "2022-10-19T09:15:16.142000Z"
-				}
-			]
-			setAuthenticators(response);
-			// response = await SeaCatAuthAPI.get('/public/webauthn');
-			// // TODO: enable validation, when ready in SA service
-			// if (response.data.result != 'OK') {
-			// 	throw new Error(t("WebAuthnScreen|Something went wrong, can't retrieve authenticators"));
-			// }
-			// setAuthenticators(response.data.data);
-			// setIsLoading(false);
+			// response = [
+			// 	{
+			// 		"id": "M7Ldym4umjP2KsWf9ZYjaS6NTc7huk7lpHzUCi4cFpg9Jg1JMXOMcpz4GWIem8l0lQRT3fGYCWistuR4v3mi8Q",
+			// 		"name": "key-221020-110531",
+			// 		"sign_count": 2,
+			// 		"created": "2022-10-20T11:05:31.609000Z"
+			// 	},
+			// 	{
+			// 		"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pg",
+			// 		"name": "key-221019-091516",
+			// 		"sign_count": 1,
+			// 		"created": "2022-10-19T09:15:16.142000Z"
+			// 	},
+			// 	{
+			// 		"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pa",
+			// 		"name": "key-221019-091517",
+			// 		"sign_count": 1,
+			// 		"created": "2022-10-19T09:15:16.142000Z"
+			// 	},
+			// 	{
+			// 		"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6cg",
+			// 		"name": "key-221019-091518",
+			// 		"sign_count": 1,
+			// 		"created": "2022-10-19T09:15:16.142000Z"
+			// 	}
+			// ]
+			// setAuthenticators(response);
+			response = await SeaCatAuthAPI.get('/public/webauthn');
+			// TODO: enable validation, when ready in SA service
+			if (response.data.result != 'OK') {
+				throw new Error(t("WebAuthnScreen|Something went wrong, can't retrieve authenticators"));
+			}
+			setAuthenticators(response.data.data);
+			setIsLoading(false);
 		} catch(e) {
 			// TODO: add error message for already registered credentials
 			console.error(e);
@@ -231,12 +231,12 @@ function WebAuthnCard(props) {
 			response = await SeaCatAuthAPI.put(`/public/webauthn/${values.id}`, {"name": `${values.name}`});
 			// TODO: enable validation, when ready in SA service
 			if (response.data.result != 'OK') {
-				throw new Error(t("WebAuthnScreen|Something went wrong, can't edit authenticator"));
+				throw new Error(t("WebAuthnScreen|Something went wrong, can't change authenticator"));
 			}
 			props.app.addAlert("success", t("WebAuthnScreen|Authenticator successfully changed"));
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't changed authenticator"));
+			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't change authenticator"));
 		}
 		resetField("name");
 		setIsSubmitting(false);
@@ -368,7 +368,7 @@ function TableRow (props) {
 	}
 
 	return (
-		<tr className="webauthn-table-tr">
+		<tr>
 			<td className="p-2 align-top">
 				{(localEditMode && props.globalEditMode && obj?.id == props.getValues("id")) ?
 					<>
@@ -409,19 +409,19 @@ function TableRow (props) {
 								color="success"
 								size="sm"
 								type="submit"
-								title={t("ASABLibraryModule|Save")}
+								title={t("WebAuthnScreen|Save")}
 							>
-								{t("ASABLibraryModule|Save")}
+								{t("WebAuthnScreen|Save")}
 							</Button>
 							<Button
 								outline
 								color="danger"
 								size="sm"
 								type="button"
-								title={t("ASABLibraryModule|Cancel")}
+								title={t("WebAuthnScreen|Cancel")}
 								onClick={() => {cancelChanges()}}
 							>
-								{t("ASABLibraryModule|Cancel")}
+								{t("WebAuthnScreen|Cancel")}
 							</Button>
 						</>
 					:
@@ -433,8 +433,8 @@ function TableRow (props) {
 								size="sm"
 								color="secondary"
 								icon="cil-cloud-download"
-								disabled={props.isSubmitting || (props.globalEditMode == true)}
 								onClick={(e) => editKey(e, obj?.id)}
+								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
 								<span className="cil-color-border"></span>
 							</Button>
@@ -444,8 +444,8 @@ function TableRow (props) {
 								color="danger"
 								type="button"
 								title={t("WebAuthnScreen|Unregister authenticator")}
-								onClick={(e) => {props.confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
 								className="float-right"
+								onClick={(e) => {props.confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
 								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
 								{t("WebAuthnScreen|Unregister")}
