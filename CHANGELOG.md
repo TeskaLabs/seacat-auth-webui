@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+## Refactoring
+
+- Implement change key name in Webauthn (INDIGO Sprint 221014, [!12](https://github.com/TeskaLabs/seacat-auth-webui/pull/12))
+
 ## v22.42
 
 ### Features
