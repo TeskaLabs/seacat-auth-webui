@@ -197,8 +197,6 @@ function WebAuthnCard(props) {
 
 	// Edit keyname
 	const onSubmitKeyName = async (values) => {
-		// setGlobalEditMode(false);
-		console.log(values,"change name");
 		let response;
 		try {
 			response = await SeaCatAuthAPI.put(`/public/webauthn/${values.id}`, {"name": `${values.name}`});
@@ -232,7 +230,7 @@ function WebAuthnCard(props) {
 	return (
 		<Card className="shadow animated fadeIn auth-card">
 			<CardHeader className="border-bottom card-header-login">
-				<div className="card-header-title" >
+				<div className="card-header-title">
 					<CardTitle className="text-primary" tag="h2">{t('WebAuthnScreen|Manage FIDO2/WebAuthn')}</CardTitle>
 					<CardSubtitle tag="p">
 						{t('WebAuthnScreen|Here you can manage authenticators')}
