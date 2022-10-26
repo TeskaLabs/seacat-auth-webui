@@ -11,7 +11,7 @@ import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
 	Input, Button, ButtonGroup,
-	Table, Form, FormText, FormFeedback
+	Table, Form, FormFeedback
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -65,33 +65,6 @@ function WebAuthnCard(props) {
 	const getAuthenticators = async () => {
 		let response;
 		try {
-			// response = [
-			// 	{
-			// 		"id": "M7Ldym4umjP2KsWf9ZYjaS6NTc7huk7lpHzUCi4cFpg9Jg1JMXOMcpz4GWIem8l0lQRT3fGYCWistuR4v3mi8Q",
-			// 		"name": "key-221020-110531",
-			// 		"sign_count": 2,
-			// 		"created": "2022-10-20T11:05:31.609000Z"
-			// 	},
-			// 	{
-			// 		"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pg",
-			// 		"name": "key-221019-091516",
-			// 		"sign_count": 1,
-			// 		"created": "2022-10-19T09:15:16.142000Z"
-			// 	},
-			// 	{
-			// 		"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6pa",
-			// 		"name": "key-221019-091517",
-			// 		"sign_count": 1,
-			// 		"created": "2022-10-19T09:15:16.142000Z"
-			// 	},
-			// 	{
-			// 		"id": "v0sRZiahr8Rd7TWDjsOtg9tJlOSNdxG6onagVshB2l_UGtivVi2-bci3xelfrN7C6zyg_yvs9GIbia-vxHI6cg",
-			// 		"name": "key-221019-091518",
-			// 		"sign_count": 1,
-			// 		"created": "2022-10-19T09:15:16.142000Z"
-			// 	}
-			// ]
-			// setAuthenticators(response);
 			response = await SeaCatAuthAPI.get('/public/webauthn');
 			// TODO: enable validation, when ready in SA service
 			if (response.data.result != 'OK') {
@@ -406,6 +379,7 @@ function TableRow (props) {
 						<>
 							<Button
 								outline
+								name="save"
 								color="success"
 								size="sm"
 								type="submit"
