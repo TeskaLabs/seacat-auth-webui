@@ -50,7 +50,7 @@ $ yarn install
 Run application in dev environment
 
 ```
-$ yarn start -c conf/conf.js
+$ yarn start -c conf/config.js
 ```
 
 ## Build to production or build environment
