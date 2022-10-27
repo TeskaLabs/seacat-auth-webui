@@ -44,15 +44,16 @@ function WebAuthnCard(props) {
 
 	const { handleSubmit, register, formState, setValue, resetField, getValues } = useForm();
 
+	// Register input for authenticator name
 	const regName = register(
 		"name",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || t("WebAuthnScreen|Key name cannot be empty!"),
-				startWithNumber: value => !(/^\d/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a number"),
-				startWithDash: value => !(/^[-]$/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a dash"),
-				startWithUnderscore: value => !(/^[_]$/).test(value) || t("WebAuthnScreen|Invalid format, resource cannot start with a underscore"),
-				validation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]/).test(value) || t("WebAuthnScreen|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
+				emptyInput: value => (value && value.toString().length !== 0) || t("WebAuthnScreen|Authenticator name can't be empty!"),
+				startWithNumber: value => !(/^\d/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a number"),
+				startWithDash: value => !(/^[-]$/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a dash"),
+				startWithUnderscore: value => !(/^[_]$/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a underscore"),
+				mainValidation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]/).test(value) || t("WebAuthnScreen|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
 			}
 		});
 
@@ -72,14 +73,15 @@ function WebAuthnCard(props) {
 			}
 			setAuthenticators(response.data.data);
 			setIsLoading(false);
+			setGlobalEditMode(false);
 		} catch(e) {
 			// TODO: add error message for already registered credentials
 			console.error(e);
 			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't retrieve authenticators"));
 			setIsLoading(false);
+			setGlobalEditMode(false);
 			return;
 		}
-		setGlobalEditMode(false);
 	}
 
 	// TODO: implement on authenticator detail change
@@ -195,19 +197,19 @@ function WebAuthnCard(props) {
 		}
 	}
 
-	// Edit keyname
+	// Edit authenticator name
 	const onSubmitKeyName = async (values) => {
 		let response;
 		try {
 			response = await SeaCatAuthAPI.put(`/public/webauthn/${values.id}`, {"name": `${values.name}`});
 			// TODO: enable validation, when ready in SA service
 			if (response.data.result != 'OK') {
-				throw new Error(t("WebAuthnScreen|Something went wrong, can't change authenticator"));
+				throw new Error(t("WebAuthnScreen|Something went wrong, can't update authenticator"));
 			}
-			props.app.addAlert("success", t("WebAuthnScreen|Authenticator successfully changed"));
+			props.app.addAlert("success", t("WebAuthnScreen|Authenticator successfully updated"));
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't change authenticator"));
+			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't update authenticator"));
 		}
 		resetField("name");
 		setIsSubmitting(false);
@@ -238,7 +240,7 @@ function WebAuthnCard(props) {
 				</div>
 			</CardHeader>
 			<CardBody>
-				{authenticators.length > 0 ?
+				{authenticators && authenticators.length > 0 ?
 					<Form onSubmit={handleSubmit(onSubmitKeyName)}>
 						<Table responsive borderless>
 							<thead>
@@ -319,11 +321,12 @@ function WebAuthnCard(props) {
 
 function TableRow (props) {
 	const { t, i18n } = useTranslation();
-	const [localEditMode, setLocalEditMode] = useState(false);
+	const [ localEditMode, setLocalEditMode ] = useState(false);
 	let obj = props.obj;
 
+	// Cancel edit mode for an authenticator name
 	const cancelChanges = () => {
-		const confirmation = confirm(t("ASABLibraryModule|Are you sure you want to cancel changes?"));
+		const confirmation = confirm(t("WebAuthnScreen|Are you sure you want to cancel changes?"));
 		if (confirmation) {
 			props.setGlobalEditMode(false);
 			setLocalEditMode(false);
@@ -331,7 +334,8 @@ function TableRow (props) {
 		}
 	}
 
-	const editKey = (e, id) => {
+	// Open edit mode for changing authenticator name
+	const editAuthenticatorName = (e, id) => {
 		e.preventDefault();
 		props.setGlobalEditMode(true);
 		setLocalEditMode(true);
@@ -401,11 +405,11 @@ function TableRow (props) {
 							<Button
 								outline
 								type="button"
-								title={t("WebAuthnScreen|Edit")}
+								title={t("WebAuthnScreen|Edit authenticator")}
 								size="sm"
 								color="secondary"
 								icon="cil-cloud-download"
-								onClick={(e) => editKey(e, obj?.id)}
+								onClick={(e) => editAuthenticatorName(e, obj?.id)}
 								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
 								<span className="cil-color-border"></span>
