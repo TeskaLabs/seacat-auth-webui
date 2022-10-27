@@ -53,7 +53,7 @@ function WebAuthnCard(props) {
 				startWithNumber: value => !(/^\d/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a number"),
 				startWithDash: value => !(/^[-]$/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a dash"),
 				startWithUnderscore: value => !(/^[_]$/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a underscore"),
-				mainValidation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]/).test(value) || t("WebAuthnScreen|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
+				formatValidation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]/).test(value) || t("WebAuthnScreen|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
 			}
 		});
 

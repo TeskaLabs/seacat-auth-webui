@@ -197,7 +197,7 @@
 		"Unregister authenticator": "Odhlásit autentikátor",
 		"No authenticator registered": "Žádný autentikátor není registrován",
 		"Are you sure you want to cancel changes?": "Opravdu chcete zrušit změny?",
-		"Authenticator name can't be empty!": "Název autentizátoru nemůže být prázdný!",
+		"Authenticator name can't be empty!": "Název autentikátoru nemůže být prázdný!",
 		"Invalid format, authenticator name can't start with a number": "Nesprávný formát, název autentizátoru nemůže začínat číslicí",
 		"Invalid format, authenticator name can't start with a dash": "Nesprávný formát, název autentizátoru nemůže začínat pomlčkou",
 		"Invalid format, authenticator name can't start with a underscore": "Nesprávný formát, název autentizátoru nemůže začínat podtržítkem",
