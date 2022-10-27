@@ -344,7 +344,7 @@ function TableRow (props) {
 
 	return (
 		<tr>
-			<td className="p-2 align-top">
+			<td className="p-2 align-middle">
 				{(localEditMode && props.globalEditMode && obj?.id == props.getValues("id")) ?
 					<>
 						<Input
@@ -369,19 +369,18 @@ function TableRow (props) {
 				}
 
 			</td>
-			<td className="p-2 td-not-display align-top">
+			<td className="p-2 td-not-display align-middle">
 				{obj?.sign_count}
 			</td>
-			<td className="p-2 td-not-display align-top">
+			<td className="p-2 td-not-display align-middle">
 				<DateTime value={obj?.last_login}/>
 			</td>
-			<td className="p-2 align-top text-right">
+			<td className="p-2 align-middle text-right">
 				<ButtonGroup className="table-button-group">
 					{(localEditMode && props.globalEditMode && (obj?.id == props.getValues("id"))) ?
 						<>
 							<Button
 								outline
-								name="save"
 								color="success"
 								size="sm"
 								type="submit"
