@@ -2,7 +2,7 @@
 
 ## Release Candidate
 
-## Refactoring
+### Refactoring
 
 - Implement change key name in Webauthn (INDIGO Sprint 221014, [!12](https://github.com/TeskaLabs/seacat-auth-webui/pull/12))
 
@@ -12,7 +12,7 @@
 
 - ASAB WebUI submodule version bump [[899679e](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/899679ebfab1862706504e60ceb396d72d2a4ad9)] commit (INDIGO Sprint 221014, [!10](https://github.com/TeskaLabs/seacat-auth-webui/pull/10))
 
-## Refactoring
+### Refactoring
 
 - Add correct gray background and spinner when the page is loaded (INDIGO Sprint 220916, [!4](https://github.com/TeskaLabs/seacat-auth-webui/pull/4))
 
