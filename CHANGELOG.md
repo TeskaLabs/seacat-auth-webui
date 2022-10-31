@@ -2,13 +2,17 @@
 
 ## Release Candidate
 
+### Bugfix
+
+- Temporary downgrade of `react-hook-form` from `“^7.22.1"` to `"7.37.0"` to avoid issues with non functional submit button in forms with v `"7.38.0"`. (INDIGO Sprint 221014, [!13](https://github.com/TeskaLabs/seacat-auth-webui/pull/13/files))
+
 ## v22.42
 
 ### Features
 
 - ASAB WebUI submodule version bump [[899679e](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/899679ebfab1862706504e60ceb396d72d2a4ad9)] commit (INDIGO Sprint 221014, [!10](https://github.com/TeskaLabs/seacat-auth-webui/pull/10))
 
-## Refactoring
+### Refactoring
 
 - Add correct gray background and spinner when the page is loaded (INDIGO Sprint 220916, [!4](https://github.com/TeskaLabs/seacat-auth-webui/pull/4))
 
