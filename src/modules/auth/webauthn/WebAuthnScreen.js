@@ -42,7 +42,7 @@ function WebAuthnCard(props) {
 	const [ authenticators, setAuthenticators ] = useState([]);
 	const [ globalEditMode, setGlobalEditMode ] = useState(false);
 
-	const { handleSubmit, register, formState, setValue, resetField, getValues } = useForm();
+	const { handleSubmit, register, formState: { errors }, setValue, resetField, getValues } = useForm();
 
 	// Register input for authenticator name
 	const regName = register(
@@ -53,7 +53,7 @@ function WebAuthnCard(props) {
 				startWithNumber: value => !(/^\d/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a number"),
 				startWithDash: value => !(/^[-]$/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a dash"),
 				startWithUnderscore: value => !(/^[_]$/).test(value) || t("WebAuthnScreen|Invalid format, authenticator name can't start with a underscore"),
-				formatValidation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]/).test(value) || t("WebAuthnScreen|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
+				formatValidation: value => (/^[a-z][a-z0-9._-]{0,128}[a-z0-9]$/).test(value) || t("WebAuthnScreen|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
 			}
 		});
 
@@ -264,7 +264,7 @@ function WebAuthnCard(props) {
 											obj={obj}
 											regName={regName}
 											setValue={setValue}
-											formState={formState}
+											errors={errors}
 											getValues={getValues}
 											resetField={resetField}
 											isSubmitting={isSubmitting}
@@ -314,8 +314,6 @@ function WebAuthnCard(props) {
 			}
 		</Card>
 	);
-
-
 }
 
 function TableRow (props) {
@@ -352,21 +350,19 @@ function TableRow (props) {
 							name="name"
 							type="text"
 							title={obj?.name}
-							invalid={props.formState.errors.name}
+							invalid={props.errors.name}
 							onChange={props.regName.onChange}
 							onBlur={props.regName.onBlur}
 							innerRef={props.regName.ref}
 							defaultValue={obj?.name}
 						/>
-
-						{props.formState.errors.name && <FormFeedback>{props.formState.errors.name.message}</FormFeedback>}
+						{props.errors.name && <FormFeedback>{props.errors.name.message}</FormFeedback>}
 					</>
 				:
 					<div className="div-key-wordwrap" title={obj?.name}>
 						<span className="cil-shield-alt pr-1" />{obj?.name}
 					</div>
 				}
-
 			</td>
 			<td className="p-2 td-not-display align-middle">
 				{obj?.sign_count}
