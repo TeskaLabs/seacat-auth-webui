@@ -4,7 +4,13 @@
 
 ### Refactoring
 
-- Implement change key name in Webauthn (INDIGO Sprint 221014, [!12](https://github.com/TeskaLabs/seacat-auth-webui/pull/12))
+- Implement change key name in Webauthn (INDIGO Sprint 221031, [!12](https://github.com/TeskaLabs/seacat-auth-webui/pull/12))
+
+## v22.44
+
+### Bugfix
+
+- Temporary downgrade of `react-hook-form` from `“^7.22.1"` to `"7.37.0"` to avoid issues with non functional submit button in forms with v `"7.38.0"`. (INDIGO Sprint 221014, [!13](https://github.com/TeskaLabs/seacat-auth-webui/pull/13/files))
 
 ## v22.42
 
