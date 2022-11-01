@@ -202,7 +202,6 @@ function WebAuthnCard(props) {
 		let response;
 		try {
 			response = await SeaCatAuthAPI.put(`/public/webauthn/${values.id}`, {"name": `${values.name}`});
-			// TODO: enable validation, when ready in SA service
 			if (response.data.result != 'OK') {
 				throw new Error(t("WebAuthnScreen|Something went wrong, can't update authenticator"));
 			}
@@ -293,7 +292,7 @@ function WebAuthnCard(props) {
 						className="button-webauthn-register justify-content-center"
 						color="primary"
 						type="button"
-						disabled={isSubmitting || globalEditMode == true}
+						disabled={isSubmitting || (globalEditMode == true)}
 						onClick={(e) => {onRegister(), setIsSubmitting(true), e.preventDefault()}}
 					>
 						{t("WebAuthnScreen|Register new authenticator")}
