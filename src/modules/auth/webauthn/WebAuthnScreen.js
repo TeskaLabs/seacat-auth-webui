@@ -197,22 +197,24 @@ function WebAuthnCard(props) {
 		}
 	}
 
-	// Edit authenticator name
 	const onSubmitKeyName = async (values) => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.put(`/public/webauthn/${values.id}`, {"name": `${values.name}`});
+			response = await SeaCatAuthAPI.put(`/public/webauthn/${values.id}`,
+				{"name": `${values.name}`}
+			);
 			if (response.data.result != 'OK') {
 				throw new Error(t("WebAuthnScreen|Something went wrong, can't update authenticator"));
 			}
 			props.app.addAlert("success", t("WebAuthnScreen|Authenticator successfully updated"));
+			resetField("name");
+			setIsSubmitting(false);
+			getAuthenticators();
 		} catch(e) {
-			console.error(e);
+			console.error(e.response.data.message);
 			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't update authenticator"));
+			props.app.addAlert("danger", e.response.data.message);
 		}
-		resetField("name");
-		setIsSubmitting(false);
-		getAuthenticators();
 	}
 
 	// Confirmation popup window for activation/deactivation of OTP
