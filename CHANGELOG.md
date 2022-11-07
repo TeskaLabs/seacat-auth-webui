@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[2dfc7be](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/2dfc7be78765b4f937960f83577ddfcf241ed70b)] commit (INDIGO Sprint 221031, [!12](https://github.com/TeskaLabs/seacat-auth-webui/pull/12))
+
 ### Refactoring
 
 - Implement change key name in Webauthn (INDIGO Sprint 221031, [!12](https://github.com/TeskaLabs/seacat-auth-webui/pull/12))
