@@ -211,9 +211,14 @@ function WebAuthnCard(props) {
 			setIsSubmitting(false);
 			getAuthenticators();
 		} catch(e) {
-			console.error(e.response.data.message);
+			setIsSubmitting(false);
+			if (e.response.status === 404) {
+				console.error(e.response.data.message);
+				props.app.addAlert("danger", e.response.data.message);
+				return;
+			}
+			console.error(e);
 			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't update authenticator"));
-			props.app.addAlert("danger", e.response.data.message);
 		}
 	}
 
