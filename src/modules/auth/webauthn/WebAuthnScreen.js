@@ -212,13 +212,17 @@ function WebAuthnCard(props) {
 			getAuthenticators();
 		} catch(e) {
 			setIsSubmitting(false);
+			console.error(e);
 			if (e.response.status === 404) {
-				console.error(e.response.data.message);
-				props.app.addAlert("danger", e.response.data.message);
+				props.app.addAlert("danger", t("WebAuthnScreen|Failed to update, authenticator does not match any credentials"));
+				return;
+			} else if (e.response.status === 400) {
+				props.app.addAlert("danger", t("WebAuthnScreen|Failed to update, authenticator name does not match the validation criteria"));
+				return;
+			} else {
+				props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't update authenticator"));
 				return;
 			}
-			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't update authenticator"));
 		}
 	}
 

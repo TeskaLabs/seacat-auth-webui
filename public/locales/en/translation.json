@@ -187,6 +187,8 @@
 		"Authenticator successfully registered": "Authenticator successfully registered",
 		"Something went wrong, can't unregister authenticator": "Something went wrong, can't unregister authenticator",
 		"Something went wrong, can't update authenticator": "Something went wrong, can't update authenticator",
+		"Failed to update, authenticator does not match any credentials": "Failed to update, authenticator does not match any credentials",
+		"Failed to update, authenticator name does not match the validation criteria": "Failed to update, authenticator name does not match the validation criteria",
 		"Authenticator successfully updated": "Authenticator successfully updated",
 		"Authenticator successfully unregistered": "Authenticator successfluly unregistered",
 		"Do you want to unregister this authenticator?": "Do you want to unregister this authenticator?",
