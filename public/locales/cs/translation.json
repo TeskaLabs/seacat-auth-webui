@@ -187,7 +187,7 @@
 		"Authenticator successfully registered": "Autentikátor úspěšně zaregistrován",
 		"Something went wrong, can't unregister authenticator": "Něco je špatně, odhlášení autentikátoru selhalo",
 		"Something went wrong, can't update authenticator": "Něco je špatně, nelze aktualizovat autentikátor",
-		"Failed to update, authenticator does not match any credentials": "Nepodařilo se aktualizovat, autentikátor se neshoduje žádnými uživatelskými údaji",
+		"Failed to update, authenticator does not match any credentials": "Nepodařilo se aktualizovat, autentikátor se neshoduje s žádnými uživatelskými údaji",
 		"Failed to update, authenticator name does not match the validation criteria": "Nepodařilo se aktualizovat, název autentikátoru neodpovídá kritériím validace",
 		"Authenticator successfully updated": "Autentikátor byl úspěšně aktualizován",
 		"Authenticator successfully unregistered": "Autentikátor úspěšně odhlášen",
