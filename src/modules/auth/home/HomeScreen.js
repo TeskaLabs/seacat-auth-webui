@@ -300,12 +300,12 @@ function HomeScreen(props) {
 												className="float-right text-muted pointer char-limit char-limit-number"
 												id="phoneNumber"
 												name="phoneNumber"
-												title={userinfo?.phone_number ?? ""}
+												title={userinfo?.phone ?? ""}
 											>
-												{!userinfo?.phone_number || userinfo?.phone_number === "" ?
+												{!userinfo?.phone || userinfo?.phone === "" ?
 													'N/A'
 												:
-													userinfo?.phone_number
+													userinfo?.phone
 												}
 											</div>
 										</Col>
