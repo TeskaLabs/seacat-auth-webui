@@ -5,6 +5,8 @@ const HomeScreen = lazy(() => import('./home/HomeScreen'));
 
 const LoginScreen = lazy(() => import('./containers/LoginScreen'));
 
+const RegisterScreen = lazy(() => import('./containers/RegisterScreen'));
+
 const ChangePwdScreen =  lazy(() => import('./passwd/ChangePwdScreen'));
 const ResetPwdScreen =  lazy(() => import('./passwd/ResetPwdScreen'));
 const ForgetPwdScreen =  lazy(() => import('./passwd/ForgetPwdScreen'));
@@ -20,6 +22,7 @@ import reducer from 'asab-webui/modules/auth/reducer';
 import { types } from 'asab-webui/modules/auth/actions';
 import './home/HomeScreen.scss';
 import './webauthn/webauthn.scss';
+import './containers/screens.scss';
 
 
 
@@ -46,6 +49,13 @@ export default class SeaCatAuthModule extends Module {
 			exact: true,
 			name: 'Login',
 			component: LoginScreen
+		});
+
+		app.Router.addRoute({
+			path: '/register',
+			exact: true,
+			name: 'Register',
+			component: RegisterScreen
 		});
 
 		app.Router.addRoute({
