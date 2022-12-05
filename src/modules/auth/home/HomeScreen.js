@@ -222,11 +222,11 @@ function HomeScreen(props) {
 									</React.Fragment>
 								</ListGroupItem>
 
-								{features.my_account?.external_login?.map(item => {
+								{features.my_account?.external_login?.map((item, i) => {
 									const isConnected = external_login_enabled?.includes(item.type);
 
 									return (
-										<ListGroupItem className="mb-0">
+										<ListGroupItem key={i} className="mb-0">
 											<Row onClick={() => externalServiceOnChange({ item, isConnected })}>
 												<Col sm={6}>
 													<a className="external-service-title">
@@ -235,6 +235,7 @@ function HomeScreen(props) {
 												</Col>
 												<Col sm={6}>
 													<CustomInput
+														id={`${item.label.replace(/[^\w\s]/gi, '-')}`}
 														className="float-right"
 														type="switch"
 														defaultChecked={isConnected}
