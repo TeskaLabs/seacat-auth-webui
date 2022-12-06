@@ -157,7 +157,7 @@ function RegisterScreen(props) {
 		<Container className="animated fadeIn">
 			<Row className="justify-content-center">
 				<Col lg="10" className="mt-3">
-					<Card>
+					<Card className="shadow">
 						<CardBody className="text-center">
 						{userinfo == undefined ?
 							t("RegisterScreen|You have been invited to join")
@@ -182,6 +182,7 @@ function RegisterScreen(props) {
 							app={props.app}
 							features={features["login"]}
 							stateCode={stateCode}
+							registerToken={registerToken}
 						/>
 					</Col>
 					<Col lg="5">
