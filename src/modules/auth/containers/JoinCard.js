@@ -67,7 +67,7 @@ function JoinCard(props) {
 		<Card className="shadow auth-card">
 			<CardHeader className="border-bottom card-header-login">
 				<div className="card-header-title" >
-					<CardTitle className="text-primary" tag="h2">{t('JoinCard|Join to application')}</CardTitle>
+					<CardTitle className="text-primary" tag="h2">{t('JoinCard|Join application')}</CardTitle>
 					<CardSubtitle tag="p">
 						{t('JoinCard|As a logged user')}
 					</CardSubtitle>
