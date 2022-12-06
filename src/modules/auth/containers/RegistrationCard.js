@@ -25,24 +25,29 @@ function RegistrationCard(props) {
 			<Card className="shadow auth-card">
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
-						<CardTitle tag="h1">{t('Registration')}</CardTitle>
-						<CardSubtitle tag="p" className="lead">
-							{t('New users, please register here.')}
+						<CardTitle className="text-primary" tag="h2">{t('RegistrationCard|New user?')}</CardTitle>
+						<CardSubtitle tag="p">
+							{t('New users, please register here')}
 						</CardSubtitle>
 					</div>
 				</CardHeader>
 				{/*TODO*/}
 				<CardBody>
 					...
-				</CardBody>
 
-				<CardFooter>
 					<Row className="justify-content-center">
-						<Col style={{textAlign: "center"}}>
-							<Button color="primary" type="submit">{t('Enter')}</Button>
+						<Col>
+							<Button
+								block
+								color="primary"
+								disabled={props.isSubmitting}
+								type="button"
+							>
+								{t('RegistrationCard|Register')}
+							</Button>
 						</Col>
 					</Row>
-				</CardFooter>
+				</CardBody>
 
 			</Card>
 		</Form>

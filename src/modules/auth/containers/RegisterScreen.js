@@ -186,12 +186,10 @@ function RegisterScreen(props) {
 						/>
 					</Col>
 					<Col lg="5">
-						<LoginCard
+						<RegistrationCard
 							app={props.app}
-							features={features["login"]}
-							stateCode={stateCode}
+							registerToken={registerToken}
 						/>
-						{/*<RegistrationCard app={props.app} features={features["registration"]} />*/}
 					</Col>
 				</Row>
 			:
@@ -203,8 +201,6 @@ function RegisterScreen(props) {
 							isSubmitting={isSubmitting}
 							setIsSubmitting={setIsSubmitting}
 							registerToken={registerToken}
-							// features={features["login"]}
-							// stateCode={stateCode}
 						/>
 					</Col>
 					<Col lg="5">
@@ -213,8 +209,6 @@ function RegisterScreen(props) {
 							credentials={credentials}
 							isSubmitting={isSubmitting}
 							setIsSubmitting={setIsSubmitting}
-							// features={features["login"]}
-							// stateCode={stateCode}
 						/>
 						{/*<RegistrationCard app={props.app} features={features["registration"]} />*/}
 					</Col>
