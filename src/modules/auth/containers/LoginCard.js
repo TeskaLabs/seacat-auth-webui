@@ -243,6 +243,16 @@ function LoginCard(props) {
 			t("LoginCard|Success")
 		);
 
+		/*
+			If register token is present, reload the page to stay in the register screen
+			and eventually confirm/finish the registration action
+		*/
+		if (props.registerToken != undefined) {
+			window.location.reload();
+			// Basically wait forever, until the app is going to be reloaded with window.location.reload
+			await new Promise(r => setTimeout(r, 3600*1000));
+		}
+
 		let redirect_uri;
 		let i = window.location.hash.indexOf('?');
 		if (i > -1) {
@@ -301,7 +311,9 @@ function LoginCard(props) {
 			<Card className="shadow auth-card">
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
-						<CardTitle className="text-primary" tag="h2">{t('LoginCard|Login')}</CardTitle>
+						<CardTitle className="text-primary" tag="h2">
+							{props.registerToken == undefined ? t('LoginCard|Login') : t('LoginCard|Have an account?')}
+						</CardTitle>
 						<CardSubtitle tag="p">
 							{t('LoginCard|Login here')}
 						</CardSubtitle>
