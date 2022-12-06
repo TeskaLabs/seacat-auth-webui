@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
 
 import {
 	Row, Col,
 	Card, CardHeader, CardTitle,
-	CardSubtitle, CardBody, CardFooter,
-	Label, Input, CustomInput, Button
+	CardSubtitle, CardBody,
+	Label, Button
 } from 'reactstrap';
 
 
