@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -15,6 +15,11 @@ function JoinCard(props) {
 
 
 	const updateCredentials = async () => {
+		if (props.registerToken == undefined) {
+			props.app.addAlert("danger", t("JoinCard|Can't proceed, registration token is undefined"));
+			props.setIsSubmitting(false);
+			return;
+		}
 		/*
 			body is empty as on PUT and POST request
 			we should send body in the request for any case.
@@ -25,7 +30,7 @@ function JoinCard(props) {
 		let response;
 		try {
 			// Use public logout
-			response = await SeaCatAuthAPI.post(`/public/register/${registrationCode}?update_current=true`,
+			response = await SeaCatAuthAPI.post(`/public/register/${props.registerToken}?update_current=true`,
 				body,
 				{ headers: {
 					'Content-Type': 'application/json'
@@ -36,6 +41,8 @@ function JoinCard(props) {
 		} catch (e) {
 			console.error(e);
 			props.app.addAlert("danger", t("JoinCard|Failed to update credentials and redirect to the application"));
+			props.setIsSubmitting(false);
+			return;
 		}
 
 		let redirect_uri;

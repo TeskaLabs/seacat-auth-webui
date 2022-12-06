@@ -13,6 +13,7 @@ function RegisterScreen(props) {
 	const { t } = useTranslation();
 	const [features, setFeatures] = useState({ "login": {} });
 	const [registerFeatures, setRegisterFeatures] = useState({});
+	const [registerToken, setRegisterToken] = useState(undefined);
 	const [width, height] = useWindowSize();
 	const [stateCode, setStateCode] = useState("");
 	const [credentials, setCredentials] = useState("");
@@ -106,6 +107,7 @@ function RegisterScreen(props) {
 
 	const fetchRegisterFeatures = async () => {
 		const token = getParams("token");
+		setRegisterToken(token);
 		// TODO: Temporal redirection until self-registration is build and enabled
 		if (!token) {
 			props.app.props.history.push("/");
@@ -199,6 +201,7 @@ function RegisterScreen(props) {
 							credentials={credentials}
 							isSubmitting={isSubmitting}
 							setIsSubmitting={setIsSubmitting}
+							registerToken={registerToken}
 							// features={features["login"]}
 							// stateCode={stateCode}
 						/>
