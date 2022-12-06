@@ -174,7 +174,7 @@ function RegisterScreen(props) {
 				</Col>
 			</Row>
 			{userinfo == undefined ?
-				<Row className="justify-content-center">
+				<Row className="justify-content-center register-row">
 					<Col lg="5">
 						<LoginCard
 							app={props.app}
@@ -192,7 +192,7 @@ function RegisterScreen(props) {
 					</Col>
 				</Row>
 			:
-				<Row className="justify-content-center">
+				<Row className="justify-content-center register-row">
 					<Col lg="5">
 						<JoinCard
 							app={props.app}

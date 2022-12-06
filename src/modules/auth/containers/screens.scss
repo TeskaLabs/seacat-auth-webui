@@ -5,3 +5,10 @@
 	padding-left: 5px;
 	padding-right: 5px;
 }
+
+.register-row {
+	margin-top: -3rem;
+	@media (max-width: 768px) {
+		margin-top: 0rem;
+	}
+}
