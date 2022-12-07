@@ -114,14 +114,34 @@ function RegisterScreen(props) {
 		}
 		console.log(token, "TOKEN")
 
-
-		setRegisterFeatures(		{
-			"email": "test@test.te",
-			"username": "Testik",
-			"phone": "666666666666",
-			"password": true,
-			"tenants": ["default", "looney", "tunes"]
+		// TODO: Mock of register features
+		setRegisterFeatures({
+			"credentials": {
+			 "email": {
+			  "value": "fpesek@prima.kamarad",
+			  "required": true,
+			  "editable": false
+			 },
+			 "phone": {
+			  "value": null,
+			  "required": false,
+			  "editable": true
+			 },
+			 "username": {
+			  "value": null,
+			  "required": true,
+			  "editable": true
+			 },
+			 "password": {
+			  "set": true,
+			  "required": true,
+			  "editable": true
+			 }
+			},
+			"tenants": ["korporat", "takyrat"]
 		})
+
+
 
 		// // TODO: handle when it fails
 		// try {
@@ -189,6 +209,7 @@ function RegisterScreen(props) {
 						<RegistrationCard
 							app={props.app}
 							registerToken={registerToken}
+							registerFeatures={registerFeatures}
 						/>
 					</Col>
 				</Row>
