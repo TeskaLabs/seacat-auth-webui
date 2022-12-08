@@ -35,7 +35,7 @@ export function PhoneField(props) {
 				name="phone"
 				type="text"
 				maxLength="17"
-				defaultValue={props.content?.value ? props.content?.value : ""}
+				defaultValue={props.content?.value ? props.content?.value : undefined}
 				disabled={disabled}
 				invalid={props.errors.phone}
 				onChange={reg.onChange}
@@ -75,7 +75,7 @@ export function EmailField(props) {
 				name="email"
 				type="email"
 				autoComplete="email"
-				defaultValue={props.content?.value ? props.content?.value : ""}
+				defaultValue={props.content?.value ? props.content?.value : undefined}
 				disabled={disabled}
 				invalid={props.errors.email}
 				onChange={reg.onChange}
@@ -110,7 +110,7 @@ export function UserNameField(props) {
 				id="username"
 				name="username"
 				type="text"
-				defaultValue={props.content?.value ? props.content?.value : ""}
+				defaultValue={props.content?.value ? props.content?.value : undefined}
 				disabled={disabled}
 				invalid={props.errors.username}
 				onChange={reg.onChange}
@@ -197,7 +197,12 @@ export function PasswordField(props) {
 		:
 		<>
 			<FormGroup>
-				<Label for="password">{label}{(props.content?.set == true) && <i title={t("FormFields|Cancel editing")} className="cil-x x-icon" onClick={() => toggle()}/>}</Label>
+				<Label
+					title={props.content?.required ? t("FormFields|Required field") : undefined}
+					for="password"
+				>
+					{label}{props.content?.required && (props.content?.set == false) && '*'}{(props.content?.set == true) && <i title={t("FormFields|Cancel editing")} className="cil-x x-icon" onClick={() => toggle()}/>}
+			</Label>
 				<InputGroup>
 					<Input
 						id="password"
