@@ -25,6 +25,7 @@ function RegistrationCard(props) {
 	const { handleSubmit, register, getValues, setValue, formState: { errors, isSubmitting } } = useForm();
 
 	const onSubmit = values => {
+		console.log(values, "VALUES")
 		// TODO
 	}
 
@@ -43,9 +44,9 @@ function RegistrationCard(props) {
 				<CardBody>
 					{props.registerFeatures && props.registerFeatures?.credentials && Object.keys(props.registerFeatures?.credentials).map((key, idx) => {
 						switch(key) {
-							case 'username': return(<UserNameField key={idx} content={props.registerFeatures?.credentials?.username} register={register} getValues={getValues} errors={errors} />)
-							case 'email': return(<EmailField key={idx} content={props.registerFeatures?.credentials?.email} register={register} getValues={getValues} errors={errors} />)
-							case 'password': return(<PasswordField key={idx} content={props.registerFeatures?.credentials?.password} register={register} getValues={getValues} errors={errors} />)
+							case 'username': return(<UserNameField key={idx} content={props.registerFeatures?.credentials?.username} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
+							case 'email': return(<EmailField key={idx} content={props.registerFeatures?.credentials?.email} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
+							case 'password': return(<PasswordField key={idx} content={props.registerFeatures?.credentials?.password} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
 							case 'phone': return(<PhoneField key={idx} content={props.registerFeatures?.credentials?.phone} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
 							default: return(<div key={idx}>Unknown item: "{key}"</div>)
 						}
@@ -57,7 +58,7 @@ function RegistrationCard(props) {
 								block
 								color="primary"
 								disabled={props.isSubmitting}
-								type="button"
+								type="submit"
 							>
 								{t('RegistrationCard|Register')}
 							</Button>
