@@ -143,7 +143,7 @@ export function PasswordField(props) {
 		"password",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || (edit == false) || t("FormFields|Password cannot be empty!"),
+				emptyInput: value => (value && value.toString().length !== 0) || ((edit == false) && (props.content?.set == true) && (props.content?.required == true)) || t("FormFields|Password cannot be empty!"),
 			}
 		}
 	);
@@ -151,7 +151,7 @@ export function PasswordField(props) {
 		"password2",
 		{
 			validate: {
-				passEqual: value => (value === props.getValues("password")) || (edit == false) || t("FormFields|Passwords do not match!"),
+				passEqual: value => (value === props.getValues("password")) || ((edit == false) && (props.content?.set == true) && (props.content?.required == true)) || t("FormFields|Passwords do not match!"),
 			}
 		}
 	);
@@ -159,7 +159,7 @@ export function PasswordField(props) {
 	const [type2, setType2] = useState("password");
 	const [label, setLabel] = useState(props.content.passwordLabel);
 
-	if (edit == false) {
+	if ((edit == false) && (props.content?.set == true) && (props.content?.required == true)) {
 		props.setValue("password", undefined);
 		props.setValue("password2", undefined);
 	}
