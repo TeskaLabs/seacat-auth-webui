@@ -197,7 +197,7 @@ export function PasswordField(props) {
 		:
 		<>
 			<FormGroup>
-				<Label for="password">{label}</Label>
+				<Label for="password">{label}{(props.content?.set == true) && <i title={t("FormFields|Cancel editing")} className="cil-x x-icon" onClick={() => toggle()}/>}</Label>
 				<InputGroup>
 					<Input
 						id="password"
