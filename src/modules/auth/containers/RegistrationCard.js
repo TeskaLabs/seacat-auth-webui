@@ -18,15 +18,59 @@ import {
 	UserNameField
 } from './FormFields';
 
-// TODO: Registration card has not been implemented yet
 function RegistrationCard(props) {
 	const { t, i18n } = useTranslation();
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
 	const { handleSubmit, register, getValues, setValue, formState: { errors, isSubmitting } } = useForm();
 
-	const onSubmit = values => {
-		console.log(values, "VALUES")
-		// TODO
+	/*
+		TODO: implement option to save values with this endpoint and avoid validation
+		This option will not register user, but it will enable them to save the already
+		filled input data (on press Save)
+	*/
+	const onSubmit = async (values) => {
+		let body = values;
+		delete body["password2"];
+		Promise.all(Object.keys(body).map((key, i) => {
+			if (body[key] == undefined) {
+				delete body[key];
+			}
+		}))
+
+		// Save registered inputs
+		try {
+			const response = await SeaCatAuthAPI.put(`/public/register/${props.registerToken}`,
+				body,
+				{ headers: {
+					'Content-Type': 'application/json'
+				}}
+				);
+			if (response.data?.result != "OK") {
+				throw new Error({ result: response.data.result });
+			}
+		} catch (e) {
+			// TODO: add alert here
+			console.error("Failed to register: ", e);
+			return;
+		}
+
+		// Validate registration
+		try {
+			const response = await SeaCatAuthAPI.post(`/public/register/${props.registerToken}`,
+				{},
+				{ headers: {
+					'Content-Type': 'application/json'
+				}}
+				);
+			if (response.data?.result != "OK") {
+				throw new Error({ result: response.data.result });
+			}
+		} catch (e) {
+			// TODO: add alert here
+			console.error("Failed to confirm registration: ", e);
+			return;
+		}
 	}
 
 	return (
