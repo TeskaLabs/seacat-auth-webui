@@ -9,15 +9,13 @@ import { useTranslation } from 'react-i18next';
 export function PhoneField(props) {
 	const { t } = useTranslation();
 	const disabled = props.content?.editable == undefined ? false : props.content?.editable == false ? true : false;
-	if (props.getValues("phone") == undefined) {
-		props.setValue("phone", "");
+	if (disabled && props.content?.value) {
+		props.setValue("phone", props.content.value);
 	}
 	const reg = props.register(
 		"phone",
 		{
 			validate: {
-				emptyInput: value => (
-					props.getValues("phone") !== "") || t("FormFields|Phone cannot be empty!"),
 				regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('FormFields|Invalid phone number format'),
 				lengthValidation: value => value.length >= 9 || value.length < 1 || t('FormFields|Phone number is too short')
 			},
@@ -50,6 +48,9 @@ export function PhoneField(props) {
 export function EmailField(props) {
 	const { t } = useTranslation();
 	const disabled = props.content?.editable == undefined ? false : props.content?.editable == false ? true : false;
+	if (disabled && props.content?.value) {
+		props.setValue("email", props.content.value);
+	}
 	const reg = props.register(
 		"email", {
 			required: props.content?.required ? t("FormFields|Email cannot be empty!") : false,
@@ -96,10 +97,15 @@ export function UserNameField(props) {
 			validate: {
 				emptyInput: value => (value && value.toString().length !== 0) || t("FormFields|Username cannot be empty!"),
 				startWithNumber: value => !(/^\d/).test(value) || t("FormFields|Invalid format, username cannot start with a number"),
-				vlidation: value => (/^[a-z_][a-z0-9_-]{0,31}$/).test(value) || t("FormFields|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
+				validation: value => (/^[a-z_][a-z0-9_-]{0,31}$/).test(value) || t("FormFields|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
 			}
 		}
 	);
+
+	if (disabled && props.content?.value) {
+		props.setValue("username", props.content.value);
+	}
+
 	return (
 		<FormGroup>
 			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="username">
@@ -137,7 +143,7 @@ export function PasswordField(props) {
 		"password",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || t("FormFields|Password cannot be empty!"),
+				emptyInput: value => (value && value.toString().length !== 0) || (edit == false) || t("FormFields|Password cannot be empty!"),
 			}
 		}
 	);
@@ -145,13 +151,18 @@ export function PasswordField(props) {
 		"password2",
 		{
 			validate: {
-				passEqual: value => (value === props.getValues("password")) || t("FormFields|Passwords do not match!"),
+				passEqual: value => (value === props.getValues("password")) || (edit == false) || t("FormFields|Passwords do not match!"),
 			}
 		}
 	);
 	const [type, setType] = useState("password");
 	const [type2, setType2] = useState("password");
 	const [label, setLabel] = useState(props.content.passwordLabel);
+
+	if (edit == false) {
+		props.setValue("password", undefined);
+		props.setValue("password2", undefined);
+	}
 
 
 	// Define default label
