@@ -1,3 +1,5 @@
+@import "~asab-webui/styles/constants/index.scss";
+
 .div-key-wordwrap {
 	white-space: nowrap;
 	max-width: 20ch !important;
@@ -14,35 +16,23 @@
 	width: 20em;
 }
 
-@media screen and (max-width: 493px) {
-	.col-webauthn-card {
-		flex: 0 0 100% !important;
-		max-width: 100% !important;
-	}
+.table-button-group .btn:nth-child(1) {
+	border-right: 1px solid $border-color !important;
+}
 
+.webauthn-th-keyname, .webauthn-th-last-login {
+	width: 30%;
+}
+
+.webauthn-th-sign-count, .webauthn-th-button {
+	width: 20%;
+}
+
+@media screen and (max-width: 493px) {
 	/*Does not display some table columns on small screens*/
 	.td-not-display {
 		display: none;
 	}
-}
-
-@media screen and (max-width: 768px) {
-	.col-webauthn-card {
-		flex: 0 0 100% !important;
-		max-width: 100% !important;
-	}
-}
-
-@media screen and (max-width: 996px) {
-	.col-webauthn-card {
-		flex: 0 0 85%;
-		max-width: 85%;
-	}
-}
-
-.col-webauthn-card {
-	flex: 0 0 65%;
-	max-width: 65%;
 }
 
 .p-td {

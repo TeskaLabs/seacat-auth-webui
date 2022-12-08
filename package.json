@@ -7,7 +7,7 @@
 		"build": "node ./asab-webui/script/build.js"
 	},
 	"author": "",
-	"license": "MIT",
+	"license": "GPL-3.0",
 	"description": "",
 	"browserslist": [
 		"defaults"

@@ -2,6 +2,23 @@
 
 ## Release Candidate
 
+## v22.48
+
+### Compatibility
+
+- [x] **ASAB UI `v22.48` or newer**
+- [x] **SeaCat Auth `v22.48` or newer**
+
+⚠️ Due to breaking changes in the OpenID Connect module of SeaCat Auth service, tenant authorization will not work with older versions of SeaCat Auth service and ASAB UI based apps.
+
+### Features
+
+- ASAB WebUI submodule version bump [[e7c9b7e](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/e7c9b7eb60eaba9cae39ea18d569301dcc7500c4)] commit (INDIGO Sprint 221125, [!15](https://github.com/TeskaLabs/seacat-auth-webui/pull/15))
+
+### Refactoring
+
+- Implement change key name in Webauthn (INDIGO Sprint 221031, [!12](https://github.com/TeskaLabs/seacat-auth-webui/pull/12))
+
 ## v22.44
 
 ### Bugfix
