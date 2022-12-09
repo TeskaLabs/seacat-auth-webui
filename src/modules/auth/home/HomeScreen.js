@@ -186,7 +186,7 @@ function HomeScreen(props) {
 
 								<ListGroupItem className="mb-0">
 									<CardSubtitle tag="h5" title={userinfo?.sub}>
-										{userinfo?.preferred_username}
+										{userinfo?.username}
 									</CardSubtitle>
 									<React.Fragment>
 										<Row className="pt-2">
