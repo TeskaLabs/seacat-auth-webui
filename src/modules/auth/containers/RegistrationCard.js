@@ -33,7 +33,7 @@ function RegistrationCard(props) {
 		let body = values;
 		delete body["password2"];
 		Promise.all(Object.keys(body).map((key, i) => {
-			if (body[key] == undefined) {
+			if ((body[key] == undefined) || (body[key].length == 0)) {
 				delete body[key];
 			}
 		}))
@@ -80,7 +80,7 @@ function RegistrationCard(props) {
 					<div className="card-header-title" >
 						<CardTitle className="text-primary" tag="h2">{t('RegistrationCard|New user?')}</CardTitle>
 						<CardSubtitle tag="p">
-							{t('If you are a new users, please register here')}
+							{t('If you are a new user, please register here')}
 						</CardSubtitle>
 					</div>
 				</CardHeader>
