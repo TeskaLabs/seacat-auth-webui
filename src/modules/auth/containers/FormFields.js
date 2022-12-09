@@ -95,9 +95,9 @@ export function UserNameField(props) {
 		"username",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || t("FormFields|Username cannot be empty!"),
-				startWithNumber: value => !(/^\d/).test(value) || t("FormFields|Invalid format, username cannot start with a number"),
-				validation: value => (/^[a-z_][a-z0-9_-]{0,31}$/).test(value) || t("FormFields|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
+				emptyInput: value => (value && value.toString().length !== 0) || (props.content?.required == false) || t("FormFields|Username cannot be empty!"),
+				startWithNumber: value => !(/^\d/).test(value) ||  t("FormFields|Invalid format, username cannot start with a number"),
+				validation: value => (/^[a-z_][a-z0-9_-]{0,31}$|^$/).test(value) || t("FormFields|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
 			}
 		}
 	);
@@ -138,6 +138,7 @@ export function UserNameField(props) {
 export function PasswordField(props) {
 	const { t, i18n } = useTranslation();
 	const [ edit, setEdit ] = useState(false);
+	const editable = props.content?.editable == undefined ? false : props.content?.editable == false ? true : false;
 	const toggle = () => {setEdit(!edit)};
 	const regPwd1 = props.register(
 		"password",
@@ -198,11 +199,12 @@ export function PasswordField(props) {
 					defaultValue="users-secret" // To display dots in disabled mode
 					disabled={true}
 				/>
+				{(editable == false) &&
 				<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
 					<Button title={t("FormFields|Edit")} color="primary" size="sm" onClick={() => toggle()}>
 						<span className="cil-pencil" />
 					</Button>
-				</InputGroupAddon>
+				</InputGroupAddon>}
 			</InputGroup>
 		</div>
 		:
