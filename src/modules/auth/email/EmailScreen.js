@@ -146,7 +146,7 @@ function ManageEmail(props) {
 	const { t, i18n } = useTranslation();
 	const reg = props.register("email",{
 		validate: {
-			emptyInput: value => (props.number.length != 0 || value.length != 0) || t("EmailScreen|Email cannot be empty!"),
+			emptyInput: value => (props.number.length != 0 || value.length != 0) || t("EmailScreen|Email can't be empty!"),
 		}
 	});
 

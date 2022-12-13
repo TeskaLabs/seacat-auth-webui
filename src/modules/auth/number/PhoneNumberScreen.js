@@ -159,7 +159,7 @@ function ChangeNumber(props) {
 		validate: {
 			regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('PhoneNumberScreen|Invalid phone number format'),
 			lengthValidation: value => value.length >= 9 || value.length < 1 || t('PhoneNumberScreen|Phone number is too short'),
-			emptyInput: value => (props.email.length != 0 || value.length != 0) || t("PhoneNumberScreen|Phone cannot be empty!")
+			emptyInput: value => (props.email.length != 0 || value.length != 0) || t("PhoneNumberScreen|Phone can't be empty!")
 		}
 	});
 

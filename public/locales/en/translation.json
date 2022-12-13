@@ -19,7 +19,7 @@
 		"Set email": "Set email",
 		"Change your email address here": "Change your email address here",
 		"Set your email address here": "Set your email address here",
-		"Email cannot be empty!": "Email cannot be empty!",
+		"Email can't be empty!": "Email can't be empty!",
 		"Confirm": "Confirm"
 	},
 	"HomeScreen": {
@@ -53,7 +53,7 @@
 		"Login": "Login",
 		"Login here": "If you are a registered user, please login here",
 		"Start again": "Start again",
-		"Cannot login?": "Can't login?",
+		"Can't login?": "Can't login?",
 		"Username, email or phone": "Username, email or phone",
 		"Remember me": "Remember me",
 		"Enter": "Enter",
@@ -87,7 +87,7 @@
 		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method" : "Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method."
 	},
 	"ForgetPwdScreen": {
-		"Cannot login?": "Can't login?",
+		"Can't login?": "Can't login?",
 		"Reset password here": "You can reset your password here",
 		"Username, email or phone": "Username, email or phone",
 		"Reset password": "Reset my password",
@@ -137,7 +137,7 @@
 		"Confirm": "Confirm",
 		"Set number": "Set number",
 		"Set your phone number here": "Set your phone number here",
-		"Phone cannot be empty!": "Phone cannot be empty!"
+		"Phone can't be empty!": "Phone can't be empty!"
 	},
 	"ResetPwdScreen": {
 		"Set password": "Set password",

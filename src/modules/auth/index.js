@@ -75,7 +75,7 @@ export default class SeaCatAuthModule extends Module {
 		app.Router.addRoute({
 			path: '/cant-login',
 			exact: true,
-			name: 'Cannot login',
+			name: "Can't login",
 			component: ForgetPwdScreen
 		});
 

@@ -426,7 +426,7 @@ function LoginCard(props) {
 							disabled={isSubmitting || isOnClickSubmitting}
 							onClick={() => onCantLogin()}
 						>
-							{t("LoginCard|Cannot login?")}
+							{t("LoginCard|Can't login?")}
 						</Button>
 					</ButtonGroup>
 				</CardFooter>

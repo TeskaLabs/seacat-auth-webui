@@ -19,7 +19,7 @@
 		"Set email": "Nastavit email",
 		"Change your email address here": "Zde si můžete změnit emailovou adresu",
 		"Set your email address here": "Zde si můžete nastavit emailovou adresu",
-		"Email cannot be empty!": "Email nemůže zůstat prázdný!",
+		"Email can't be empty!": "Email nemůže zůstat prázdný!",
 		"Confirm": "Potvrdit"
 	},
 	"HomeScreen": {
@@ -53,7 +53,7 @@
 		"Login": "Přihlášení",
 		"Login here": "Pokud jste stávající uživatel, přihlaste se prosím zde",
 		"Start again": "Začít znovu",
-		"Cannot login?": "Nedaří se přihlásit?",
+		"Can't login?": "Nedaří se přihlásit?",
 		"Username, email or phone": "Uživatelské jméno, email nebo telefon",
 		"Remember me": "Pamatuj si mě",
 		"Enter": "Přihlásit",
@@ -87,7 +87,7 @@
 		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method" : "Něco je špatně, externí přihlášení se nezdařilo. Možná jste nepropojili Váš profil s externí aplikací. Zkuste jiný způsob přihlášení"
 	},
 	"ForgetPwdScreen": {
-		"Cannot login?": "Nedaří se přihlásit?",
+		"Can't login?": "Nedaří se přihlásit?",
 		"Reset password here": "Zde si můžete obnovit Vaše heslo",
 		"Username, email or phone": "Uživatelské jméno, email nebo telefon",
 		"Reset password": "Obnovit heslo",
@@ -137,7 +137,7 @@
 		"Confirm": "Potvrdit",
 		"Set number": "Nastavit číslo",
 		"Set your phone number here": "Zde si můžete nastavit telefonní číslo",
-		"Phone cannot be empty!": "Telefonní číslo nemůže zůstat prázdné!"
+		"Phone can't be empty!": "Telefonní číslo nemůže zůstat prázdné!"
 	},
 	"ResetPwdScreen": {
 		"Set password": "Nastavení hesla",
