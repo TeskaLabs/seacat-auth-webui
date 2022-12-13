@@ -136,15 +136,16 @@ export function UserNameField(props) {
 // TODO: Password complexity check (configurable)
 // TODO: Another types of password validation (length, characters, etc.)
 export function PasswordField(props) {
+	// If password is already set, dont render password input
+	if (props.content?.set == true) {
+		return null;
+	}
 	const { t, i18n } = useTranslation();
-	const [ edit, setEdit ] = useState(false);
-	const editable = props.content?.editable == undefined ? false : props.content?.editable == false ? true : false;
-	const toggle = () => {setEdit(!edit)};
 	const regPwd1 = props.register(
 		"password",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || ((edit == false) && (props.content?.set == true) && (props.content?.required == true)) || t("FormFields|Password cannot be empty!"),
+				emptyInput: value => (value && value.toString().length !== 0) || (props.content?.required == false) || t("FormFields|Password cannot be empty!"),
 			}
 		}
 	);
@@ -152,19 +153,13 @@ export function PasswordField(props) {
 		"password2",
 		{
 			validate: {
-				passEqual: value => (value === props.getValues("password")) || ((edit == false) && (props.content?.set == true) && (props.content?.required == true)) || t("FormFields|Passwords do not match!"),
+				passEqual: value => (value === props.getValues("password")) || (props.content?.required == false) || t("FormFields|Passwords do not match!"),
 			}
 		}
 	);
 	const [type, setType] = useState("password");
 	const [type2, setType2] = useState("password");
 	const [label, setLabel] = useState(props.content.passwordLabel);
-
-	if ((edit == false) && (props.content?.set == true) && (props.content?.required == true)) {
-		props.setValue("password", undefined);
-		props.setValue("password2", undefined);
-	}
-
 
 	// Define default label
 	if (label === undefined) {
@@ -187,34 +182,15 @@ export function PasswordField(props) {
 		}
 	};
 
-	return (
-		(props.content?.set == true) && (props.content?.required == true) && (edit == false) ?
-		<div className="pb-3">
-			<Label for="password-edit">{label}</Label>
-			<InputGroup>
-				<Input
-					id="password-edit"
-					name="password-edit"
-					type="password"
-					defaultValue="users-secret" // To display dots in disabled mode
-					disabled={true}
-				/>
-				{(editable == false) &&
-				<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
-					<Button title={t("FormFields|Edit")} color="primary" size="sm" onClick={() => toggle()}>
-						<span className="cil-pencil" />
-					</Button>
-				</InputGroupAddon>}
-			</InputGroup>
-		</div>
-		:
+	return(
+
 		<>
 			<FormGroup>
 				<Label
 					title={props.content?.required ? t("FormFields|Required field") : undefined}
 					for="password"
 				>
-					{label}{props.content?.required && (props.content?.set == false) && '*'}{(props.content?.set == true) && <i title={t("FormFields|Cancel editing")} className="cil-x x-icon" onClick={() => toggle()}/>}
+					{label}{props.content?.required && (props.content?.set == false) && '*'}
 			</Label>
 				<InputGroup>
 					<Input
