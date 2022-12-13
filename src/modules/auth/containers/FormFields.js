@@ -19,7 +19,7 @@ export function PhoneField(props) {
 				regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('FormFields|Invalid phone number format'),
 				lengthValidation: value => value.length >= 9 || value.length < 1 || t('FormFields|Phone number is too short')
 			},
-			required: props.content?.required ? t("FormFields|Phone cannot be empty!") : false
+			required: props.content?.required ? t("FormFields|Phone can't be empty!") : false
 		}
 	);
 	return (
@@ -53,10 +53,10 @@ export function EmailField(props) {
 	}
 	const reg = props.register(
 		"email", {
-			required: props.content?.required ? t("FormFields|Email cannot be empty!") : false,
+			required: props.content?.required ? t("FormFields|Email can't be empty!") : false,
 			validate: {
 				emptyInput: value => (
-					props.getValues("email") !== "") || t("FormFields|Email cannot be empty!"),
+					props.getValues("email") !== "") || t("FormFields|Email can't be empty!"),
 			}
 		}
 	);
@@ -95,8 +95,8 @@ export function UserNameField(props) {
 		"username",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || (props.content?.required == false) || t("FormFields|Username cannot be empty!"),
-				startWithNumber: value => !(/^\d/).test(value) ||  t("FormFields|Invalid format, username cannot start with a number"),
+				emptyInput: value => (value && value.toString().length !== 0) || (props.content?.required == false) || t("FormFields|Username can't be empty!"),
+				startWithNumber: value => !(/^\d/).test(value) ||  t("FormFields|Invalid format, username can't start with a number"),
 				validation: value => (/^[a-z_][a-z0-9_-]{0,31}$|^$/).test(value) || t("FormFields|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
 			}
 		}
@@ -145,7 +145,7 @@ export function PasswordField(props) {
 		"password",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || (props.content?.required == false) || t("FormFields|Password cannot be empty!"),
+				emptyInput: value => (value && value.toString().length !== 0) || (props.content?.required == false) || t("FormFields|Password can't be empty!"),
 			}
 		}
 	);
