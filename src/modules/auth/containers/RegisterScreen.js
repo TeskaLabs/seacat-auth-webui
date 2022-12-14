@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 import LoginCard from './LoginCard.js';
 import RegistrationCard from './RegistrationCard.js';
@@ -114,46 +114,48 @@ function RegisterScreen(props) {
 		}
 		console.log(token, "TOKEN")
 
-		// TODO: Mock of register features
-		setRegisterFeatures({
-			"credentials": {
-			 "email": {
-			  "value": "fpesek@prima.kamarad",
-			  "required": true,
-			  "editable": false
-			 },
-			 "phone": {
-			  "value": null,
-			  "required": false,
-			  "editable": true
-			 },
-			 "username": {
-			  "value": null,
-			  "required": true,
-			  "editable": true
-			 },
-			 "password": {
-			  "set": true,
-			  "required": true,
-			  "editable": true
-			 }
-			},
-			"tenants": ["korporat", "takyrat"]
-		})
+		// // TODO: Mock of register features
+		// setRegisterFeatures({
+		// 	"credentials": {
+		// 	 "email": {
+		// 	  "value": "rhruska@prima.kamarad",
+		// 	  "required": true,
+		// 	  "editable": false
+		// 	 },
+		// 	 "username": {
+		// 	  "value": null,
+		// 	  "required": true,
+		// 	  "editable": true
+		// 	 },
+		// 	 "password": {
+		// 	  "set": false,
+		// 	  "required": true,
+		// 	  "editable": false
+		// 	 },
+		// 	 "phone": {
+		// 	  "value": null,
+		// 	  "required": false,
+		// 	  "editable": true
+		// 	 },
+		// 	},
+		// 	"tenants": ["korporat", "takyrat"]
+		// })
 
 
 
-		// // TODO: handle when it fails
-		// try {
-		// 	const response = await SeaCatAuthAPI.get(`/public/register/${token}`);
-		// 	if (response.data?.result != "OK") {
-		// 		throw new Error({ result: response.data.result });
-		// 	}
-		// 	setRegisterFeatures(response.data.data);
-		// } catch (e) {
-		// 	// TODO: add alert here
-		// 	console.error("Failed to fetch register features", e);
-		// }
+		// TODO: handle when it fails
+		try {
+			const response = await SeaCatAuthAPI.get(`/public/register/${token}`);
+			if (response.data?.result != "OK") {
+				throw new Error("Failed to fetch register features");
+			}
+			console.log(response.data.data, "DATA ON TOKEN")
+			setRegisterFeatures(response.data.data);
+		} catch (e) {
+			// TODO: add alert here
+			console.error("Failed to fetch register features", e);
+			setRegisterFeatures(undefined);
+		}
 	}
 
 	const getCredentials = () => {
@@ -175,27 +177,35 @@ function RegisterScreen(props) {
 
 	return (
 		<Container className="animated fadeIn">
-			<Row className="justify-content-center">
-				<Col lg="10" className="mt-3">
-					<Card className="shadow">
-						<CardBody className="text-center">
-						{userinfo == undefined ?
-							t("RegisterScreen|You have been invited to join")
-						:
-							<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to join`)}</>
-						}
-						{registerFeatures && registerFeatures?.tenants && registerFeatures?.tenants.map((tenant, i) => (
-								registerFeatures.tenants.length != i+1 ?
-									<span key={i} className="primary-span pr-0">{tenant},</span>
-								:
-									<span key={i} className="primary-span">{tenant}</span>
-							))
-						}
-						</CardBody>
-					</Card>
-				</Col>
-			</Row>
-			{userinfo == undefined ?
+			{registerFeatures == undefined ?
+				<Row className="justify-content-center">
+					<Col lg="5">
+						<ExpiredRegistrationCard app={props.app}/>
+					</Col>
+				</Row>
+			:
+			<>
+				<Row className="justify-content-center">
+					<Col lg="10" className="mt-3">
+						<Card className="shadow">
+							<CardBody className="text-center">
+							{userinfo == undefined ?
+								t("RegisterScreen|You have been invited to join")
+							:
+								<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to join`)}</>
+							}
+							{registerFeatures && registerFeatures?.tenants && registerFeatures?.tenants.map((tenant, i) => (
+									registerFeatures.tenants.length != i+1 ?
+										<span key={i} className="primary-span pr-0">{tenant},</span>
+									:
+										<span key={i} className="primary-span">{tenant}</span>
+								))
+							}
+							</CardBody>
+						</Card>
+					</Col>
+				</Row>
+				{userinfo == undefined ?
 				<Row className="justify-content-center register-row">
 					<Col lg="5">
 						<LoginCard
@@ -213,7 +223,7 @@ function RegisterScreen(props) {
 						/>
 					</Col>
 				</Row>
-			:
+				:
 				<Row className="justify-content-center register-row">
 					<Col lg="5">
 						<JoinCard
@@ -233,11 +243,63 @@ function RegisterScreen(props) {
 						/>
 						{/*<RegistrationCard app={props.app} features={features["registration"]} />*/}
 					</Col>
-				</Row>
-			}
+				</Row>}
+			</>}
 		</Container>
 	);
 
 }
 
 export default RegisterScreen;
+
+// Expired registration card
+/*
+	TODO: make a reusable message card from it
+
+	<InfoMessageCard
+		app={props.app}
+		cardTitle="text"
+		cardSubtitle="text2"
+		message="text message"
+	/>
+*/
+function ExpiredRegistrationCard (props) {
+	const { t } = useTranslation();
+
+	const redirectToRoot = () => {
+		props.app.props.history.push("/");
+	}
+
+	return (
+		<Card className="shadow auth-card">
+			<CardHeader className="border-bottom card-header-login">
+				<div className="card-header-title" >
+					<CardTitle className="text-primary" tag="h2">{t('RegistrationScreen|Ooops')}</CardTitle>
+					<CardSubtitle tag="p">
+						{t('RegistrationScreen|Your invitation likely expired')}
+					</CardSubtitle>
+				</div>
+			</CardHeader>
+			<CardBody>
+				<Row className="justify-content-center">
+					<p className="expired-registration-p">
+						{t("RegistrationScreen|Please, contact your application administrator")}
+					</p>
+				</Row>
+
+				<Row className="justify-content-center">
+					<Col>
+						<Button
+							block
+							color="primary"
+							type="button"
+							onClick={redirectToRoot}
+						>
+							{t('RegistrationScreen|Continue')}
+						</Button>
+					</Col>
+				</Row>
+			</CardBody>
+		</Card>
+	)
+}
