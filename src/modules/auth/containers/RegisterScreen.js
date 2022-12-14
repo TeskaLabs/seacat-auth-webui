@@ -112,6 +112,8 @@ function RegisterScreen(props) {
 		if (!token) {
 			props.app.props.history.push("/");
 		}
+
+		// TODO: remove console log
 		console.log(token, "TOKEN")
 
 		// // TODO: Mock of register features
@@ -149,6 +151,7 @@ function RegisterScreen(props) {
 			if (response.data?.result != "OK") {
 				throw new Error("Failed to fetch register features");
 			}
+			// TODO: remove console log
 			console.log(response.data.data, "DATA ON TOKEN")
 			setRegisterFeatures(response.data.data);
 		} catch (e) {
