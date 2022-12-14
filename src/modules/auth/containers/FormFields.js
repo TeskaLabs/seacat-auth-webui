@@ -157,30 +157,6 @@ export function PasswordField(props) {
 			}
 		}
 	);
-	const [type, setType] = useState("password");
-	const [type2, setType2] = useState("password");
-	const [label, setLabel] = useState(props.content.passwordLabel);
-
-	// Define default label
-	if (label === undefined) {
-		setLabel(t("FormFields|Password"));
-	}
-
-	// Change type of the input field to reveal password to the user
-	const changeType = () => {
-		if (type === "password") {
-			setType("text");
-		} else {
-			setType("password");
-		}
-	};
-	const changeType2 = () => {
-		if (type2 === "password") {
-			setType2("text");
-		} else {
-			setType2("password");
-		}
-	};
 
 	return(
 
@@ -190,24 +166,19 @@ export function PasswordField(props) {
 					title={props.content?.required ? t("FormFields|Required field") : undefined}
 					for="password"
 				>
-					{label}{props.content?.required && (props.content?.set == false) && '*'}
-			</Label>
+					{t("FormFields|Password")}{props.content?.required && (props.content?.set == false) && '*'}
+				</Label>
 				<InputGroup>
 					<Input
 						id="password"
 						name="password"
-						type={type}
+						type="password"
 						invalid={props.errors.password}
 						autoComplete="new-password"
 						onChange={regPwd1.onChange}
 						onBlur={regPwd1.onBlur}
 						innerRef={regPwd1.ref}
 					/>
-					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
-						<Button color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="cil-low-vision" />
-						</Button>
-					</InputGroupAddon>
 					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
 				</InputGroup>
 			</FormGroup>
@@ -218,18 +189,13 @@ export function PasswordField(props) {
 					<Input
 						id="password2"
 						name="password2"
-						type={type2}
+						type="password"
 						invalid={props.errors.password2}
 						autoComplete="new-password"
 						onChange={regPwd2.onChange}
 						onBlur={regPwd2.onBlur}
 						innerRef={regPwd2.ref}
 					/>
-					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
-						<Button color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
-							<span className="cil-low-vision" />
-						</Button>
-					</InputGroupAddon>
 					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
 				</InputGroup>
 			</FormGroup>
