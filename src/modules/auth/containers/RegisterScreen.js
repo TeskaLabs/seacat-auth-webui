@@ -106,7 +106,7 @@ function RegisterScreen(props) {
 	}
 
 	const fetchRegisterFeatures = async () => {
-		const token = getParams("token");
+		const token = getParams("rt");
 		setRegisterToken(token);
 		// TODO: Temporal redirection until self-registration is build and enabled
 		if (!token) {
