@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 
@@ -72,6 +72,8 @@ function RegistrationCard(props) {
 			props.app.addAlert("warning", t(`RegistrationCard|Failed to confirm registration: ${e?.response?.data?.message}`));
 			return;
 		}
+
+		props.setRegistrationSuccessful(true);
 	}
 
 	return (
@@ -110,7 +112,6 @@ function RegistrationCard(props) {
 						</Col>
 					</Row>
 				</CardBody>
-
 			</Card>
 		</Form>
 	);

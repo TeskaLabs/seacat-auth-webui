@@ -18,6 +18,7 @@ function RegisterScreen(props) {
 	const [stateCode, setStateCode] = useState("");
 	const [credentials, setCredentials] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [ registrationSuccessful, setRegistrationSuccessful ] = useState(false);
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const userinfo = useSelector(state => state.auth.userinfo);
@@ -42,6 +43,15 @@ function RegisterScreen(props) {
 
 		generatePenrose()
 	}, [height, width])
+
+	useEffect(() => {
+		if (registrationSuccessful == true) {
+			setTimeout(() => {
+				// Redirect to root after successful registration
+				props.app.props.history.push("/");
+			}, 5000);
+		}
+	}, [registrationSuccessful])
 
 	const checkExternalLoginStatus = () => {
 		const result = getParams("result");
@@ -113,38 +123,6 @@ function RegisterScreen(props) {
 			props.app.props.history.push("/");
 		}
 
-		// TODO: remove console log
-		console.log(token, "TOKEN")
-
-		// // TODO: Mock of register features
-		// setRegisterFeatures({
-		// 	"credentials": {
-		// 	 "email": {
-		// 	  "value": "rhruska@prima.kamarad",
-		// 	  "required": true,
-		// 	  "editable": false
-		// 	 },
-		// 	 "username": {
-		// 	  "value": null,
-		// 	  "required": true,
-		// 	  "editable": true
-		// 	 },
-		// 	 "password": {
-		// 	  "set": false,
-		// 	  "required": true,
-		// 	  "editable": false
-		// 	 },
-		// 	 "phone": {
-		// 	  "value": null,
-		// 	  "required": false,
-		// 	  "editable": true
-		// 	 },
-		// 	},
-		// 	"tenants": ["korporat", "takyrat"]
-		// })
-
-
-
 		// TODO: handle when it fails
 		try {
 			const response = await SeaCatAuthAPI.get(`/public/register/${token}`);
@@ -187,67 +165,85 @@ function RegisterScreen(props) {
 					</Col>
 				</Row>
 			:
-			<>
-				<Row className="justify-content-center">
-					<Col lg="10" className="mt-3">
-						<Card className="shadow">
-							<CardBody className="text-center">
-							{userinfo == undefined ?
-								t("RegisterScreen|You have been invited to join")
-							:
-								<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to join`)}</>
-							}
-							{registerFeatures && registerFeatures?.tenants && registerFeatures?.tenants.map((tenant, i) => (
-									registerFeatures.tenants.length != i+1 ?
-										<span key={i} className="primary-span pr-0">{tenant},</span>
-									:
-										<span key={i} className="primary-span">{tenant}</span>
-								))
-							}
-							</CardBody>
-						</Card>
-					</Col>
-				</Row>
-				{userinfo == undefined ?
-				<Row className="justify-content-center register-row">
-					<Col lg="5">
-						<LoginCard
-							app={props.app}
-							features={features["login"]}
-							stateCode={stateCode}
-							registerToken={registerToken}
-						/>
-					</Col>
-					<Col lg="5">
-						<RegistrationCard
-							app={props.app}
-							registerToken={registerToken}
-							registerFeatures={registerFeatures}
-						/>
-					</Col>
-				</Row>
+				registrationSuccessful == true ?
+					<Row className="justify-content-center">
+						<Col lg="5">
+							<Card className="shadow animated fadeIn auth-card">
+								<CardHeader className="border-bottom card-header-login">
+									<div className="card-header-title" >
+										<CardTitle className="text-primary" tag="h2">{t("RegistrationCard|Registration completed successfully")}</CardTitle>
+									</div>
+								</CardHeader>
+								<CardBody className="text-center">
+									{t("MessageScreen|You will be redirected to the Login page")}
+								</CardBody>
+							</Card>
+						</Col>
+					</Row>
 				:
-				<Row className="justify-content-center register-row">
-					<Col lg="5">
-						<JoinCard
-							app={props.app}
-							credentials={credentials}
-							isSubmitting={isSubmitting}
-							setIsSubmitting={setIsSubmitting}
-							registerToken={registerToken}
-						/>
-					</Col>
-					<Col lg="5">
-						<SwitchAccountCard
-							app={props.app}
-							credentials={credentials}
-							isSubmitting={isSubmitting}
-							setIsSubmitting={setIsSubmitting}
-						/>
-						{/*<RegistrationCard app={props.app} features={features["registration"]} />*/}
-					</Col>
-				</Row>}
-			</>}
+					<>
+						<Row className="justify-content-center">
+							<Col lg="10" className="mt-3">
+								<Card className="shadow">
+									<CardBody className="text-center">
+									{userinfo == undefined ?
+										t("RegisterScreen|You have been invited to join")
+									:
+										<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to join`)}</>
+									}
+									{registerFeatures && registerFeatures?.tenants && registerFeatures?.tenants.map((tenant, i) => (
+											registerFeatures.tenants.length != i+1 ?
+												<span key={i} className="primary-span pr-0">{tenant},</span>
+											:
+												<span key={i} className="primary-span">{tenant}</span>
+										))
+									}
+									</CardBody>
+								</Card>
+							</Col>
+						</Row>
+						{userinfo == undefined ?
+						<Row className="justify-content-center register-row">
+							<Col lg="5">
+								<LoginCard
+									app={props.app}
+									features={features["login"]}
+									stateCode={stateCode}
+									registerToken={registerToken}
+								/>
+							</Col>
+							<Col lg="5">
+								<RegistrationCard
+									app={props.app}
+									registerToken={registerToken}
+									registerFeatures={registerFeatures}
+									setRegistrationSuccessful={setRegistrationSuccessful}
+								/>
+							</Col>
+						</Row>
+						:
+						<Row className="justify-content-center register-row">
+							<Col lg="5">
+								<JoinCard
+									app={props.app}
+									credentials={credentials}
+									isSubmitting={isSubmitting}
+									setIsSubmitting={setIsSubmitting}
+									registerToken={registerToken}
+								/>
+							</Col>
+							<Col lg="5">
+								<SwitchAccountCard
+									app={props.app}
+									credentials={credentials}
+									isSubmitting={isSubmitting}
+									setIsSubmitting={setIsSubmitting}
+								/>
+								{/*<RegistrationCard app={props.app} features={features["registration"]} />*/}
+							</Col>
+						</Row>}
+					</>
+			}
 		</Container>
 	);
 
