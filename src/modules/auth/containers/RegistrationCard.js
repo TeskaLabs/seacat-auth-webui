@@ -52,6 +52,7 @@ function RegistrationCard(props) {
 		} catch (e) {
 			// TODO: add alert here
 			console.error("Failed to register: ", e);
+			props.app.addAlert("warning", t(`RegistrationCard|Failed to register: ${e?.response?.data?.message}`));
 			return;
 		}
 
@@ -67,8 +68,8 @@ function RegistrationCard(props) {
 				throw new Error({ result: response.data.result });
 			}
 		} catch (e) {
-			// TODO: add alert here
 			console.error("Failed to confirm registration: ", e);
+			props.app.addAlert("warning", t(`RegistrationCard|Failed to confirm registration: ${e?.response?.data?.message}`));
 			return;
 		}
 	}

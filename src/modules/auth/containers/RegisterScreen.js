@@ -148,15 +148,15 @@ function RegisterScreen(props) {
 		// TODO: handle when it fails
 		try {
 			const response = await SeaCatAuthAPI.get(`/public/register/${token}`);
-			if (response.data?.result != "OK") {
-				throw new Error("Failed to fetch register features");
-			}
+			// if (response.data?.result != "OK") {
+			// 	throw new Error("Failed to fetch register features");
+			// }
 			// TODO: remove console log
-			console.log(response.data.data, "DATA ON TOKEN")
-			setRegisterFeatures(response.data.data);
+			setRegisterFeatures(response.data);
 		} catch (e) {
 			// TODO: add alert here
 			console.error("Failed to fetch register features", e);
+			props.app.addAlert("warning", t(`RegistrationScreen|Failed to fetch register features: ${e?.response?.data?.message}`));
 			setRegisterFeatures(undefined);
 		}
 	}
