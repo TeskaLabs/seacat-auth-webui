@@ -8,7 +8,7 @@
 
 ### Bugfix
 
-- Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!12](https://github.com/TeskaLabs/seacat-auth-webui/pull/19))
+- Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!19](https://github.com/TeskaLabs/seacat-auth-webui/pull/19))
 
 ## v22.48
 
