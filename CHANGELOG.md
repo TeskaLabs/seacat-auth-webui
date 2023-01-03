@@ -6,7 +6,7 @@
 
 - ASAB WebUI submodule version bump [[0cebc91](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/0cebc913e72115f539d99584c835efb2f6224c8d)] commit (INDIGO Sprint 221209, [!18](https://github.com/TeskaLabs/seacat-auth-webui/pull/18))
 
-### Bugfix
+### Refactoring
 
 - Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!19](https://github.com/TeskaLabs/seacat-auth-webui/pull/19))
 
