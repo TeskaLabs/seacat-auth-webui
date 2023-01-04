@@ -41,7 +41,7 @@ function ManageNumberCard(props) {
 
 	let history = useHistory();
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
-	let number = props.userinfo?.phone_number;
+	let number = props.userinfo?.phone;
 	let email = props.userinfo?.email ? props.userinfo.email : "";
 
 	const [isSubmitting, setIsSubmitting] = useState(false);

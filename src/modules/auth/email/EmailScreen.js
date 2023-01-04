@@ -42,7 +42,7 @@ function ManageEmailCard(props) {
 	let history = useHistory();
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	let email = props.userinfo?.email;
-	let number = props.userinfo?.phone_number ? props.userinfo.phone_number : "";
+	let number = props.userinfo?.phone ? props.userinfo.phone : "";
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
