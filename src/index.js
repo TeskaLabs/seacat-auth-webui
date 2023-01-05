@@ -29,6 +29,14 @@ const ConfigDefaults = {
 		fallbackLng: 'en',
 		supportedLngs: ['en', 'cs'],
 		debug: false,
+	},
+	brandImage: {
+		dark: {
+			full: 'media/logo/header-logo-full-dark.svg'
+		},
+		light: {
+			full: 'media/logo/header-logo-full-light.svg'
+		}
 	}
 };
 
