@@ -31,9 +31,10 @@ const ConfigDefaults = {
 		debug: false,
 	},
 	brandImage: {
-		dark: {
-			full: 'media/logo/header-logo-full-dark.svg'
-		},
+		// TODO: uncomment and add file to media/logo when dark version of SeaCat's logo is released
+		// dark: {
+		// 	full: 'media/logo/header-logo-full-dark.svg'
+		// },
 		light: {
 			full: 'media/logo/header-logo-full-light.svg'
 		}
