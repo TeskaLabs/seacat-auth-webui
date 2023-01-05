@@ -129,7 +129,6 @@ function RegisterScreen(props) {
 			// if (response.data?.result != "OK") {
 			// 	throw new Error("Failed to fetch register features");
 			// }
-			// TODO: remove console log
 			setRegisterFeatures(response.data);
 		} catch (e) {
 			// TODO: add alert here
@@ -175,7 +174,10 @@ function RegisterScreen(props) {
 									</div>
 								</CardHeader>
 								<CardBody className="text-center">
-									{t("MessageScreen|You will be redirected to the Login page")}
+									{(userinfo == undefined) ?
+										t("MessageScreen|You will be redirected to the Login page")
+									:
+										t("MessageScreen|You will be redirected to the Home screen")}
 								</CardBody>
 							</Card>
 						</Col>
@@ -186,7 +188,7 @@ function RegisterScreen(props) {
 							<Col lg="10" className="mt-3">
 								<Card className="shadow">
 									<CardBody className="text-center">
-									{userinfo == undefined ?
+									{(userinfo == undefined) ?
 										t("RegisterScreen|You have been invited to join")
 									:
 										<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to join`)}</>
@@ -202,7 +204,7 @@ function RegisterScreen(props) {
 								</Card>
 							</Col>
 						</Row>
-						{userinfo == undefined ?
+						{(userinfo == undefined) ?
 						<Row className="justify-content-center register-row">
 							<Col lg="5">
 								<LoginCard
@@ -230,6 +232,7 @@ function RegisterScreen(props) {
 									isSubmitting={isSubmitting}
 									setIsSubmitting={setIsSubmitting}
 									registerToken={registerToken}
+									setRegistrationSuccessful={setRegistrationSuccessful}
 								/>
 							</Col>
 							<Col lg="5">

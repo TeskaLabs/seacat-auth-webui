@@ -45,21 +45,28 @@ function JoinCard(props) {
 			return;
 		}
 
-		let redirect_uri;
-		let i = window.location.hash.indexOf('?');
-		if (i > -1) {
-			let qs = window.location.hash.substring(i+1);
-			let params = new URLSearchParams(qs);
-			redirect_uri = params.get("redirect_uri");
-		}
+		props.setRegistrationSuccessful(true);
 
-		if (redirect_uri == undefined) {
-			redirect_uri = '/';
-		}
-		props.setIsSubmitting(false);
-		window.location.replace(redirect_uri);
-		// Basically wait forever, until the app is going to be reloaded with window.location.replace
-		await new Promise(r => setTimeout(r, 3600*1000));
+		/*
+			TODO: if redirection for Join card will be needed,
+			uncomment and remove `setRegistrationSuccessful(true);` above.
+			Otherwise remove the commented lines.
+		*/
+		// let redirect_uri;
+		// let i = window.location.hash.indexOf('?');
+		// if (i > -1) {
+		// 	let qs = window.location.hash.substring(i+1);
+		// 	let params = new URLSearchParams(qs);
+		// 	redirect_uri = params.get("redirect_uri");
+		// }
+
+		// if (redirect_uri == undefined) {
+		// 	redirect_uri = '/';
+		// }
+		// props.setIsSubmitting(false);
+		// window.location.replace(redirect_uri);
+		// // Basically wait forever, until the app is going to be reloaded with window.location.replace
+		// await new Promise(r => setTimeout(r, 3600*1000));
 	}
 
 
