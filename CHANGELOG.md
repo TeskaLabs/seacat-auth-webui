@@ -2,6 +2,14 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[98343e2](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/98343e2ce799fc923d8ec2dd5eb67b19e2df5d93)] commit (INDIGO Sprint 221209, [!19](https://github.com/TeskaLabs/seacat-auth-webui/pull/19))
+
+### Refactoring
+
+- Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!19](https://github.com/TeskaLabs/seacat-auth-webui/pull/19))
+
 ## v22.48
 
 ### Compatibility
