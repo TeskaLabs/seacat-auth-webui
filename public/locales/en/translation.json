@@ -5,6 +5,14 @@
 			"cs": "Česky"
 		}
 	},
+	"AcceptInvitationCard": {
+		"Can't proceed, registration token is undefined": "Can't proceed, registration token is undefined",
+		"Failed to update credentials and redirect to the application": "Failed to update credentials and redirect to the application: {{error}}",
+		"Accept invitation": "Accept invitation",
+		"As a logged user": "As a logged user",
+		"Accept invitation as": "Accept invitation as",
+		"Accept": "Accept"
+	},
 	"EmailScreen": {
 		"Do you want to change your email?": "Do you want to change your email?",
 		"Do you want to set the specified email?": "Do you want to set the specified email?",

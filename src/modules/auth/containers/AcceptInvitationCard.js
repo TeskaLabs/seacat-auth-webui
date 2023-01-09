@@ -40,7 +40,7 @@ function AcceptInvitationCard(props) {
 			}
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("danger", t("AcceptInvitationCard|Failed to update credentials and redirect to the application"));
+			props.app.addAlert("danger", t("AcceptInvitationCard|Failed to update credentials and redirect to the application", {error: e?.response?.data?.message}), 30);
 			props.setIsSubmitting(false);
 			return;
 		}

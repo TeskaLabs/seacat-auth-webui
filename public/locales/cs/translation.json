@@ -5,6 +5,14 @@
 			"cs": "Česky"
 		}
 	},
+	"AcceptInvitationCard": {
+		"Can't proceed, registration token is undefined": "Nelze pokračovat, registrační token není definován",
+		"Failed to update credentials and redirect to the application": "Nepodařilo se aktualizovat data uživatele a přesměrovat do aplikace: {{error}}",
+		"Accept invitation": "Přijmout pozvání",
+		"As a logged user": "Jako přihlášený uživatel",
+		"Accept invitation as": "Přijmout pozvání jako",
+		"Accept": "Přijmout"
+	},
 	"EmailScreen": {
 		"Do you want to change your email?": "Opravdu chcete změnit vaši emailovou adresu?",
 		"Do you want to set the specified email?": "Chcete nastavit zadanou emailovou adresu?",
