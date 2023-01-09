@@ -70,9 +70,9 @@ function ManageEmailCard(props) {
 				}});
 			if (response.data.result !== "OK") {
 				if (email) {
-					throw new Error(t("EmailScreen|Something went wrong, failed to change email"), 30);
+					throw new Error(t("EmailScreen|Something went wrong, failed to change email"));
 				} else {
-					throw new Error(t("EmailScreen|Something went wrong, failed to set email"), 30);
+					throw new Error(t("EmailScreen|Something went wrong, failed to set email"));
 				}
 			}
 			if (email) {
