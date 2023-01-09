@@ -213,7 +213,18 @@
 		"Setup has not been completed": "Setup has not been completed"
 	},
 	"RegisterScreen": {
-		"Failed to fetch register features": "Failed to fetch register features: {{error}}"
+		"Failed to fetch register features": "Failed to fetch register features: {{error}}",
+		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method": "Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method",
+		"Registration completed successfully": "Registration completed successfully",
+		"You will be redirected to the Login page": "You will be redirected to the Login page",
+		"You will be redirected to the Home screen": "You will be redirected to the Home screen",
+		"You have been invited to": "You have been invited to",
+		"Hello": "Hello",
+		"you have been invited to": "you have been invited to",
+		"Ooops": "Ooops",
+		"Your invitation likely expired": "Your invitation likely expired",
+		"Please, contact your application administrator": "Please, contact your application administrator",
+		"Continue": "Continue"
 	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Something went wrong, can't retrieve authenticators",

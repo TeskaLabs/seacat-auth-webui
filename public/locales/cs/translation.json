@@ -212,6 +212,20 @@
 		"You will be redirected to the Login page": "Nyní budete přesměrováni zpět na přihlášení",
 		"Setup has not been completed": "Nastavení nebylo dokončeno"
 	},
+	"RegisterScreen": {
+		"Failed to fetch register features": "Nepodařilo se získat nastavení registrace: {{error}}",
+		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method": "Něco je špatně, externí přihlášení se nezdařilo. Možná jste nepropojili Váš profil s externí aplikací. Zkuste jiný způsob přihlášení",
+		"Registration completed successfully": "Registrace úspěšně dokončena",
+		"You will be redirected to the Login page": "Budete přesměrováni na Přihlášení",
+		"You will be redirected to the Home screen": "Budete přesměrováni na domovskou obrazovku",
+		"You have been invited to": "Byli jste pozváni do",
+		"Hello": "Dobrý den",
+		"you have been invited to": "byli jste pozváni do",
+		"Ooops": "Jejda",
+		"Your invitation likely expired": "Vaše pozvánka pravděpodobně vypršela",
+		"Please, contact your application administrator": "Prosíme, kontaktuje administrátora aplikace",
+		"Continue": "Pokračovat"
+	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Něco je špatně, nelze načíst autentikátory",
 		"Something went wrong, registration of authenticator failed": "Něco je špatně, registrace autentikátoru selhala",

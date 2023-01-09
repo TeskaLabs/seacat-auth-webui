@@ -5,7 +5,6 @@ import {
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
-// TODO: Validation on phone number
 export function PhoneField(props) {
 	const { t } = useTranslation();
 	const disabled = props.content?.editable == undefined ? false : props.content?.editable == false ? true : false;

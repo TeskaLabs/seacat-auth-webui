@@ -58,8 +58,8 @@ function RegisterScreen(props) {
 
 		if (result && result.indexOf("EXTERNAL-LOGIN-FAILED") !== -1) {
 			props.app.addAlert("warning", t(
-				"LoginScreen|Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method"
-			));
+				"RegisterScreen|Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method"
+			), 30);
 		}
 	}
 
@@ -134,7 +134,7 @@ function RegisterScreen(props) {
 		} catch (e) {
 			// TODO: add alert here
 			console.error("Failed to fetch register features", e);
-			props.app.addAlert("warning", t("RegisterScreen|Failed to fetch register features", {error: e?.response?.data?.message}));
+			props.app.addAlert("warning", t("RegisterScreen|Failed to fetch register features", {error: e?.response?.data?.message}), 30);
 			setRegisterFeatures(undefined);
 		}
 	}
@@ -195,7 +195,7 @@ function RegisterScreen(props) {
 										<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to`)}</>
 									}
 									{registerFeatures && registerFeatures?.tenants && registerFeatures?.tenants.map((tenant, i) => (
-											registerFeatures.tenants.length != i+1 ?
+											(registerFeatures.tenants.length != i+1) ?
 												<span key={i} className="primary-span pr-0">{tenant},</span>
 											:
 												<span key={i} className="primary-span">{tenant}</span>
@@ -243,7 +243,6 @@ function RegisterScreen(props) {
 									isSubmitting={isSubmitting}
 									setIsSubmitting={setIsSubmitting}
 								/>
-								{/*<RegistrationCard app={props.app} features={features["registration"]} />*/}
 							</Col>
 						</Row>}
 					</>
