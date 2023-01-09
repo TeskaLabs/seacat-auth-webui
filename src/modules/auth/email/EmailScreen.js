@@ -70,9 +70,9 @@ function ManageEmailCard(props) {
 				}});
 			if (response.data.result !== "OK") {
 				if (email) {
-					throw new Error(t("EmailScreen|Something went wrong, failed to change email"));
+					throw new Error(t("EmailScreen|Something went wrong, failed to change email"), 30);
 				} else {
-					throw new Error(t("EmailScreen|Something went wrong, failed to set email"));
+					throw new Error(t("EmailScreen|Something went wrong, failed to set email"), 30);
 				}
 			}
 			if (email) {
@@ -102,9 +102,9 @@ function ManageEmailCard(props) {
 			console.error(e);
 			setIsSubmitting(false);
 			if (email) {
-				props.app.addAlert("danger", t("EmailScreen|Failed to change email"));
+				props.app.addAlert("danger", t("EmailScreen|Failed to change email", {error: e?.response?.data?.message}), 30);
 			} else {
-				props.app.addAlert("danger", t("EmailScreen|Failed to set email"));
+				props.app.addAlert("danger", t("EmailScreen|Failed to set email", {error: e?.response?.data?.message}), 30);
 			}
 			return;
 		}
