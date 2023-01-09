@@ -122,11 +122,11 @@ function HomeScreen(props) {
 			setTimeout(() => {
 				window.location.reload();
 			}, 5000);
-		} catch (err) {
-			console.error("Failed to terminate all user's sessions", err);
+		} catch (e) {
+			console.error("Failed to terminate all user's sessions", e);
 			props.app.addAlert(
 				"danger",
-				t("HomeScreen|Something went wrong when logging you out from all devices")
+				t("HomeScreen|Something went wrong when logging you out from all devices", {error: e?.response?.data?.message}), 30
 			);
 		}
 	}
@@ -137,11 +137,11 @@ function HomeScreen(props) {
 			await SeaCatAuthAPI.put('/public/logout');
 			window.location.reload();
 		}
-		catch (err) {
-			console.error("Failed to fetch userinfo", err);
+		catch (e) {
+			console.error("Failed to fetch userinfo", e);
 			props.app.addAlert(
 				"danger",
-				t("HomeScreen|Silly as it sounds, the logout failed")
+				t("HomeScreen|Silly as it sounds, the logout failed", {error: e?.response?.data?.message}), 30
 			);
 			setTimeout(() => {
 				window.location.reload();
@@ -159,7 +159,7 @@ function HomeScreen(props) {
 				window.location.reload();
 			} catch (e) {
 				console.error(e);
-				props.app.addAlert("warning", t("Connect|Failed to disconnect service"));
+				props.app.addAlert("danger", t("Connect|Failed to disconnect service", {error: e?.response?.data?.message}), 30);
 			}
 		}
 	}
