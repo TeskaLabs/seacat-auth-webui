@@ -28,7 +28,7 @@ export function PhoneField(props) {
 				{t("FormFields|Phone")}{props.content?.required && '*'}
 			</Label>
 			<Input
-				title={disabled ? t("FormFields|Phone editing is not allowed within these credentials") : undefined}
+				title={disabled ? t("FormFields|Phone editing is not allowed") : undefined}
 				id="phone"
 				name="phone"
 				type="text"
@@ -60,11 +60,7 @@ export function EmailField(props) {
 			}
 		}
 	);
-	/*
-		TODO: Validation on email (default validation should be created and should
-		be overriden when there will be information for email validation from
-		config.item [from site])
-	*/
+
 	return (
 		<FormGroup>
 			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="email">
@@ -112,7 +108,7 @@ export function UserNameField(props) {
 				{t("FormFields|Username")}{props.content?.required && '*'}
 			</Label>
 			<Input
-				title={disabled ? t("FormFields|Email editing is not allowed") : undefined}
+				title={disabled ? t("FormFields|Username editing is not allowed") : undefined}
 				id="username"
 				name="username"
 				type="text"
@@ -184,7 +180,7 @@ export function PasswordField(props) {
 			</FormGroup>
 
 			<FormGroup>
-				<Label for="password2">{t("FormFields|Password again")}</Label>
+				<Label for="password2">{t("FormFields|Re-enter Password")}</Label>
 				<InputGroup>
 					<Input
 						id="password2"

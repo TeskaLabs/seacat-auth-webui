@@ -22,6 +22,27 @@
 		"Email can't be empty!": "Email can't be empty!",
 		"Confirm": "Confirm"
 	},
+	"FormFields": {
+		"Phone": "Phone",
+		"Phone can't be empty!": "Phone can't be empty!",
+		"Invalid phone number format": "Invalid phone number format",
+		"Phone number is too short": "Phone number is too short",
+		"Phone editing is not allowed": "Phone editing is not allowed",
+		"Email": "Email",
+		"Email can't be empty!": "Email can't be empty!",
+		"Email editing is not allowed": "Email editing is not allowed",
+		"Username": "Username",
+		"Username can't be empty!": "Username can't be empty!",
+		"Invalid format, username can't start with a number": "Invalid format, username can't start with a number",
+		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Invalid format, only lower-case letters, numbers, dash and underscore are allowed",
+		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
+		"Username editing is not allowed": "Username editing is not allowed",
+		"Password": "Password",
+		"Re-enter Password": "Re-enter Password",
+		"Password can't be empty!": "Password can't be empty!",
+		"Passwords do not match!": "Passwords do not match!",
+		"Required field": "Required field"
+	},
 	"HomeScreen": {
 		"My account": "My account",
 		"Last successful login": "Last successful login",
@@ -179,6 +200,9 @@
 		"Setup completed successfully": "Setup completed successfully",
 		"You will be redirected to the Login page": "You will be redirected to the Login page",
 		"Setup has not been completed": "Setup has not been completed"
+	},
+	"RegisterScreen": {
+		"Failed to fetch register features": "Failed to fetch register features: {{error}}"
 	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Something went wrong, can't retrieve authenticators",

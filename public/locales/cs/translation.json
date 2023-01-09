@@ -22,6 +22,27 @@
 		"Email can't be empty!": "Email nemůže zůstat prázdný!",
 		"Confirm": "Potvrdit"
 	},
+	"FormFields": {
+		"Phone": "Telefon",
+		"Phone can't be empty!": "Telefon nemůže být prázdný!",
+		"Invalid phone number format": "Nesprávný formát telefonního čísla",
+		"Phone number is too short": "Telefonní číslo je příliš krátké",
+		"Phone editing is not allowed": "Není povoleno upravit telefonní číslo",
+		"Email": "Email",
+		"Email can't be empty!": "Email nemůže být prázdný!",
+		"Email editing is not allowed": "Není povoleno upravit email",
+		"Username": "Uživatelské jméno",
+		"Username can't be empty!": "Uživatelské jméno nemůže být prázdné!",
+		"Invalid format, username can't start with a number": "Nesprávný formát, uživatelské jméno nemůže začínat číslicí",
+		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Nesprávný formát, pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
+		"Only lower-case letters, numbers, dash and underscore are allowed": "Pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
+		"Username editing is not allowed": "Není povoleno upravit uživatelské jméno",
+		"Password": "Heslo",
+		"Re-enter Password": "Heslo znova",
+		"Password can't be empty!": "Heslo nemůže být prázdné!",
+		"Passwords do not match!": "Hesla se musí shodovat!",
+		"Required field": "Povinný údaj"
+	},
 	"HomeScreen": {
 		"My account": "Můj účet",
 		"Last successful login": "Poslední úspěšné přihlášení",
