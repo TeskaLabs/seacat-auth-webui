@@ -125,7 +125,7 @@
 		"Reset password": "Obnovit heslo",
 		"You will receive instructions": "Obdržíte instrukce jak pokračovat",
 		"Go back": "Zpět",
-		"Something went wrong, can't reset the password": "Něco je špatně, nelze obnovit heslo",
+		"Something went wrong, can't reset the password": "Něco je špatně, nelze obnovit heslo. {{error}}",
 		"Invalid password reset link": "Neplatný odkaz k obnovení hesla",
 		"The link has expired, you can reset your password here": "Platnost odkazu vypršela, zde si můžete obnovit heslo",
 		"CompletedPwdResetCard": {

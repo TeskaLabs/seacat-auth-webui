@@ -59,7 +59,7 @@ function ForgetPwdCard(props) {
 		} catch (e) {
 			props.app.addAlert(
 				"danger",
-				t("ForgetPwdScreen|Something went wrong, can't reset the password")
+				t("ForgetPwdScreen|Something went wrong, can't reset the password", {error: e?.response?.data?.message}), 30
 			);
 			return;
 		}
@@ -144,7 +144,6 @@ function ForgetPwdCard(props) {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
-
 			<Card className="animated fadeIn auth-card">
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
@@ -211,11 +210,7 @@ function ForgetPwdCard(props) {
 						{t("ForgetPwdScreen|Go back")}
 					</Button>
 				</CardFooter>}
-
 			</Card>
-
-
 		</Form>
 	);
 }
-

@@ -125,7 +125,7 @@
 		"Reset password": "Reset my password",
 		"You will receive instructions": "You will receive instructions on how to proceed",
 		"Go back": "Go back",
-		"Something went wrong, can't reset the password": "Something went wrong, can't reset the password",
+		"Something went wrong, can't reset the password": "Something went wrong, can't reset the password. {{error}}",
 		"Invalid password reset link": "Invalid password reset link",
 		"The link has expired, you can reset your password here": "The link has expired, you can reset your password here",
 		"CompletedPwdResetCard": {
