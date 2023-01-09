@@ -226,6 +226,13 @@
 		"Please, contact your application administrator": "Please, contact your application administrator",
 		"Continue": "Continue"
 	},
+	"RegistrationCard": {
+		"Failed to register": "Failed to register: {{error}}",
+		"Failed to confirm registration": "Failed to confirm registration: {{error}}",
+		"New user?": "New user?",
+		"If you are a new user, please register here": "If you are a new user, please register here",
+		"Register": "Register"
+	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Something went wrong, can't retrieve authenticators",
 		"Something went wrong, registration of authenticator failed": "Something went wrong, registration of authenticator failed",

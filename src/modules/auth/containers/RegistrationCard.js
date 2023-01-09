@@ -50,9 +50,8 @@ function RegistrationCard(props) {
 				throw new Error({ result: response.data.result });
 			}
 		} catch (e) {
-			// TODO: add alert here
 			console.error("Failed to register: ", e);
-			props.app.addAlert("warning", t(`RegistrationCard|Failed to register: ${e?.response?.data?.message}`));
+			props.app.addAlert("warning", t("RegistrationCard|Failed to register", {e?.response?.data?.message}), 30);
 			return;
 		}
 
@@ -69,7 +68,7 @@ function RegistrationCard(props) {
 			}
 		} catch (e) {
 			console.error("Failed to confirm registration: ", e);
-			props.app.addAlert("warning", t(`RegistrationCard|Failed to confirm registration: ${e?.response?.data?.message}`));
+			props.app.addAlert("warning", t("RegistrationCard|Failed to confirm registration", {e?.response?.data?.message}), 30);
 			return;
 		}
 
@@ -83,7 +82,7 @@ function RegistrationCard(props) {
 					<div className="card-header-title" >
 						<CardTitle className="text-primary" tag="h2">{t('RegistrationCard|New user?')}</CardTitle>
 						<CardSubtitle tag="p">
-							{t('If you are a new user, please register here')}
+							{t('RegistrationCard|If you are a new user, please register here')}
 						</CardSubtitle>
 					</div>
 				</CardHeader>
