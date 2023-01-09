@@ -233,6 +233,13 @@
 		"If you are a new user, please register here": "If you are a new user, please register here",
 		"Register": "Register"
 	},
+	"SwitchAccountCard": {
+		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed: {{error}}",
+		"Switch account": "Switch account",
+		"Is": "Is",
+		"not your account?": "not your account?",
+		"Switch account": "Switch account"
+	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Something went wrong, can't retrieve authenticators",
 		"Something went wrong, registration of authenticator failed": "Something went wrong, registration of authenticator failed",

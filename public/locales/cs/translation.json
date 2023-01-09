@@ -233,6 +233,13 @@
 		"If you are a new user, please register here": "Pokud jste nový uživatel, registrujte se prosím zde",
 		"Register": "Registrovat"
 	},
+	"SwitchAccountCard": {
+		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo: {{error}}",
+		"Switch account": "Přepnout účet",
+		"Is": "Není",
+		"not your account?": "Váš účet?",
+		"Switch account": "Přepnout účet"
+	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Něco je špatně, nelze načíst autentikátory",
 		"Something went wrong, registration of authenticator failed": "Něco je špatně, registrace autentikátoru selhala",
