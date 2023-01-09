@@ -181,7 +181,7 @@
 		"Enter new password a second time to verify it": "Enter new password a second time to verify it",
 		"Passwords do not match": "Passwords do not match!",
 		"Short password": "Password is too short!",
-		"Something went wrong, unable to set the password": "Something went wrong, unable to set the password",
+		"Something went wrong, unable to set the password": "Something went wrong, unable to set the password. {{error}}",
 		"Invalid password reset link, please set your password again": "Invalid password reset link, please set your password again",
 		"CompletedResetPwdCard": {
 			"Password set": "Password has been set",

@@ -181,7 +181,7 @@
 		"Enter new password a second time to verify it": "Pro kontrolu vložte Vaše nové heslo podruhé",
 		"Passwords do not match": "Hesla se neshodují!",
 		"Short password": "Heslo je příliš krátké!",
-		"Something went wrong, unable to set the password": "Něco je špatně, nepodařilo se nastavit heslo",
+		"Something went wrong, unable to set the password": "Něco je špatně, nepodařilo se nastavit heslo. {{error}}",
 		"Invalid password reset link, please set your password again": "Neplatný odkaz k obnovení hesla, prosím nastavte Vaše heslo znovu",
 		"CompletedResetPwdCard": {
 			"Password set": "Heslo bylo nastaveno",
