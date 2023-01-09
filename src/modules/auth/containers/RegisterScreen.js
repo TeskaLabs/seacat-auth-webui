@@ -171,14 +171,14 @@ function RegisterScreen(props) {
 							<Card className="shadow animated fadeIn auth-card">
 								<CardHeader className="border-bottom card-header-login">
 									<div className="card-header-title" >
-										<CardTitle className="text-primary" tag="h2">{t("RegistrationCard|Registration completed successfully")}</CardTitle>
+										<CardTitle className="text-primary" tag="h2">{t("RegisterScreen|Registration completed successfully")}</CardTitle>
 									</div>
 								</CardHeader>
 								<CardBody className="text-center">
 									{(userinfo == undefined) ?
-										t("MessageScreen|You will be redirected to the Login page")
+										t("RegisterScreen|You will be redirected to the Login page")
 									:
-										t("MessageScreen|You will be redirected to the Home screen")}
+										t("RegisterScreen|You will be redirected to the Home screen")}
 								</CardBody>
 							</Card>
 						</Col>
