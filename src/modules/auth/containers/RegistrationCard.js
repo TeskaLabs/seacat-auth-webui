@@ -51,7 +51,7 @@ function RegistrationCard(props) {
 			}
 		} catch (e) {
 			console.error("Failed to register: ", e);
-			props.app.addAlert("warning", t("RegistrationCard|Failed to register", {e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", t("RegistrationCard|Failed to register", {error: e?.response?.data?.message}), 30);
 			return;
 		}
 
@@ -68,7 +68,7 @@ function RegistrationCard(props) {
 			}
 		} catch (e) {
 			console.error("Failed to confirm registration: ", e);
-			props.app.addAlert("warning", t("RegistrationCard|Failed to confirm registration", {e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", t('RegistrationCard|Failed to confirm registration', {error: e?.response?.data?.message}), 30);
 			return;
 		}
 

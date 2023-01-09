@@ -24,7 +24,7 @@ function SwitchAccountCard(props) {
 			}
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("danger", t("SwitchAccountCard|Silly as it sounds, the logout failed", {e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", t("SwitchAccountCard|Silly as it sounds, the logout failed", {error: e?.response?.data?.message}), 30);
 		}
 
 		// Reload with whole URI string after logout
