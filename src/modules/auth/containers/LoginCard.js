@@ -145,7 +145,7 @@ function LoginCard(props) {
 		} catch (e) {
 			props.app.addAlert(
 				"danger",
-				t("Something went wrong")
+				t("LoginCard|Something went wrong", {error: e?.response?.data?.message}), 30
 			);
 			return;
 		}
@@ -153,7 +153,7 @@ function LoginCard(props) {
 			console.error("Server responsed with ", response.status);
 			props.app.addAlert(
 				"danger",
-				t("Something went wrong")
+				t("LoginCard|Something went wrong", {error: response?.data?.message}), 30
 			);
 			return;
 		}
@@ -206,17 +206,17 @@ function LoginCard(props) {
 			if (e.response.status == 401) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Failed")
+					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
 			} else if (e.response.status == 504) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Can’t proceed due to connection problems")
+					t("LoginCard|Can't proceed due to connection problems"), 30
 				);
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("Something went wrong")
+					t("LoginCard|Something went wrong", {error: e?.response?.data?.message}), 30
 				);
 			}
 			return;
@@ -225,7 +225,7 @@ function LoginCard(props) {
 		if ((response === undefined) || (response.status != 200)) {
 			props.app.addAlert(
 				"danger",
-				t("Response Error")
+				t("LoginCard|Server responded with incorrect response code, please try again"), 30
 			);
 			return;
 		}
@@ -233,14 +233,14 @@ function LoginCard(props) {
 		if (response.data.result !== "OK") {
 			props.app.addAlert(
 				"danger",
-				t("LoginCard|Failed")
+				t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 			);
 			return;
 		}
 
 		props.app.addAlert(
 			"success",
-			t("LoginCard|Success")
+			t("LoginCard|The login has been successful")
 		);
 
 		/*
@@ -635,12 +635,12 @@ function WebAuthnField(props) {
 			if (e.response.status == 401) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Failed")
+					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Something went wrong, can't proceed with WebAuthn authentication")
+					t("LoginCard|Something went wrong, can't proceed with WebAuthn authentication", {error: e?.response?.data?.message}), 30
 				);
 			}
 			return;
@@ -675,17 +675,17 @@ function WebAuthnField(props) {
 			if (e.response.status == 401) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Failed")
+					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
 			} else if (e.response.status == 504) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Can’t proceed due to connection problems")
+					t("LoginCard|Can't proceed due to connection problems"), 30
 				);
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("Something went wrong")
+					t("LoginCard|Something went wrong", {error: e?.response?.data?.message}), 30
 				);
 			}
 			props.setIsOnClickSubmitting(false);
@@ -695,7 +695,7 @@ function WebAuthnField(props) {
 		if ((response === undefined) || (response.status != 200)) {
 			props.app.addAlert(
 				"danger",
-				t("Response Error")
+				t("LoginCard|Server responded with incorrect response code, please try again"), 30
 			);
 			props.setIsOnClickSubmitting(false);
 			return;
@@ -704,7 +704,7 @@ function WebAuthnField(props) {
 		if (response.data.result !== "OK") {
 			props.app.addAlert(
 				"danger",
-				t("LoginCard|Failed")
+				t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 			);
 			props.setIsOnClickSubmitting(false);
 			return;
@@ -712,7 +712,7 @@ function WebAuthnField(props) {
 
 		props.app.addAlert(
 			"success",
-			t("LoginCard|Success")
+			t("LoginCard|The login has been successful")
 		);
 
 		let redirect_uri;
@@ -752,7 +752,7 @@ function WebAuthnField(props) {
 			});
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("danger", t("LoginCard|Authentication failed, can't identify used authenticator"));
+			props.app.addAlert("danger", t("LoginCard|Authentication failed, can't identify used authenticator"), 30);
 			props.setIsOnClickSubmitting(false);
 			return undefined;
 		}
@@ -805,7 +805,7 @@ function SMSLoginField(props) {
 			if (response.data.result != "OK") {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Sending SMS code has failed")
+					t("LoginCard|Sending SMS code has failed"), 30
 				);
 				console.error('Sending SMS code has failed')
 				setDisable(false);
@@ -815,12 +815,12 @@ function SMSLoginField(props) {
 			if (err.response.status == 401) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Failed")
+					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("Something went wrong")
+					t("LoginCard|Something went wrong", {error: e?.response?.data?.message}), 30
 				);
 			}
 			setDisable(false);
