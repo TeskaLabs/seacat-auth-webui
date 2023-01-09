@@ -242,12 +242,12 @@
 		"Switch account": "Přepnout účet"
 	},
 	"WebAuthnScreen": {
-		"Something went wrong, can't retrieve authenticators": "Něco je špatně, nelze načíst autentikátory",
-		"Something went wrong, registration of authenticator failed": "Něco je špatně, registrace autentikátoru selhala",
-		"Registration failed, can't identify used authenticator": "Registrace selhala, nepodařilo se identifikovat použitý autentikátor",
+		"Something went wrong, can't retrieve authenticators": "Něco je špatně, nelze načíst autentikátory. {{error}}",
+		"Something went wrong, registration of authenticator failed": "Něco je špatně, registrace autentikátoru selhala. {{error}}",
+		"Registration failed, can't identify used authenticator": "Registrace selhala, nepodařilo se identifikovat použitý autentikátor. {{error}}",
 		"Authenticator successfully registered": "Autentikátor úspěšně zaregistrován",
-		"Something went wrong, can't unregister authenticator": "Něco je špatně, odhlášení autentikátoru selhalo",
-		"Something went wrong, can't update authenticator": "Něco je špatně, nelze aktualizovat autentikátor",
+		"Something went wrong, can't unregister authenticator": "Něco je špatně, odhlášení autentikátoru selhalo. {{error}}",
+		"Something went wrong, can't update authenticator": "Něco je špatně, nelze aktualizovat autentikátor. {{error}}",
 		"Failed to update, authenticator does not match any credentials": "Nepodařilo se aktualizovat, autentikátor se neshoduje s žádnými uživatelskými údaji",
 		"Failed to update, authenticator name does not match the validation criteria": "Nepodařilo se aktualizovat, název autentikátoru neodpovídá kritériím validace",
 		"Authenticator successfully updated": "Autentikátor byl úspěšně aktualizován",

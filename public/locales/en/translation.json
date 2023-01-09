@@ -242,12 +242,12 @@
 		"Switch account": "Switch account"
 	},
 	"WebAuthnScreen": {
-		"Something went wrong, can't retrieve authenticators": "Something went wrong, can't retrieve authenticators",
-		"Something went wrong, registration of authenticator failed": "Something went wrong, registration of authenticator failed",
-		"Registration failed, can't identify used authenticator": "Registration failed, can't identify used authenticator",
+		"Something went wrong, can't retrieve authenticators": "Something went wrong, can't retrieve authenticators. {{error}}",
+		"Something went wrong, registration of authenticator failed": "Something went wrong, registration of authenticator failed. {{error}}",
+		"Registration failed, can't identify used authenticator": "Registration failed, can't identify used authenticator. {{error}}",
 		"Authenticator successfully registered": "Authenticator successfully registered",
-		"Something went wrong, can't unregister authenticator": "Something went wrong, can't unregister authenticator",
-		"Something went wrong, can't update authenticator": "Something went wrong, can't update authenticator",
+		"Something went wrong, can't unregister authenticator": "Something went wrong, can't unregister authenticator. {{error}}",
+		"Something went wrong, can't update authenticator": "Something went wrong, can't update authenticator. {{error}}",
 		"Failed to update, authenticator does not match any credentials": "Failed to update, authenticator does not match any credentials",
 		"Failed to update, authenticator name does not match the validation criteria": "Failed to update, authenticator name does not match the validation criteria",
 		"Authenticator successfully updated": "Authenticator successfully updated",
