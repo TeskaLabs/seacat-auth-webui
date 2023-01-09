@@ -9,14 +9,14 @@ import {
 } from 'reactstrap';
 
 
-function JoinCard(props) {
+function AcceptInvitationCard(props) {
 	const { t } = useTranslation();
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
 
 	const updateCredentials = async () => {
 		if (props.registerToken == undefined) {
-			props.app.addAlert("danger", t("JoinCard|Can't proceed, registration token is undefined"));
+			props.app.addAlert("danger", t("AcceptInvitationCard|Can't proceed, registration token is undefined"));
 			props.setIsSubmitting(false);
 			return;
 		}
@@ -40,7 +40,7 @@ function JoinCard(props) {
 			}
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("danger", t("JoinCard|Failed to update credentials and redirect to the application"));
+			props.app.addAlert("danger", t("AcceptInvitationCard|Failed to update credentials and redirect to the application"));
 			props.setIsSubmitting(false);
 			return;
 		}
@@ -48,7 +48,7 @@ function JoinCard(props) {
 		props.setRegistrationSuccessful(true);
 
 		/*
-			TODO: if redirection for Join card will be needed,
+			TODO: if redirection for AcceptInvitation card will be needed,
 			uncomment and remove `setRegistrationSuccessful(true);` above.
 			Otherwise remove the commented lines.
 		*/
@@ -74,9 +74,9 @@ function JoinCard(props) {
 		<Card className="shadow auth-card">
 			<CardHeader className="border-bottom card-header-login">
 				<div className="card-header-title" >
-					<CardTitle className="text-primary" tag="h2">{t('JoinCard|Join application')}</CardTitle>
+					<CardTitle className="text-primary" tag="h2">{t('AcceptInvitation|Accept invitation')}</CardTitle>
 					<CardSubtitle tag="p">
-						{t('JoinCard|As a logged user')}
+						{t('AcceptInvitationCard|As a logged user')}
 					</CardSubtitle>
 				</div>
 			</CardHeader>
@@ -84,8 +84,8 @@ function JoinCard(props) {
 			<CardBody>
 				<Row className="justify-content-center">
 					<h5>
-						<Label for="joinas" style={{display: "block"}}>
-							{t(`JoinCard|Join as`)}
+						<Label for="acceptas" style={{display: "block"}}>
+							{t(`AcceptInvitationCard|Accept invitation as`)}
 							<span className="primary-span">{props.credentials}</span>
 						</Label>
 					</h5>
@@ -99,7 +99,7 @@ function JoinCard(props) {
 							type="button"
 							onClick={() => {updateCredentials(), props.setIsSubmitting(true)}}
 						>
-							{t('SwitchAccountCard|Join')}
+							{t('AcceptInvitationCard|Accept')}
 						</Button>
 					</Col>
 				</Row>
@@ -108,4 +108,4 @@ function JoinCard(props) {
 	);
 }
 
-export default JoinCard;
+export default AcceptInvitationCard;

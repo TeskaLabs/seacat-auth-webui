@@ -7,7 +7,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, CardSubtitl
 import LoginCard from './LoginCard.js';
 import RegistrationCard from './RegistrationCard.js';
 import SwitchAccountCard from './SwitchAccountCard.js';
-import JoinCard from './JoinCard.js';
+import AcceptInvitationCard from './AcceptInvitationCard.js';
 
 function RegisterScreen(props) {
 	const { t } = useTranslation();
@@ -126,6 +126,7 @@ function RegisterScreen(props) {
 		// TODO: handle when it fails
 		try {
 			const response = await SeaCatAuthAPI.get(`/public/register/${token}`);
+			// TODO: implement throwing of error on result, when available
 			// if (response.data?.result != "OK") {
 			// 	throw new Error("Failed to fetch register features");
 			// }
@@ -133,7 +134,7 @@ function RegisterScreen(props) {
 		} catch (e) {
 			// TODO: add alert here
 			console.error("Failed to fetch register features", e);
-			props.app.addAlert("warning", t(`RegistrationScreen|Failed to fetch register features: ${e?.response?.data?.message}`));
+			props.app.addAlert("warning", t("RegisterScreen|Failed to fetch register features", {error: e?.response?.data?.message}));
 			setRegisterFeatures(undefined);
 		}
 	}
@@ -189,9 +190,9 @@ function RegisterScreen(props) {
 								<Card className="shadow">
 									<CardBody className="text-center">
 									{(userinfo == undefined) ?
-										t("RegisterScreen|You have been invited to join")
+										t("RegisterScreen|You have been invited to")
 									:
-										<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to join`)}</>
+										<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to`)}</>
 									}
 									{registerFeatures && registerFeatures?.tenants && registerFeatures?.tenants.map((tenant, i) => (
 											registerFeatures.tenants.length != i+1 ?
@@ -226,7 +227,7 @@ function RegisterScreen(props) {
 						:
 						<Row className="justify-content-center register-row">
 							<Col lg="5">
-								<JoinCard
+								<AcceptInvitationCard
 									app={props.app}
 									credentials={credentials}
 									isSubmitting={isSubmitting}
@@ -276,16 +277,16 @@ function ExpiredRegistrationCard (props) {
 		<Card className="shadow auth-card">
 			<CardHeader className="border-bottom card-header-login">
 				<div className="card-header-title" >
-					<CardTitle className="text-primary" tag="h2">{t('RegistrationScreen|Ooops')}</CardTitle>
+					<CardTitle className="text-primary" tag="h2">{t('RegisterScreen|Ooops')}</CardTitle>
 					<CardSubtitle tag="p">
-						{t('RegistrationScreen|Your invitation likely expired')}
+						{t('RegisterScreen|Your invitation likely expired')}
 					</CardSubtitle>
 				</div>
 			</CardHeader>
 			<CardBody>
 				<Row className="justify-content-center">
 					<p className="expired-registration-p">
-						{t("RegistrationScreen|Please, contact your application administrator")}
+						{t("RegisterScreen|Please, contact your application administrator")}
 					</p>
 				</Row>
 
@@ -297,7 +298,7 @@ function ExpiredRegistrationCard (props) {
 							type="button"
 							onClick={redirectToRoot}
 						>
-							{t('RegistrationScreen|Continue')}
+							{t('RegisterScreen|Continue')}
 						</Button>
 					</Col>
 				</Row>
