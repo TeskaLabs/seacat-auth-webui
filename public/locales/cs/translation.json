@@ -7,7 +7,7 @@
 	},
 	"AcceptInvitationCard": {
 		"Can't proceed, registration token is undefined": "Nelze pokračovat, registrační token není definován",
-		"Failed to update credentials and redirect to the application": "Nepodařilo se aktualizovat data uživatele a přesměrovat do aplikace: {{error}}",
+		"Failed to update credentials and redirect to the application": "Nepodařilo se aktualizovat data uživatele a přesměrovat do aplikace. {{error}}",
 		"Accept invitation": "Přijmout pozvání",
 		"As a logged user": "Jako přihlášený uživatel",
 		"Accept invitation as": "Přijmout pozvání jako",
@@ -20,8 +20,8 @@
 		"Something went wrong, failed to set email": "Něco se stalo, nepodařilo se nastavit emailovou adresu",
 		"Email has been changed": "Emailová adresa byla změněna",
 		"Email has been set": "Emailová adresa byla nastavena",
-		"Failed to change email": "Nepodařilo se změnit emailovou adresu: {{error}}",
-		"Failed to set email": "Nepodařilo se nastavit emailovou adresu: {{error}}",
+		"Failed to change email": "Nepodařilo se změnit emailovou adresu. {{error}}",
+		"Failed to set email": "Nepodařilo se nastavit emailovou adresu. {{error}}",
 		"Go back": "Zpět",
 		"Change email": "Změnit email",
 		"Set email": "Nastavit email",
@@ -61,8 +61,8 @@
 		"Manage phone number": "Správa telefonního čísla",
 		"Manage OTP": "Správa jednorázového PIN (OTP)",
 		"Logout": "Odhlášení",
-		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo: {{error}}",
-		"Something went wrong when logging you out from all devices": "Něco se stalo při odhlašování ze všech zařízení: {{error}}",
+		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo. {{error}}",
+		"Something went wrong when logging you out from all devices": "Něco se stalo při odhlašování ze všech zařízení. {{error}}",
 		"You have been logged out from all devices, you will be redirected to Login in a while": "Byli jste odhlášeni ze všech zařízení, za moment budete přesměrováni na Přihlášení",
 		"Do you want to logout from all devices?": "Opravdu se chcete odhlásit ze všech zařízení?",
 		"Logout from all devices": "Odhlásit ze všech zařízení",
@@ -70,7 +70,7 @@
 		"Do you want to disconnect from Github?": "Chcete odebrat Váš Github účet?",
 		"Do you want to disconnect from Office365?": "Chcete odebrat Váš Office365 účet?",
 		"Service was successfully disconnected": "Služba byla úspěšně odebrána",
-		"Failed to disconnect service": "Službu se nepodařilo odebrat: {{error}}",
+		"Failed to disconnect service": "Službu se nepodařilo odebrat. {{error}}",
 		"Sign in with Google": "Přihlaste se pomocí Google",
 		"Sign in with Github": "Přihlaste se pomocí Github",
 		"Sign in with Office365": "Přihlaste se pomocí Office365",
@@ -105,12 +105,12 @@
 		"Sign in with Google": "Přihlaste se pomocí Google",
 		"Sign in with Github": "Přihlaste se pomocí Github",
 		"Sign in with Office365": "Přihlaste se pomocí Office365",
-		"Something went wrong, can't proceed with WebAuthn authentication": "Něco je špatně, nelze pokračovat s ověřením pomocí WebAuthn: {{error}}",
+		"Something went wrong, can't proceed with WebAuthn authentication": "Něco je špatně, nelze pokračovat s ověřením pomocí WebAuthn. {{error}}",
 		"Authentication failed, can't identify used authenticator": "Ověření selhalo, nepodařilo se identifikovat použitý autentikátor",
 		"You will be prompted to login with FIDO2/WebAuthn": "Budete vyzváni k přihlášení pomocí FIDO2/WebAuthn",
 		"Click to Enter": "Klikněte pro přihlášení",
 		"Sending SMS code has failed": "Zaslání SMS kódu selhalo",
-		"Something went wrong": "Něco je špatně: {{error}}",
+		"Something went wrong": "Něco je špatně. {{error}}",
 		"Server responded with incorrect response code, please try again": "Přístup odepřen, zkuste to prosím znovu",
 		"Have an account?": "Máte účet?"
 	},
@@ -150,7 +150,8 @@
 		"CompletedChangePwdCard": {
 			"Password changed": "Heslo bylo změněno",
 			"Go back": "Zpět"
-		}
+		},
+		"Something went wrong": "Something went wrong. {{error}}"
 	},
 	"PhoneNumberScreen": {
 		"Do you want to change your number?": "Opravdu chcete změnit vaše telefonní číslo?",
@@ -159,8 +160,8 @@
 		"Something went wrong, failed to set phone number": "Něco je špatně, nepodařilo se nastavit telefonní číslo",
 		"Phone number has been changed": "Telefonní číslo bylo změněno",
 		"Phone number has been set": "Telefonní číslo bylo nastaveno",
-		"Failed to change phone number": "Nepodařilo se změnit telefonní číslo: {{error}}",
-		"Failed to set phone number": "Nepodařilo se nastavit telefonní číslo: {{error}}",
+		"Failed to change phone number": "Nepodařilo se změnit telefonní číslo. {{error}}",
+		"Failed to set phone number": "Nepodařilo se nastavit telefonní číslo. {{error}}",
 		"Go back": "Zpět",
 		"Change number": "Změnit číslo",
 		"Change your phone number here": "Zde si můžete změnit telefonní číslo",
@@ -196,9 +197,9 @@
 		"Deactivate OTP": "Deaktivovat OTP",
 		"OTP successfuly activated": "OTP úspěšně aktivováno",
 		"OTP successfuly deactivated": "OTP úspěšně deaktivováno",
-		"Something went wrong, can't activate OTP": "Něco je špatně, nelze aktivovat OTP: {{error}}",
-		"Something went wrong, can't deactivate OTP": "Něco je špatně, nelze deaktivovat OTP: {{error}}",
-		"Something went wrong, can't fetch OTP data": "Něco je špatně, nelze získat OTP data: {{error}}",
+		"Something went wrong, can't activate OTP": "Něco je špatně, nelze aktivovat OTP. {{error}}",
+		"Something went wrong, can't deactivate OTP": "Něco je špatně, nelze deaktivovat OTP. {{error}}",
+		"Something went wrong, can't fetch OTP data": "Něco je špatně, nelze získat OTP data. {{error}}",
 		"QR Code": "QR kód",
 		"Scan with authenticator app": "Oskenujte pomocí autentizační aplikace",
 		"The secret": "Bezpečnostní kód",
@@ -213,7 +214,7 @@
 		"Setup has not been completed": "Nastavení nebylo dokončeno"
 	},
 	"RegisterScreen": {
-		"Failed to fetch register features": "Nepodařilo se získat nastavení registrace: {{error}}",
+		"Failed to fetch register features": "Nepodařilo se získat nastavení registrace. {{error}}",
 		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method": "Něco je špatně, externí přihlášení se nezdařilo. Možná jste nepropojili Váš profil s externí aplikací. Zkuste jiný způsob přihlášení",
 		"Registration completed successfully": "Registrace úspěšně dokončena",
 		"You will be redirected to the Login page": "Budete přesměrováni na Přihlášení",
@@ -227,14 +228,14 @@
 		"Continue": "Pokračovat"
 	},
 	"RegistrationCard": {
-		"Failed to register": "Registrace se nezdařila: {{error}}",
-		"Failed to confirm registration": "Nepodařilo se potvrdit registraci: {{error}}",
+		"Failed to register": "Registrace se nezdařila. {{error}}",
+		"Failed to confirm registration": "Nepodařilo se potvrdit registraci. {{error}}",
 		"New user?": "Nový uživatel?",
 		"If you are a new user, please register here": "Pokud jste nový uživatel, registrujte se prosím zde",
 		"Register": "Registrovat"
 	},
 	"SwitchAccountCard": {
-		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo: {{error}}",
+		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo. {{error}}",
 		"Switch account": "Přepnout účet",
 		"Is": "Není",
 		"not your account?": "Váš účet?",

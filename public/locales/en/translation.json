@@ -7,7 +7,7 @@
 	},
 	"AcceptInvitationCard": {
 		"Can't proceed, registration token is undefined": "Can't proceed, registration token is undefined",
-		"Failed to update credentials and redirect to the application": "Failed to update credentials and redirect to the application: {{error}}",
+		"Failed to update credentials and redirect to the application": "Failed to update credentials and redirect to the application. {{error}}",
 		"Accept invitation": "Accept invitation",
 		"As a logged user": "As a logged user",
 		"Accept invitation as": "Accept invitation as",
@@ -20,8 +20,8 @@
 		"Something went wrong, failed to set email": "Something went wrong, failed to set email",
 		"Email has been changed": "Email has been changed",
 		"Email has been set": "Email has been set",
-		"Failed to change email": "Failed to change email: {{error}}",
-		"Failed to set email": "Failed to set email: {{error}}",
+		"Failed to change email": "Failed to change email. {{error}}",
+		"Failed to set email": "Failed to set email. {{error}}",
 		"Go back": "Go back",
 		"Change email": "Change email",
 		"Set email": "Set email",
@@ -61,8 +61,8 @@
 		"Manage phone number": "Manage phone number",
 		"Manage OTP": "Manage One-Time PIN (OTP)",
 		"Logout": "Logout",
-		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed: {{error}}",
-		"Something went wrong when logging you out from all devices": "Something went wrong when logging you out from all devices: {{error}}",
+		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed. {{error}}",
+		"Something went wrong when logging you out from all devices": "Something went wrong when logging you out from all devices. {{error}}",
 		"You have been logged out from all devices, you will be redirected to Login in a while": "You have been logged out from all devices, you will be redirected to Login in a while",
 		"Do you want to logout from all devices?": "Do you want to logout from all devices?",
 		"Logout from all devices": "Logout from all devices",
@@ -70,7 +70,7 @@
 		"Do you want to disconnect from Github?": "Do you want to disconnect from Github?",
 		"Do you want to disconnect from Office365?": "Do you want to disconnect from Office365?",
 		"Service was successfully disconnected": "Service was successfully disconnected",
-		"Failed to disconnect service": "Failed to disconnect service: {{error}}",
+		"Failed to disconnect service": "Failed to disconnect service. {{error}}",
 		"Sign in with Google": "Sign in with Google",
 		"Sign in with Github": "Sign in with Github",
 		"Sign in with Office365": "Sign in with Office365",
@@ -105,12 +105,12 @@
 		"Sign in with Google": "Sign in with Google",
 		"Sign in with Github": "Sign in with Github",
 		"Sign in with Office365": "Sign in with Office365",
-		"Something went wrong, can't proceed with WebAuthn authentication": "Something went wrong, can't proceed with WebAuthn authentication: {{error}}",
+		"Something went wrong, can't proceed with WebAuthn authentication": "Something went wrong, can't proceed with WebAuthn authentication. {{error}}",
 		"Authentication failed, can't identify used authenticator": "Authentication failed, can't identify used authenticator",
 		"You will be prompted to login with FIDO2/WebAuthn": "You will be prompted to login with FIDO2/WebAuthn",
 		"Click to Enter": "Click to Enter",
 		"Sending SMS code has failed": "Sending SMS code has failed",
-		"Something went wrong": "Something went wrong: {{error}}",
+		"Something went wrong": "Something went wrong. {{error}}",
 		"Server responded with incorrect response code, please try again": "Server responded with incorrect response code, please try again",
 		"Have an account?": "Have an account?"
 	},
@@ -150,7 +150,8 @@
 		"CompletedChangePwdCard": {
 			"Password changed": "Password has been changed",
 			"Go back": "Go back"
-		}
+		},
+		"Something went wrong": "Something went wrong. {{error}}"
 	},
 	"PhoneNumberScreen": {
 		"Do you want to change your number?": "Do you want to change your number?",
@@ -159,8 +160,8 @@
 		"Something went wrong, failed to set phone number": "Something went wrong, failed to set phone number",
 		"Phone number has been changed": "Phone number has been changed",
 		"Phone number has been set": "Phone number has been set",
-		"Failed to change phone number": "Failed to change phone number: {{error}}",
-		"Failed to set phone number": "Failed to set phone number: {{error}}",
+		"Failed to change phone number": "Failed to change phone number. {{error}}",
+		"Failed to set phone number": "Failed to set phone number. {{error}}",
 		"Go back": "Go back",
 		"Change number": "Change number",
 		"Change your phone number here": "Change your phone number here",
@@ -195,9 +196,9 @@
 		"Deactivate OTP": "Deactivate OTP",
 		"OTP successfuly activated": "OTP successfuly activated",
 		"OTP successfuly deactivated": "OTP successfuly deactivated",
-		"Something went wrong, can't activate OTP": "Something went wrong, can't activate OTP: {{error}}",
-		"Something went wrong, can't deactivate OTP": "Something went wrong, can't deactivate OTP: {{error}}",
-		"Something went wrong, can't fetch OTP data": "Something went wrong, can't fetch OTP data: {{error}}",
+		"Something went wrong, can't activate OTP": "Something went wrong, can't activate OTP. {{error}}",
+		"Something went wrong, can't deactivate OTP": "Something went wrong, can't deactivate OTP. {{error}}",
+		"Something went wrong, can't fetch OTP data": "Something went wrong, can't fetch OTP data. {{error}}",
 		"QR Code": "QR Code",
 		"Scan with authenticator app": "Scan with authenticator app",
 		"The secret": "The secret",
@@ -213,7 +214,7 @@
 		"Setup has not been completed": "Setup has not been completed"
 	},
 	"RegisterScreen": {
-		"Failed to fetch register features": "Failed to fetch register features: {{error}}",
+		"Failed to fetch register features": "Failed to fetch register features. {{error}}",
 		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method": "Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method",
 		"Registration completed successfully": "Registration completed successfully",
 		"You will be redirected to the Login page": "You will be redirected to the Login page",
@@ -227,14 +228,14 @@
 		"Continue": "Continue"
 	},
 	"RegistrationCard": {
-		"Failed to register": "Failed to register: {{error}}",
-		"Failed to confirm registration": "Failed to confirm registration: {{error}}",
+		"Failed to register": "Failed to register. {{error}}",
+		"Failed to confirm registration": "Failed to confirm registration. {{error}}",
 		"New user?": "New user?",
 		"If you are a new user, please register here": "If you are a new user, please register here",
 		"Register": "Register"
 	},
 	"SwitchAccountCard": {
-		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed: {{error}}",
+		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed. {{error}}",
 		"Switch account": "Switch account",
 		"Is": "Is",
 		"not your account?": "not your account?",
