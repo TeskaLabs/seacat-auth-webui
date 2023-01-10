@@ -29,6 +29,15 @@ const ConfigDefaults = {
 		fallbackLng: 'en',
 		supportedLngs: ['en', 'cs'],
 		debug: false,
+	},
+	brandImage: {
+		// TODO: uncomment and add file to media/logo when dark version of SeaCat's logo is released
+		// dark: {
+		// 	full: 'media/logo/header-logo-full-dark.svg'
+		// },
+		light: {
+			full: 'media/logo/header-logo-full-light.svg'
+		}
 	}
 };
 
