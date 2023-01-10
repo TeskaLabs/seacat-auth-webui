@@ -1,0 +1,19 @@
+@import "~asab-webui/styles/constants/index.scss";
+
+.primary-span {
+	color: $primary;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.register-row {
+	margin-top: -3rem;
+	@media (max-width: 768px) {
+		margin-top: 0rem;
+	}
+}
+
+.expired-registration-p {
+	font-size: 1rem;
+	font-weight: 500;
+}

@@ -102,9 +102,9 @@ function ManageEmailCard(props) {
 			console.error(e);
 			setIsSubmitting(false);
 			if (email) {
-				props.app.addAlert("danger", t("EmailScreen|Failed to change email"));
+				props.app.addAlert("danger", t("EmailScreen|Failed to change email", {error: e?.response?.data?.message}), 30);
 			} else {
-				props.app.addAlert("danger", t("EmailScreen|Failed to set email"));
+				props.app.addAlert("danger", t("EmailScreen|Failed to set email", {error: e?.response?.data?.message}), 30);
 			}
 			return;
 		}
@@ -146,7 +146,7 @@ function ManageEmail(props) {
 	const { t, i18n } = useTranslation();
 	const reg = props.register("email",{
 		validate: {
-			emptyInput: value => (props.number.length != 0 || value.length != 0) || t("EmailScreen|Email cannot be empty!"),
+			emptyInput: value => (props.number.length != 0 || value.length != 0) || t("EmailScreen|Email can't be empty!"),
 		}
 	});
 

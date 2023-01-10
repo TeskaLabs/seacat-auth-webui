@@ -73,11 +73,11 @@ function SetTOTPCard(props) {
 				setConfigURL(response.data.url);
 				setSecret(response.data.secret);
 			} else {
-				props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't fetch OTP data"));
+				props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't fetch OTP data"), 30);
 			}
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("danger", t("Something went wrong"));
+			props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't fetch OTP data", {error: e?.response?.data?.message}), 30);
 			return;
 		}
 	}
@@ -107,7 +107,7 @@ function SetTOTPCard(props) {
 			} catch (e) {
 				console.error(e);
 				setIsSubmitting(false);
-				props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't deactivate OTP"));
+				props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't deactivate OTP", {error: e?.response?.data?.message}), 30);
 				return;
 			}
 
@@ -142,7 +142,7 @@ function SetTOTPCard(props) {
 			} catch (e) {
 				console.error(e);
 				setIsSubmitting(false);
-				props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't activate OTP"));
+				props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't activate OTP", {error: e?.response?.data?.message}), 30);
 				return;
 			}
 		}

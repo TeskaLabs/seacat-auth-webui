@@ -59,7 +59,7 @@ function ChangePwdCard(props) {
 		} catch (e) {
 			props.app.addAlert(
 				"danger",
-				t("Something went wrong")
+				t("ChangePwdScreen|Something went wrong", {error: e?.response?.data?.message}), 30
 			);
 			return;
 		}
@@ -67,13 +67,13 @@ function ChangePwdCard(props) {
 		if (response.data.result == 'FAILED') {
 			props.app.addAlert(
 				"danger",
-				t("Something went wrong")
+				t("ChangePwdScreen|Something went wrong"), 30
 			);
 			return;
 		} else if (response.data.result == 'UNAUTHORIZED') {
 			props.app.addAlert(
 				"danger",
-				t("ChangePwdScreen|The current password is incorrect")
+				t("ChangePwdScreen|The current password is incorrect"), 30
 			);
 			return;
 		}
