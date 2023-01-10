@@ -237,6 +237,7 @@
 	"SwitchAccountCard": {
 		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo. {{error}}",
 		"Switch account": "Přepnout účet",
+		"Switch account here": "Zde si přepněte účet",
 		"Is": "Není",
 		"not your account?": "Váš účet?",
 		"Switch account": "Přepnout účet"

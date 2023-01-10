@@ -74,7 +74,7 @@ function AcceptInvitationCard(props) {
 		<Card className="shadow auth-card">
 			<CardHeader className="border-bottom card-header-login">
 				<div className="card-header-title" >
-					<CardTitle className="text-primary" tag="h2">{t('AcceptInvitation|Accept invitation')}</CardTitle>
+					<CardTitle className="text-primary" tag="h2">{t('AcceptInvitationCard|Accept invitation')}</CardTitle>
 					<CardSubtitle tag="p">
 						{t('AcceptInvitationCard|As a logged user')}
 					</CardSubtitle>

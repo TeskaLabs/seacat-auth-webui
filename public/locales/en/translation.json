@@ -237,6 +237,7 @@
 	"SwitchAccountCard": {
 		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed. {{error}}",
 		"Switch account": "Switch account",
+		"Switch account here": "Switch account here",
 		"Is": "Is",
 		"not your account?": "not your account?",
 		"Switch account": "Switch account"

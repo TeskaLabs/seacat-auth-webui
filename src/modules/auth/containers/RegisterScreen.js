@@ -18,15 +18,16 @@ function RegisterScreen(props) {
 	const [stateCode, setStateCode] = useState("");
 	const [credentials, setCredentials] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [ registrationSuccessful, setRegistrationSuccessful ] = useState(false);
+	const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const userinfo = useSelector(state => state.auth.userinfo);
 
 
 	useEffect(() => {
+		// Fetch register features from the server
 		fetchRegisterFeatures();
-		// Fetch features from the server
+		// Fetch external features from the server
 		fetchFeatures();
 		// Check status if external login failed
 		checkExternalLoginStatus();
@@ -105,9 +106,9 @@ function RegisterScreen(props) {
 		try {
 			const response = await SeaCatAuthAPI.get("/public/features");
 			if (response.data.result != "OK") {
-				throw new Error({ result: response.data.result });
+				throw new Error({ result: response?.data?.result });
 			}
-			if (!response.data.data.login && !response.data.data.registration) return;
+			if (!response?.data?.data?.login && !response?.data?.data?.registration) return;
 
 			setFeatures(response.data.data);
 		} catch (e) {
@@ -123,7 +124,6 @@ function RegisterScreen(props) {
 			props.app.props.history.push("/");
 		}
 
-		// TODO: handle when it fails
 		try {
 			const response = await SeaCatAuthAPI.get(`/public/register/${token}`);
 			// TODO: implement throwing of error on result, when available

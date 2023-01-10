@@ -154,7 +154,6 @@ export function PasswordField(props) {
 	);
 
 	return(
-
 		<>
 			<FormGroup>
 				<Label
