@@ -409,7 +409,7 @@ function LoginCard(props) {
 					<ButtonGroup className="flex-nowrap w-100">
 						<Button
 							outline
-							className="flex-fill justify-content-center"
+							className="flex-fill justify-content-center card-footer-button-flex"
 							color="primary"
 							type="button"
 							disabled={isSubmitting || isOnClickSubmitting}
@@ -419,7 +419,7 @@ function LoginCard(props) {
 						</Button>
 						<Button
 							outline
-							className="flex-fill justify-content-center"
+							className="flex-fill justify-content-center card-footer-button-flex"
 							style={{borderRadius: "0 0 7px 0"}}
 							color="primary"
 							type="button"
