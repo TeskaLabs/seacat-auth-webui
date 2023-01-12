@@ -46,7 +46,7 @@
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Username editing is not allowed": "Není povoleno upravit uživatelské jméno",
 		"Password": "Heslo",
-		"Re-enter Password": "Heslo znova",
+		"Re-enter Password": "Heslo znovu",
 		"Password can't be empty!": "Heslo nemůže být prázdné!",
 		"Passwords do not match!": "Hesla se musí shodovat!",
 		"Required field": "Povinný údaj"
@@ -112,7 +112,8 @@
 		"Sending SMS code has failed": "Zaslání SMS kódu selhalo",
 		"Something went wrong": "Něco je špatně. {{error}}",
 		"Server responded with incorrect response code, please try again": "Přístup odepřen, zkuste to prosím znovu",
-		"Have an account?": "Máte účet?"
+		"Have an account?": "Máte účet?",
+		"Continue": "Pokračovat"
 	},
 	"LoginScreen": {
 		"Failed to fetch external login services": "Nepodařilo se načíst přihlášení do externích aplikací",
@@ -141,7 +142,7 @@
 		"Set new password here": "Zde si můžete nastavit Vaše nové heslo",
 		"Current Password": "Stávající heslo",
 		"New Password": "Nové heslo",
-		"Re-enter Password": "Nové heslo znova",
+		"Re-enter Password": "Nové heslo znovu",
 		"Enter new password a second time to verify it": "Pro kontrolu vložte Vaše nové heslo podruhé",
 		"Go back": "Zpět",
 		"Passwords do not match": "Hesla se neshodují!",
@@ -177,7 +178,7 @@
 		"Set new password here": "Zde si můžete nastavit Vaše nové heslo",
 		"Current Password": "Stávající heslo",
 		"New Password": "Nové heslo",
-		"Re-enter Password": "Nové heslo znova",
+		"Re-enter Password": "Nové heslo znovu",
 		"Enter new password a second time to verify it": "Pro kontrolu vložte Vaše nové heslo podruhé",
 		"Passwords do not match": "Hesla se neshodují!",
 		"Short password": "Heslo je příliš krátké!",
@@ -217,15 +218,16 @@
 		"Failed to fetch register features": "Nepodařilo se získat nastavení registrace. {{error}}",
 		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method": "Něco je špatně, externí přihlášení se nezdařilo. Možná jste nepropojili Váš profil s externí aplikací. Zkuste jiný způsob přihlášení",
 		"Registration completed successfully": "Registrace úspěšně dokončena",
-		"You will be redirected to the Login page": "Budete přesměrováni na Přihlášení",
-		"You will be redirected to the Home screen": "Budete přesměrováni na domovskou obrazovku",
+		"You will be redirected to the Login page or": "Budete přesměrováni na Přihlášení nebo",
+		"You will be redirected to the Home screen or": "Budete přesměrováni na domovskou obrazovku nebo",
 		"You have been invited to": "Byli jste pozváni do",
 		"Hello": "Dobrý den",
 		"you have been invited to": "byli jste pozváni do",
-		"Ooops": "Jejda",
+		"Ooops": "Jejda!",
 		"Your invitation likely expired": "Vaše pozvánka pravděpodobně vypršela",
 		"Please, contact your application administrator": "Prosíme, kontaktuje administrátora aplikace",
-		"Continue": "Pokračovat"
+		"Continue": "Pokračovat",
+		"Click to Continue": "Kliknutím pokračujte"
 	},
 	"RegistrationCard": {
 		"Failed to register": "Registrace se nezdařila. {{error}}",
@@ -237,7 +239,7 @@
 	"SwitchAccountCard": {
 		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo. {{error}}",
 		"Switch account": "Přepnout účet",
-		"Switch account here": "Zde si přepněte účet",
+		"Or create a new account": "Nebo si vytvořte nový",
 		"Is": "Není",
 		"not your account?": "Váš účet?",
 		"Switch account": "Přepnout účet"

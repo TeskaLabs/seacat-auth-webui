@@ -9,7 +9,7 @@
 		"Can't proceed, registration token is undefined": "Can't proceed, registration token is undefined",
 		"Failed to update credentials and redirect to the application": "Failed to update credentials and redirect to the application. {{error}}",
 		"Accept invitation": "Accept invitation",
-		"As a logged user": "As a logged user",
+		"As a currently logged in user": "As a currently logged in user",
 		"Accept invitation as": "Accept invitation as",
 		"Accept": "Accept"
 	},
@@ -112,7 +112,8 @@
 		"Sending SMS code has failed": "Sending SMS code has failed",
 		"Something went wrong": "Something went wrong. {{error}}",
 		"Server responded with incorrect response code, please try again": "Server responded with incorrect response code, please try again",
-		"Have an account?": "Have an account?"
+		"Have an account?": "Have an account?",
+		"Continue": "Continue"
 	},
 	"LoginScreen": {
 		"Failed to fetch external login services": "Failed to fetch external login services",
@@ -217,15 +218,16 @@
 		"Failed to fetch register features": "Failed to fetch register features. {{error}}",
 		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method": "Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method",
 		"Registration completed successfully": "Registration completed successfully",
-		"You will be redirected to the Login page": "You will be redirected to the Login page",
-		"You will be redirected to the Home screen": "You will be redirected to the Home screen",
+		"You will be redirected to the Login page or": "You will be redirected to the Login page or",
+		"You will be redirected to the Home screen or": "You will be redirected to the Home screen or",
 		"You have been invited to": "You have been invited to",
 		"Hello": "Hello",
 		"you have been invited to": "you have been invited to",
-		"Ooops": "Ooops",
+		"Ooops": "Ooops!",
 		"Your invitation likely expired": "Your invitation likely expired",
 		"Please, contact your application administrator": "Please, contact your application administrator",
-		"Continue": "Continue"
+		"Continue": "Continue",
+		"Click to Continue": "Click to Continue"
 	},
 	"RegistrationCard": {
 		"Failed to register": "Failed to register. {{error}}",
@@ -237,7 +239,7 @@
 	"SwitchAccountCard": {
 		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed. {{error}}",
 		"Switch account": "Switch account",
-		"Switch account here": "Switch account here",
+		"Or create a new account": "Or create a new account",
 		"Is": "Is",
 		"not your account?": "not your account?",
 		"Switch account": "Switch account"
