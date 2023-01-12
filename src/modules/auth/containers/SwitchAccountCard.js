@@ -40,7 +40,7 @@ function SwitchAccountCard(props) {
 				<div className="card-header-title" >
 					<CardTitle className="text-primary" tag="h2">{t('SwitchAccountCard|Switch account')}</CardTitle>
 					<CardSubtitle tag="p">
-						{t('SwitchAccountCard|Switch account here')}
+						{t('SwitchAccountCard|Or create a new account')}
 					</CardSubtitle>
 				</div>
 			</CardHeader>
