@@ -19,6 +19,8 @@ function RegisterScreen(props) {
 	const [credentials, setCredentials] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
+	// For collapsing cardbodies in registration
+	const [registerCollapse, setRegisterCollapse] = useState(true);
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const userinfo = useSelector(state => state.auth.userinfo);
@@ -175,10 +177,22 @@ function RegisterScreen(props) {
 									</div>
 								</CardHeader>
 								<CardBody className="text-center">
-									{(userinfo == undefined) ?
-										t("RegisterScreen|You will be redirected to the Login page")
-									:
-										t("RegisterScreen|You will be redirected to the Home screen")}
+									<Row className="justify-content-center">
+										<p className="expired-registration-p">
+											{(userinfo == undefined) ?
+												t("RegisterScreen|You will be redirected to the Login page or")
+											:
+												t("RegisterScreen|You will be redirected to the Home screen or")}
+										</p>
+									</Row>
+									<Button
+										block
+										color="primary"
+										type="button"
+										onClick={() => props.app.props.history.push("/")}
+									>
+										{t("RegisterScreen|Click to Continue")}
+									</Button>
 								</CardBody>
 							</Card>
 						</Col>
@@ -213,6 +227,8 @@ function RegisterScreen(props) {
 									features={features["login"]}
 									stateCode={stateCode}
 									registerToken={registerToken}
+									registerCollapse={registerCollapse}
+									setRegisterCollapse={setRegisterCollapse}
 								/>
 							</Col>
 							<Col lg="5">
@@ -221,6 +237,8 @@ function RegisterScreen(props) {
 									registerToken={registerToken}
 									registerFeatures={registerFeatures}
 									setRegistrationSuccessful={setRegistrationSuccessful}
+									registerCollapse={registerCollapse}
+									setRegisterCollapse={setRegisterCollapse}
 								/>
 							</Col>
 						</Row>
