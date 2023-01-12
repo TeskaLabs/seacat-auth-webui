@@ -76,7 +76,7 @@ function AcceptInvitationCard(props) {
 				<div className="card-header-title" >
 					<CardTitle className="text-primary" tag="h2">{t('AcceptInvitationCard|Accept invitation')}</CardTitle>
 					<CardSubtitle tag="p">
-						{t('AcceptInvitationCard|As a logged user')}
+						{t('AcceptInvitationCard|As a currently logged in user')}
 					</CardSubtitle>
 				</div>
 			</CardHeader>
