@@ -1,7 +1,7 @@
 @import "~asab-webui/styles/constants/index.scss";
 
 .primary-span {
-	color: $primary;
+	font-weight: 800;
 	padding-left: 5px;
 	padding-right: 5px;
 }
@@ -16,6 +16,12 @@
 .expired-registration-p {
 	font-size: 1rem;
 	font-weight: 500;
+}
+
+.info-card-font {
+	font-size: 1rem;
+	font-weight: 500;
+	margin: 0;
 }
 
 .card-footer-button-flex {
