@@ -76,7 +76,8 @@
 		"Sign in with Office365": "Sign in with Office365",
 		"Manage FIDO2/WebAuthn": "Manage FIDO2/WebAuthn",
 		"Active": "Active",
-		"Inactive": "Inactive"
+		"Inactive": "Inactive",
+		"Created": "Created"
 	},
 	"LoginCard": {
 		"Login": "Login",

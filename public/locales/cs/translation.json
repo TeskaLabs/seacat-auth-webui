@@ -76,7 +76,8 @@
 		"Sign in with Office365": "Přihlaste se pomocí Office365",
 		"Manage FIDO2/WebAuthn": "Správa FIDO2/WebAuthn",
 		"Active": "Aktivní",
-		"Inactive": "Neaktivní"
+		"Inactive": "Neaktivní",
+		"Created": "Vytvořen"
 	},
 	"LoginCard": {
 		"Login": "Přihlášení",

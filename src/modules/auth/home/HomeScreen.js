@@ -190,6 +190,16 @@ function HomeScreen(props) {
 									</CardSubtitle>
 									<React.Fragment>
 										<Row className="pt-2">
+											<Col sm={6}>{t('HomeScreen|Created')}</Col>
+											<Col sm={6}>
+												{userinfo?.created_at ?
+													<div className="float-right"><DateTime value={userinfo?.created_at}/></div>
+												:
+													<div className="float-right">N/A</div>
+												}
+											</Col>
+										</Row>
+										<Row>
 											<Col sm={6}>{t('HomeScreen|Last successful login')}</Col>
 											<Col sm={6}>
 												{userinfo?.last_successful_login ?
