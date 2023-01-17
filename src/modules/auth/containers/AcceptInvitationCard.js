@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {
 	Row, Col,
 	Card, CardHeader, CardTitle,
-	CardSubtitle, CardBody,
+	CardSubtitle, CardBody, CardFooter,
 	Label, Button
 } from 'reactstrap';
 
@@ -69,6 +69,41 @@ function AcceptInvitationCard(props) {
 		// await new Promise(r => setTimeout(r, 3600*1000));
 	}
 
+	// Redirect to Login with whole URI
+	const redirectToLogin = async () => {
+		let response;
+		try {
+			// Use public logout
+			response = await SeaCatAuthAPI.put('/public/logout');
+			if (response.data?.result != "OK") {
+				throw new Error("Silly as it sounds, the logout failed");
+			}
+		} catch (e) {
+			console.error(e);
+			props.app.addAlert("danger", t("AcceptInvitationCard|Silly as it sounds, the logout failed", {error: e?.response?.data?.message}), 30);
+		}
+
+		// Check for login card param for registration
+		if (getParams("card") != "login") {
+			// Append card login parameter
+			window.location.replace(`${window.location}&card=login`);
+		}
+		window.location.reload();
+		// Basically wait forever, until the app is going to be reloaded with window.location.reload
+		await new Promise(r => setTimeout(r, 3600*1000));
+	}
+
+	// Method for params obtainment
+	function getParams(param) {
+		let parameter = undefined;
+		const i = window.location.hash.indexOf('?');
+		if (i > -1) {
+			const qs = window.location.hash.substring(i+1);
+			const params = new URLSearchParams(qs);
+			parameter = params.get(param);
+		}
+		return parameter;
+	}
 
 	return (
 		<Card className="shadow auth-card">
@@ -104,6 +139,17 @@ function AcceptInvitationCard(props) {
 					</Col>
 				</Row>
 			</CardBody>
+			<CardFooter className="border-top">
+				<Button
+					color="primary"
+					outline
+					className="flex-fill justify-content-center card-footer-button-flex"
+					style={{borderRadius: "0 0 7px 7px"}}
+					onClick={() => {redirectToLogin()}}
+				>
+					{t('AcceptInvitationCard|Accept invitation as a different user')}
+				</Button>
+			</CardFooter>
 		</Card>
 	);
 }
