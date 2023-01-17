@@ -319,10 +319,6 @@ function LoginCard(props) {
 						</CardSubtitle>
 					</div>
 				</CardHeader>
-
-				<Collapse
-					isOpen={((props.registerCollapse == undefined) || (props.registerCollapse == false))}
-				>
 				<CardBody>
 					{/* ident */}
 					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className="text-center">
@@ -419,6 +415,7 @@ function LoginCard(props) {
 						>
 							{t("LoginCard|Start again")}
 						</Button>
+						{props.registerToken == undefined ?
 						<Button
 							outline
 							className="flex-fill justify-content-center card-footer-button-flex"
@@ -430,27 +427,20 @@ function LoginCard(props) {
 						>
 							{t("LoginCard|Can't login?")}
 						</Button>
+						:
+						<Button
+							outline
+							className="flex-fill justify-content-center card-footer-button-flex"
+							style={{borderRadius: "0 0 7px 0"}}
+							color="primary"
+							type="button"
+							disabled={isSubmitting || isOnClickSubmitting}
+							onClick={() => {props.setSwitchCards("register")}}
+						>
+							{t("LoginCard|Create new account")}
+						</Button>}
 					</ButtonGroup>
 				</CardFooter>
-				</Collapse>
-				<Collapse
-					isOpen={(props.registerCollapse && (props.registerCollapse == true))}
-				>
-					<CardBody>
-						<Row className="justify-content-center">
-							<Col>
-								<Button
-									block
-									color="primary"
-									type="button"
-									onClick={() => props.setRegisterCollapse(false)}
-								>
-									{t('LoginCard|Continue')}
-								</Button>
-							</Col>
-						</Row>
-					</CardBody>
-				</Collapse>
 			</Card>
 
 		</Form>
