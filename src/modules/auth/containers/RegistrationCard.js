@@ -7,7 +7,6 @@ import {
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
 	Form, FormGroup, FormFeedback, FormText,
 	Label, Input, InputGroup, InputGroupAddon, InputGroupText,
-	Collapse,
 	Button
 } from 'reactstrap';
 
@@ -88,49 +87,40 @@ function RegistrationCard(props) {
 				</CardHeader>
 				{/*TODO*/}
 				<CardBody>
-					<Collapse
-						isOpen={(props.registerCollapse == false)}
-					>
-						<Row className="justify-content-center">
-							<Col>
-								<Button
-									block
-									color="primary"
-									type="button"
-									onClick={() => props.setRegisterCollapse(true)}
-								>
-									{t('RegistrationCard|Register')}
-								</Button>
-							</Col>
-						</Row>
-					</Collapse>
-					<Collapse
-						isOpen={((props.registerCollapse == undefined) || (props.registerCollapse == true))}
-					>
-						{props.registerFeatures && props.registerFeatures?.credentials && Object.keys(props.registerFeatures?.credentials).map((key, idx) => {
-							switch(key) {
-								case 'username': return(<UserNameField key={idx} content={props.registerFeatures?.credentials?.username} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
-								case 'email': return(<EmailField key={idx} content={props.registerFeatures?.credentials?.email} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
-								case 'password': return(<PasswordField key={idx} content={props.registerFeatures?.credentials?.password} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
-								case 'phone': return(<PhoneField key={idx} content={props.registerFeatures?.credentials?.phone} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
-								default: return(<div key={idx}>Unknown item: "{key}"</div>)
-							}
-						})}
+					{props.registerFeatures && props.registerFeatures?.credentials && Object.keys(props.registerFeatures?.credentials).map((key, idx) => {
+						switch(key) {
+							case 'username': return(<UserNameField key={idx} content={props.registerFeatures?.credentials?.username} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
+							case 'email': return(<EmailField key={idx} content={props.registerFeatures?.credentials?.email} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
+							case 'password': return(<PasswordField key={idx} content={props.registerFeatures?.credentials?.password} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
+							case 'phone': return(<PhoneField key={idx} content={props.registerFeatures?.credentials?.phone} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
+							default: return(<div key={idx}>Unknown item: "{key}"</div>)
+						}
+					})}
 
-						<Row className="justify-content-center">
-							<Col>
-								<Button
-									block
-									color="primary"
-									disabled={props.isSubmitting}
-									type="submit"
-								>
-									{t('RegistrationCard|Register')}
-								</Button>
-							</Col>
-						</Row>
-					</Collapse>
+					<Row className="justify-content-center">
+						<Col>
+							<Button
+								block
+								color="primary"
+								disabled={props.isSubmitting}
+								type="submit"
+							>
+								{t('RegistrationCard|Register')}
+							</Button>
+						</Col>
+					</Row>
 				</CardBody>
+				<CardFooter className="border-top">
+					<Button
+						color="primary"
+						outline
+						className="flex-fill justify-content-center card-footer-button-flex"
+						style={{borderRadius: "0 0 7px 7px"}}
+						onClick={() => {props.setSwitchCards("login")}}
+					>
+						{t('RegistrationCard|Have an account?')}
+					</Button>
+			</CardFooter>
 			</Card>
 		</Form>
 	);
