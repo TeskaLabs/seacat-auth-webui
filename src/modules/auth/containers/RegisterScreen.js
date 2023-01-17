@@ -6,7 +6,6 @@ import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, CardSubtitl
 
 import LoginCard from './LoginCard.js';
 import RegistrationCard from './RegistrationCard.js';
-import SwitchAccountCard from './SwitchAccountCard.js';
 import AcceptInvitationCard from './AcceptInvitationCard.js';
 
 function RegisterScreen(props) {
@@ -20,11 +19,10 @@ function RegisterScreen(props) {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
 	// For collapsing cardbodies in registration
-	const [registerCollapse, setRegisterCollapse] = useState(true);
+	const [switchCards, setSwitchCards] = useState("register");
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const userinfo = useSelector(state => state.auth.userinfo);
-
 
 	useEffect(() => {
 		// Fetch register features from the server
@@ -121,6 +119,9 @@ function RegisterScreen(props) {
 	const fetchRegisterFeatures = async () => {
 		const token = getParams("rt");
 		setRegisterToken(token);
+		if (getParams("card") == "login") {
+			setSwitchCards("login");
+		}
 		// TODO: Temporal redirection until self-registration is build and enabled
 		if (!token) {
 			props.app.props.history.push("/");
@@ -200,14 +201,16 @@ function RegisterScreen(props) {
 				:
 					<>
 						<Row className="justify-content-center">
-							<Col lg="10" className="mt-3">
+							<Col lg="8" className="mt-3">
 								<Card className="shadow">
 									<CardBody className="text-center">
-									{(userinfo == undefined) ?
-										t("RegisterScreen|You have been invited to")
-									:
-										<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to`)}</>
-									}
+									<p className="info-card-font">
+										{(userinfo == undefined) ?
+											t("RegisterScreen|You have been invited to")
+										:
+											<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to`)}</>
+										}
+									</p>
 									{registerFeatures && registerFeatures?.tenants && registerFeatures?.tenants.map((tenant, i) => (
 											(registerFeatures.tenants.length != i+1) ?
 												<span key={i} className="primary-span pr-0">{tenant},</span>
@@ -221,30 +224,30 @@ function RegisterScreen(props) {
 						</Row>
 						{(userinfo == undefined) ?
 						<Row className="justify-content-center register-row">
-							<Col lg="5">
-								<LoginCard
-									app={props.app}
-									features={features["login"]}
-									stateCode={stateCode}
-									registerToken={registerToken}
-									registerCollapse={registerCollapse}
-									setRegisterCollapse={setRegisterCollapse}
-								/>
-							</Col>
-							<Col lg="5">
+							{switchCards == "register" ?
+							<Col lg="6">
 								<RegistrationCard
 									app={props.app}
 									registerToken={registerToken}
 									registerFeatures={registerFeatures}
 									setRegistrationSuccessful={setRegistrationSuccessful}
-									registerCollapse={registerCollapse}
-									setRegisterCollapse={setRegisterCollapse}
+									setSwitchCards={setSwitchCards}
 								/>
 							</Col>
+							:
+							<Col lg="6">
+								<LoginCard
+									app={props.app}
+									features={features["login"]}
+									stateCode={stateCode}
+									registerToken={registerToken}
+									setSwitchCards={setSwitchCards}
+								/>
+							</Col>}
 						</Row>
 						:
 						<Row className="justify-content-center register-row">
-							<Col lg="5">
+							<Col lg="6">
 								<AcceptInvitationCard
 									app={props.app}
 									credentials={credentials}
@@ -252,14 +255,7 @@ function RegisterScreen(props) {
 									setIsSubmitting={setIsSubmitting}
 									registerToken={registerToken}
 									setRegistrationSuccessful={setRegistrationSuccessful}
-								/>
-							</Col>
-							<Col lg="5">
-								<SwitchAccountCard
-									app={props.app}
-									credentials={credentials}
-									isSubmitting={isSubmitting}
-									setIsSubmitting={setIsSubmitting}
+									setSwitchCards={setSwitchCards}
 								/>
 							</Col>
 						</Row>}
