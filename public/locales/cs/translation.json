@@ -8,10 +8,12 @@
 	"AcceptInvitationCard": {
 		"Can't proceed, registration token is undefined": "Nelze pokračovat, registrační token není definován",
 		"Failed to update credentials and redirect to the application": "Nepodařilo se aktualizovat data uživatele a přesměrovat do aplikace. {{error}}",
+		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo. {{error}}",
 		"Accept invitation": "Přijmout pozvání",
-		"As a logged user": "Jako přihlášený uživatel",
+		"As a currently logged in user": "Jako přihlášený uživatel",
 		"Accept invitation as": "Přijmout pozvání jako",
-		"Accept": "Přijmout"
+		"Accept": "Přijmout",
+		"Accept invitation as a different user": "Přijmout pozvánku jako jiný uživatel"
 	},
 	"EmailScreen": {
 		"Do you want to change your email?": "Opravdu chcete změnit vaši emailovou adresu?",
@@ -113,8 +115,8 @@
 		"Sending SMS code has failed": "Zaslání SMS kódu selhalo",
 		"Something went wrong": "Něco je špatně. {{error}}",
 		"Server responded with incorrect response code, please try again": "Přístup odepřen, zkuste to prosím znovu",
-		"Have an account?": "Máte účet?",
-		"Continue": "Pokračovat"
+		"Accept invitation as a existing user": "Přijmout pozvánku jako existující uživatel",
+		"Create new registration": "Zaregistrovat se"
 	},
 	"LoginScreen": {
 		"Failed to fetch external login services": "Nepodařilo se načíst přihlášení do externích aplikací",
@@ -233,9 +235,10 @@
 	"RegistrationCard": {
 		"Failed to register": "Registrace se nezdařila. {{error}}",
 		"Failed to confirm registration": "Nepodařilo se potvrdit registraci. {{error}}",
-		"New user?": "Nový uživatel?",
+		"Accept invitation as a new user": "Přijmout pozvánku jako nový uživatel",
 		"If you are a new user, please register here": "Pokud jste nový uživatel, registrujte se prosím zde",
-		"Register": "Registrovat"
+		"Register": "Registrovat",
+		"Accept invitation as a registered user": "Přijmout pozvánku jako registrovaný uživatel"
 	},
 	"SwitchAccountCard": {
 		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo. {{error}}",

@@ -8,10 +8,12 @@
 	"AcceptInvitationCard": {
 		"Can't proceed, registration token is undefined": "Can't proceed, registration token is undefined",
 		"Failed to update credentials and redirect to the application": "Failed to update credentials and redirect to the application. {{error}}",
+		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed. {{error}}",
 		"Accept invitation": "Accept invitation",
 		"As a currently logged in user": "As a currently logged in user",
 		"Accept invitation as": "Accept invitation as",
-		"Accept": "Accept"
+		"Accept": "Accept",
+		"Accept invitation as a different user": "Accept invitation as a different user"
 	},
 	"EmailScreen": {
 		"Do you want to change your email?": "Do you want to change your email?",
@@ -113,8 +115,8 @@
 		"Sending SMS code has failed": "Sending SMS code has failed",
 		"Something went wrong": "Something went wrong. {{error}}",
 		"Server responded with incorrect response code, please try again": "Server responded with incorrect response code, please try again",
-		"Have an account?": "Have an account?",
-		"Continue": "Continue"
+		"Accept invitation as a existing user": "Accept invitation as a existing user",
+		"Create new registration": "Create new registration"
 	},
 	"LoginScreen": {
 		"Failed to fetch external login services": "Failed to fetch external login services",
@@ -233,17 +235,10 @@
 	"RegistrationCard": {
 		"Failed to register": "Failed to register. {{error}}",
 		"Failed to confirm registration": "Failed to confirm registration. {{error}}",
-		"New user?": "New user?",
+		"Accept invitation as a new user": "Accept invitation as a new user",
 		"If you are a new user, please register here": "If you are a new user, please register here",
-		"Register": "Register"
-	},
-	"SwitchAccountCard": {
-		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed. {{error}}",
-		"Switch account": "Switch account",
-		"Or create a new account": "Or create a new account",
-		"Is": "Is",
-		"not your account?": "not your account?",
-		"Switch account": "Switch account"
+		"Register": "Register",
+		"Accept invitation as a registered user": "Accept invitation as a registered user"
 	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Something went wrong, can't retrieve authenticators. {{error}}",
