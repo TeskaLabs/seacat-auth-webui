@@ -240,14 +240,6 @@
 		"Register": "Registrovat",
 		"Accept invitation as a registered user": "Přijmout pozvánku jako registrovaný uživatel"
 	},
-	"SwitchAccountCard": {
-		"Silly as it sounds, the logout failed": "Nestává se to často, ale odhlášení selhalo. {{error}}",
-		"Switch account": "Přepnout účet",
-		"Or create a new account": "Nebo si vytvořte nový",
-		"Is": "Není",
-		"not your account?": "Váš účet?",
-		"Switch account": "Přepnout účet"
-	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Něco je špatně, nelze načíst autentikátory. {{error}}",
 		"Something went wrong, registration of authenticator failed": "Něco je špatně, registrace autentikátoru selhala. {{error}}",
