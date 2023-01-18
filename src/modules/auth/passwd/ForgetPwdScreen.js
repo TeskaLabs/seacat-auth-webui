@@ -14,7 +14,7 @@ function ForgetPwdScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5" className="mt-3">
+				<Col md="6" className="mt-3">
 					<ForgetPwdCard app={props.app} />
 				</Col>
 			</Row>

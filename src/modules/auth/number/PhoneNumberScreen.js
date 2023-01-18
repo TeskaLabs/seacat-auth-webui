@@ -16,7 +16,7 @@ function PhoneNumberScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5">
+				<Col md="6">
 					<ManageNumberCard app={props.app} userinfo={props.userinfo} />
 				</Col>
 			</Row>

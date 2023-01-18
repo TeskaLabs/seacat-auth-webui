@@ -14,7 +14,7 @@ function ResetPwdScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5">
+				<Col md="6">
 					<ResetPwdCard app={props.app} />
 				</Col>
 			</Row>

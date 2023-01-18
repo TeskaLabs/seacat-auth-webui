@@ -16,7 +16,7 @@ function EmailScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5">
+				<Col md="6">
 					<ManageEmailCard app={props.app} userinfo={props.userinfo} />
 				</Col>
 			</Row>

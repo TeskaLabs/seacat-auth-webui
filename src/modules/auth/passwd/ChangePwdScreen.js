@@ -16,7 +16,7 @@ function ChangePwdScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5">
+				<Col md="6">
 					<ChangePwdCard app={props.app} />
 				</Col>
 			</Row>
