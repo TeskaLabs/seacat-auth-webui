@@ -163,14 +163,14 @@ function RegisterScreen(props) {
 		<Container className="animated fadeIn">
 			{registerFeatures == undefined ?
 				<Row className="justify-content-center">
-					<Col lg="5">
+					<Col md="6">
 						<ExpiredRegistrationCard app={props.app}/>
 					</Col>
 				</Row>
 			:
 				registrationSuccessful == true ?
 					<Row className="justify-content-center">
-						<Col lg="5">
+						<Col md="6">
 							<Card className="shadow animated fadeIn auth-card">
 								<CardHeader className="border-bottom card-header-login">
 									<div className="card-header-title" >
@@ -201,7 +201,7 @@ function RegisterScreen(props) {
 				:
 					<>
 						<Row className="justify-content-center">
-							<Col lg="8" className="mt-3">
+							<Col md="6" className="mt-3">
 								<Card className="shadow">
 									<CardBody className="text-center">
 									<p className="info-card-font">
@@ -225,7 +225,7 @@ function RegisterScreen(props) {
 						{(userinfo == undefined) ?
 						<Row className="justify-content-center register-row">
 							{switchCards == "register" ?
-							<Col lg="6">
+							<Col md="6">
 								<RegistrationCard
 									app={props.app}
 									registerToken={registerToken}
@@ -235,7 +235,7 @@ function RegisterScreen(props) {
 								/>
 							</Col>
 							:
-							<Col lg="6">
+							<Col md="6">
 								<LoginCard
 									app={props.app}
 									features={features["login"]}
@@ -247,7 +247,7 @@ function RegisterScreen(props) {
 						</Row>
 						:
 						<Row className="justify-content-center register-row">
-							<Col lg="6">
+							<Col md="6">
 								<AcceptInvitationCard
 									app={props.app}
 									credentials={credentials}
