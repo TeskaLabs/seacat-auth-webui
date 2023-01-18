@@ -312,7 +312,7 @@ function LoginCard(props) {
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
 						<CardTitle className="text-primary" tag="h2">
-							{props.registerToken == undefined ? t('LoginCard|Login') : t('LoginCard|Have an account?')}
+							{props.registerToken == undefined ? t('LoginCard|Login') : t('LoginCard|Accept invitation as a existing user')}
 						</CardTitle>
 						<CardSubtitle tag="p">
 							{t('LoginCard|Login here')}
@@ -437,7 +437,7 @@ function LoginCard(props) {
 							disabled={isSubmitting || isOnClickSubmitting}
 							onClick={() => {props.setSwitchCards("register")}}
 						>
-							{t("LoginCard|Create new account")}
+							{t("LoginCard|Create new registration")}
 						</Button>}
 					</ButtonGroup>
 				</CardFooter>

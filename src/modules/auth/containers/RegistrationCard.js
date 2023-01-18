@@ -79,7 +79,7 @@ function RegistrationCard(props) {
 			<Card className="shadow auth-card">
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
-						<CardTitle className="text-primary" tag="h2">{t('RegistrationCard|New user?')}</CardTitle>
+						<CardTitle className="text-primary" tag="h2">{t('RegistrationCard|Accept invitation as a new user')}</CardTitle>
 						<CardSubtitle tag="p">
 							{t('RegistrationCard|If you are a new user, please register here')}
 						</CardSubtitle>
@@ -118,7 +118,7 @@ function RegistrationCard(props) {
 						style={{borderRadius: "0 0 7px 7px"}}
 						onClick={() => {props.setSwitchCards("login")}}
 					>
-						{t('RegistrationCard|Have an account?')}
+						{t('RegistrationCard|Accept invitation as a registered user')}
 					</Button>
 			</CardFooter>
 			</Card>
