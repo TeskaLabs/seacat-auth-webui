@@ -107,17 +107,17 @@ function LoginScreen(props) {
 	return (
 		<Container className="animated fadeIn">
 			<Row className="justify-content-center">
-				{("login" in features) && <Col md="5" className="mt-3">
+				{("login" in features) && <Col md="6" className="mt-3">
 					<LoginCard
 						app={props.app}
 						features={features["login"]}
 						stateCode={stateCode}
 					/>
 				</Col>}
-				{/*TODO: Registration has not been fully implemented yet*/}
-				{("registration" in features) && <Col md="5">
+				{/*TODO: Self registration has not been fully implemented yet*/}
+				{/*("registration" in features) && <Col md="5">
 					<RegistrationCard app={props.app} features={features["registration"]} />
-				</Col>}
+				</Col>*/}
 			</Row>
 		</Container>
 	);
