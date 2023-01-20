@@ -67,10 +67,7 @@ function ResetPwdCard(props) {
 				throw new Error(t("ResetPwdScreen|Something went wrong, unable to set the password"));
 			}
 		} catch (e) {
-			props.app.addAlert(
-				"danger",
-				t("ResetPwdScreen|Something went wrong, unable to set the password", {error: e?.response?.data?.message}), 30
-			);
+			props.app.addAlert("danger", `${t("ResetPwdScreen|Something went wrong, unable to set the password")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 		setCompleted(true);

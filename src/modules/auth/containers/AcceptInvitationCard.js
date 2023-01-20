@@ -16,7 +16,7 @@ function AcceptInvitationCard(props) {
 
 	const updateCredentials = async () => {
 		if (props.registerToken == undefined) {
-			props.app.addAlert("danger", t("AcceptInvitationCard|Can't proceed, registration token is undefined"));
+			props.app.addAlert("danger", t("AcceptInvitationCard|Can't proceed, registration token is undefined"), 30);
 			props.setIsSubmitting(false);
 			return;
 		}
@@ -40,7 +40,7 @@ function AcceptInvitationCard(props) {
 			}
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("danger", t("AcceptInvitationCard|Failed to update credentials and redirect to the application", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("AcceptInvitationCard|Failed to update credentials and redirect to the application")}. ${e?.response?.data?.message}`, 30);
 			props.setIsSubmitting(false);
 			return;
 		}
@@ -80,7 +80,7 @@ function AcceptInvitationCard(props) {
 			}
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("danger", t("AcceptInvitationCard|Silly as it sounds, the logout failed", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("AcceptInvitationCard|Silly as it sounds, the logout failed")}. ${e?.response?.data?.message}`, 30);
 		}
 
 		// Check for login card param for registration

@@ -57,10 +57,7 @@ function ForgetPwdCard(props) {
 				throw new Error(t("ForgetPwdScreen|Something went wrong, can't reset the password"));
 			}
 		} catch (e) {
-			props.app.addAlert(
-				"danger",
-				t("ForgetPwdScreen|Something went wrong, can't reset the password", {error: e?.response?.data?.message}), 30
-			);
+			props.app.addAlert("danger", `${t("ForgetPwdScreen|Something went wrong, can't reset the password")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 

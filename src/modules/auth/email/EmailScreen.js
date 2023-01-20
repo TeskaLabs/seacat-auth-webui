@@ -102,9 +102,9 @@ function ManageEmailCard(props) {
 			console.error(e);
 			setIsSubmitting(false);
 			if (email) {
-				props.app.addAlert("danger", t("EmailScreen|Failed to change email", {error: e?.response?.data?.message}), 30);
+				props.app.addAlert("danger", `${t("EmailScreen|Failed to change email")}. ${e?.response?.data?.message}`, 30);
 			} else {
-				props.app.addAlert("danger", t("EmailScreen|Failed to set email", {error: e?.response?.data?.message}), 30);
+				props.app.addAlert("danger", `${t("EmailScreen|Failed to set email")}. ${e?.response?.data?.message}`, 30);
 			}
 			return;
 		}

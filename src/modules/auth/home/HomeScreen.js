@@ -124,10 +124,7 @@ function HomeScreen(props) {
 			}, 5000);
 		} catch (e) {
 			console.error("Failed to terminate all user's sessions", e);
-			props.app.addAlert(
-				"danger",
-				t("HomeScreen|Something went wrong when logging you out from all devices", {error: e?.response?.data?.message}), 30
-			);
+			props.app.addAlert("danger", `${t("HomeScreen|Something went wrong when logging you out from all devices")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -139,10 +136,7 @@ function HomeScreen(props) {
 		}
 		catch (e) {
 			console.error("Failed to fetch userinfo", e);
-			props.app.addAlert(
-				"danger",
-				t("HomeScreen|Silly as it sounds, the logout failed", {error: e?.response?.data?.message}), 30
-			);
+			props.app.addAlert("danger", `${t("HomeScreen|Silly as it sounds, the logout failed")}. ${e?.response?.data?.message}`, 30);
 			setTimeout(() => {
 				window.location.reload();
 			}, 5000);
@@ -154,12 +148,12 @@ function HomeScreen(props) {
 		if (verification) {
 			try {
 				await SeaCatAuthAPI.delete("/public/ext-login/" + provider);
-				props.app.addAlert("success", t("Connect|Service was successfully disconnected"));
+				props.app.addAlert("success", t("HomeScreen|Service was successfully disconnected"));
 				// reload in order to get updated userinfo
 				window.location.reload();
 			} catch (e) {
 				console.error(e);
-				props.app.addAlert("danger", t("Connect|Failed to disconnect service", {error: e?.response?.data?.message}), 30);
+				props.app.addAlert("danger", `${t("HomeScreen|Failed to disconnect service")}. ${e?.response?.data?.message}`, 30);
 			}
 		}
 	}

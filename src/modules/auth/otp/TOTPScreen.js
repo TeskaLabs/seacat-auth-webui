@@ -77,7 +77,7 @@ function SetTOTPCard(props) {
 			}
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't fetch OTP data", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("TOTPScreen|Something went wrong, can't fetch OTP data")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 	}
@@ -107,7 +107,7 @@ function SetTOTPCard(props) {
 			} catch (e) {
 				console.error(e);
 				setIsSubmitting(false);
-				props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't deactivate OTP", {error: e?.response?.data?.message}), 30);
+				props.app.addAlert("danger", `${t("TOTPScreen|Something went wrong, can't deactivate OTP")}. ${e?.response?.data?.message}`, 30);
 				return;
 			}
 
@@ -142,7 +142,7 @@ function SetTOTPCard(props) {
 			} catch (e) {
 				console.error(e);
 				setIsSubmitting(false);
-				props.app.addAlert("danger", t("TOTPScreen|Something went wrong, can't activate OTP", {error: e?.response?.data?.message}), 30);
+				props.app.addAlert("danger", `${t("TOTPScreen|Something went wrong, can't activate OTP")}. ${e?.response?.data?.message}`, 30);
 				return;
 			}
 		}

@@ -145,7 +145,7 @@ function LoginCard(props) {
 		} catch (e) {
 			props.app.addAlert(
 				"danger",
-				t("LoginCard|Something went wrong", {error: e?.response?.data?.message}), 30
+				`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 			);
 			return;
 		}
@@ -153,7 +153,7 @@ function LoginCard(props) {
 			console.error("Server responsed with ", response.status);
 			props.app.addAlert(
 				"danger",
-				t("LoginCard|Something went wrong", {error: response?.data?.message}), 30
+				`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 			);
 			return;
 		}
@@ -216,7 +216,7 @@ function LoginCard(props) {
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Something went wrong", {error: e?.response?.data?.message}), 30
+					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 				);
 			}
 			return;
@@ -651,7 +651,7 @@ function WebAuthnField(props) {
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Something went wrong, can't proceed with WebAuthn authentication", {error: e?.response?.data?.message}), 30
+					`${t("LoginCard|Something went wrong, can't proceed with WebAuthn authentication")}. ${e?.response?.data?.message}`, 30
 				);
 			}
 			return;
@@ -696,7 +696,7 @@ function WebAuthnField(props) {
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Something went wrong", {error: e?.response?.data?.message}), 30
+					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 				);
 			}
 			props.setIsOnClickSubmitting(false);
@@ -831,7 +831,7 @@ function SMSLoginField(props) {
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Something went wrong", {error: e?.response?.data?.message}), 30
+					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 				);
 			}
 			setDisable(false);

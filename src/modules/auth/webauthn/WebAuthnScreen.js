@@ -77,7 +77,7 @@ function WebAuthnCard(props) {
 		} catch(e) {
 			// TODO: add error message for already registered credentials
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't retrieve authenticators", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, can't retrieve authenticators")}. ${e?.response?.data?.message}`, 30);
 			setIsLoading(false);
 			setGlobalEditMode(false);
 			return;
@@ -102,7 +102,7 @@ function WebAuthnCard(props) {
 		} catch(e) {
 			// TODO: add error message for already registered credentials
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, registration of authenticator failed", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, registration of authenticator failed")}. ${e?.response?.data?.message}`, 30);
 			setIsSubmitting(false);
 			return;
 		}
@@ -137,7 +137,7 @@ function WebAuthnCard(props) {
 			});
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Registration failed, can't identify used authenticator", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Registration failed, can't identify used authenticator")}. ${e?.response?.data?.message}`, 30);
 			setIsSubmitting(false);
 			return;
 		}
@@ -154,7 +154,7 @@ function WebAuthnCard(props) {
 			}
 		} catch(e){
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, registration of authenticator failed", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, registration of authenticator failed")}. ${e?.response?.data?.message}`, 30);
 			setIsSubmitting(false);
 			return;
 		}
@@ -191,7 +191,7 @@ function WebAuthnCard(props) {
 			}
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't unregister authenticator", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, can't unregister authenticator")}. ${e?.response?.data?.message}`, 30);
 			setIsSubmitting(false);
 			return;
 		}
@@ -220,7 +220,7 @@ function WebAuthnCard(props) {
 				props.app.addAlert("danger", t("WebAuthnScreen|Failed to update, authenticator name does not match the validation criteria"), 30);
 				return;
 			} else {
-				props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't update authenticator", {error: e?.response?.data?.message}), 30);
+				props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, can't update authenticator")}. ${e?.response?.data?.message}`, 30);
 				return;
 			}
 		}

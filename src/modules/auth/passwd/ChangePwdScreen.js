@@ -57,10 +57,7 @@ function ChangePwdCard(props) {
 		try {
 			response = await SeaCatAuthAPI.put("/public/password-change", values)
 		} catch (e) {
-			props.app.addAlert(
-				"danger",
-				t("ChangePwdScreen|Something went wrong", {error: e?.response?.data?.message}), 30
-			);
+			props.app.addAlert("danger", `${t("ChangePwdScreen|Something went wrong")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 

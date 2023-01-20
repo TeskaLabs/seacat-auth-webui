@@ -105,9 +105,9 @@ function ManageNumberCard(props) {
 			console.error(e);
 			setIsSubmitting(false);
 			if (number) {
-				props.app.addAlert("danger", t("PhoneNumberScreen|Failed to change phone number", {error: e?.response?.data?.message}), 30);
+				props.app.addAlert("danger", `${t("PhoneNumberScreen|Failed to change phone number")}. ${e?.response?.data?.message}`, 30);
 			} else {
-				props.app.addAlert("danger", t("PhoneNumberScreen|Failed to set phone number", {error: e?.response?.data?.message}), 30);
+				props.app.addAlert("danger", `${t("PhoneNumberScreen|Failed to set phone number")}. ${e?.response?.data?.message}`, 30);
 			}
 			return;
 		}

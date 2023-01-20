@@ -58,7 +58,7 @@ function RegisterScreen(props) {
 		const result = getParams("result");
 
 		if (result && result.indexOf("EXTERNAL-LOGIN-FAILED") !== -1) {
-			props.app.addAlert("warning", t(
+			props.app.addAlert("danger", t(
 				"RegisterScreen|Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method"
 			), 30);
 		}
@@ -137,7 +137,7 @@ function RegisterScreen(props) {
 		} catch (e) {
 			// TODO: add alert here
 			console.error("Failed to fetch register features", e);
-			props.app.addAlert("warning", t("RegisterScreen|Failed to fetch register features", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("danger", `${t("RegisterScreen|Failed to fetch register features")}. ${e?.response?.data?.message}`, 30);
 			setRegisterFeatures(undefined);
 		}
 	}
