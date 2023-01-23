@@ -238,7 +238,7 @@
 		"Accept invitation as a new user": "Přijmout pozvánku jako nový uživatel",
 		"If you are a new user, please register here": "Pokud jste nový uživatel, registrujte se prosím zde",
 		"Register": "Registrovat",
-		"Accept invitation as a existing user": "Přijmout pozvánku jako registrovaný uživatel"
+		"Accept invitation as a existing user": "Přijmout pozvánku jako existující uživatel"
 	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Něco je špatně, nelze načíst autentikátory",
