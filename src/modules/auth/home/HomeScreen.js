@@ -186,7 +186,7 @@ function HomeScreen(props) {
 
 								<ListGroupItem className="mb-0">
 									<CardSubtitle tag="h5" title={userinfo?.sub}>
-										{userinfo?.preferred_username}
+										{userinfo?.username}
 									</CardSubtitle>
 									<React.Fragment>
 										<Row className="pt-2">
@@ -299,12 +299,12 @@ function HomeScreen(props) {
 												className="float-right text-muted pointer char-limit char-limit-number"
 												id="phoneNumber"
 												name="phoneNumber"
-												title={userinfo?.phone_number ?? ""}
+												title={userinfo?.phone ?? ""}
 											>
-												{!userinfo?.phone_number || userinfo?.phone_number === "" ?
+												{!userinfo?.phone || userinfo?.phone === "" ?
 													'N/A'
 												:
-													userinfo?.phone_number
+													userinfo?.phone
 												}
 											</div>
 										</Col>
