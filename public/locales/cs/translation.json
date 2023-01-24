@@ -83,7 +83,7 @@
 	},
 	"LoginCard": {
 		"Login": "Přihlášení",
-		"Login here": "Pokud jste stávající uživatel, přihlaste se prosím zde",
+		"Login here": "Pokud jste existující uživatel, přihlaste se prosím zde",
 		"Start again": "Začít znovu",
 		"Can't login?": "Nedaří se přihlásit?",
 		"Username, email or phone": "Uživatelské jméno, email nebo telefon",

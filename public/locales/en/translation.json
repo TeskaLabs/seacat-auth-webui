@@ -83,7 +83,7 @@
 	},
 	"LoginCard": {
 		"Login": "Login",
-		"Login here": "If you are a registered user, please login here",
+		"Login here": "If you are a existing user, please login here",
 		"Start again": "Start again",
 		"Can't login?": "Can't login?",
 		"Username, email or phone": "Username, email or phone",
