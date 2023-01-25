@@ -4,6 +4,13 @@
 
 ## v23.4
 
+### Compatibility
+
+- [x] **SeaCat Admin UI `v23.4` or newer**
+- [x] **SeaCat Auth `v23.3` or newer**
+
+⚠️ Due to implementation of new features, invitation will not work with SeaCat Auth service versions older than `v23.3`
+
 ### Features
 
 - ASAB WebUI submodule version bump [[25d5a5c](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/25d5a5ce97c6f2286525127cc3a31531b03312f3)] commit (INDIGO Sprint 230106, [!16](https://github.com/TeskaLabs/seacat-auth-webui/pull/16))
