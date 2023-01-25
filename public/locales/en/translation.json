@@ -5,6 +5,16 @@
 			"cs": "Česky"
 		}
 	},
+	"AcceptInvitationCard": {
+		"Can't proceed, registration token is undefined": "Can't proceed, registration token is undefined",
+		"Failed to update credentials and redirect to the application": "Failed to update credentials and redirect to the application",
+		"Silly as it sounds, the logout failed": "Silly as it sounds, the logout failed",
+		"Accept invitation": "Accept invitation",
+		"As a currently logged in user": "As a currently logged in user",
+		"Accept invitation as": "Accept invitation as",
+		"Accept": "Accept",
+		"Accept invitation as a different user": "Accept invitation as a different user"
+	},
 	"EmailScreen": {
 		"Do you want to change your email?": "Do you want to change your email?",
 		"Do you want to set the specified email?": "Do you want to set the specified email?",
@@ -19,8 +29,29 @@
 		"Set email": "Set email",
 		"Change your email address here": "Change your email address here",
 		"Set your email address here": "Set your email address here",
-		"Email cannot be empty!": "Email cannot be empty!",
+		"Email can't be empty!": "Email can't be empty!",
 		"Confirm": "Confirm"
+	},
+	"FormFields": {
+		"Phone": "Phone",
+		"Phone can't be empty!": "Phone can't be empty!",
+		"Invalid phone number format": "Invalid phone number format",
+		"Phone number is too short": "Phone number is too short",
+		"Phone editing is not allowed": "Phone editing is not allowed",
+		"Email": "Email",
+		"Email can't be empty!": "Email can't be empty!",
+		"Email editing is not allowed": "Email editing is not allowed",
+		"Username": "Username",
+		"Username can't be empty!": "Username can't be empty!",
+		"Invalid format, username can't start with a number": "Invalid format, username can't start with a number",
+		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Invalid format, only lower-case letters, numbers, dash and underscore are allowed",
+		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
+		"Username editing is not allowed": "Username editing is not allowed",
+		"Password": "Password",
+		"Re-enter Password": "Re-enter Password",
+		"Password can't be empty!": "Password can't be empty!",
+		"Passwords do not match!": "Passwords do not match!",
+		"Required field": "Required field"
 	},
 	"HomeScreen": {
 		"My account": "My account",
@@ -47,13 +78,14 @@
 		"Sign in with Office365": "Sign in with Office365",
 		"Manage FIDO2/WebAuthn": "Manage FIDO2/WebAuthn",
 		"Active": "Active",
-		"Inactive": "Inactive"
+		"Inactive": "Inactive",
+		"Created": "Created"
 	},
 	"LoginCard": {
 		"Login": "Login",
-		"Login here": "If you are a registered user, please login here",
+		"Login here": "If you are a existing user, please login here",
 		"Start again": "Start again",
-		"Cannot login?": "Can't login?",
+		"Can't login?": "Can't login?",
 		"Username, email or phone": "Username, email or phone",
 		"Remember me": "Remember me",
 		"Enter": "Enter",
@@ -63,8 +95,8 @@
 		"Confirm the login": "Please confirm the login on your mobile device",
 		"Yubikey": "Yubikey",
 		"OTP Code": "OTP Code",
-		"Success": "The login has been successful",
-		"Failed": "The provided information is likely incorrect. The login has failed",
+		"The login has been successful": "The login has been successful",
+		"The provided information is likely incorrect. The login has failed": "The provided information is likely incorrect. The login has failed",
 		"Insecured connection": "Your connection is not secured! Functionality of the page may be restricted",
 		"Please fill this field": "Please fill in this field",
 		"Fill in your login credentials": "Please fill in your login credentials",
@@ -72,7 +104,7 @@
 		"Login by SMS code": "Login by SMS code",
 		"Send SMS code": "Send SMS code",
 		"Enter the code from authenticator app": "Enter the code from authenticator app",
-		"Can’t proceed due to connection problems": "Can’t proceed due to connection problems",
+		"Can't proceed due to connection problems": "Can't proceed due to connection problems",
 		"Sign in with Google": "Sign in with Google",
 		"Sign in with Github": "Sign in with Github",
 		"Sign in with Office365": "Sign in with Office365",
@@ -80,14 +112,18 @@
 		"Authentication failed, can't identify used authenticator": "Authentication failed, can't identify used authenticator",
 		"You will be prompted to login with FIDO2/WebAuthn": "You will be prompted to login with FIDO2/WebAuthn",
 		"Click to Enter": "Click to Enter",
-		"Sending SMS code has failed": "Sending SMS code has failed"
+		"Sending SMS code has failed": "Sending SMS code has failed",
+		"Something went wrong": "Something went wrong",
+		"Server responded with incorrect response code, please try again": "Server responded with incorrect response code, please try again",
+		"Accept invitation as a existing user": "Accept invitation as a existing user",
+		"Create new registration": "Create new registration"
 	},
 	"LoginScreen": {
 		"Failed to fetch external login services": "Failed to fetch external login services",
 		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method" : "Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method."
 	},
 	"ForgetPwdScreen": {
-		"Cannot login?": "Can't login?",
+		"Can't login?": "Can't login?",
 		"Reset password here": "You can reset your password here",
 		"Username, email or phone": "Username, email or phone",
 		"Reset password": "Reset my password",
@@ -118,7 +154,8 @@
 		"CompletedChangePwdCard": {
 			"Password changed": "Password has been changed",
 			"Go back": "Go back"
-		}
+		},
+		"Something went wrong": "Something went wrong"
 	},
 	"PhoneNumberScreen": {
 		"Do you want to change your number?": "Do you want to change your number?",
@@ -137,7 +174,7 @@
 		"Confirm": "Confirm",
 		"Set number": "Set number",
 		"Set your phone number here": "Set your phone number here",
-		"Phone cannot be empty!": "Phone cannot be empty!"
+		"Phone can't be empty!": "Phone can't be empty!"
 	},
 	"ResetPwdScreen": {
 		"Set password": "Set password",
@@ -179,6 +216,29 @@
 		"Setup completed successfully": "Setup completed successfully",
 		"You will be redirected to the Login page": "You will be redirected to the Login page",
 		"Setup has not been completed": "Setup has not been completed"
+	},
+	"RegisterScreen": {
+		"Failed to fetch register features": "Failed to fetch register features",
+		"Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method": "Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method",
+		"Registration completed successfully": "Registration completed successfully",
+		"You will be redirected to the Login page or": "You will be redirected to the Login page or",
+		"You will be redirected to the Home screen or": "You will be redirected to the Home screen or",
+		"You have been invited to": "You have been invited to",
+		"Hello": "Hello",
+		"you have been invited to": "you have been invited to",
+		"Ooops": "Ooops!",
+		"Your invitation likely expired": "Your invitation likely expired",
+		"Please, contact your application administrator": "Please, contact your application administrator",
+		"Continue": "Continue",
+		"Click to Continue": "Click to Continue"
+	},
+	"RegistrationCard": {
+		"Failed to register": "Failed to register",
+		"Failed to confirm registration": "Failed to confirm registration",
+		"Accept invitation as a new user": "Accept invitation as a new user",
+		"If you are a new user, please register here": "If you are a new user, please register here",
+		"Register": "Register",
+		"Accept invitation as a existing user": "Accept invitation as a existing user"
 	},
 	"WebAuthnScreen": {
 		"Something went wrong, can't retrieve authenticators": "Something went wrong, can't retrieve authenticators",
