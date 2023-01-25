@@ -2,13 +2,26 @@
 
 ## Release Candidate
 
+## v23.4
+
+### Compatibility
+
+- [x] **SeaCat Admin UI `v23.4` or newer**
+- [x] **SeaCat Auth `v23.3` or newer**
+
+⚠️ Due to implementation of new features, invitation will not work with SeaCat Auth service versions older than `v23.3`
+
 ### Features
 
-- ASAB WebUI submodule version bump [[0b97139](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/0b97139df1c2dc0e4e82dd97fd5593334efc5d38)] commit (INDIGO Sprint 230106, [!21](https://github.com/TeskaLabs/seacat-auth-webui/pull/21))
+- ASAB WebUI submodule version bump [[25d5a5c](https://github.com/TeskaLabs/asab-webui/commit/https://github.com/TeskaLabs/asab-webui/commit/25d5a5ce97c6f2286525127cc3a31531b03312f3)] commit (INDIGO Sprint 230106, [!16](https://github.com/TeskaLabs/seacat-auth-webui/pull/16))
+
+- Implement registration by invitation - create invitation and registration screens and cards (INDIGO Sprint 230106, [!16](https://github.com/TeskaLabs/seacat-auth-webui/pull/16))
 
 ### Refactoring
 
 - Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!19](https://github.com/TeskaLabs/seacat-auth-webui/pull/19))
+
+- Update alert responses with full message from the service and prolong the time of the error message to 30s (INDIGO Sprint 230106, [!16](https://github.com/TeskaLabs/seacat-auth-webui/pull/16))
 
 ## v22.48
 

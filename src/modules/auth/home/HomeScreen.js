@@ -122,12 +122,9 @@ function HomeScreen(props) {
 			setTimeout(() => {
 				window.location.reload();
 			}, 5000);
-		} catch (err) {
-			console.error("Failed to terminate all user's sessions", err);
-			props.app.addAlert(
-				"danger",
-				t("HomeScreen|Something went wrong when logging you out from all devices")
-			);
+		} catch (e) {
+			console.error("Failed to terminate all user's sessions", e);
+			props.app.addAlert("danger", `${t("HomeScreen|Something went wrong when logging you out from all devices")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -137,12 +134,9 @@ function HomeScreen(props) {
 			await SeaCatAuthAPI.put('/public/logout');
 			window.location.reload();
 		}
-		catch (err) {
-			console.error("Failed to fetch userinfo", err);
-			props.app.addAlert(
-				"danger",
-				t("HomeScreen|Silly as it sounds, the logout failed")
-			);
+		catch (e) {
+			console.error("Failed to fetch userinfo", e);
+			props.app.addAlert("danger", `${t("HomeScreen|Silly as it sounds, the logout failed")}. ${e?.response?.data?.message}`, 30);
 			setTimeout(() => {
 				window.location.reload();
 			}, 5000);
@@ -154,12 +148,12 @@ function HomeScreen(props) {
 		if (verification) {
 			try {
 				await SeaCatAuthAPI.delete("/public/ext-login/" + provider);
-				props.app.addAlert("success", t("Connect|Service was successfully disconnected"));
+				props.app.addAlert("success", t("HomeScreen|Service was successfully disconnected"));
 				// reload in order to get updated userinfo
 				window.location.reload();
 			} catch (e) {
 				console.error(e);
-				props.app.addAlert("warning", t("Connect|Failed to disconnect service"));
+				props.app.addAlert("danger", `${t("HomeScreen|Failed to disconnect service")}. ${e?.response?.data?.message}`, 30);
 			}
 		}
 	}
@@ -190,6 +184,16 @@ function HomeScreen(props) {
 									</CardSubtitle>
 									<React.Fragment>
 										<Row className="pt-2">
+											<Col sm={6}>{t('HomeScreen|Created')}</Col>
+											<Col sm={6}>
+												{userinfo?.created_at ?
+													<div className="float-right"><DateTime value={userinfo?.created_at}/></div>
+												:
+													<div className="float-right">N/A</div>
+												}
+											</Col>
+										</Row>
+										<Row>
 											<Col sm={6}>{t('HomeScreen|Last successful login')}</Col>
 											<Col sm={6}>
 												{userinfo?.last_successful_login ?
@@ -222,11 +226,11 @@ function HomeScreen(props) {
 									</React.Fragment>
 								</ListGroupItem>
 
-								{features.my_account?.external_login?.map(item => {
+								{features.my_account?.external_login?.map((item, i) => {
 									const isConnected = external_login_enabled?.includes(item.type);
 
 									return (
-										<ListGroupItem className="mb-0">
+										<ListGroupItem key={i} className="mb-0">
 											<Row onClick={() => externalServiceOnChange({ item, isConnected })}>
 												<Col sm={6}>
 													<a className="external-service-title">
@@ -235,6 +239,7 @@ function HomeScreen(props) {
 												</Col>
 												<Col sm={6}>
 													<CustomInput
+														id={`${item.label.replace(/[^\w\s]/gi, '-')}`}
 														className="float-right"
 														type="switch"
 														defaultChecked={isConnected}

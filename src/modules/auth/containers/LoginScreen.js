@@ -35,9 +35,9 @@ function LoginScreen(props) {
 		const result = getParams("result");
 
 		if (result && result.indexOf("EXTERNAL-LOGIN-FAILED") !== -1) {
-			props.app.addAlert("warning", t(
+			props.app.addAlert("danger", t(
 				"LoginScreen|Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method"
-			));
+			), 30);
 		}
 	}
 
@@ -107,17 +107,17 @@ function LoginScreen(props) {
 	return (
 		<Container className="animated fadeIn">
 			<Row className="justify-content-center">
-				{("login" in features) && <Col md="5" className="mt-3">
+				{("login" in features) && <Col md="6" className="mt-3">
 					<LoginCard
 						app={props.app}
 						features={features["login"]}
 						stateCode={stateCode}
 					/>
 				</Col>}
-				{/*TODO: Registration has not been fully implemented yet*/}
-				{("registration" in features) && <Col md="5">
+				{/*TODO: Self registration has not been fully implemented yet*/}
+				{/*("registration" in features) && <Col md="5">
 					<RegistrationCard app={props.app} features={features["registration"]} />
-				</Col>}
+				</Col>*/}
 			</Row>
 		</Container>
 	);

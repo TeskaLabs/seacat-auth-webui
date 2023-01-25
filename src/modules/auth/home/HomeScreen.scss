@@ -41,6 +41,12 @@
 
 .auth-card {
 	margin-top: 5rem;
+	.card-header-login {
+		.card-header-title {
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+		}
+	}
 	@media (max-width: 768px) {
 		margin-top: 2rem;
 	}
