@@ -1,6 +1,6 @@
 
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 /**
  * Uncomment BundleAnalyzerPlugin and add it to extraPlugins in case
  * you need to measure bundle size but don't push it to master.
@@ -15,7 +15,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  * */
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const config = {
+// const configWithTimeMeasures = new SpeedMeasurePlugin().wrap(config);
+// configWithTimeMeasures.plugins.push(new MiniCssExtractPlugin({}));
+
+// module.exports = configWithTimeMeasures;
+
+module.exports = {
 	extraEntries: { /* add more entries here */ },
 	extraOutputs: { /* add more outputs here */ },
 	extraPlugins: [ /* add more plugins here */ ],
@@ -24,9 +29,3 @@ const config = {
 		extraRules: [ /* add more module rules here */ ]
 	}
 };
-
-
-const configWithTimeMeasures = new SpeedMeasurePlugin().wrap(config);
-configWithTimeMeasures.plugins.push(new MiniCssExtractPlugin({}));
-
-module.exports = configWithTimeMeasures;
