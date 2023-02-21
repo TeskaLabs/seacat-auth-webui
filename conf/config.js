@@ -3,7 +3,7 @@ module.exports = {
 	},
 	webpackDevServer: {
 		port: 3000,
-		https: true,
+		server: 'https',
 		proxy: {
 			'/api/seacat_auth': {
 				target: "http://localhost:8081",
