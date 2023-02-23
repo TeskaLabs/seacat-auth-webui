@@ -2,6 +2,11 @@
 
 ## Release Candidate
 
+## Refactor
+
+- Webpack V4 to V5 migration. (INDIGO Sprint 230217, [!17](https://github.com/TeskaLabs/seacat-auth-webui/pull/17))
+
+
 ## v23.4
 
 ### Compatibility
