@@ -12,6 +12,9 @@
 
 - Webpack V4 to V5 migration. (INDIGO Sprint 230303, [!17](https://github.com/TeskaLabs/seacat-auth-webui/pull/17))
 
+### Bugfix
+
+- Google Chrome issue - browser assumed login card username input was a credit card number. (INDIGO Sprint 230303, [!23](https://github.com/TeskaLabs/seacat-auth-webui/pull/23))
 
 ## v23.4
 
