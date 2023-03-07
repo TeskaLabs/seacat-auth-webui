@@ -35,16 +35,9 @@ function ForgetPwdCard(props) {
 	const [ completed, setCompleted ] = useState(false);
 	let invalidCode = getParams("invalid_code");
 
-	const usernameRegister = register('username');
+	const identRegister = register('ident');
 
 	const onSubmit = async (values) => {
-		/* 
-			'username' to 'ident' conversion is necessary here as the put request expects identity information key labeled 
-			as 'ident'. in our form, we use 'username' to prevent browsers from mistakingly recognizing 
-			<input name='ident' key='ident'/> as a credit card info field.
-		*/
-		values["ident"] = values["username"];
-		delete values["username"];
 		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 		let redirect_uri = getParams("redirect_uri");
 
@@ -156,23 +149,23 @@ function ForgetPwdCard(props) {
 					{/* ident */}
 					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
 						<h5>
-							<Label for="username" style={{display: "block"}}>
+							<Label for="ident" style={{display: "block"}}>
 								{t('ForgetPwdScreen|Username, email or phone')}
 							</Label>
 						</h5>
 						<Input
 							autoFocus
-							id="username"
-							name="username"
+							id="ident"
+							name="ident"
 							type="text"
 							title={t('ForgetPwdScreen|Please fill this field')}
 							autoComplete="off"
 							autocapitalization="off"
 							autoCorrect="off"
 							required="required"
-							onChange={usernameRegister.onChange}
-							onBlur={usernameRegister.onBlur}
-							innerRef={usernameRegister.ref}
+							onChange={identRegister.onChange}
+							onBlur={identRegister.onBlur}
+							innerRef={identRegister.ref}
 						/>
 						<FormText>{t('ForgetPwdScreen|Fill in your login credentials')}</FormText>
 					</FormGroup>
