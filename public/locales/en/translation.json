@@ -79,7 +79,8 @@
 		"Manage FIDO2/WebAuthn": "Manage FIDO2/WebAuthn",
 		"Active": "Active",
 		"Inactive": "Inactive",
-		"Created": "Created"
+		"Created": "Created",
+		"External login activated": "External login activated"
 	},
 	"LoginCard": {
 		"Login": "Login",

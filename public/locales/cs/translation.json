@@ -79,7 +79,8 @@
 		"Manage FIDO2/WebAuthn": "Správa FIDO2/WebAuthn",
 		"Active": "Aktivní",
 		"Inactive": "Neaktivní",
-		"Created": "Vytvořen"
+		"Created": "Vytvořen",
+		"External login activated": "Přihlášení pomocí externí aplikace úspěšně aktivováno"
 	},
 	"LoginCard": {
 		"Login": "Přihlášení",
