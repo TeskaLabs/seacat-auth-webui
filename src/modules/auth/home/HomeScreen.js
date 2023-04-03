@@ -28,16 +28,19 @@ function HomeScreen(props) {
 	useEffect(() => {
 		fetchFeatures();
 		fetchUpdateFeatures();
-		redirectAfterExtLogin();
 	}, []);
+
+	useEffect(() => {
+		if(features?.login?.external) {
+			redirectAfterExtLogin();
+		}
+	}, [features])
 
 	const fetchFeatures = async () => {
 		try {
 			const response = await SeaCatAuthAPI.get("/public/features");
 
-			if (response.data.result != "OK") throw response;
-
-			setFeatures(response.data.data);
+			setFeatures(response.data);
 		} catch (e) {
 			console.error(e);
 		}
