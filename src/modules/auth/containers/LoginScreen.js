@@ -38,7 +38,6 @@ function LoginScreen(props) {
 
 	const checkExternalLoginStatus = () => {
 		const err = getParams("error");
-
 		if (err && err.indexOf("external_login_failed") !== -1) {
 			props.app.addAlert("danger", t(
 				"LoginScreen|Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method"

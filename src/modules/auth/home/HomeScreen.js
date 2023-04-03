@@ -13,6 +13,7 @@ import {
 import { DateTime } from 'asab-webui';
 
 import { factorChaining } from "../utils/factorChaining";
+import { getParams } from "../utils/getParams";
 
 function HomeScreen(props) {
 	const [features, setFeatures] = useState({ });
@@ -26,6 +27,10 @@ function HomeScreen(props) {
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
 	useEffect(() => {
+		if (getParams("result") == "external_login_added") {
+			// TODO: Remove result param from URL
+			props.app.addAlert("success", t("HomeScreen|External login activated"));
+		}
 		fetchFeatures();
 		fetchUpdateFeatures();
 	}, []);
