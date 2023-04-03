@@ -29,13 +29,18 @@ function RegisterScreen(props) {
 		fetchRegisterFeatures();
 		// Fetch external features from the server
 		fetchFeatures();
-		// Check status if external login failed
-		checkExternalLoginStatus();
-		// Extract redirect uri for external login redirections
-		saveRedirectUri();
 		// Get the user credentials
 		getCredentials();
 	}, []);
+
+	useEffect(() => {
+		if(features?.login?.external) {
+			// Check status if external login failed
+			checkExternalLoginStatus();
+			// Extract redirect uri for external login redirections
+			saveRedirectUri();
+		}
+	}, [features])
 
 	// upon screen size change, removes current background and generates new one
 	useEffect(() => {
@@ -57,7 +62,7 @@ function RegisterScreen(props) {
 	const checkExternalLoginStatus = () => {
 		const result = getParams("result");
 
-		if (result && result.indexOf("EXTERNAL-LOGIN-FAILED") !== -1) {
+		if (result && result.indexOf("external_login_failed") !== -1) {
 			props.app.addAlert("danger", t(
 				"RegisterScreen|Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method"
 			), 30);
@@ -105,12 +110,9 @@ function RegisterScreen(props) {
 	const fetchFeatures = async () => {
 		try {
 			const response = await SeaCatAuthAPI.get("/public/features");
-			if (response.data.result != "OK") {
-				throw new Error({ result: response?.data?.result });
-			}
-			if (!response?.data?.data?.login && !response?.data?.data?.registration) return;
+			if (!response?.data?.login && !response?.data?.registration) return;
 
-			setFeatures(response.data.data);
+			setFeatures(response.data);
 		} catch (e) {
 			console.error("Failed to fetch external login services", e);
 		}

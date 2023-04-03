@@ -265,6 +265,9 @@ function LoginCard(props) {
 			redirect_uri = props.app.Config.get('login')?.redirect_uri || '/';
 		}
 
+		// Remove redirect_code from localStorage (if present)
+		localStorage.removeItem("redirect_code");
+		// Replace location with redirect URI
 		window.location.replace(redirect_uri);
 		// Basically wait forever, until the app is going to be reloaded with window.location.replace
 		await new Promise(r => setTimeout(r, 3600*1000));
