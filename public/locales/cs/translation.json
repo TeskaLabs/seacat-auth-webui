@@ -80,7 +80,8 @@
 		"Active": "Aktivní",
 		"Inactive": "Neaktivní",
 		"Created": "Vytvořen",
-		"External login activated": "Přihlášení pomocí externí aplikace úspěšně aktivováno"
+		"External login activated": "Přihlášení pomocí externí aplikace úspěšně aktivováno",
+		"External login was not activated": "Přihlášení pomocí externí aplikace se nepodařilo aktivovat"
 	},
 	"LoginCard": {
 		"Login": "Přihlášení",

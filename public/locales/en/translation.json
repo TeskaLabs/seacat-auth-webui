@@ -80,7 +80,8 @@
 		"Active": "Active",
 		"Inactive": "Inactive",
 		"Created": "Created",
-		"External login activated": "External login activated"
+		"External login activated": "External login activated",
+		"External login was not activated": "External login was not activated"
 	},
 	"LoginCard": {
 		"Login": "Login",
