@@ -163,24 +163,30 @@ function HomeScreen(props) {
 		}
 	}
 
-	const removeExternalService = async (provider) => {
+	// Remove external service verification
+	const removeExternalServiceVerification = async (provider) => {
 		const verification = confirm(t(`HomeScreen|Do you want to disconnect from ${provider.replace(provider[0], provider[0].toUpperCase())}?`))
 		if (verification) {
-			try {
-				await SeaCatAuthAPI.delete("/public/ext-login/" + provider);
-				props.app.addAlert("success", t("HomeScreen|Service was successfully disconnected"));
-				// reload in order to get updated userinfo
-				window.location.reload();
-			} catch (e) {
-				console.error(e);
-				props.app.addAlert("danger", `${t("HomeScreen|Failed to disconnect service")}. ${e?.response?.data?.message}`, 30);
-			}
+			await removeExternalService(provider);
 		}
 	}
 
-	const externalServiceOnChange = ({ item, isConnected }) => {
+	// Remove external service method
+	const removeExternalService = async (provider) => {
+		try {
+			await SeaCatAuthAPI.delete("/public/ext-login/" + provider);
+			props.app.addAlert("success", t("HomeScreen|Service was successfully disconnected"));
+			// reload in order to get updated userinfo
+			window.location.reload();
+		} catch (e) {
+			console.error(e);
+			props.app.addAlert("danger", `${t("HomeScreen|Failed to disconnect service")}. ${e?.response?.data?.message}`, 30);
+		}
+	}
+
+	const externalServiceOnChange = async ({ item, isConnected }) => {
 		// remove external service sign in
-		if (isConnected) removeExternalService(item.type);
+		if (isConnected) await removeExternalServiceVerification(item.type);
 		// add external service sign in
 		else window.location.replace(item.authorize_uri);
 	}
@@ -251,9 +257,9 @@ function HomeScreen(props) {
 
 									return (
 										<ListGroupItem key={i} className="mb-0">
-											<Row onClick={() => externalServiceOnChange({ item, isConnected })}>
+											<Row>
 												<Col sm={6}>
-													<a className="external-service-title">
+													<a onClick={() => externalServiceOnChange({ item, isConnected })} className="external-service-title">
 														{t(`HomeScreen|${item.label}`)}
 													</a>
 												</Col>
@@ -263,6 +269,7 @@ function HomeScreen(props) {
 														className="float-right"
 														type="switch"
 														defaultChecked={isConnected}
+														onClick={() => externalServiceOnChange({ item, isConnected })}
 													/>
 												</Col>
 											</Row>
