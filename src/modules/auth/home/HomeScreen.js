@@ -13,7 +13,7 @@ import {
 import { DateTime } from 'asab-webui';
 
 import { factorChaining } from "../utils/factorChaining";
-import { getParams } from "../utils/getParams";
+import { getParams, removeParams } from "../utils/paramsActions";
 
 function HomeScreen(props) {
 	const [features, setFeatures] = useState({ });
@@ -28,8 +28,12 @@ function HomeScreen(props) {
 
 	useEffect(() => {
 		if (getParams("result") == "external_login_added") {
-			// TODO: Remove result param from URL
-			props.app.addAlert("success", t("HomeScreen|External login activated"));
+			// Remove result param from URL if result with external_login_added is present in query params
+			if (removeParams("result") == true) {
+				props.app.addAlert("success", t("HomeScreen|External login activated"));
+			} else {
+				props.app.addAlert("danger", t("HomeScreen|External login was not activated"), 30);
+			}
 		}
 		fetchFeatures();
 		fetchUpdateFeatures();
