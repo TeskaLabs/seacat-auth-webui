@@ -71,8 +71,8 @@ function RegisterScreen(props) {
 	}
 
 	const saveRedirectUri = () => {
-		const redirectUri = getParams("redirect_uri");
-
+		// Take window.location.href as a redirectUri when on register screen
+		const redirectUri = window.location.href;
 		if (redirectUri) {
 			const expirationDate = Date.now() + 15 * 60 * 1000;
 			const code = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 8); // generate random 16 symbol string
