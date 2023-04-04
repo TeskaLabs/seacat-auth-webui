@@ -81,7 +81,9 @@
 		"Inactive": "Neaktivní",
 		"Created": "Vytvořen",
 		"External login activated": "Přihlášení pomocí externí aplikace úspěšně aktivováno",
-		"External login was not activated": "Přihlášení pomocí externí aplikace se nepodařilo aktivovat"
+		"External login was not activated": "Přihlášení pomocí externí aplikace se nepodařilo aktivovat",
+		"External login can't be activated": "Přihlášení pomocí externí aplikace nelze aktivovat",
+		"External login already activated": "Přihlášení pomocí externí aplikace je již aktivováno"
 	},
 	"LoginCard": {
 		"Login": "Přihlášení",
