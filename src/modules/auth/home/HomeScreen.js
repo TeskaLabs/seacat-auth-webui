@@ -27,7 +27,7 @@ function HomeScreen(props) {
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
 	useEffect(() => {
-		if (getParams("result") == "external_login_added") {
+		if (getParams("result") == "external_login_activated") {
 			// Remove result param from URL if result with external_login_added is present in query params
 			if (removeParams("result") == true) {
 				props.app.addAlert("success", t("HomeScreen|External login activated"));
@@ -35,6 +35,14 @@ function HomeScreen(props) {
 				props.app.addAlert("danger", t("HomeScreen|External login was not activated"), 30);
 			}
 		}
+		if (getParams("error") == "external_login_failed") {
+			props.app.addAlert("danger", t("HomeScreen|External login was not activated"), 30);
+		} else if (getParams("error") == "external_login_already_activated") {
+			props.app.addAlert("danger", t("HomeScreen|External login already activated"), 30);
+		} else if (getParams("error") == "external_login_not_activated") {
+			props.app.addAlert("danger", t("HomeScreen|External login can't be activated"), 30);
+		}
+		removeParams("error");
 		fetchFeatures();
 		fetchUpdateFeatures();
 	}, []);
