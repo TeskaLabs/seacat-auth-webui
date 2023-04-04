@@ -2,6 +2,18 @@
 
 ## Release Candidate
 
+### Compatibility
+
+- [x] **SeaCat Auth `latest` or newer**
+
+### Features
+
+- ASAB WebUI submodule version bump [[371d35c](https://github.com/TeskaLabs/asab-webui/commit/371d35cd7737f4a3484499ff37d84d067787db87)] commit (INDIGO Sprint 230331, [!26](https://github.com/TeskaLabs/seacat-auth-webui/pull/26))
+
+### Refactoring
+
+- Remove `external_code` from localstorage when login in with external services, update eternal login error messages, polish code (INDIGO Sprint 230331, [!26](https://github.com/TeskaLabs/seacat-auth-webui/pull/26))
+
 ## v23.13-beta
 
 ### Features
