@@ -9,6 +9,8 @@ import {
 	Form, FormText, FormGroup, Label, Input, Button
 } from 'reactstrap';
 
+import { getParams } from '../utils/paramsActions';
+
 function ForgetPwdScreen(props) {
 
 	return (
@@ -96,17 +98,6 @@ function ForgetPwdCard(props) {
 		}
 	}
 
-
-	function getParams(param) {
-		let parameter = undefined;
-		let i = window.location.hash.indexOf('?');
-		if (i > -1) {
-			let qs = window.location.hash.substring(i+1);
-			let params = new URLSearchParams(qs);
-			parameter = params.get(param);
-		}
-		return parameter;
-	}
 
 	if (completed) {
 		return (

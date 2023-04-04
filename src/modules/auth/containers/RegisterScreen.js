@@ -7,6 +7,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, CardSubtitl
 import LoginCard from './LoginCard.js';
 import RegistrationCard from './RegistrationCard.js';
 import AcceptInvitationCard from './AcceptInvitationCard.js';
+import { getParams } from '../utils/paramsActions';
 
 function RegisterScreen(props) {
 	const { t } = useTranslation();
@@ -148,17 +149,6 @@ function RegisterScreen(props) {
 		if (userinfo != undefined) {
 			setCredentials(userinfo.username || userinfo.email || userinfo.phone || userinfo.sub);
 		}
-	}
-
-	function getParams(param) {
-		let parameter = undefined;
-		const i = window.location.hash.indexOf('?');
-		if (i > -1) {
-			const qs = window.location.hash.substring(i+1);
-			const params = new URLSearchParams(qs);
-			parameter = params.get(param);
-		}
-		return parameter;
 	}
 
 	return (
