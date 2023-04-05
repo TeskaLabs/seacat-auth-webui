@@ -39,7 +39,7 @@ function LoginCard(props) {
 
 	const [ insecuredConnection, setInsecuredConnection ] = useState(false);
 
-	// Submitting for webAuthn onClick event for MacOS
+	// Submitting for webAuthn and external login onClick event for MacOS
 	const [ isOnClickSubmitting, setIsOnClickSubmitting ] = useState(false);
 
 	// Register ident
@@ -265,6 +265,9 @@ function LoginCard(props) {
 			redirect_uri = props.app.Config.get('login')?.redirect_uri || '/';
 		}
 
+		// Remove redirect_code from localStorage (if present)
+		localStorage.removeItem("redirect_code");
+		// Replace location with redirect URI
 		window.location.replace(redirect_uri);
 		// Basically wait forever, until the app is going to be reloaded with window.location.replace
 		await new Promise(r => setTimeout(r, 3600*1000));
@@ -374,7 +377,7 @@ function LoginCard(props) {
 							<Button
 								block
 								color="primary"
-								disabled={clientLoginKey === null || isSubmitting}
+								disabled={clientLoginKey === null || isSubmitting || isOnClickSubmitting}
 								type="submit">{t('LoginCard|Enter')}
 							</Button>
 						</Col>
@@ -395,7 +398,14 @@ function LoginCard(props) {
 						{props.features["external"] && props.features["external"].map((ext, idx) => (
 							<Row key={idx} className="justify-content-center">
 								<Col>{
-									<ExternalLogin ext={ext} t={t} stateCode={props.stateCode} />
+									<ExternalLogin
+										ext={ext}
+										t={t}
+										stateCode={props.stateCode}
+										isSubmitting={isSubmitting}
+										isOnClickSubmitting={isOnClickSubmitting}
+										setIsOnClickSubmitting={setIsOnClickSubmitting}
+									/>
 								}</Col>
 							</Row>
 						))}
@@ -908,7 +918,7 @@ function RememberMeField(props) {
 }
 
 
-const ExternalLogin = ({ t, ext, stateCode }) => {
+const ExternalLogin = ({ t, ext, stateCode, isSubmitting, isOnClickSubmitting, setIsOnClickSubmitting }) => {
 	let authorize_uri = new URL(ext.authorize_uri);
 
 	if (stateCode) {
@@ -924,6 +934,8 @@ const ExternalLogin = ({ t, ext, stateCode }) => {
 			outline
 			color="primary"
 			href={authorize_uri}
+			onClick={() => setIsOnClickSubmitting(true)}
+			disabled={isSubmitting || isOnClickSubmitting}
 		>
 			{t("LoginCard|" + ext.label)}
 		</Button>

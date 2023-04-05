@@ -7,6 +7,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, CardSubtitl
 import LoginCard from './LoginCard.js';
 import RegistrationCard from './RegistrationCard.js';
 import AcceptInvitationCard from './AcceptInvitationCard.js';
+import { getParams } from '../utils/paramsActions';
 
 function RegisterScreen(props) {
 	const { t } = useTranslation();
@@ -29,13 +30,18 @@ function RegisterScreen(props) {
 		fetchRegisterFeatures();
 		// Fetch external features from the server
 		fetchFeatures();
-		// Check status if external login failed
-		checkExternalLoginStatus();
-		// Extract redirect uri for external login redirections
-		saveRedirectUri();
 		// Get the user credentials
 		getCredentials();
 	}, []);
+
+	useEffect(() => {
+		if(features?.login?.external) {
+			// Check status if external login failed
+			checkExternalLoginStatus();
+			// Extract redirect uri for external login redirections
+			saveRedirectUri();
+		}
+	}, [features])
 
 	// upon screen size change, removes current background and generates new one
 	useEffect(() => {
@@ -55,9 +61,9 @@ function RegisterScreen(props) {
 	}, [registrationSuccessful])
 
 	const checkExternalLoginStatus = () => {
-		const result = getParams("result");
+		const err = getParams("error");
 
-		if (result && result.indexOf("EXTERNAL-LOGIN-FAILED") !== -1) {
+		if (err && err.indexOf("external_login_failed") !== -1) {
 			props.app.addAlert("danger", t(
 				"RegisterScreen|Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method"
 			), 30);
@@ -65,8 +71,8 @@ function RegisterScreen(props) {
 	}
 
 	const saveRedirectUri = () => {
-		const redirectUri = getParams("redirect_uri");
-
+		// Take window.location.href as a redirectUri when on register screen
+		const redirectUri = window.location.href;
 		if (redirectUri) {
 			const expirationDate = Date.now() + 15 * 60 * 1000;
 			const code = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 8); // generate random 16 symbol string
@@ -105,12 +111,9 @@ function RegisterScreen(props) {
 	const fetchFeatures = async () => {
 		try {
 			const response = await SeaCatAuthAPI.get("/public/features");
-			if (response.data.result != "OK") {
-				throw new Error({ result: response?.data?.result });
-			}
-			if (!response?.data?.data?.login && !response?.data?.data?.registration) return;
+			if (!response?.data?.login && !response?.data?.registration) return;
 
-			setFeatures(response.data.data);
+			setFeatures(response.data);
 		} catch (e) {
 			console.error("Failed to fetch external login services", e);
 		}
@@ -146,17 +149,6 @@ function RegisterScreen(props) {
 		if (userinfo != undefined) {
 			setCredentials(userinfo.username || userinfo.email || userinfo.phone || userinfo.sub);
 		}
-	}
-
-	function getParams(param) {
-		let parameter = undefined;
-		const i = window.location.hash.indexOf('?');
-		if (i > -1) {
-			const qs = window.location.hash.substring(i+1);
-			const params = new URLSearchParams(qs);
-			parameter = params.get(param);
-		}
-		return parameter;
 	}
 
 	return (

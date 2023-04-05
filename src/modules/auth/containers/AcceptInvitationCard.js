@@ -8,6 +8,7 @@ import {
 	Label, Button
 } from 'reactstrap';
 
+import { getParams } from '../utils/paramsActions';
 
 function AcceptInvitationCard(props) {
 	const { t } = useTranslation();
@@ -91,18 +92,6 @@ function AcceptInvitationCard(props) {
 		window.location.reload();
 		// Basically wait forever, until the app is going to be reloaded with window.location.reload
 		await new Promise(r => setTimeout(r, 3600*1000));
-	}
-
-	// Method for params obtainment
-	function getParams(param) {
-		let parameter = undefined;
-		const i = window.location.hash.indexOf('?');
-		if (i > -1) {
-			const qs = window.location.hash.substring(i+1);
-			const params = new URLSearchParams(qs);
-			parameter = params.get(param);
-		}
-		return parameter;
 	}
 
 	return (
