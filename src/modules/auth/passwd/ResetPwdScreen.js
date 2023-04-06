@@ -14,7 +14,7 @@ function ResetPwdScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5">
+				<Col md="6">
 					<ResetPwdCard app={props.app} />
 				</Col>
 			</Row>
@@ -59,7 +59,7 @@ function ResetPwdCard(props) {
 		try {
 			response = await SeaCatAuthAPI.put("/public/password-reset", values);
 			if (response.data.result === 'INVALID-CODE') {
-				props.app.addAlert("danger", t("ResetPwdScreen|Invalid password reset link, please set your password again"), 15);
+				props.app.addAlert("danger", t("ResetPwdScreen|Invalid password reset link, please set your password again"), 30);
 				onRedirect("/cant-login", true);
 				return;
 			}
@@ -67,10 +67,7 @@ function ResetPwdCard(props) {
 				throw new Error(t("ResetPwdScreen|Something went wrong, unable to set the password"));
 			}
 		} catch (e) {
-			props.app.addAlert(
-				"danger",
-				t("ResetPwdScreen|Something went wrong, unable to set the password")
-			);
+			props.app.addAlert("danger", `${t("ResetPwdScreen|Something went wrong, unable to set the password")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 		setCompleted(true);

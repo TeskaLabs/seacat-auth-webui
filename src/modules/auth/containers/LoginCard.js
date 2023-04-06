@@ -39,7 +39,7 @@ function LoginCard(props) {
 
 	const [ insecuredConnection, setInsecuredConnection ] = useState(false);
 
-	// Submitting for webAuthn onClick event for MacOS
+	// Submitting for webAuthn and external login onClick event for MacOS
 	const [ isOnClickSubmitting, setIsOnClickSubmitting ] = useState(false);
 
 	// Register ident
@@ -145,7 +145,7 @@ function LoginCard(props) {
 		} catch (e) {
 			props.app.addAlert(
 				"danger",
-				t("Something went wrong")
+				`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 			);
 			return;
 		}
@@ -153,7 +153,7 @@ function LoginCard(props) {
 			console.error("Server responsed with ", response.status);
 			props.app.addAlert(
 				"danger",
-				t("Something went wrong")
+				`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 			);
 			return;
 		}
@@ -206,17 +206,17 @@ function LoginCard(props) {
 			if (e.response.status == 401) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Failed")
+					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
 			} else if (e.response.status == 504) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Can’t proceed due to connection problems")
+					t("LoginCard|Can't proceed due to connection problems"), 30
 				);
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("Something went wrong")
+					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 				);
 			}
 			return;
@@ -225,7 +225,7 @@ function LoginCard(props) {
 		if ((response === undefined) || (response.status != 200)) {
 			props.app.addAlert(
 				"danger",
-				t("Response Error")
+				t("LoginCard|Server responded with incorrect response code, please try again"), 30
 			);
 			return;
 		}
@@ -233,15 +233,25 @@ function LoginCard(props) {
 		if (response.data.result !== "OK") {
 			props.app.addAlert(
 				"danger",
-				t("LoginCard|Failed")
+				t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 			);
 			return;
 		}
 
 		props.app.addAlert(
 			"success",
-			t("LoginCard|Success")
+			t("LoginCard|The login has been successful")
 		);
+
+		/*
+			If register token is present, reload the page to stay in the register screen
+			and eventually confirm/finish the registration action
+		*/
+		if (props.registerToken != undefined) {
+			window.location.reload();
+			// Basically wait forever, until the app is going to be reloaded with window.location.reload
+			await new Promise(r => setTimeout(r, 3600*1000));
+		}
 
 		let redirect_uri;
 		let i = window.location.hash.indexOf('?');
@@ -255,6 +265,9 @@ function LoginCard(props) {
 			redirect_uri = props.app.Config.get('login')?.redirect_uri || '/';
 		}
 
+		// Remove redirect_code from localStorage (if present)
+		localStorage.removeItem("redirect_code");
+		// Replace location with redirect URI
 		window.location.replace(redirect_uri);
 		// Basically wait forever, until the app is going to be reloaded with window.location.replace
 		await new Promise(r => setTimeout(r, 3600*1000));
@@ -301,15 +314,15 @@ function LoginCard(props) {
 			<Card className="shadow auth-card">
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
-						<CardTitle className="text-primary" tag="h2">{t('LoginCard|Login')}</CardTitle>
+						<CardTitle className="text-primary" tag="h2">
+							{props.registerToken == undefined ? t('LoginCard|Login') : t('LoginCard|Accept invitation as a existing user')}
+						</CardTitle>
 						<CardSubtitle tag="p">
 							{t('LoginCard|Login here')}
 						</CardSubtitle>
 					</div>
 				</CardHeader>
-
 				<CardBody>
-
 					{/* ident */}
 					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className="text-center">
 						<h5>
@@ -364,7 +377,7 @@ function LoginCard(props) {
 							<Button
 								block
 								color="primary"
-								disabled={clientLoginKey === null || isSubmitting}
+								disabled={clientLoginKey === null || isSubmitting || isOnClickSubmitting}
 								type="submit">{t('LoginCard|Enter')}
 							</Button>
 						</Col>
@@ -385,7 +398,14 @@ function LoginCard(props) {
 						{props.features["external"] && props.features["external"].map((ext, idx) => (
 							<Row key={idx} className="justify-content-center">
 								<Col>{
-									<ExternalLogin ext={ext} t={t} stateCode={props.stateCode} />
+									<ExternalLogin
+										ext={ext}
+										t={t}
+										stateCode={props.stateCode}
+										isSubmitting={isSubmitting}
+										isOnClickSubmitting={isOnClickSubmitting}
+										setIsOnClickSubmitting={setIsOnClickSubmitting}
+									/>
 								}</Col>
 							</Row>
 						))}
@@ -397,7 +417,7 @@ function LoginCard(props) {
 					<ButtonGroup className="flex-nowrap w-100">
 						<Button
 							outline
-							className="flex-fill justify-content-center"
+							className="flex-fill justify-content-center card-footer-button-flex"
 							color="primary"
 							type="button"
 							disabled={isSubmitting || isOnClickSubmitting}
@@ -405,17 +425,30 @@ function LoginCard(props) {
 						>
 							{t("LoginCard|Start again")}
 						</Button>
+						{props.registerToken == undefined ?
 						<Button
 							outline
-							className="flex-fill justify-content-center"
+							className="flex-fill justify-content-center card-footer-button-flex"
 							style={{borderRadius: "0 0 7px 0"}}
 							color="primary"
 							type="button"
 							disabled={isSubmitting || isOnClickSubmitting}
 							onClick={() => onCantLogin()}
 						>
-							{t("LoginCard|Cannot login?")}
+							{t("LoginCard|Can't login?")}
 						</Button>
+						:
+						<Button
+							outline
+							className="flex-fill justify-content-center card-footer-button-flex"
+							style={{borderRadius: "0 0 7px 0"}}
+							color="primary"
+							type="button"
+							disabled={isSubmitting || isOnClickSubmitting}
+							onClick={() => {props.setSwitchCards("register")}}
+						>
+							{t("LoginCard|Create new registration")}
+						</Button>}
 					</ButtonGroup>
 				</CardFooter>
 			</Card>
@@ -623,12 +656,12 @@ function WebAuthnField(props) {
 			if (e.response.status == 401) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Failed")
+					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Something went wrong, can't proceed with WebAuthn authentication")
+					`${t("LoginCard|Something went wrong, can't proceed with WebAuthn authentication")}. ${e?.response?.data?.message}`, 30
 				);
 			}
 			return;
@@ -663,17 +696,17 @@ function WebAuthnField(props) {
 			if (e.response.status == 401) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Failed")
+					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
 			} else if (e.response.status == 504) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Can’t proceed due to connection problems")
+					t("LoginCard|Can't proceed due to connection problems"), 30
 				);
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("Something went wrong")
+					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 				);
 			}
 			props.setIsOnClickSubmitting(false);
@@ -683,7 +716,7 @@ function WebAuthnField(props) {
 		if ((response === undefined) || (response.status != 200)) {
 			props.app.addAlert(
 				"danger",
-				t("Response Error")
+				t("LoginCard|Server responded with incorrect response code, please try again"), 30
 			);
 			props.setIsOnClickSubmitting(false);
 			return;
@@ -692,7 +725,7 @@ function WebAuthnField(props) {
 		if (response.data.result !== "OK") {
 			props.app.addAlert(
 				"danger",
-				t("LoginCard|Failed")
+				t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 			);
 			props.setIsOnClickSubmitting(false);
 			return;
@@ -700,7 +733,7 @@ function WebAuthnField(props) {
 
 		props.app.addAlert(
 			"success",
-			t("LoginCard|Success")
+			t("LoginCard|The login has been successful")
 		);
 
 		let redirect_uri;
@@ -740,7 +773,7 @@ function WebAuthnField(props) {
 			});
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("danger", t("LoginCard|Authentication failed, can't identify used authenticator"));
+			props.app.addAlert("danger", t("LoginCard|Authentication failed, can't identify used authenticator"), 30);
 			props.setIsOnClickSubmitting(false);
 			return undefined;
 		}
@@ -793,7 +826,7 @@ function SMSLoginField(props) {
 			if (response.data.result != "OK") {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Sending SMS code has failed")
+					t("LoginCard|Sending SMS code has failed"), 30
 				);
 				console.error('Sending SMS code has failed')
 				setDisable(false);
@@ -803,12 +836,12 @@ function SMSLoginField(props) {
 			if (err.response.status == 401) {
 				props.app.addAlert(
 					"danger",
-					t("LoginCard|Failed")
+					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
 			} else {
 				props.app.addAlert(
 					"danger",
-					t("Something went wrong")
+					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 				);
 			}
 			setDisable(false);
@@ -885,7 +918,7 @@ function RememberMeField(props) {
 }
 
 
-const ExternalLogin = ({ t, ext, stateCode }) => {
+const ExternalLogin = ({ t, ext, stateCode, isSubmitting, isOnClickSubmitting, setIsOnClickSubmitting }) => {
 	let authorize_uri = new URL(ext.authorize_uri);
 
 	if (stateCode) {
@@ -901,6 +934,8 @@ const ExternalLogin = ({ t, ext, stateCode }) => {
 			outline
 			color="primary"
 			href={authorize_uri}
+			onClick={() => setIsOnClickSubmitting(true)}
+			disabled={isSubmitting || isOnClickSubmitting}
 		>
 			{t("LoginCard|" + ext.label)}
 		</Button>

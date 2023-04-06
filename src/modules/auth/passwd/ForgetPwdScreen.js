@@ -9,12 +9,14 @@ import {
 	Form, FormText, FormGroup, Label, Input, Button
 } from 'reactstrap';
 
+import { getParams } from '../utils/paramsActions';
+
 function ForgetPwdScreen(props) {
 
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5" className="mt-3">
+				<Col md="6" className="mt-3">
 					<ForgetPwdCard app={props.app} />
 				</Col>
 			</Row>
@@ -57,10 +59,7 @@ function ForgetPwdCard(props) {
 				throw new Error(t("ForgetPwdScreen|Something went wrong, can't reset the password"));
 			}
 		} catch (e) {
-			props.app.addAlert(
-				"danger",
-				t("ForgetPwdScreen|Something went wrong, can't reset the password")
-			);
+			props.app.addAlert("danger", `${t("ForgetPwdScreen|Something went wrong, can't reset the password")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 
@@ -100,17 +99,6 @@ function ForgetPwdCard(props) {
 	}
 
 
-	function getParams(param) {
-		let parameter = undefined;
-		let i = window.location.hash.indexOf('?');
-		if (i > -1) {
-			let qs = window.location.hash.substring(i+1);
-			let params = new URLSearchParams(qs);
-			parameter = params.get(param);
-		}
-		return parameter;
-	}
-
 	if (completed) {
 		return (
 			<Card className="shadow animated fadeIn auth-card">
@@ -144,11 +132,10 @@ function ForgetPwdCard(props) {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
-
 			<Card className="animated fadeIn auth-card">
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
-						<CardTitle className="text-primary" tag="h2">{!invalidCode ? t('ForgetPwdScreen|Cannot login?') : t('ForgetPwdScreen|Invalid password reset link')}</CardTitle>
+						<CardTitle className="text-primary" tag="h2">{!invalidCode ? t("ForgetPwdScreen|Can't login?") : t('ForgetPwdScreen|Invalid password reset link')}</CardTitle>
 						<CardSubtitle tag="p">
 							{!invalidCode ? t('ForgetPwdScreen|Reset password here') : t('ForgetPwdScreen|The link has expired, you can reset your password here')}
 						</CardSubtitle>
@@ -211,11 +198,7 @@ function ForgetPwdCard(props) {
 						{t("ForgetPwdScreen|Go back")}
 					</Button>
 				</CardFooter>}
-
 			</Card>
-
-
 		</Form>
 	);
 }
-

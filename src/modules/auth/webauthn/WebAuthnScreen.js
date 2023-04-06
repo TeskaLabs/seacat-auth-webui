@@ -77,7 +77,7 @@ function WebAuthnCard(props) {
 		} catch(e) {
 			// TODO: add error message for already registered credentials
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't retrieve authenticators"));
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, can't retrieve authenticators")}. ${e?.response?.data?.message}`, 30);
 			setIsLoading(false);
 			setGlobalEditMode(false);
 			return;
@@ -102,7 +102,7 @@ function WebAuthnCard(props) {
 		} catch(e) {
 			// TODO: add error message for already registered credentials
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, registration of authenticator failed"));
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, registration of authenticator failed")}. ${e?.response?.data?.message}`, 30);
 			setIsSubmitting(false);
 			return;
 		}
@@ -137,7 +137,7 @@ function WebAuthnCard(props) {
 			});
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Registration failed, can't identify used authenticator"));
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Registration failed, can't identify used authenticator")}. ${e?.response?.data?.message}`, 30);
 			setIsSubmitting(false);
 			return;
 		}
@@ -154,7 +154,7 @@ function WebAuthnCard(props) {
 			}
 		} catch(e){
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, registration of authenticator failed"));
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, registration of authenticator failed")}. ${e?.response?.data?.message}`, 30);
 			setIsSubmitting(false);
 			return;
 		}
@@ -191,7 +191,7 @@ function WebAuthnCard(props) {
 			}
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't unregister authenticator"));
+			props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, can't unregister authenticator")}. ${e?.response?.data?.message}`, 30);
 			setIsSubmitting(false);
 			return;
 		}
@@ -214,13 +214,13 @@ function WebAuthnCard(props) {
 			setIsSubmitting(false);
 			console.error(e);
 			if (e.response.status === 404) {
-				props.app.addAlert("danger", t("WebAuthnScreen|Failed to update, authenticator does not match any credentials"));
+				props.app.addAlert("danger", t("WebAuthnScreen|Failed to update, authenticator does not match any credentials"), 30);
 				return;
 			} else if (e.response.status === 400) {
-				props.app.addAlert("danger", t("WebAuthnScreen|Failed to update, authenticator name does not match the validation criteria"));
+				props.app.addAlert("danger", t("WebAuthnScreen|Failed to update, authenticator name does not match the validation criteria"), 30);
 				return;
 			} else {
-				props.app.addAlert("danger", t("WebAuthnScreen|Something went wrong, can't update authenticator"));
+				props.app.addAlert("danger", `${t("WebAuthnScreen|Something went wrong, can't update authenticator")}. ${e?.response?.data?.message}`, 30);
 				return;
 			}
 		}

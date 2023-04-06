@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'reactstrap';
 
 import LoginCard from './LoginCard.js';
 import RegistrationCard from './RegistrationCard.js';
+import { getParams } from '../utils/paramsActions';
 
 function LoginScreen(props) {
 	const { t } = useTranslation();
@@ -17,11 +18,16 @@ function LoginScreen(props) {
 	useEffect(() => {
 		// Fetch features from the server
 		fetchFeatures();
-		// Check status if external login failed
-		checkExternalLoginStatus();
-		// Extract redirect uri for external login redirections
-		saveRedirectUri();
 	}, []);
+
+	useEffect(() => {
+		if(features?.login?.external) {
+			// Check status if external login failed
+			checkExternalLoginStatus();
+			// Extract redirect uri for external login redirections
+			saveRedirectUri();
+		}
+	}, [features])
 
 	// upon screen size change, removes current background and generates new one
 	useEffect(() => {
@@ -32,12 +38,11 @@ function LoginScreen(props) {
 	}, [height, width])
 
 	const checkExternalLoginStatus = () => {
-		const result = getParams("result");
-
-		if (result && result.indexOf("EXTERNAL-LOGIN-FAILED") !== -1) {
-			props.app.addAlert("warning", t(
+		const err = getParams("error");
+		if (err && err.indexOf("external_login_failed") !== -1) {
+			props.app.addAlert("danger", t(
 				"LoginScreen|Something went wrong. External login failed. You may have not connected your profile with external service. Try different sign in method"
-			));
+			), 30);
 		}
 	}
 
@@ -82,42 +87,28 @@ function LoginScreen(props) {
 	const fetchFeatures = async () => {
 		try {
 			const response = await SeaCatAuthAPI.get("/public/features");
-			if (response.data.result != "OK") {
-				throw new Error({ result: response.data.result });
-			}
-			if (!response.data.data.login && !response.data.data.registration) return;
+			if (!response.data.login && !response.data.registration) return;
 
-			setFeatures(response.data.data);
+			setFeatures(response.data);
 		} catch (e) {
 			console.error("Failed to fetch external login services", e);
 		}
 	}
 
-	function getParams(param) {
-		let parameter = undefined;
-		const i = window.location.hash.indexOf('?');
-		if (i > -1) {
-			const qs = window.location.hash.substring(i+1);
-			const params = new URLSearchParams(qs);
-			parameter = params.get(param);
-		}
-		return parameter;
-	}
-
 	return (
 		<Container className="animated fadeIn">
 			<Row className="justify-content-center">
-				{("login" in features) && <Col md="5" className="mt-3">
+				{("login" in features) && <Col md="6" className="mt-3">
 					<LoginCard
 						app={props.app}
 						features={features["login"]}
 						stateCode={stateCode}
 					/>
 				</Col>}
-				{/*TODO: Registration has not been fully implemented yet*/}
-				{("registration" in features) && <Col md="5">
+				{/*TODO: Self registration has not been fully implemented yet*/}
+				{/*("registration" in features) && <Col md="5">
 					<RegistrationCard app={props.app} features={features["registration"]} />
-				</Col>}
+				</Col>*/}
 			</Row>
 		</Container>
 	);

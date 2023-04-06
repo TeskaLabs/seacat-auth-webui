@@ -16,7 +16,7 @@ function PhoneNumberScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5">
+				<Col md="6">
 					<ManageNumberCard app={props.app} userinfo={props.userinfo} />
 				</Col>
 			</Row>
@@ -105,9 +105,9 @@ function ManageNumberCard(props) {
 			console.error(e);
 			setIsSubmitting(false);
 			if (number) {
-				props.app.addAlert("danger", t("PhoneNumberScreen|Failed to change phone number"));
+				props.app.addAlert("danger", `${t("PhoneNumberScreen|Failed to change phone number")}. ${e?.response?.data?.message}`, 30);
 			} else {
-				props.app.addAlert("danger", t("PhoneNumberScreen|Failed to set phone number"));
+				props.app.addAlert("danger", `${t("PhoneNumberScreen|Failed to set phone number")}. ${e?.response?.data?.message}`, 30);
 			}
 			return;
 		}
@@ -159,7 +159,7 @@ function ChangeNumber(props) {
 		validate: {
 			regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('PhoneNumberScreen|Invalid phone number format'),
 			lengthValidation: value => value.length >= 9 || value.length < 1 || t('PhoneNumberScreen|Phone number is too short'),
-			emptyInput: value => (props.email.length != 0 || value.length != 0) || t("PhoneNumberScreen|Phone cannot be empty!")
+			emptyInput: value => (props.email.length != 0 || value.length != 0) || t("PhoneNumberScreen|Phone can't be empty!")
 		}
 	});
 

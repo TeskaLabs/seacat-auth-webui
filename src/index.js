@@ -29,6 +29,7 @@ const ConfigDefaults = {
 		fallbackLng: 'en',
 		supportedLngs: ['en', 'cs'],
 		debug: false,
+		nsSeparator: false,
 	},
 	brandImage: {
 		light: {

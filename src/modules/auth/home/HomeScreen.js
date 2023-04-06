@@ -13,6 +13,7 @@ import {
 import { DateTime } from 'asab-webui';
 
 import { factorChaining } from "../utils/factorChaining";
+import { getParams, removeParams } from "../utils/paramsActions";
 
 function HomeScreen(props) {
 	const [features, setFeatures] = useState({ });
@@ -26,18 +27,37 @@ function HomeScreen(props) {
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
 	useEffect(() => {
+		if (getParams("result") == "external_login_activated") {
+			// Remove result param from URL if result with external_login_added is present in query params
+			if (removeParams("result") == true) {
+				props.app.addAlert("success", t("HomeScreen|External login activated"));
+			} else {
+				props.app.addAlert("danger", t("HomeScreen|External login was not activated"), 30);
+			}
+		}
+		if (getParams("error") == "external_login_failed") {
+			props.app.addAlert("danger", t("HomeScreen|External login was not activated"), 30);
+		} else if (getParams("error") == "external_login_already_activated") {
+			props.app.addAlert("danger", t("HomeScreen|External login already activated"), 30);
+		} else if (getParams("error") == "external_login_not_activated") {
+			props.app.addAlert("danger", t("HomeScreen|External login can't be activated"), 30);
+		}
+		removeParams("error");
 		fetchFeatures();
 		fetchUpdateFeatures();
-		redirectAfterExtLogin();
 	}, []);
+
+	useEffect(() => {
+		if(features?.login?.external) {
+			redirectAfterExtLogin();
+		}
+	}, [features])
 
 	const fetchFeatures = async () => {
 		try {
 			const response = await SeaCatAuthAPI.get("/public/features");
 
-			if (response.data.result != "OK") throw response;
-
-			setFeatures(response.data.data);
+			setFeatures(response.data);
 		} catch (e) {
 			console.error(e);
 		}
@@ -122,12 +142,9 @@ function HomeScreen(props) {
 			setTimeout(() => {
 				window.location.reload();
 			}, 5000);
-		} catch (err) {
-			console.error("Failed to terminate all user's sessions", err);
-			props.app.addAlert(
-				"danger",
-				t("HomeScreen|Something went wrong when logging you out from all devices")
-			);
+		} catch (e) {
+			console.error("Failed to terminate all user's sessions", e);
+			props.app.addAlert("danger", `${t("HomeScreen|Something went wrong when logging you out from all devices")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -137,36 +154,39 @@ function HomeScreen(props) {
 			await SeaCatAuthAPI.put('/public/logout');
 			window.location.reload();
 		}
-		catch (err) {
-			console.error("Failed to fetch userinfo", err);
-			props.app.addAlert(
-				"danger",
-				t("HomeScreen|Silly as it sounds, the logout failed")
-			);
+		catch (e) {
+			console.error("Failed to fetch userinfo", e);
+			props.app.addAlert("danger", `${t("HomeScreen|Silly as it sounds, the logout failed")}. ${e?.response?.data?.message}`, 30);
 			setTimeout(() => {
 				window.location.reload();
 			}, 5000);
 		}
 	}
 
-	const removeExternalService = async (provider) => {
+	// Remove external service verification
+	const removeExternalServiceVerification = async (provider) => {
 		const verification = confirm(t(`HomeScreen|Do you want to disconnect from ${provider.replace(provider[0], provider[0].toUpperCase())}?`))
 		if (verification) {
-			try {
-				await SeaCatAuthAPI.delete("/public/ext-login/" + provider);
-				props.app.addAlert("success", t("Connect|Service was successfully disconnected"));
-				// reload in order to get updated userinfo
-				window.location.reload();
-			} catch (e) {
-				console.error(e);
-				props.app.addAlert("warning", t("Connect|Failed to disconnect service"));
-			}
+			await removeExternalService(provider);
 		}
 	}
 
-	const externalServiceOnChange = ({ item, isConnected }) => {
+	// Remove external service method
+	const removeExternalService = async (provider) => {
+		try {
+			await SeaCatAuthAPI.delete("/public/ext-login/" + provider);
+			props.app.addAlert("success", t("HomeScreen|Service was successfully disconnected"));
+			// reload in order to get updated userinfo
+			window.location.reload();
+		} catch (e) {
+			console.error(e);
+			props.app.addAlert("danger", `${t("HomeScreen|Failed to disconnect service")}. ${e?.response?.data?.message}`, 30);
+		}
+	}
+
+	const externalServiceOnChange = async ({ item, isConnected }) => {
 		// remove external service sign in
-		if (isConnected) removeExternalService(item.type);
+		if (isConnected) await removeExternalServiceVerification(item.type);
 		// add external service sign in
 		else window.location.replace(item.authorize_uri);
 	}
@@ -190,6 +210,16 @@ function HomeScreen(props) {
 									</CardSubtitle>
 									<React.Fragment>
 										<Row className="pt-2">
+											<Col sm={6}>{t('HomeScreen|Created')}</Col>
+											<Col sm={6}>
+												{userinfo?.created_at ?
+													<div className="float-right"><DateTime value={userinfo?.created_at}/></div>
+												:
+													<div className="float-right">N/A</div>
+												}
+											</Col>
+										</Row>
+										<Row>
 											<Col sm={6}>{t('HomeScreen|Last successful login')}</Col>
 											<Col sm={6}>
 												{userinfo?.last_successful_login ?
@@ -222,22 +252,24 @@ function HomeScreen(props) {
 									</React.Fragment>
 								</ListGroupItem>
 
-								{features.my_account?.external_login?.map(item => {
+								{features.my_account?.external_login?.map((item, i) => {
 									const isConnected = external_login_enabled?.includes(item.type);
 
 									return (
-										<ListGroupItem className="mb-0">
-											<Row onClick={() => externalServiceOnChange({ item, isConnected })}>
+										<ListGroupItem key={i} className="mb-0">
+											<Row>
 												<Col sm={6}>
-													<a className="external-service-title">
+													<a onClick={() => externalServiceOnChange({ item, isConnected })} className="external-service-title">
 														{t(`HomeScreen|${item.label}`)}
 													</a>
 												</Col>
 												<Col sm={6}>
 													<CustomInput
+														id={`${item.label.replace(/[^\w\s]/gi, '-')}`}
 														className="float-right"
 														type="switch"
 														defaultChecked={isConnected}
+														onClick={() => externalServiceOnChange({ item, isConnected })}
 													/>
 												</Col>
 											</Row>

@@ -16,7 +16,7 @@ function ChangePwdScreen(props) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col md="5">
+				<Col md="6">
 					<ChangePwdCard app={props.app} />
 				</Col>
 			</Row>
@@ -57,23 +57,20 @@ function ChangePwdCard(props) {
 		try {
 			response = await SeaCatAuthAPI.put("/public/password-change", values)
 		} catch (e) {
-			props.app.addAlert(
-				"danger",
-				t("Something went wrong")
-			);
+			props.app.addAlert("danger", `${t("ChangePwdScreen|Something went wrong")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 
 		if (response.data.result == 'FAILED') {
 			props.app.addAlert(
 				"danger",
-				t("Something went wrong")
+				t("ChangePwdScreen|Something went wrong"), 30
 			);
 			return;
 		} else if (response.data.result == 'UNAUTHORIZED') {
 			props.app.addAlert(
 				"danger",
-				t("ChangePwdScreen|The current password is incorrect")
+				t("ChangePwdScreen|The current password is incorrect"), 30
 			);
 			return;
 		}
