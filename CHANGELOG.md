@@ -10,7 +10,7 @@
 
 - Remove `external_code` from localstorage when login in with external services, update eternal login error messages, polish code (INDIGO Sprint 230331, [!26](https://github.com/TeskaLabs/seacat-auth-webui/pull/26))
 
-- Update alert message (INDIGO Sprint 230331, [!27](https://github.com/TeskaLabs/seacat-auth-webui/pull/27))
+- Update `Insecured connection` alert message in the LoginCard component to the new format (INDIGO Sprint 230331, [!27](https://github.com/TeskaLabs/seacat-auth-webui/pull/27))
 
 ## v23.13-beta
 
