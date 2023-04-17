@@ -4,13 +4,13 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[fbeb0c0](https://github.com/TeskaLabs/asab-webui/commit/fbeb0c09b3d64deb9ca8292c2b507930d4019c7b)] commit (INDIGO Sprint 230331, [!27](https://github.com/TeskaLabs/seacat-auth-webui/pull/27))
+- ASAB WebUI submodule version bump [[ce85b29](https://github.com/TeskaLabs/asab-webui/commit/ce85b29a6feae89fbdb06770ff9a462ef44d8903)] commit (INDIGO Sprint 230414, [!27](https://github.com/TeskaLabs/seacat-auth-webui/pull/27))
 
 ### Refactoring
 
 - Remove `external_code` from localstorage when login in with external services, update eternal login error messages, polish code (INDIGO Sprint 230331, [!26](https://github.com/TeskaLabs/seacat-auth-webui/pull/26))
 
-- Update `Insecured connection` alert message in the LoginCard component to the new format (INDIGO Sprint 230331, [!27](https://github.com/TeskaLabs/seacat-auth-webui/pull/27))
+- Update `Insecured connection` alert message in the LoginCard component to the new format (INDIGO Sprint 230414, [!27](https://github.com/TeskaLabs/seacat-auth-webui/pull/27))
 
 ## v23.13-beta
 
