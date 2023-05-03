@@ -46,6 +46,7 @@
 	},
 	"dependencies": {
 		"@coreui/icons": "^1.0.1",
+		"@vectopus/atlas-icons": "^0.0.5",
 		"axios": "^0.21.1",
 		"bootstrap": "4.6.0",
 		"core-js": "3",
