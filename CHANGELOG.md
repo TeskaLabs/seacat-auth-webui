@@ -2,6 +2,14 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[0f4020d](https://github.com/TeskaLabs/asab-webui/commit/0f4020d5669d2c8f1f69af1e0b653d215944ebd3)] commit (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
+
+### Refactoring
+
+- Asab-webui's `componentLoader` used as a callback within lazy() method to prevent chunk loading error. (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
+
 ## v23.16-beta
 
 ### Compatibility

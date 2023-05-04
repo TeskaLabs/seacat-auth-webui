@@ -1,22 +1,23 @@
 import { lazy } from 'react';
 import Module from 'asab-webui/abc/Module';
+import { componentLoader } from 'asab-webui';
 
-const HomeScreen = lazy(() => import('./home/HomeScreen'));
+const HomeScreen = lazy(() => componentLoader(() => import('./home/HomeScreen')));
 
-const LoginScreen = lazy(() => import('./containers/LoginScreen'));
+const LoginScreen = lazy(() => componentLoader(() => import('./containers/LoginScreen')));
 
-const RegisterScreen = lazy(() => import('./containers/RegisterScreen'));
+const RegisterScreen = lazy(() => componentLoader(() => import('./containers/RegisterScreen')));
 
-const ChangePwdScreen =  lazy(() => import('./passwd/ChangePwdScreen'));
-const ResetPwdScreen =  lazy(() => import('./passwd/ResetPwdScreen'));
-const ForgetPwdScreen =  lazy(() => import('./passwd/ForgetPwdScreen'));
+const ChangePwdScreen =  lazy(() => componentLoader(() => import('./passwd/ChangePwdScreen')));
+const ResetPwdScreen =  lazy(() => componentLoader(() => import('./passwd/ResetPwdScreen')));
+const ForgetPwdScreen =  lazy(() => componentLoader(() => import('./passwd/ForgetPwdScreen')));
 
-const TOTPScreen =  lazy(() => import('./otp/TOTPScreen'));
-const PhoneNumberScreen =  lazy(() => import('./number/PhoneNumberScreen'));
-const EmailScreen =  lazy(() => import('./email/EmailScreen'));
-const WebAuthnScreen =  lazy(() => import('./webauthn/WebAuthnScreen'));
+const TOTPScreen =  lazy(() => componentLoader(() => import('./otp/TOTPScreen')));
+const PhoneNumberScreen =  lazy(() => componentLoader(() => import('./number/PhoneNumberScreen')));
+const EmailScreen =  lazy(() => componentLoader(() => import('./email/EmailScreen')));
+const WebAuthnScreen =  lazy(() => componentLoader(() => import('./webauthn/WebAuthnScreen')));
 
-const MessageScreen =  lazy(() => import('./utils/MessageScreen'));
+const MessageScreen =  lazy(() => componentLoader(() => import('./utils/MessageScreen')));
 
 import reducer from 'asab-webui/modules/auth/reducer';
 import { types } from 'asab-webui/modules/auth/actions';
