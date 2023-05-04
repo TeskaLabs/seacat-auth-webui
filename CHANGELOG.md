@@ -4,11 +4,31 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[371d35c](https://github.com/TeskaLabs/asab-webui/commit/371d35cd7737f4a3484499ff37d84d067787db87)] commit (INDIGO Sprint 230331, [!26](https://github.com/TeskaLabs/seacat-auth-webui/pull/26))
+- ASAB WebUI submodule version bump [[0f4020d](https://github.com/TeskaLabs/asab-webui/commit/0f4020d5669d2c8f1f69af1e0b653d215944ebd3)] commit (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
+
+### Refactoring
+
+- Asab-webui's `componentLoader` used as a callback within lazy() method to prevent chunk loading error. (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
+
+## v23.16-beta
+
+### Compatibility
+
+Tested with Seacat Auth service [v23.16-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.16-beta)
+
+### Features
+
+- ASAB WebUI submodule version bump [[c7d682a](https://github.com/TeskaLabs/asab-webui/commit/c7d682ad8f08e432ddbed2c0d21f16a73b23bd58)] commit (INDIGO Sprint 230414, [!28](https://github.com/TeskaLabs/seacat-auth-webui/pull/28))
 
 ### Refactoring
 
 - Remove `external_code` from localstorage when login in with external services, update eternal login error messages, polish code (INDIGO Sprint 230331, [!26](https://github.com/TeskaLabs/seacat-auth-webui/pull/26))
+
+- Update `Insecured connection` alert message in the LoginCard component to the new format (INDIGO Sprint 230414, [!27](https://github.com/TeskaLabs/seacat-auth-webui/pull/27))
+
+### Bugfix
+
+- Version bump of ASAB WebUI with fix on userinfo loop when session expiration time is set to small values (INDIGO Sprint 230414, [!28](https://github.com/TeskaLabs/seacat-auth-webui/pull/28))
 
 ## v23.13-beta
 

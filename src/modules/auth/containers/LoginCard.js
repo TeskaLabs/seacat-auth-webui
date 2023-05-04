@@ -72,7 +72,7 @@ function LoginCard(props) {
 
 	// Check on insecured connection
 	if (!insecuredConnection && location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-		props.app.addAlert('warning', t('LoginCard|Insecured connection'));
+		props.app.addAlert("warning", t("LoginCard|Insecured connection"), 30);
 		setInsecuredConnection(true);
 	}
 
