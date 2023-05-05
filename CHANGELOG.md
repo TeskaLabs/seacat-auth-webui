@@ -2,6 +2,11 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Changed icons from coreui.io icons to atlasicons. (INDIGO Sprint 230428, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
+
+
 ## v23.16-beta
 
 ### Compatibility
