@@ -12,6 +12,8 @@
 
 - Changing logo based on app's theme. (INDIGO Sprint 230428, [!20](https://github.com/TeskaLabs/seacat-auth-webui/pull/20))
 
+- Update asab-webui submodule (INDIGO Sprint 230512, [!20](https://github.com/TeskaLabs/seacat-auth-webui/pull/20))
+
 ## v23.16-beta
 
 ### Compatibility
