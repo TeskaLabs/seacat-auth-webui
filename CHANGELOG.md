@@ -4,13 +4,15 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[3dc54f1](https://github.com/TeskaLabs/asab-webui/commit/3dc54f169487b79c70b3f8b8cb9e5985f69775de)] commit (INDIGO Sprint 230428, [!20](https://github.com/TeskaLabs/seacat-auth-webui/pull/20))
+- ASAB WebUI submodule version bump [[f1bd8a3](https://github.com/TeskaLabs/asab-webui/commit/f1bd8a3364171e7e731ecc9c52a19f3b8fd0bd78)] commit (INDIGO Sprint 230512, [!31](https://github.com/TeskaLabs/seacat-auth-webui/pull/31))
 
 ### Refactoring
 
 - Asab-webui's `componentLoader` used as a callback within lazy() method to prevent chunk loading error. (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
 
 - Changing logo based on app's theme. (INDIGO Sprint 230428, [!20](https://github.com/TeskaLabs/seacat-auth-webui/pull/20))
+
+- Update asab-webui submodule (INDIGO Sprint 230512, [!31](https://github.com/TeskaLabs/seacat-auth-webui/pull/31))
 
 ## v23.16-beta
 
