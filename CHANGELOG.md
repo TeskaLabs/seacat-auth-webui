@@ -4,7 +4,7 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[ae64c84](https://github.com/TeskaLabs/asab-webui/commit/ae64c84a78ecbbc32a1a02c5bf3bc196907b0263)] commit (INDIGO Sprint 230526, [!31](https://github.com/TeskaLabs/seacat-auth-webui/pull/31))
+- ASAB WebUI submodule version bump [[ae64c84](https://github.com/TeskaLabs/asab-webui/commit/ae64c84a78ecbbc32a1a02c5bf3bc196907b0263)] commit (INDIGO Sprint 230526, [!32](https://github.com/TeskaLabs/seacat-auth-webui/pull/32))
 
 ### Refactoring
 
@@ -14,7 +14,7 @@
 
 - Update asab-webui submodule (INDIGO Sprint 230512, [!31](https://github.com/TeskaLabs/seacat-auth-webui/pull/31))
 
-- Update asab-webui submodule (INDIGO Sprint 230526, [!31](https://github.com/TeskaLabs/seacat-auth-webui/pull/31))
+- Update asab-webui submodule (INDIGO Sprint 230526, [!32](https://github.com/TeskaLabs/seacat-auth-webui/pull/32))
 
 ## v23.16-beta
 
