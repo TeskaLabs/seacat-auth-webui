@@ -29,7 +29,17 @@ const ConfigDefaults = {
 		fallbackLng: 'en',
 		supportedLngs: ['en', 'cs'],
 		debug: false,
-		nsSeparator: false
+		nsSeparator: false,
+	},
+	brandImage: {
+		light: {
+			full: 'media/logo/header-logo-full.svg',
+			minimized: 'media/logo/header-logo-minimized.svg'
+		},
+		dark: {
+			full: 'media/logo/header-logo-full-dark.svg',
+			minimized: 'media/logo/header-logo-minimized-dark.svg'
+		}
 	}
 };
 
