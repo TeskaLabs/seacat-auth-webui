@@ -12,6 +12,8 @@
 
 - Changing logo based on app's theme. (INDIGO Sprint 230428, [!20](https://github.com/TeskaLabs/seacat-auth-webui/pull/20))
 
+- Favicons assets update with new logo (INDIGO Sprint 230623, [!34](https://github.com/TeskaLabs/seacat-auth-webui/pull/34))
+
 ## v23.16-beta
 
 ### Compatibility
