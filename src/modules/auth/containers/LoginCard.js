@@ -34,6 +34,8 @@ function LoginCard(props) {
 
 	const [ loginButtonHidden, setLoginButtonHidden ] = useState(false);
 
+	const [ disableInputField, setDisableInputField ] = useState(false)
+
 	const [ descriptors, setDescriptors ] = useState(undefined);
 	const [ descriptor, setDescriptor ] = useState(undefined);
 
@@ -138,8 +140,7 @@ function LoginCard(props) {
 		
 		jwk.ident = getValues().username;
 		
-		document.getElementById('username').classList.add('unfocused-user-input')
-		console.log('hello')
+		// document.getElementById('username').classList.add('unfocused-user-input')
 
 		let SeaCatAuthPrologueAPI = props.app.axiosCreate('seacat_auth');
 		let response;
@@ -187,12 +188,12 @@ function LoginCard(props) {
 
 		setDescriptors(lds);
 		setDescriptor(lds[0]);
+		setDisableInputField(true)
 
 	}
 
 
 	const onSubmit = async (values) => {
-		document.getElementById('username').classList.add('unfocused-userinput');
 		values.descriptor = descriptor.id;
 		// Store or remove Ident from localstorage based on checked / unchecked checkbox Remember me
 		if (values.rememberme !== undefined && values.rememberme) {
@@ -211,20 +212,20 @@ function LoginCard(props) {
 				props.app.addAlert(
 					"danger",
 					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
-				);
-//writing the condition for what happens when credentials are wrong
+					);
+					
+				} else if (e.response.status == 504) {
+					props.app.addAlert(
+						"danger",
+						t("LoginCard|Can't proceed due to connection problems"), 30
+						);
+					} else {
+						props.app.addAlert(
+							"danger",
+							`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
+							);
+						}
 
-			} else if (e.response.status == 504) {
-				props.app.addAlert(
-					"danger",
-					t("LoginCard|Can't proceed due to connection problems"), 30
-				);
-			} else {
-				props.app.addAlert(
-					"danger",
-					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
-				);
-			}
 			return;
 		}
 
@@ -241,6 +242,7 @@ function LoginCard(props) {
 				"danger",
 				t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 			);
+			document.getElementById("username").focus();
 			return;
 		}
 
@@ -280,6 +282,7 @@ function LoginCard(props) {
 	}
 
 	const onReset = () => {
+		setDisableInputField(false)
 		setDescriptor(undefined);
 		setDescriptors(undefined);
 		setLsid(undefined);
@@ -294,6 +297,7 @@ function LoginCard(props) {
 	}
 
 	const onCantLogin = () => {
+		setDisableInputField(false);
 		let redirect_uri;
 		let i = window.location.hash.indexOf('?');
 		if (i > -1) {
@@ -350,6 +354,7 @@ function LoginCard(props) {
 							onChange={usernameRegister.onChange}
 							onBlur={usernameRegister.onBlur}
 							innerRef={usernameRegister.ref}
+							className={disableInputField && "unfocused-user-input"}
 						/>
 						<FormText>{t('LoginCard|Fill in your login credentials')}</FormText>
 					</FormGroup>
@@ -516,6 +521,11 @@ function Alternatives(props) {
 
 
 function PasswordField(props) {
+	useEffect(()=>{
+		let gi = document.getElementsByClassName("focus-me")[0];
+		if (gi !== undefined) gi.focus();
+		console.log(props.idx)
+	},[props])
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
 	return(
@@ -535,6 +545,7 @@ function PasswordField(props) {
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
+				autoFocus={props.idx == 0}
 			/>
 		</FormGroup>
 	);
