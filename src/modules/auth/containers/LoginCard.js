@@ -119,13 +119,13 @@ function LoginCard(props) {
 
 
 	const onPreludeSubmit = async () => {
-
+		
 		if (clientLoginKey === null) {
 			return;
 		}
-
+		
 		let jwk = await window.crypto.subtle.exportKey("jwk", clientLoginKey.publicKey);
-
+		
 		let expiration;
 		let i = window.location.hash.indexOf('?');
 		if (i > -1) {
@@ -133,10 +133,13 @@ function LoginCard(props) {
 			let params = new URLSearchParams(jwk.qs);
 			expiration = params.get("expiration");
 		}
-
+		
 		jwk.expiration = expiration === null ? undefined : expiration;
-
+		
 		jwk.ident = getValues().username;
+		
+		document.getElementById('username').classList.add('unfocused-user-input')
+		console.log('hello')
 
 		let SeaCatAuthPrologueAPI = props.app.axiosCreate('seacat_auth');
 		let response;
@@ -189,6 +192,7 @@ function LoginCard(props) {
 
 
 	const onSubmit = async (values) => {
+		document.getElementById('username').classList.add('unfocused-userinput');
 		values.descriptor = descriptor.id;
 		// Store or remove Ident from localstorage based on checked / unchecked checkbox Remember me
 		if (values.rememberme !== undefined && values.rememberme) {
@@ -208,6 +212,8 @@ function LoginCard(props) {
 					"danger",
 					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
+//writing the condition for what happens when credentials are wrong
+
 			} else if (e.response.status == 504) {
 				props.app.addAlert(
 					"danger",
