@@ -8,6 +8,8 @@
 
 ### Refactoring
 
+- Change visibility of username to readonly and focus on password input field after wrong password. (INDIGO Sprint 230623, [!35](https://github.com/TeskaLabs/seacat-auth-webui/pull/35))
+
 - Asab-webui's `componentLoader` used as a callback within lazy() method to prevent chunk loading error. (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
 
 - Changing logo based on app's theme. (INDIGO Sprint 230428, [!20](https://github.com/TeskaLabs/seacat-auth-webui/pull/20))
