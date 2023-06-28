@@ -145,8 +145,6 @@ function LoginCard(props) {
 		
 		jwk.ident = getValues().username;
 		
-		// document.getElementById('username').classList.add('unfocused-user-input')
-
 		let SeaCatAuthPrologueAPI = props.app.axiosCreate('seacat_auth');
 		let response;
 		try {
