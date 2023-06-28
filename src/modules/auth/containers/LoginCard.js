@@ -17,6 +17,11 @@ import base64url from '../utils/base64url';
 
 // TODO: Reset the form is it stays too long in "after prologue" state (serverLoginKey !== undefined)
 
+function focusInputField() {
+	let foc = document.getElementsByClassName("focus-me")[0];
+	if (foc !== undefined) foc.focus();
+}
+
 function LoginCard(props) {
 	var rememberedIdent = window.localStorage.getItem('SeaCatIdent');
 
@@ -193,6 +198,7 @@ function LoginCard(props) {
 	}
 
 
+
 	const onSubmit = async (values) => {
 		values.descriptor = descriptor.id;
 		// Store or remove Ident from localstorage based on checked / unchecked checkbox Remember me
@@ -362,8 +368,7 @@ function LoginCard(props) {
 					<Collapse
 						isOpen={descriptor !== undefined}
 						onEntered={() => {
-							let fi = document.getElementsByClassName("focus-me")[0];
-							if (fi !== undefined) fi.focus();
+							focusInputField()
 						}}
 					>
 
@@ -520,12 +525,13 @@ function Alternatives(props) {
 }
 
 
+
 function PasswordField(props) {
+
 	useEffect(()=>{
-		let gi = document.getElementsByClassName("focus-me")[0];
-		if (gi !== undefined) gi.focus();
-		console.log(props.idx)
+		focusInputField()
 	},[props])
+
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
 	return(
