@@ -17,7 +17,7 @@ import base64url from '../utils/base64url';
 
 // TODO: Reset the form is it stays too long in "after prologue" state (serverLoginKey !== undefined)
 
-function focusInputField() {
+function focusPasswordInputField() {
 	let foc = document.getElementsByClassName("focus-me")[0];
 	if (foc !== undefined) foc.focus();
 }
@@ -246,7 +246,6 @@ function LoginCard(props) {
 				"danger",
 				t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 			);
-			document.getElementById("username").focus();
 			return;
 		}
 
@@ -358,7 +357,7 @@ function LoginCard(props) {
 							onChange={usernameRegister.onChange}
 							onBlur={usernameRegister.onBlur}
 							innerRef={usernameRegister.ref}
-							className={disableInputField && "unfocused-user-input"}
+							className={disableInputField && "disabled-username-input"}
 						/>
 						<FormText>{t('LoginCard|Fill in your login credentials')}</FormText>
 					</FormGroup>
@@ -366,7 +365,7 @@ function LoginCard(props) {
 					<Collapse
 						isOpen={descriptor !== undefined}
 						onEntered={() => {
-							focusInputField()
+							focusPasswordInputField()
 						}}
 					>
 
@@ -527,7 +526,7 @@ function Alternatives(props) {
 function PasswordField(props) {
 
 	useEffect(()=>{
-		focusInputField()
+		focusPasswordInputField()
 	},[props])
 
 	const { t } = useTranslation();
@@ -549,7 +548,6 @@ function PasswordField(props) {
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
-				autoFocus={props.idx == 0}
 			/>
 		</FormGroup>
 	);
@@ -601,6 +599,9 @@ function YubiKeyField(props) {
 
 
 function TOTPField(props) {
+	useEffect(()=>{
+		focusPasswordInputField()
+	},[props])
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
 	return(
@@ -825,6 +826,9 @@ function WebAuthnField(props) {
 
 
 function SMSLoginField(props) {
+	useEffect(()=>{
+		focusPasswordInputField()
+	},[props])
 
 	const { t } = useTranslation();
 	const [ codeSent, setCodeSent ] = useState(false);
@@ -871,8 +875,6 @@ function SMSLoginField(props) {
 
 		setCodeSent(true);
 		props.setLoginButtonHidden(false);
-
-		document.getElementById(props.factor.type).focus();
 	}
 
 	if (codeSent) {
@@ -894,6 +896,7 @@ function SMSLoginField(props) {
 					onBlur={reg.onBlur}
 					innerRef={reg.ref}
 					style={{width: "10em", marginLeft: "auto", marginRight: "auto", fontFamily: "monospace"}}
+					className={props.idx == 0 ? "focus-me" : ""}
 				/>
 			</FormGroup>
 		);
