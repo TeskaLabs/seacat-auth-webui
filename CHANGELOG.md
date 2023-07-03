@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Compatibility
+
+To display last successful and unsuccessful login information, Seacat Auth service [v23.26-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.26-beta) and newer must be used.
+
 ### Features
 
 - ASAB WebUI submodule version bump [[ae64c84](https://github.com/TeskaLabs/asab-webui/commit/ae64c84a78ecbbc32a1a02c5bf3bc196907b0263)] commit (INDIGO Sprint 230526, [!32](https://github.com/TeskaLabs/seacat-auth-webui/pull/32))
@@ -11,6 +15,8 @@
 - Asab-webui's `componentLoader` used as a callback within lazy() method to prevent chunk loading error. (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
 
 - Changing logo based on app's theme. (INDIGO Sprint 230428, [!20](https://github.com/TeskaLabs/seacat-auth-webui/pull/20))
+
+- Refactor fetching of last successful and failed logins from specific API endpoint. (INDIGO Sprint 230623, [!36](https://github.com/TeskaLabs/seacat-auth-webui/pull/36))
 
 ## v23.16-beta
 
