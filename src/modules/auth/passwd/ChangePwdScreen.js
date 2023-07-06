@@ -88,7 +88,7 @@ function ChangePwdCard(props) {
 		return (
 			<Card className="shadow animated fadeIn auth-card">
 				<CardBody className="text-center pb-1">
-					<CardTitle className="mb-0" className="text-primary" tag="h2">{t('ChangePwdScreen|CompletedChangePwdCard|Password changed')}</CardTitle>
+					<CardTitle className="mb-0 text-primary" tag="h2">{t('ChangePwdScreen|CompletedChangePwdCard|Password changed')}</CardTitle>
 				</CardBody>
 				<CardFooter className="border-top">
 					<Button
