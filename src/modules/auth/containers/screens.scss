@@ -39,3 +39,8 @@
 	padding: 20px;
 	color: var(--primary)!important;
 }
+
+.login-card-btn-border:focus {
+	border: 2px solid var(--btn-primary-shadow-color) !important;
+	
+}

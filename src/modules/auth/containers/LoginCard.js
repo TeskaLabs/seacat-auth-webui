@@ -189,6 +189,8 @@ function LoginCard(props) {
 
 		let lds = response.data.lds;
 
+		console.log(lds)
+
 		setDescriptors(lds);
 		setDescriptor(lds[0]);
 		setDisableInputField(true)
@@ -430,7 +432,7 @@ function LoginCard(props) {
 					<ButtonGroup className="flex-nowrap w-100">
 						<Button
 							outline
-							className="flex-fill justify-content-center card-footer-button-flex"
+							className="flex-fill justify-content-center card-footer-button-flex login-card-btn-border"
 							color="primary"
 							type="button"
 							disabled={isSubmitting || isOnClickSubmitting}
@@ -441,7 +443,7 @@ function LoginCard(props) {
 						{props.registerToken == undefined ?
 						<Button
 							outline
-							className="flex-fill justify-content-center card-footer-button-flex"
+							className="flex-fill justify-content-center card-footer-button-flex login-card-btn-border"
 							style={{borderRadius: "0 0 7px 0"}}
 							color="primary"
 							type="button"
@@ -453,7 +455,7 @@ function LoginCard(props) {
 						:
 						<Button
 							outline
-							className="flex-fill justify-content-center card-footer-button-flex"
+							className="flex-fill justify-content-center card-footer-button-flex login-card-btn-border"
 							style={{borderRadius: "0 0 7px 0"}}
 							color="primary"
 							type="button"
