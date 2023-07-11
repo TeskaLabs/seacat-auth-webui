@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[ce33c8b](https://github.com/TeskaLabs/asab-webui/commit/ce33c8bc9a23e92adbd0af77d83b67b3bb4100a1)] commit (INDIGO Sprint 230623, [!34](https://github.com/TeskaLabs/seacat-auth-webui/pull/34))
+
 ### Refactoring
 
 - Favicons assets update with new logo (INDIGO Sprint 230623, [!34](https://github.com/TeskaLabs/seacat-auth-webui/pull/34))
@@ -14,7 +18,7 @@ To display last successful and unsuccessful login information, Seacat Auth servi
 
 ### Features
 
-- ASAB WebUI submodule version bump [[3a35738](https://github.com/TeskaLabs/asab-webui/commit/3a3573806e2964efbf5e5bb02c15acc9af41c8ac)] commit (INDIGO Sprint 230623, [!34](https://github.com/TeskaLabs/seacat-auth-webui/pull/34))
+- ASAB WebUI submodule version bump [[ae64c84](https://github.com/TeskaLabs/asab-webui/commit/ae64c84a78ecbbc32a1a02c5bf3bc196907b0263)] commit (INDIGO Sprint 230526, [!32](https://github.com/TeskaLabs/seacat-auth-webui/pull/32))
 
 ### Refactoring
 
@@ -32,7 +36,7 @@ Tested with Seacat Auth service [v23.16-beta](https://github.com/TeskaLabs/seaca
 
 ### Features
 
-- ASAB WebUI submodule version bump [[c7d682a](https://github.com/TeskaLabs/asab-webui/commit/c7d682ad8f08e432ddbed2c0d21f16a73b23bd58)] commit (INDIGO Sprint 230414, [!28](https://github.com/TeskaLabs/seacat-auth-webui/pull/28))
+- ASAB WebUI submodule version bump [[ae64c84](https://github.com/TeskaLabs/asab-webui/commit/ae64c84a78ecbbc32a1a02c5bf3bc196907b0263)] commit (INDIGO Sprint 230526, [!32](https://github.com/TeskaLabs/seacat-auth-webui/pull/32))
 
 ### Refactoring
 
