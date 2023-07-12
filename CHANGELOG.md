@@ -14,6 +14,8 @@ To display last successful and unsuccessful login information, Seacat Auth servi
 
 ### Refactoring
 
+- Refactor services names from underscores to dashes. (INDIGO Sprint 230623, [!38](https://github.com/TeskaLabs/seacat-auth-webui/pull/38))
+
 - Asab-webui's `componentLoader` used as a callback within lazy() method to prevent chunk loading error. (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
 
 - Changing logo based on app's theme. (INDIGO Sprint 230428, [!20](https://github.com/TeskaLabs/seacat-auth-webui/pull/20))
