@@ -222,8 +222,8 @@ function ActivateTOTP(props) {
 						<code>{props.secret}</code>
 					</Col>
 				</Row>
-
-				<FormGroup tag="fieldset" disabled={props.isSubmitting} style={{textAlign: "center"}}>
+			<Row>
+				<Col tag="fieldset" disabled={props.isSubmitting} style={{textAlign: "center"}}>
 					<Input
 						autoFocus
 						id="otp"
@@ -236,22 +236,22 @@ function ActivateTOTP(props) {
 						onChange={reg.onChange}
 						onBlur={reg.onBlur}
 						innerRef={reg.ref}
-					/>
+						/>
 					{props.errors.otp ?
-						<FormFeedback style={{paddingBottom: "1em"}}>{props.errors.otp.message}</FormFeedback>
+						<FormFeedback>{props.errors.otp.message}</FormFeedback>
 						:
-						<FormText style={{paddingBottom: "1em"}}>{t('TOTPScreen|Enter the code from authenticator app')}</FormText>
+						<FormText>{t('TOTPScreen|Enter the code from authenticator app')}</FormText>
 					}
-
 					<Button
 						block
-						className="justify-content-center"
+						className="justify-content-center my-2"
 						color="primary"
 						type="submit"
-					>
+						>
 						{t("TOTPScreen|Activate OTP")}
 					</Button>
-				</FormGroup>
+				</Col>
+			</Row>
 			</CardBody>
 		</>
 	)
