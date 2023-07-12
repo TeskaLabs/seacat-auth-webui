@@ -8,7 +8,7 @@ import QRCode from "react-qr-code";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormText, Label, Input, Button, FormFeedback
+	Form, FormText, Input, Button, FormFeedback
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -223,7 +223,7 @@ function ActivateTOTP(props) {
 					</Col>
 				</Row>
 			<Row>
-				<Col tag="fieldset" disabled={props.isSubmitting} style={{textAlign: "center"}}>
+				<Col tag="fieldset">
 					<Input
 						autoFocus
 						id="otp"
@@ -236,6 +236,7 @@ function ActivateTOTP(props) {
 						onChange={reg.onChange}
 						onBlur={reg.onBlur}
 						innerRef={reg.ref}
+						disabled={props.isSubmitting}
 						/>
 					{props.errors.otp ?
 						<FormFeedback>{props.errors.otp.message}</FormFeedback>
@@ -247,6 +248,7 @@ function ActivateTOTP(props) {
 						className="justify-content-center my-2"
 						color="primary"
 						type="submit"
+						disabled={props.isSubmitting}
 						>
 						{t("TOTPScreen|Activate OTP")}
 					</Button>
@@ -271,18 +273,18 @@ function DeactivateTOTP(props) {
 				</div>
 			</CardHeader>
 
-			<CardBody className="pb-1">
-				<FormGroup style={{textAlign: "center"}}>
+			<CardBody>
+				<Col>
 					<Button
 						block
 						className="justify-content-center"
 						color="primary"
 						type="submit"
 						disabled={props.isSubmitting}
-					>
+						>
 						{t("TOTPScreen|Deactivate OTP")}
 					</Button>
-				</FormGroup>
+				</Col>
 			</CardBody>
 		</>
 	)
