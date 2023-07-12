@@ -25,7 +25,7 @@ function HomeScreen(props) {
 	]);
 	const { t } = useTranslation();
 	const history = useHistory();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	useEffect(() => {
 		if (getParams("result") == "external_login_activated") {

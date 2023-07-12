@@ -19,7 +19,7 @@ import {
 
 function RegistrationCard(props) {
 	const { t, i18n } = useTranslation();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const { handleSubmit, register, getValues, setValue, formState: { errors, isSubmitting } } = useForm();
 
