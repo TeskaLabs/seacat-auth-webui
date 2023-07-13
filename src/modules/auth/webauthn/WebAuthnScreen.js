@@ -9,7 +9,8 @@ import publicKeyValuesToJSON from "./publicKeyValuesToJSON";
 
 import {
 	Container, Row, Col,
-	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
+	Card, CardHeader, CardTitle,
+	CardSubtitle, CardBody, CardFooter,
 	Input, Button, ButtonGroup,
 	Table, Form, FormFeedback
 } from 'reactstrap';

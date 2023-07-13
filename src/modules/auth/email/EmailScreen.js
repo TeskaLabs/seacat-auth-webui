@@ -7,7 +7,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormFeedback, Input, Button
+	Form, FormFeedback, Input, Button
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -162,33 +162,30 @@ function ManageEmail(props) {
 			</CardHeader>
 
 			<CardBody className="text-center pb-1">
-				<FormGroup tag="fieldset" disabled={props.isSubmitting}>
-					<Input
-						autoFocus
-						id="email"
-						name="email"
-						type="email"
-						autoComplete="email"
-						invalid={props.errors.email}
-						defaultValue={props.email ? props.email : ""}
-						onChange={reg.onChange}
-						onBlur={reg.onBlur}
-						innerRef={reg.ref}
-					/>
-					{props.errors.email && <FormFeedback>{props.errors.email.message}</FormFeedback>}
-				</FormGroup>
+				<Input
+					autoFocus
+					id="email"
+					name="email"
+					type="email"
+					autoComplete="email"
+					invalid={props.errors.email}
+					defaultValue={props.email ? props.email : ""}
+					onChange={reg.onChange}
+					onBlur={reg.onBlur}
+					innerRef={reg.ref}
+					disabled={props.isSubmitting}
+				/>
+				{props.errors.email && <FormFeedback>{props.errors.email.message}</FormFeedback>}
 
-				<FormGroup style={{textAlign: "center"}}>
-					<Button
-						block
-						className="justify-content-center"
-						color="primary"
-						type="submit"
-						disabled={props.isSubmitting}
-					>
-						{t("EmailScreen|Confirm")}
-					</Button>
-				</FormGroup>
+				<Button
+					block
+					className="my-3"
+					color="primary"
+					type="submit"
+					disabled={props.isSubmitting}
+				>
+					{t("EmailScreen|Confirm")}
+				</Button>
 			</CardBody>
 		</>
 	)

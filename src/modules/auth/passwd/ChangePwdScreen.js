@@ -88,7 +88,7 @@ function ChangePwdCard(props) {
 		return (
 			<Card className="shadow animated fadeIn auth-card">
 				<CardBody className="text-center pb-1">
-					<CardTitle className="mb-0" className="text-primary" tag="h2">{t('ChangePwdScreen|CompletedChangePwdCard|Password changed')}</CardTitle>
+					<CardTitle className="mb-0 text-primary" tag="h2">{t('ChangePwdScreen|CompletedChangePwdCard|Password changed')}</CardTitle>
 				</CardBody>
 				<CardFooter className="border-top">
 					<Button
@@ -117,97 +117,93 @@ function ChangePwdCard(props) {
 				</CardHeader>
 
 				<CardBody className="pb-1">
-					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-						<h5>
-							<Label for="oldpassword" style={{display: "block"}}>
-								{t('ChangePwdScreen|Current Password')}
-							</Label>
-						</h5>
-						<Input
-							autoFocus
-							id="oldpassword"
-							name="oldpassword"
-							type="password"
-							autoComplete="off"
-							required="required"
-							onChange={regOldpwd.onChange}
-							onBlur={regOldpwd.onBlur}
-							innerRef={regOldpwd.ref}
-						/>
-					</FormGroup>
+						<Col className='text-center'>
+							<h5>
+								<Label for="oldpassword" style={{display: "block"}}>
+									{t('ChangePwdScreen|Current Password')}
+								</Label>
+							</h5>
+							<Input
+								autoFocus
+								id="oldpassword"
+								name="oldpassword"
+								type="password"
+								autoComplete="off"
+								required="required"
+								onChange={regOldpwd.onChange}
+								onBlur={regOldpwd.onBlur}
+								innerRef={regOldpwd.ref}
+								disabled={isSubmitting}
+							/>
 
-					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-						<h5>
-							<Label for="newpassword" style={{display: "block"}}>
-								{t('ChangePwdScreen|New Password')}
-							</Label>
-						</h5>
-						<Input
-							id="newpassword"
-							name="newpassword"
-							type="password"
-							autoComplete="new-password"
-							required="required"
-							invalid={errors.newpassword}
-							onBlur={regNewpwd.onBlur}
-							innerRef={regNewpwd.ref}
-							onChange={regNewpwd.onChange}
-						/>
-						{errors.newpassword && <FormFeedback>{errors.newpassword.message}</FormFeedback>}
-					</FormGroup>
+							<h5 className='mt-3'>
+								<Label for="newpassword" style={{display: "block"}}>
+									{t('ChangePwdScreen|New Password')}
+								</Label>
+							</h5>
+							<Input
+								id="newpassword"
+								name="newpassword"
+								type="password"
+								autoComplete="new-password"
+								required="required"
+								invalid={errors.newpassword}
+								onBlur={regNewpwd.onBlur}
+								innerRef={regNewpwd.ref}
+								onChange={regNewpwd.onChange}
+								disabled={isSubmitting}
+							/>
+							{errors.newpassword && <FormFeedback>{errors.newpassword.message}</FormFeedback>}
 
-					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-						<h5>
-							<Label for="newpassword2" style={{display: "block"}}>
-								{t('ChangePwdScreen|Re-enter Password')}
-							</Label>
-						</h5>
-						<Input
-							id="newpassword2"
-							name="newpassword2"
-							type="password"
-							autoComplete="new-password"
-							required="required"
-							invalid={errors.newpassword2}
-							onChange={regNewpwd2.onChange}
-							onBlur={regNewpwd2.onBlur}
-							innerRef={regNewpwd2.ref}
-						/>
-						{errors.newpassword2 ?
-							<FormFeedback>{errors.newpassword2.message}</FormFeedback>
-							:
-							<FormText>
-								{t('ChangePwdScreen|Enter new password a second time to verify it')}
-							</FormText>
-						}
-					</FormGroup>
+							<h5 className='mt-3'>
+								<Label for="newpassword2" style={{display: "block"}}>
+									{t('ChangePwdScreen|Re-enter Password')}
+								</Label>
+							</h5>
+							<Input
+								id="newpassword2"
+								name="newpassword2"
+								type="password"
+								autoComplete="new-password"
+								required="required"
+								invalid={errors.newpassword2}
+								onChange={regNewpwd2.onChange}
+								onBlur={regNewpwd2.onBlur}
+								innerRef={regNewpwd2.ref}
+								disabled={isSubmitting}
+							/>
+							{errors.newpassword2 ?
+								<FormFeedback>{errors.newpassword2.message}</FormFeedback>
+								:
+								<FormText>
+									{t('ChangePwdScreen|Enter new password a second time to verify it')}
+								</FormText>
+							}
+							<Button
+								block
+								className="my-3"
+								color="primary"
+								type="submit"
+								disabled={isSubmitting}
+							>
+								{t("ChangePwdScreen|Set password")}
+							</Button>
+						</Col>
 
-					<FormGroup style={{textAlign: "center"}}>
-						<Button
-							block
-							className="justify-content-center"
-							color="primary"
-							type="submit"
-							disabled={isSubmitting}
-						>
-							{t("ChangePwdScreen|Set password")}
-						</Button>
-					</FormGroup>
-
-				</CardBody>
-				{!redirect_uri &&
-					<CardFooter className="border-top">
-						<Button
-							outline
-							color="primary"
-							type="button"
-							disabled={isSubmitting}
-							onClick={() => history.goBack()}
-						>
-							{t("ChangePwdScreen|Go back")}
-						</Button>
-					</CardFooter>
-				}
+					</CardBody>
+					{!redirect_uri &&
+						<CardFooter className="border-top">
+							<Button
+								outline
+								color="primary"
+								type="button"
+								disabled={isSubmitting}
+								onClick={() => history.goBack()}
+							>
+								{t("ChangePwdScreen|Go back")}
+							</Button>
+						</CardFooter>
+					}
 			</Card>
 		</Form>
 	);

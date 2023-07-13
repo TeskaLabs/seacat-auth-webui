@@ -175,33 +175,30 @@ function ChangeNumber(props) {
 			</CardHeader>
 
 			<CardBody className="text-center pb-1">
-				<FormGroup tag="fieldset" disabled={props.isSubmitting}>
-					<Input
-						autoFocus
-						type="text"
-						id="phone"
-						name="phone"
-						maxLength="17"
-						invalid={props.errors.phone}
-						onChange={reg.onChange}
-						onBlur={reg.onBlur}
-						innerRef={reg.ref}
-						defaultValue={props.number}
-					/>
-					{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
-				</FormGroup>
+				<Input
+					autoFocus
+					type="text"
+					id="phone"
+					name="phone"
+					maxLength="17"
+					invalid={props.errors.phone}
+					onChange={reg.onChange}
+					onBlur={reg.onBlur}
+					innerRef={reg.ref}
+					defaultValue={props.number}
+					disabled={props.isSubmitting}
+				/>
+				{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
 
-				<FormGroup style={{textAlign: "center"}}>
-					<Button
-						className="justify-content-center"
-						block
-						color="primary"
-						type="submit"
-						disabled={props.isSubmitting}
-					>
-						{t("PhoneNumberScreen|Confirm")}
-					</Button>
-				</FormGroup>
+				<Button
+					className="my-3"
+					block
+					color="primary"
+					type="submit"
+					disabled={props.isSubmitting}
+				>
+					{t("PhoneNumberScreen|Confirm")}
+				</Button>
 			</CardBody>
 		</>
 	)

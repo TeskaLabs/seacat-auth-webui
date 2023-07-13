@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormText, FormGroup, Label, Input, Button
+	Form, FormText, Label, Input, Button
 } from 'reactstrap';
 
 import { getParams } from '../utils/paramsActions';
@@ -145,7 +145,7 @@ function ForgetPwdCard(props) {
 				<CardBody className="pb-1">
 
 					{/* ident */}
-					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
+					<Col style={{textAlign: 'center'}}>
 						<h5>
 							<Label for="username" style={{display: "block"}}>
 								{t('ForgetPwdScreen|Username, email or phone')}
@@ -164,14 +164,13 @@ function ForgetPwdCard(props) {
 							onChange={usernameRegister.onChange}
 							onBlur={usernameRegister.onBlur}
 							innerRef={usernameRegister.ref}
+							disabled={isSubmitting}
 						/>
 						<FormText>{t('ForgetPwdScreen|Fill in your login credentials')}</FormText>
-					</FormGroup>
 
-					<FormGroup style={{textAlign: "center"}}>
 						<Button
 							block
-							className="justify-content-center"
+							className='mt-2'
 							color="primary"
 							type="submit"
 							disabled={isSubmitting}
@@ -179,10 +178,10 @@ function ForgetPwdCard(props) {
 							{t("ForgetPwdScreen|Reset password")}
 						</Button>
 
-						<p className="text-center mt-1">
+						<p className="mt-1">
 							{t('ForgetPwdScreen|You will receive instructions')}
 						</p>
-					</FormGroup>
+					</Col>
 
 				</CardBody>
 
