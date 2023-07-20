@@ -2,6 +2,11 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[0f1bf23](https://github.com/TeskaLabs/asab-webui/commit/0f1bf23f4af53666fdffe3ec9ee42197a20d8a7f)] commit (INDIGO Sprint 230713, [!38](https://github.com/TeskaLabs/seacat-auth-webui/pull/38))
+
+
 ## v23.27-beta
 
 ### Compatibility
