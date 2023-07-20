@@ -15,6 +15,7 @@
 ### Refactoring
 
 - Favicons assets update with new logo (INDIGO Sprint 230623, [!34](https://github.com/TeskaLabs/seacat-auth-webui/pull/34))
+- Refactor services names from underscores to dashes. (INDIGO Sprint 230623, [!38](https://github.com/TeskaLabs/seacat-auth-webui/pull/38))
 
 ## v23.27-beta
 
@@ -27,8 +28,6 @@ To display last successful and unsuccessful login information, Seacat Auth servi
 - ASAB WebUI submodule version bump [[06af558](https://github.com/TeskaLabs/asab-webui/commit/06af558428a2106e14d00d3fdb0b9457b761f787)] commit (INDIGO Sprint 230623, [!37](https://github.com/TeskaLabs/seacat-auth-webui/pull/37))
 
 ### Refactoring
-
-- Refactor services names from underscores to dashes. (INDIGO Sprint 230623, [!38](https://github.com/TeskaLabs/seacat-auth-webui/pull/38))
 
 - Asab-webui's `componentLoader` used as a callback within lazy() method to prevent chunk loading error. (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-auth-webui/pull/30))
 
