@@ -52,7 +52,7 @@ function ResetPwdCard(props) {
 
 
 	const onSubmit = async (values) => {
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		values.pwd_token = resetPasswordCode;
 

@@ -22,7 +22,7 @@ function RegisterScreen(props) {
 	// For collapsing cardbodies in registration
 	const [switchCards, setSwitchCards] = useState("register");
 
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const userinfo = useSelector(state => state.auth.userinfo);
 
 	useEffect(() => {
