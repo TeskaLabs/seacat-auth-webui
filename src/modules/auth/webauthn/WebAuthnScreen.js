@@ -372,7 +372,7 @@ function TableRow (props) {
 					</>
 				:
 					<div className="div-key-wordwrap" title={obj?.name}>
-						<span className="cil-shield-alt pr-1" />{obj?.name}
+						<span className="cil-shield-alt pe-1" />{obj?.name}
 					</div>
 				}
 			</td>
@@ -382,7 +382,7 @@ function TableRow (props) {
 			<td className="p-2 td-not-display align-middle">
 				<DateTime value={obj?.last_login}/>
 			</td>
-			<td className="p-2 align-middle text-right">
+			<td className="p-2 align-middle text-end">
 				<ButtonGroup className="table-button-group">
 					{(localEditMode && props.globalEditMode && (obj?.id == props.getValues("id"))) ?
 						<>
@@ -426,7 +426,7 @@ function TableRow (props) {
 								color="danger"
 								type="button"
 								title={t("WebAuthnScreen|Unregister authenticator")}
-								className="float-right"
+								className="float-end"
 								onClick={(e) => {props.confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
 								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
