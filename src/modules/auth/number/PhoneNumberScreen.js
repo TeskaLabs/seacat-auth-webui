@@ -7,7 +7,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormFeedback, Label, Input, Button
+	Form, FormFeedback, Label, Input, Button
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -226,7 +226,7 @@ function SetNumber(props) {
 			</CardHeader>
 
 			<CardBody className="text-center pb-1">
-				<FormGroup tag="fieldset" disabled={props.isSubmitting}>
+				<fieldset tag="mb-3" disabled={props.isSubmitting}>
 					<Input
 						autoFocus
 						type="text"
@@ -240,9 +240,9 @@ function SetNumber(props) {
 						defaultValue={props.number}
 					/>
 					{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
-				</FormGroup>
+				</fieldset>
 
-				<FormGroup style={{textAlign: "center"}}>
+				<div className='mb-3' style={{textAlign: "center"}}>
 					<Button
 						block
 						className="justify-content-center"
@@ -252,7 +252,7 @@ function SetNumber(props) {
 					>
 						{t("PhoneNumberScreen|Confirm")}
 					</Button>
-				</FormGroup>
+				</div>
 			</CardBody>
 		</>
 	)
