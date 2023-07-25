@@ -200,12 +200,12 @@ function RegisterScreen(props) {
 										{(userinfo == undefined) ?
 											t("RegisterScreen|You have been invited to")
 										:
-											<>{t(`RegisterScreen|Hello`)}<span className="primary-span pr-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to`)}</>
+											<>{t(`RegisterScreen|Hello`)}<span className="primary-span pe-0">{credentials}</span>, {t(`RegisterScreen|you have been invited to`)}</>
 										}
 									</p>
 									{registerFeatures && registerFeatures?.tenants && registerFeatures?.tenants.map((tenant, i) => (
 											(registerFeatures.tenants.length != i+1) ?
-												<span key={i} className="primary-span pr-0">{tenant},</span>
+												<span key={i} className="primary-span pe-0">{tenant},</span>
 											:
 												<span key={i} className="primary-span">{tenant}</span>
 										))
