@@ -47,7 +47,7 @@ function ForgetPwdCard(props) {
 		*/
 		values["ident"] = values["username"];
 		delete values["username"];
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		let redirect_uri = getParams("redirect_uri");
 
 		// Append redirect_uri to the values payload

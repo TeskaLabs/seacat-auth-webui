@@ -2,13 +2,20 @@
 
 ## Release Candidate
 
+## v23.29-alpha
+
+### Breaking change
+
+- All service names need to be updaded in nginx configuration according following example: `seacat_auth` -> `seacat-auth`
+
 ### Features
 
-- ASAB WebUI submodule version bump [[ce33c8b](https://github.com/TeskaLabs/asab-webui/commit/ce33c8bc9a23e92adbd0af77d83b67b3bb4100a1)] commit (INDIGO Sprint 230623, [!34](https://github.com/TeskaLabs/seacat-auth-webui/pull/34))
+- ASAB WebUI submodule version bump [[31b7bb5](https://github.com/TeskaLabs/asab-webui/commit/31b7bb5519f7b8fa6f71853ba83f71e9dabc0ef4)] commit (INDIGO Sprint 230713, [!38](https://github.com/TeskaLabs/seacat-auth-webui/pull/38))
 
 ### Refactoring
 
 - Favicons assets update with new logo (INDIGO Sprint 230623, [!34](https://github.com/TeskaLabs/seacat-auth-webui/pull/34))
+- Refactor services names from underscores to dashes. (INDIGO Sprint 230623, [!38](https://github.com/TeskaLabs/seacat-auth-webui/pull/38))
 
 ## v23.27-beta
 

@@ -40,7 +40,7 @@ function ManageEmailCard(props) {
 	let redirect_uri = params.get("redirect_uri");
 
 	let history = useHistory();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	let email = props.userinfo?.email;
 	let number = props.userinfo?.phone ? props.userinfo.phone : "";
 
