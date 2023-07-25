@@ -147,7 +147,7 @@ function ForgetPwdCard(props) {
 					{/* ident */}
 					<Col style={{textAlign: 'center'}}>
 						<h5>
-							<Label for="username" style={{display: "block"}}>
+							<Label className='form-label d-block' for="username">
 								{t('ForgetPwdScreen|Username, email or phone')}
 							</Label>
 						</h5>

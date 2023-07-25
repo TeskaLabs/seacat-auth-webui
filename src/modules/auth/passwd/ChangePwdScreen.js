@@ -6,7 +6,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormText, FormFeedback, Label, Input, Button
+	Form, FormText, FormFeedback, Label, Input, Button
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -119,7 +119,7 @@ function ChangePwdCard(props) {
 				<CardBody className="pb-1">
 						<Col className='text-center'>
 							<h5>
-								<Label for="oldpassword" style={{display: "block"}}>
+								<Label for="oldpassword" className='d-block form-label'>
 									{t('ChangePwdScreen|Current Password')}
 								</Label>
 							</h5>
@@ -137,7 +137,7 @@ function ChangePwdCard(props) {
 							/>
 
 							<h5 className='mt-3'>
-								<Label for="newpassword" style={{display: "block"}}>
+								<Label for="newpassword" className='d-block form-label'>
 									{t('ChangePwdScreen|New Password')}
 								</Label>
 							</h5>
@@ -156,7 +156,7 @@ function ChangePwdCard(props) {
 							{errors.newpassword && <FormFeedback>{errors.newpassword.message}</FormFeedback>}
 
 							<h5 className='mt-3'>
-								<Label for="newpassword2" style={{display: "block"}}>
+								<Label for="newpassword2" className='d-block form-label'>
 									{t('ChangePwdScreen|Re-enter Password')}
 								</Label>
 							</h5>

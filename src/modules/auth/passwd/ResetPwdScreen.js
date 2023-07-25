@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormText, Label, Input, Button, FormFeedback
+	Form, FormText, Label, Input, Button, FormFeedback
 } from 'reactstrap';
 
 function ResetPwdScreen(props) {
@@ -125,7 +125,7 @@ function ResetPwdCard(props) {
 					</div>
 				</CardHeader>
 				<CardBody className="text-center pb-1">
-					<FormGroup style={{textAlign: "center"}}>
+					<div className='mb-3' style={{textAlign: "center"}}>
 						{!isButtonRemoved &&
 							<Button
 								className="justify-content-center"
@@ -138,7 +138,7 @@ function ResetPwdCard(props) {
 								{t('ResetPwdScreen|CompletedResetPwdCard|Continue')}
 							</Button>
 						}
-					</FormGroup>
+					</div>
 				</CardBody>
 			</Card>
 		)
@@ -156,9 +156,9 @@ function ResetPwdCard(props) {
 					</div>
 				</CardHeader>
 				<CardBody className="pb-1">
-					<FormGroup tag="fieldset" disabled={isSubmitting} style={{textAlign: "center"}}>
+					<fieldset disabled={isSubmitting} className='mb-3' style={{textAlign: "center"}}>
 						<h5>
-							<Label for="newpassword" style={{display: "block"}}>
+							<Label for="newpassword" className='form-label d-block'>
 								{t('ResetPwdScreen|New Password')}
 							</Label>
 						</h5>
@@ -175,11 +175,11 @@ function ResetPwdCard(props) {
 							onChange={regNewpwd.onChange}
 						/>
 						{errors.newpassword && <FormFeedback>{errors.newpassword.message}</FormFeedback>}
-					</FormGroup>
+					</fieldset>
 
-					<FormGroup tag="fieldset" disabled={isSubmitting} style={{textAlign: "center"}}>
+					<fieldset disabled={isSubmitting} className='mb-3' style={{textAlign: "center"}}>
 						<h5>
-							<Label for="newpassword2" style={{display: "block"}}>
+							<Label for="newpassword2" className='form-label d-block'>
 								{t('ResetPwdScreen|Re-enter Password')}
 							</Label>
 						</h5>
@@ -202,9 +202,9 @@ function ResetPwdCard(props) {
 								{t('ResetPwdScreen|Enter new password a second time to verify it')}
 							</FormText>
 						}
-					</FormGroup>
+					</fieldset>
 
-					<FormGroup style={{textAlign: "center"}}>
+					<div className='mb-3' style={{textAlign: "center"}}>
 						<Button
 							block
 							className="justify-content-center"
@@ -214,7 +214,7 @@ function ResetPwdCard(props) {
 						>
 							{t("ResetPwdScreen|Set password")}
 						</Button>
-					</FormGroup>
+					</div>
 				</CardBody>
 			</Card>
 		</Form>
