@@ -84,7 +84,7 @@ function LoginCard(props) {
 	}
 
 	// Configure encryption with shared secret key
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	SeaCatAuthAPI.interceptors.request.use(
 		async config => {
 			var enc = new TextEncoder();
@@ -144,8 +144,8 @@ function LoginCard(props) {
 		jwk.expiration = expiration === null ? undefined : expiration;
 		
 		jwk.ident = getValues().username;
-		
-		let SeaCatAuthPrologueAPI = props.app.axiosCreate('seacat_auth');
+
+		let SeaCatAuthPrologueAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		try {
 			response = await SeaCatAuthPrologueAPI.put('/public/login.prologue', jwk)

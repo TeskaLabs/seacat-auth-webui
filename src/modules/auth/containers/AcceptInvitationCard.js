@@ -12,7 +12,7 @@ import { getParams } from '../utils/paramsActions';
 
 function AcceptInvitationCard(props) {
 	const { t } = useTranslation();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 
 	const updateCredentials = async () => {

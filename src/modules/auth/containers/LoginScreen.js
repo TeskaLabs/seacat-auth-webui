@@ -12,7 +12,7 @@ function LoginScreen(props) {
 	const [features, setFeatures] = useState({ "login": {} });
 	const [width, height] = useWindowSize();
 	const [stateCode, setStateCode] = useState("");
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 
 	useEffect(() => {

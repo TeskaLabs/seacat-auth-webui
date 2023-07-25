@@ -18,13 +18,14 @@ import { getParams, removeParams } from "../utils/paramsActions";
 function HomeScreen(props) {
 	const [features, setFeatures] = useState({ });
 	const [updateFeatures, setUpdateFeatures] = useState({ });
+	const [lastLogin, setLastLogin] = useState({ });
 	const [userinfo, external_login_enabled] = useSelector(state => [
 		state.auth?.userinfo,
 		state.auth?.userinfo?.external_login_enabled
 	]);
 	const { t } = useTranslation();
 	const history = useHistory();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	useEffect(() => {
 		if (getParams("result") == "external_login_activated") {
@@ -45,6 +46,7 @@ function HomeScreen(props) {
 		removeParams("error");
 		fetchFeatures();
 		fetchUpdateFeatures();
+		fetchLastLogin();
 	}, []);
 
 	useEffect(() => {
@@ -56,7 +58,6 @@ function HomeScreen(props) {
 	const fetchFeatures = async () => {
 		try {
 			const response = await SeaCatAuthAPI.get("/public/features");
-
 			setFeatures(response.data);
 		} catch (e) {
 			console.error(e);
@@ -79,6 +80,15 @@ function HomeScreen(props) {
 			console.error(e);
 		}
 	};
+
+	const fetchLastLogin = async () => {
+		try {
+			const response = await SeaCatAuthAPI.get("/public/last_login");
+			setLastLogin(response.data);
+		} catch (e) {
+			console.error(e);
+		}
+	}
 
 	const redirectAfterExtLogin = () => {
 		// extract search params
@@ -222,8 +232,8 @@ function HomeScreen(props) {
 										<Row>
 											<Col sm={6}>{t('HomeScreen|Last successful login')}</Col>
 											<Col sm={6}>
-												{userinfo?.last_successful_login ?
-													<div className="float-right"><DateTime value={userinfo?.last_successful_login}/></div>
+												{lastLogin?.sat ?
+													<div className="float-right"><DateTime value={lastLogin?.sat}/></div>
 												:
 													<div className="float-right">N/A</div>
 												}
@@ -232,8 +242,8 @@ function HomeScreen(props) {
 										<Row>
 											<Col sm={6}>{t('HomeScreen|Last failed login')}</Col>
 											<Col sm={6}>
-												{userinfo?.last_failed_login ?
-													<div className="float-right"><DateTime value={userinfo?.last_failed_login}/></div>
+												{lastLogin?.fat ?
+													<div className="float-right"><DateTime value={lastLogin?.fat}/></div>
 												:
 													<div className="float-right">N/A</div>
 												}
