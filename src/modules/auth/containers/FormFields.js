@@ -23,7 +23,7 @@ export function PhoneField(props) {
 	);
 	return (
 		<div className="mb-3">
-			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="phone">
+			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="phone" className='form-label'>
 				{t("FormFields|Phone")}{props.content?.required && '*'}
 			</Label>
 			<Input
@@ -62,7 +62,7 @@ export function EmailField(props) {
 
 	return (
 		<div className="mb-3">
-			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="email">
+			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="email" className='form-label'>
 				{t("FormFields|Email")}{props.content?.required && '*'}
 			</Label>
 			<Input
@@ -103,7 +103,7 @@ export function UserNameField(props) {
 
 	return (
 		<div className="mb-3">
-			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="username">
+			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="username" className='form-label'>
 				{t("FormFields|Username")}{props.content?.required && '*'}
 			</Label>
 			<Input
@@ -159,6 +159,7 @@ export function PasswordField(props) {
 				<Label
 					title={props.content?.required ? t("FormFields|Required field") : undefined}
 					for="password"
+					className='form-label'
 				>
 					{t("FormFields|Password")}{props.content?.required && (props.content?.set == false) && '*'}
 				</Label>

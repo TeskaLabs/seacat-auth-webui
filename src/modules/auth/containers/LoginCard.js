@@ -326,7 +326,7 @@ function LoginCard(props) {
 					{/* ident */}
 					<fieldset disabled={isSubmitting || isOnClickSubmitting} className="text-center mb-3">
 						<h5>
-							<Label for="username" style={{display: "block"}}>
+							<Label for="username" style={{display: "block"}} className='form-label'>
 								{t('LoginCard|Username, email or phone')}
 							</Label>
 						</h5>
@@ -515,7 +515,7 @@ function PasswordField(props) {
 	return(
 		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Password')}
 				</Label>
 			</h5>
@@ -540,7 +540,7 @@ function KeyoteField(props) {
 	return(
 		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Login with mobile application')}
 				</Label>
 			</h5>
@@ -559,7 +559,7 @@ function YubiKeyField(props) {
 	return(
 		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Yubikey')}
 				</Label>
 			</h5>
@@ -585,7 +585,7 @@ function TOTPField(props) {
 	return(
 		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|OTP Code')}
 				</Label>
 			</h5>
@@ -786,7 +786,7 @@ function WebAuthnField(props) {
 	return(
 		<div className="text-center">
 			<h6>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					<span className="cil-shield-alt pe-1" />{t('LoginCard|You will be prompted to login with FIDO2/WebAuthn')}
 				</Label>
 			</h6>
@@ -858,7 +858,7 @@ function SMSLoginField(props) {
 		return(
 			<fieldset disabled={props.isSubmitting} className="text-center mb-3">
 				<h5>
-					<Label for={props.factor.type} style={{display: "block"}}>
+					<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 						{t('LoginCard|Code from SMS')}
 					</Label>
 				</h5>
@@ -881,7 +881,7 @@ function SMSLoginField(props) {
 	return(
 		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Login by SMS code')}
 				</Label>
 			</h5>
