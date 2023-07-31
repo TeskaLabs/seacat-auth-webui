@@ -1,4 +1,5 @@
 @import "~asab-webui/styles/constants/index.scss";
+@import "~asab-webui/styles/components/button.scss";
 
 .primary-span {
 	font-weight: 800;
@@ -34,13 +35,9 @@
 	border: none !important;
 	box-shadow: none !important;
 	text-align: center;
-	font-weight: 700;
-	font-size: 1.5rem;
-	padding: 20px;
-	color: var(--primary)!important;
 }
 
 .login-card-btn-border:focus {
-	border: 2px solid var(--btn-primary-shadow-color) !important;
+	border: 2px solid $btn-primary-shadow-color !important;
 	
 }

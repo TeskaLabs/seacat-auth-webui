@@ -171,7 +171,7 @@ function ForgetPwdCard(props) {
 					<FormGroup style={{textAlign: "center"}}>
 						<Button
 							block
-							className="justify-content-center"
+							className="justify-content-center login-card-btn-border"
 							color="primary"
 							type="submit"
 							disabled={isSubmitting}
@@ -189,6 +189,7 @@ function ForgetPwdCard(props) {
 				{!invalidCode &&
 				<CardFooter className="border-top">
 					<Button
+						className="login-card-btn-border"
 						outline
 						color="primary"
 						type="button"

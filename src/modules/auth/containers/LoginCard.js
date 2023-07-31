@@ -189,15 +189,11 @@ function LoginCard(props) {
 
 		let lds = response.data.lds;
 
-		console.log(lds)
-
 		setDescriptors(lds);
 		setDescriptor(lds[0]);
 		setDisableInputField(true)
 
 	}
-
-
 
 	const onSubmit = async (values) => {
 		values.descriptor = descriptor.id;
@@ -505,6 +501,7 @@ function Alternatives(props) {
 					<Row key={d.id} className="justify-content-center mt-3">
 						<Col style={{textAlign: "center"}}>
 							<Button
+								className='login-card-btn-border'
 								outline
 								block
 								color="primary"
@@ -816,6 +813,7 @@ function WebAuthnField(props) {
 			</h6>
 
 			<Button
+			className='login-card-btn-border'
 				block
 				color="primary"
 				disabled={props.clientLoginKey === null || props.isSubmitting}
