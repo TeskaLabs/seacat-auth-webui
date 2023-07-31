@@ -40,7 +40,7 @@ function ManageNumberCard(props) {
 	let redirect_uri = params.get("redirect_uri");
 
 	let history = useHistory();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	let number = props.userinfo?.phone;
 	let email = props.userinfo?.email ? props.userinfo.email : "";
 

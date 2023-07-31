@@ -32,7 +32,7 @@ export default function WebAuthnScreen(props) {
 function WebAuthnCard(props) {
 	const { t, i18n } = useTranslation();
 	let history = useHistory();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	let params = new URLSearchParams(useLocation().search);
 	let redirect_uri = params.get("redirect_uri");
