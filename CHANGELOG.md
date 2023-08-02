@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230721, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
+
 ## v23.29-alpha
 
 ### Breaking change
@@ -36,8 +40,6 @@ To display last successful and unsuccessful login information, Seacat Auth servi
 - Refactored dynamic locales (INDIGO Sprint 230623, [!432](https://github.com/TeskaLabs/asab-webui/pull/432))
 
 - Refactor fetching of last successful and failed logins from specific API endpoint. (INDIGO Sprint 230623, [!36](https://github.com/TeskaLabs/seacat-auth-webui/pull/36))
-
-- Changed icons from coreui.io icons to atlasicons. (INDIGO Sprint 230428, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
 
 ## v23.16-beta
 
