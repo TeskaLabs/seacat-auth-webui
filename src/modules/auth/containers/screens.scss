@@ -35,6 +35,11 @@
 	border: none !important;
 	box-shadow: none !important;
 	text-align: center;
+	font-size: 2em !important;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
 }
 
 .login-card-btn-border:focus {
