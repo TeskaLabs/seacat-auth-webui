@@ -347,7 +347,6 @@ function LoginCard(props) {
 							id="username"
 							name="username"
 							type="text"
-							// title={t('LoginCard|Please fill this field')}
 							title={lsid !==undefined ? userTitle : t('LoginCard|Please fill this field')}
 							autoComplete="off"
 							autoCapitalize="none"
