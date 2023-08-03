@@ -358,9 +358,9 @@ function LoginCard(props) {
 							onChange={usernameRegister.onChange}
 							onBlur={usernameRegister.onBlur}
 							innerRef={usernameRegister.ref}
-							className={disableInputField && "disabled-username-input"}
+							className={disableInputField ? "disabled-username-input" : null}
 						/>
-						<FormText>{t('LoginCard|Fill in your login credentials')}</FormText>
+						<FormText>{lsid ? "" : t('LoginCard|Fill in your login credentials')}</FormText>
 					</FormGroup>
 
 					<Collapse
@@ -431,7 +431,7 @@ function LoginCard(props) {
 					<ButtonGroup className="flex-nowrap w-100">
 						<Button
 							outline
-							className="flex-fill justify-content-center card-footer-button-flex login-card-btn-border"
+							className="flex-fill justify-content-center card-footer-button-flex"
 							color="primary"
 							type="button"
 							disabled={isSubmitting || isOnClickSubmitting}
@@ -442,7 +442,7 @@ function LoginCard(props) {
 						{props.registerToken == undefined ?
 						<Button
 							outline
-							className="flex-fill justify-content-center card-footer-button-flex login-card-btn-border"
+							className="flex-fill justify-content-center card-footer-button-flex"
 							style={{borderRadius: "0 0 7px 0"}}
 							color="primary"
 							type="button"
@@ -454,7 +454,7 @@ function LoginCard(props) {
 						:
 						<Button
 							outline
-							className="flex-fill justify-content-center card-footer-button-flex login-card-btn-border"
+							className="flex-fill justify-content-center card-footer-button-flex"
 							style={{borderRadius: "0 0 7px 0"}}
 							color="primary"
 							type="button"
@@ -504,7 +504,6 @@ function Alternatives(props) {
 					<Row key={d.id} className="justify-content-center mt-3">
 						<Col style={{textAlign: "center"}}>
 							<Button
-								className='login-card-btn-border'
 								outline
 								block
 								color="primary"
@@ -816,7 +815,6 @@ function WebAuthnField(props) {
 			</h6>
 
 			<Button
-			className='login-card-btn-border'
 				block
 				color="primary"
 				disabled={props.clientLoginKey === null || props.isSubmitting}

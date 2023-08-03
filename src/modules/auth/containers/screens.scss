@@ -35,14 +35,8 @@
 	border: none !important;
 	box-shadow: none !important;
 	text-align: center;
-	font-size: 2em !important;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 
-}
-
-.login-card-btn-border:focus {
-	border: 2px solid $btn-primary-shadow-color !important;
-	
 }
