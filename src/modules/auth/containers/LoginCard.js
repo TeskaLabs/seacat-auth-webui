@@ -337,7 +337,7 @@ function LoginCard(props) {
 				</CardHeader>
 				<CardBody>
 					{/* ident */}
-					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className="text-center">
+					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className={!lsid ? "text-center" : "text-center mb-2"}>
 						<h5>
 							<Label for="username" style={{display: "block"}}>
 								{t('LoginCard|Username, email or phone')}
@@ -360,7 +360,7 @@ function LoginCard(props) {
 							innerRef={usernameRegister.ref}
 							className={disableInputField ? "disabled-username-input" : null}
 						/>
-						<FormText>{lsid ? "" : t('LoginCard|Fill in your login credentials')}</FormText>
+						{!lsid ? <FormText>{t('LoginCard|Fill in your login credentials')}</FormText> : null}
 					</FormGroup>
 
 					<Collapse
