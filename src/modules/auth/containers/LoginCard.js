@@ -127,6 +127,7 @@ function LoginCard(props) {
 
 
 	const onPreludeSubmit = async () => {
+
 		if (clientLoginKey === null) {
 			return;
 		}
@@ -216,7 +217,6 @@ function LoginCard(props) {
 					"danger",
 					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
 				);
-					
 			} else if (e.response.status == 504) {
 				props.app.addAlert(
 					"danger",
@@ -228,7 +228,6 @@ function LoginCard(props) {
 					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
 				);
 			}
-
 			return;
 		}
 
@@ -523,13 +522,13 @@ function Alternatives(props) {
 
 
 function PasswordField(props) {
+	const { t } = useTranslation();
+	const reg = props.register(`${props.factor.type}`);
 
 	useEffect(()=>{
 		focusPasswordInputField()
 	},[props])
 
-	const { t } = useTranslation();
-	const reg = props.register(`${props.factor.type}`);
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
@@ -598,11 +597,13 @@ function YubiKeyField(props) {
 
 
 function TOTPField(props) {
+	const { t } = useTranslation();
+	const reg = props.register(`${props.factor.type}`);
+
 	useEffect(()=>{
 		focusPasswordInputField()
 	},[props])
-	const { t } = useTranslation();
-	const reg = props.register(`${props.factor.type}`);
+
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
@@ -825,14 +826,14 @@ function WebAuthnField(props) {
 
 
 function SMSLoginField(props) {
-	useEffect(()=>{
-		focusPasswordInputField()
-	},[props])
-
 	const { t } = useTranslation();
 	const [ codeSent, setCodeSent ] = useState(false);
 	const [ disable, setDisable ] = useState(false);
 	const reg = props.register(`${props.factor.type}`);
+	
+	useEffect(()=>{
+		focusPasswordInputField()
+	},[props])
 
 	// Set loginButtonHidden to true when login by SMS is being triggered and codeSent is set to false
 	useEffect(() => {
