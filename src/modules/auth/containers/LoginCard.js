@@ -130,9 +130,9 @@ function LoginCard(props) {
 		if (clientLoginKey === null) {
 			return;
 		}
-		
+
 		let jwk = await window.crypto.subtle.exportKey("jwk", clientLoginKey.publicKey);
-		
+
 		let expiration;
 		let i = window.location.hash.indexOf('?');
 		if (i > -1) {
@@ -140,9 +140,9 @@ function LoginCard(props) {
 			let params = new URLSearchParams(jwk.qs);
 			expiration = params.get("expiration");
 		}
-		
+
 		jwk.expiration = expiration === null ? undefined : expiration;
-		
+
 		jwk.ident = getValues().username;
 		setUserTitle(jwk.ident)
 
