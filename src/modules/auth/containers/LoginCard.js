@@ -215,18 +215,18 @@ function LoginCard(props) {
 				props.app.addAlert(
 					"danger",
 					t("LoginCard|The provided information is likely incorrect. The login has failed"), 30
-					);
+				);
 					
 			} else if (e.response.status == 504) {
 				props.app.addAlert(
 					"danger",
 					t("LoginCard|Can't proceed due to connection problems"), 30
-					);
+				);
 			} else {
 				props.app.addAlert(
 					"danger",
 					`${t("LoginCard|Something went wrong")}. ${e?.response?.data?.message}`, 30
-					);
+				);
 			}
 
 			return;
