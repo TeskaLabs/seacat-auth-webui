@@ -413,7 +413,6 @@ function TableRow (props) {
 								title={t("WebAuthnScreen|Edit authenticator")}
 								size="sm"
 								color="secondary"
-								icon="at-arrow-down-cloud"
 								onClick={(e) => editAuthenticatorName(e, obj?.id)}
 								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
