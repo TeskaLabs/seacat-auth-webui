@@ -416,7 +416,7 @@ function TableRow (props) {
 								onClick={(e) => editAuthenticatorName(e, obj?.id)}
 								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
-								<span className="at-pencil-edit"></span>
+								<span className="at-pencil-box"></span>
 							</Button>
 							<Button
 								outline
