@@ -2,9 +2,9 @@
 
 ## Release Candidate
 
-### Refactoring
+### Refactoring
 
-- Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230721, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
+- Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230804, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
 
 ## v23.29-alpha
 
