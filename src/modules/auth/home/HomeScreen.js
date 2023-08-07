@@ -15,6 +15,8 @@ import { DateTime } from 'asab-webui';
 import { factorChaining } from "../utils/factorChaining";
 import { getParams, removeParams } from "../utils/paramsActions";
 
+import generatePenrose from '../utils/generatePenrose';
+
 function HomeScreen(props) {
 	const [features, setFeatures] = useState({ });
 	const [updateFeatures, setUpdateFeatures] = useState({ });
@@ -27,6 +29,8 @@ function HomeScreen(props) {
 	const history = useHistory();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
+	generatePenrose();
+	
 	useEffect(() => {
 		if (getParams("result") == "external_login_activated") {
 			// Remove result param from URL if result with external_login_added is present in query params
