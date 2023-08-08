@@ -14,7 +14,7 @@ export default function generatePenrose() {
 			document.body.removeChild(script);
 		};
 	}
-
+	
 	useLayoutEffect(()=> {
 		function updateSize() {
 			setSize([window.innerWidth, window.innerHeight]);
@@ -24,13 +24,13 @@ export default function generatePenrose() {
 		
 		return () => window.removeEventListener('resize', updateSize);
 	}, [])
-
+	//when screen size changes, remove background and create new
 	useEffect(() => {
 		const bgScript = document.getElementById("bg-script");
-		if (bgScript) bgScript.remove();
-		const removeBackground = generateBackground();
-		return () => {
-			removeBackground();
+			if (bgScript) bgScript.remove();
+				const removeBackground = generateBackground();
+			return () => {
+				removeBackground();
 		};
 
 	}, [size])

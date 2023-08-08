@@ -15,6 +15,7 @@ import {
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
+import generatePenrose from '../utils/generatePenrose';
 
 export default function WebAuthnScreen(props) {
 	return (
@@ -43,6 +44,8 @@ function WebAuthnCard(props) {
 	const [ globalEditMode, setGlobalEditMode ] = useState(false);
 
 	const { handleSubmit, register, formState: { errors }, setValue, resetField, getValues } = useForm();
+
+	generatePenrose();
 
 	// Register input for authenticator name
 	const regName = register(
