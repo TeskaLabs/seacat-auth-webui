@@ -2,10 +2,6 @@
 
 ## Release Candidate
 
-### Refactoring
-
-- Add penrose background to be used in all screens. (INDIGO Sprint 230804, [!40](https://github.com/TeskaLabs/seacat-auth-webui/pull/40))
-
 ### Features
 
 - ASAB WebUI submodule version bump [[9fc06df](https://github.com/TeskaLabs/asab-webui/commit/9fc06df046dcb114262cfd04506fb0dcef22325b)] commit (INDIGO Sprint 230804, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
@@ -13,6 +9,8 @@
 ### Refactoring
 
 - Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230804, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
+
+- Add penrose background to be used in all screens. (INDIGO Sprint 230804, [!40](https://github.com/TeskaLabs/seacat-auth-webui/pull/40))
 
 ## v23.29-alpha
 
