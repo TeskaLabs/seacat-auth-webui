@@ -9,7 +9,8 @@ import {
 	CardSubtitle, CardBody, CardFooter,
 	Form, FormText,
 	Label, Input, CustomInput,
-	Collapse, Button, Progress, ButtonGroup
+	Collapse, Button, Progress, ButtonGroup,
+	FormGroup
 } from 'reactstrap';
 
 import publicKeyValuesToJSON from "../webauthn/publicKeyValuesToJSON";
@@ -324,7 +325,7 @@ function LoginCard(props) {
 				</CardHeader>
 				<CardBody>
 					{/* ident */}
-					<fieldset disabled={isSubmitting || isOnClickSubmitting} className="text-center mb-3">
+					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className="text-center">
 						<h5>
 							<Label for="username" style={{display: "block"}} className='form-label'>
 								{t('LoginCard|Username, email or phone')}
@@ -346,7 +347,7 @@ function LoginCard(props) {
 							innerRef={usernameRegister.ref}
 						/>
 						<FormText>{t('LoginCard|Fill in your login credentials')}</FormText>
-					</fieldset>
+					</FormGroup>
 
 					<Collapse
 						isOpen={descriptor !== undefined}
@@ -513,7 +514,7 @@ function PasswordField(props) {
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
 	return(
-		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
+		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
 				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Password')}
@@ -530,7 +531,7 @@ function PasswordField(props) {
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
 			/>
-		</fieldset>
+		</FormGroup>
 	);
 }
 
@@ -538,7 +539,7 @@ function PasswordField(props) {
 function KeyoteField(props) {
 	const { t } = useTranslation();
 	return(
-		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
+		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
 				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Login with mobile application')}
@@ -548,7 +549,7 @@ function KeyoteField(props) {
 				<Progress animated color="info" value="100"/>
 			</div>
 			<p>{t("LoginCard|Confirm the login")}</p>
-		</fieldset>
+		</FormGroup>
 	);
 }
 
@@ -557,7 +558,7 @@ function YubiKeyField(props) {
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
 	return(
-		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
+		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
 				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Yubikey')}
@@ -574,7 +575,7 @@ function YubiKeyField(props) {
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
 			/>
-		</fieldset>
+		</FormGroup>
 	);
 }
 
@@ -583,7 +584,7 @@ function TOTPField(props) {
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
 	return(
-		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
+		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
 				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|OTP Code')}
@@ -605,7 +606,7 @@ function TOTPField(props) {
 			<FormText color="muted">
 				{t('LoginCard|Enter the code from authenticator app')}
 			</FormText>
-		</fieldset>
+		</FormGroup>
 	);
 }
 
@@ -856,7 +857,7 @@ function SMSLoginField(props) {
 
 	if (codeSent) {
 		return(
-			<fieldset disabled={props.isSubmitting} className="text-center mb-3">
+			<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 				<h5>
 					<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 						{t('LoginCard|Code from SMS')}
@@ -874,12 +875,12 @@ function SMSLoginField(props) {
 					innerRef={reg.ref}
 					style={{width: "10em", marginLeft: "auto", marginRight: "auto", fontFamily: "monospace"}}
 				/>
-			</fieldset>
+			</FormGroup>
 		);
 	}
 
 	return(
-		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
+		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
 				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Login by SMS code')}
@@ -894,7 +895,7 @@ function SMSLoginField(props) {
 			>
 				{t('LoginCard|Send SMS code')}
 			</Button>
-		</fieldset>
+		</FormGroup>
 	);
 }
 
@@ -903,7 +904,7 @@ function RememberMeField(props) {
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
 	return(
-		<fieldset disabled={props.isSubmitting} className="text-center mb-3">
+		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<CustomInput
 				type="checkbox"
 				id={props.factor.type}
@@ -913,7 +914,7 @@ function RememberMeField(props) {
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
 			/>
-		</fieldset>
+		</FormGroup>
 	);
 }
 

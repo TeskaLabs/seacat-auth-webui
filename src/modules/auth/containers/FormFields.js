@@ -22,7 +22,7 @@ export function PhoneField(props) {
 		}
 	);
 	return (
-		<div className="mb-3">
+		<FormGroup className="mb-3">
 			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="phone" className='form-label'>
 				{t("FormFields|Phone")}{props.content?.required && '*'}
 			</Label>
@@ -40,7 +40,7 @@ export function PhoneField(props) {
 				innerRef={reg.ref}
 			/>
 			{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -61,7 +61,7 @@ export function EmailField(props) {
 	);
 
 	return (
-		<div className="mb-3">
+		<FormGroup className="mb-3">
 			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="email" className='form-label'>
 				{t("FormFields|Email")}{props.content?.required && '*'}
 			</Label>
@@ -79,7 +79,7 @@ export function EmailField(props) {
 				innerRef={reg.ref}
 			/>
 			{props.errors.email && <FormFeedback>{props.errors.email.message}</FormFeedback>}
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -102,7 +102,7 @@ export function UserNameField(props) {
 	}
 
 	return (
-		<div className="mb-3">
+		<FormGroup className="mb-3">
 			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="username" className='form-label'>
 				{t("FormFields|Username")}{props.content?.required && '*'}
 			</Label>
@@ -123,7 +123,7 @@ export function UserNameField(props) {
 				:
 				<FormText>{t("FormFields|Only lower-case letters, numbers, dash and underscore are allowed")}</FormText>
 			}
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -155,7 +155,7 @@ export function PasswordField(props) {
 
 	return(
 		<>
-			<div className="mb-3">
+			<FormGroup className="mb-3">
 				<Label
 					title={props.content?.required ? t("FormFields|Required field") : undefined}
 					for="password"
@@ -176,9 +176,9 @@ export function PasswordField(props) {
 					/>
 					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
 				</InputGroup>
-			</div>
+			</FormGroup>
 
-			<div className="mb-3">
+			<FormGroup className="mb-3">
 				<Label for="password2">{t("FormFields|Re-enter Password")}</Label>
 				<InputGroup>
 					<Input
@@ -193,7 +193,7 @@ export function PasswordField(props) {
 					/>
 					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
 				</InputGroup>
-			</div>
+			</FormGroup>
 		</>
 	)
 }

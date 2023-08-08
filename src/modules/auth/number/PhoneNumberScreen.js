@@ -7,7 +7,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormFeedback, Label, Input, Button
+	Form, FormFeedback, FormGroup, Label, Input, Button
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -175,30 +175,33 @@ function ChangeNumber(props) {
 			</CardHeader>
 
 			<CardBody className="text-center pb-1">
-				<Input
-					autoFocus
-					type="text"
-					id="phone"
-					name="phone"
-					maxLength="17"
-					invalid={props.errors.phone}
-					onChange={reg.onChange}
-					onBlur={reg.onBlur}
-					innerRef={reg.ref}
-					defaultValue={props.number}
-					disabled={props.isSubmitting}
-				/>
-				{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
+				<FormGroup tag="fieldset" disabled={props.isSubmitting}>
+					<Input
+						autoFocus
+						type="text"
+						id="phone"
+						name="phone"
+						maxLength="17"
+						invalid={props.errors.phone}
+						onChange={reg.onChange}
+						onBlur={reg.onBlur}
+						innerRef={reg.ref}
+						defaultValue={props.number}
+					/>
+					{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
+				</FormGroup>
 
-				<Button
-					className="my-3"
-					block
-					color="primary"
-					type="submit"
-					disabled={props.isSubmitting}
-				>
-					{t("PhoneNumberScreen|Confirm")}
-				</Button>
+				<FormGroup style={{textAlign: "center"}}>
+					<Button
+						className="justify-content-center"
+						block
+						color="primary"
+						type="submit"
+						disabled={props.isSubmitting}
+					>
+						{t("PhoneNumberScreen|Confirm")}
+					</Button>
+				</FormGroup>
 			</CardBody>
 		</>
 	)
@@ -226,7 +229,7 @@ function SetNumber(props) {
 			</CardHeader>
 
 			<CardBody className="text-center pb-1">
-				<fieldset tag="mb-3" disabled={props.isSubmitting}>
+				<FormGroup tag="fieldset" disabled={props.isSubmitting}>
 					<Input
 						autoFocus
 						type="text"
@@ -240,9 +243,9 @@ function SetNumber(props) {
 						defaultValue={props.number}
 					/>
 					{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
-				</fieldset>
+				</FormGroup>
 
-				<div className='mb-3' style={{textAlign: "center"}}>
+				<FormGroup style={{textAlign: "center"}}>
 					<Button
 						block
 						className="justify-content-center"
@@ -252,7 +255,7 @@ function SetNumber(props) {
 					>
 						{t("PhoneNumberScreen|Confirm")}
 					</Button>
-				</div>
+				</FormGroup>
 			</CardBody>
 		</>
 	)

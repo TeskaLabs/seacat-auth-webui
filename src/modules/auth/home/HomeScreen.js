@@ -7,7 +7,7 @@ import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle,
 	CardSubtitle, CardBody, ListGroup,
-	ListGroupItem, CustomInput
+	ListGroupItem, Input, FormGroup
 } from 'reactstrap';
 
 import { DateTime } from 'asab-webui';
@@ -274,13 +274,15 @@ function HomeScreen(props) {
 													</a>
 												</Col>
 												<Col sm={6}>
-													<CustomInput
-														id={`${item.label.replace(/[^\w\s]/gi, '-')}`}
-														className="float-end"
-														type="switch"
-														defaultChecked={isConnected}
-														onClick={() => externalServiceOnChange({ item, isConnected })}
-													/>
+													<FormGroup className="p-0" switch>
+														<Input
+															id={`${item?.label?.replace(/[^\w\s]/gi, '-')}`}
+															className="float-end"
+															defaultChecked={isConnected}
+															type="switch"
+															onClick={() => externalServiceOnChange({ item, isConnected })}
+														/>
+													</FormGroup>
 												</Col>
 											</Row>
 										</ListGroupItem>

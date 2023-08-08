@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormText, Label, Input, Button
+	Form, FormText, FormGroup, Label, Input, Button
 } from 'reactstrap';
 
 import { getParams } from '../utils/paramsActions';
@@ -145,7 +145,7 @@ function ForgetPwdCard(props) {
 				<CardBody className="pb-1">
 
 					{/* ident */}
-					<Col style={{textAlign: 'center'}}>
+					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
 						<h5>
 							<Label className='form-label d-block' for="username">
 								{t('ForgetPwdScreen|Username, email or phone')}
@@ -164,13 +164,14 @@ function ForgetPwdCard(props) {
 							onChange={usernameRegister.onChange}
 							onBlur={usernameRegister.onBlur}
 							innerRef={usernameRegister.ref}
-							disabled={isSubmitting}
 						/>
 						<FormText>{t('ForgetPwdScreen|Fill in your login credentials')}</FormText>
+					</FormGroup>
 
+					<FormGroup style={{textAlign: "center"}}>
 						<Button
 							block
-							className='mt-2'
+							className="justify-content-center"
 							color="primary"
 							type="submit"
 							disabled={isSubmitting}
@@ -178,10 +179,10 @@ function ForgetPwdCard(props) {
 							{t("ForgetPwdScreen|Reset password")}
 						</Button>
 
-						<p className="mt-1">
+						<p className="text-center mt-1">
 							{t('ForgetPwdScreen|You will receive instructions')}
 						</p>
-					</Col>
+					</FormGroup>
 
 				</CardBody>
 
