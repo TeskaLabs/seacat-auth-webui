@@ -40,8 +40,6 @@ function LoginCard(props) {
 
 	const [ loginButtonHidden, setLoginButtonHidden ] = useState(false);
 
-	const [ disableInputField, setDisableInputField ] = useState(false)
-
 	const [ descriptors, setDescriptors ] = useState(undefined);
 	const [ descriptor, setDescriptor ] = useState(undefined);
 
@@ -192,7 +190,6 @@ function LoginCard(props) {
 
 		setDescriptors(lds);
 		setDescriptor(lds[0]);
-		setDisableInputField(true)
 		setUsername(getValues().username);
 
 			}
@@ -283,7 +280,6 @@ function LoginCard(props) {
 	}
 
 	const onReset = () => {
-		setDisableInputField(false)
 		setDescriptor(undefined);
 		setDescriptors(undefined);
 		setLsid(undefined);
@@ -298,7 +294,6 @@ function LoginCard(props) {
 	}
 
 	const onCantLogin = () => {
-		setDisableInputField(false);
 		let redirect_uri;
 		let i = window.location.hash.indexOf('?');
 		if (i > -1) {
@@ -355,7 +350,7 @@ function LoginCard(props) {
 							onChange={usernameRegister.onChange}
 							onBlur={usernameRegister.onBlur}
 							innerRef={usernameRegister.ref}
-							className={disableInputField ? "disabled-username-input" : null}
+							className={lsid !== undefined ? "disabled-username-input" : null}
 						/>
 						{!lsid ? <FormText>{t('LoginCard|Fill in your login credentials')}</FormText> : null}
 					</FormGroup>
