@@ -24,7 +24,7 @@ function focusPasswordInputField() {
 
 function LoginCard(props) {
 	var rememberedIdent = window.localStorage.getItem('SeaCatIdent');
-	const [userTitle, setUserTitle] = useState("")
+	const [username, setUsername] = useState("");
 
 	const { t } = useTranslation();
 
@@ -145,7 +145,6 @@ function LoginCard(props) {
 		jwk.expiration = expiration === null ? undefined : expiration;
 
 		jwk.ident = getValues().username;
-		setUserTitle(jwk.ident)
 
 		let SeaCatAuthPrologueAPI = props.app.axiosCreate('seacat-auth');
 		let response;
@@ -194,8 +193,9 @@ function LoginCard(props) {
 		setDescriptors(lds);
 		setDescriptor(lds[0]);
 		setDisableInputField(true)
+		setUsername(getValues().username);
 
-	}
+			}
 
 	const onSubmit = async (values) => {
 		values.descriptor = descriptor.id;
@@ -345,7 +345,7 @@ function LoginCard(props) {
 							id="username"
 							name="username"
 							type="text"
-							title={lsid !==undefined ? userTitle : t('LoginCard|Please fill this field')}
+							title={lsid !== undefined ? username : t('LoginCard|Please fill this field')}
 							autoComplete="off"
 							autoCapitalize="none"
 							autoCorrect="off"
