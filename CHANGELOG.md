@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Add penrose background to be used in all screens. (INDIGO Sprint 230804, [!40](https://github.com/TeskaLabs/seacat-auth-webui/pull/40))
+
 ## v23.29-alpha
 
 ### Breaking change
