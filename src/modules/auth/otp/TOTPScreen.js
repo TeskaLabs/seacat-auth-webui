@@ -8,7 +8,7 @@ import QRCode from "react-qr-code";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormText, Label, Input, Button, FormFeedback
+	Form, FormText, Input, Button, FormFeedback, FormGroup
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -222,7 +222,6 @@ function ActivateTOTP(props) {
 						<code>{props.secret}</code>
 					</Col>
 				</Row>
-
 				<FormGroup tag="fieldset" disabled={props.isSubmitting} style={{textAlign: "center"}}>
 					<Input
 						autoFocus
@@ -242,10 +241,9 @@ function ActivateTOTP(props) {
 						:
 						<FormText style={{paddingBottom: "1em"}}>{t('TOTPScreen|Enter the code from authenticator app')}</FormText>
 					}
-
 					<Button
 						block
-						className="justify-content-center"
+						className="justify-content-center my-2"
 						color="primary"
 						type="submit"
 					>

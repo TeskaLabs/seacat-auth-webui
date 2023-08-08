@@ -7,9 +7,10 @@ import {
 	Row, Col,
 	Card, CardHeader, CardTitle,
 	CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormText,
+	Form, FormText,
 	Label, Input, CustomInput,
-	Collapse, Button, Progress, ButtonGroup
+	Collapse, Button, Progress, ButtonGroup,
+	FormGroup
 } from 'reactstrap';
 
 import publicKeyValuesToJSON from "../webauthn/publicKeyValuesToJSON";
@@ -326,7 +327,7 @@ function LoginCard(props) {
 					{/* ident */}
 					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className="text-center">
 						<h5>
-							<Label for="username" style={{display: "block"}}>
+							<Label for="username" style={{display: "block"}} className='form-label'>
 								{t('LoginCard|Username, email or phone')}
 							</Label>
 						</h5>
@@ -515,7 +516,7 @@ function PasswordField(props) {
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Password')}
 				</Label>
 			</h5>
@@ -540,7 +541,7 @@ function KeyoteField(props) {
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Login with mobile application')}
 				</Label>
 			</h5>
@@ -559,7 +560,7 @@ function YubiKeyField(props) {
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Yubikey')}
 				</Label>
 			</h5>
@@ -585,7 +586,7 @@ function TOTPField(props) {
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|OTP Code')}
 				</Label>
 			</h5>
@@ -786,8 +787,8 @@ function WebAuthnField(props) {
 	return(
 		<div className="text-center">
 			<h6>
-				<Label for={props.factor.type} style={{display: "block"}}>
-					<span className="at-shield-star-win pr-1" />{t('LoginCard|You will be prompted to login with FIDO2/WebAuthn')}
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
+					<span className="at-shield-star-win pe-1" />{t('LoginCard|You will be prompted to login with FIDO2/WebAuthn')}
 				</Label>
 			</h6>
 
@@ -858,7 +859,7 @@ function SMSLoginField(props) {
 		return(
 			<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 				<h5>
-					<Label for={props.factor.type} style={{display: "block"}}>
+					<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 						{t('LoginCard|Code from SMS')}
 					</Label>
 				</h5>
@@ -881,7 +882,7 @@ function SMSLoginField(props) {
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
-				<Label for={props.factor.type} style={{display: "block"}}>
+				<Label for={props.factor.type} style={{display: "block"}} className='form-label'>
 					{t('LoginCard|Login by SMS code')}
 				</Label>
 			</h5>

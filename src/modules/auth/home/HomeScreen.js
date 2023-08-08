@@ -7,7 +7,7 @@ import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle,
 	CardSubtitle, CardBody, ListGroup,
-	ListGroupItem, CustomInput
+	ListGroupItem, Input, FormGroup
 } from 'reactstrap';
 
 import { DateTime } from 'asab-webui';
@@ -223,9 +223,9 @@ function HomeScreen(props) {
 											<Col sm={6}>{t('HomeScreen|Created')}</Col>
 											<Col sm={6}>
 												{userinfo?.created_at ?
-													<div className="float-right"><DateTime value={userinfo?.created_at}/></div>
+													<div className="float-end"><DateTime value={userinfo?.created_at}/></div>
 												:
-													<div className="float-right">N/A</div>
+													<div className="float-end">N/A</div>
 												}
 											</Col>
 										</Row>
@@ -233,9 +233,9 @@ function HomeScreen(props) {
 											<Col sm={6}>{t('HomeScreen|Last successful login')}</Col>
 											<Col sm={6}>
 												{lastLogin?.sat ?
-													<div className="float-right"><DateTime value={lastLogin?.sat}/></div>
+													<div className="float-end"><DateTime value={lastLogin?.sat}/></div>
 												:
-													<div className="float-right">N/A</div>
+													<div className="float-end">N/A</div>
 												}
 											</Col>
 										</Row>
@@ -243,9 +243,9 @@ function HomeScreen(props) {
 											<Col sm={6}>{t('HomeScreen|Last failed login')}</Col>
 											<Col sm={6}>
 												{lastLogin?.fat ?
-													<div className="float-right"><DateTime value={lastLogin?.fat}/></div>
+													<div className="float-end"><DateTime value={lastLogin?.fat}/></div>
 												:
-													<div className="float-right">N/A</div>
+													<div className="float-end">N/A</div>
 												}
 											</Col>
 										</Row>
@@ -253,9 +253,9 @@ function HomeScreen(props) {
 											<Col sm={6}>{t('HomeScreen|Session expiration')}</Col>
 											<Col sm={6}>
 												{userinfo?.exp ?
-													<div className="float-right"><DateTime value={userinfo?.exp}/></div>
+													<div className="float-end"><DateTime value={userinfo?.exp}/></div>
 												:
-													<div className="float-right">N/A</div>
+													<div className="float-end">N/A</div>
 												}
 											</Col>
 										</Row>
@@ -274,13 +274,15 @@ function HomeScreen(props) {
 													</a>
 												</Col>
 												<Col sm={6}>
-													<CustomInput
-														id={`${item.label.replace(/[^\w\s]/gi, '-')}`}
-														className="float-right"
-														type="switch"
-														defaultChecked={isConnected}
-														onClick={() => externalServiceOnChange({ item, isConnected })}
-													/>
+													<FormGroup className="p-0" switch>
+														<Input
+															id={`${item?.label?.replace(/[^\w\s]/gi, '-')}`}
+															className="float-end"
+															defaultChecked={isConnected}
+															type="switch"
+															onClick={() => externalServiceOnChange({ item, isConnected })}
+														/>
+													</FormGroup>
 												</Col>
 											</Row>
 										</ListGroupItem>
@@ -308,7 +310,7 @@ function HomeScreen(props) {
 										</Col>
 										<Col sm={7}>
 											<div
-												className="float-right char-limit char-limit-text"
+												className="float-end char-limit char-limit-text"
 												id="emailAddress"
 												name="emailAddress"
 												title={userinfo?.email ?? "" }
@@ -338,7 +340,7 @@ function HomeScreen(props) {
 										</Col>
 										<Col sm={6}>
 											<div
-												className="float-right text-muted pointer char-limit char-limit-number"
+												className="float-end text-muted pointer char-limit char-limit-number"
 												id="phoneNumber"
 												name="phoneNumber"
 												title={userinfo?.phone ?? ""}
@@ -361,7 +363,7 @@ function HomeScreen(props) {
 											</Link>
 										</Col>
 										<Col sm={6}>
-											<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
+											<div className="float-end text-muted pointer" id="webauthn" name="webauthn">
 												<div
 													className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("totp") != -1)) ?
 														`status-circle status-active`
@@ -385,7 +387,7 @@ function HomeScreen(props) {
 											</Link>
 										</Col>
 										<Col sm={6}>
-											<div className="float-right text-muted pointer" id="webauthn" name="webauthn">
+											<div className="float-end text-muted pointer" id="webauthn" name="webauthn">
 												<div
 													className={((userinfo?.available_factors) && (userinfo.available_factors.indexOf("webauthn") != -1)) ?
 														`status-circle status-active`

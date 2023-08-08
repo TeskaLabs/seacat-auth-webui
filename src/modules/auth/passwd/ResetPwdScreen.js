@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormText, Label, Input, Button, FormFeedback
+	Form, FormText, FormGroup, Label, Input, Button, FormFeedback
 } from 'reactstrap';
 
 function ResetPwdScreen(props) {
@@ -158,7 +158,7 @@ function ResetPwdCard(props) {
 				<CardBody className="pb-1">
 					<FormGroup tag="fieldset" disabled={isSubmitting} style={{textAlign: "center"}}>
 						<h5>
-							<Label for="newpassword" style={{display: "block"}}>
+							<Label for="newpassword" className='form-label d-block'>
 								{t('ResetPwdScreen|New Password')}
 							</Label>
 						</h5>
@@ -179,7 +179,7 @@ function ResetPwdCard(props) {
 
 					<FormGroup tag="fieldset" disabled={isSubmitting} style={{textAlign: "center"}}>
 						<h5>
-							<Label for="newpassword2" style={{display: "block"}}>
+							<Label for="newpassword2" className='form-label d-block'>
 								{t('ResetPwdScreen|Re-enter Password')}
 							</Label>
 						</h5>

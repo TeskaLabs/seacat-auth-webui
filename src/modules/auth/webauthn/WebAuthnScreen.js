@@ -9,7 +9,8 @@ import publicKeyValuesToJSON from "./publicKeyValuesToJSON";
 
 import {
 	Container, Row, Col,
-	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
+	Card, CardHeader, CardTitle,
+	CardSubtitle, CardBody, CardFooter,
 	Input, Button, ButtonGroup,
 	Table, Form, FormFeedback
 } from 'reactstrap';
@@ -371,7 +372,7 @@ function TableRow (props) {
 					</>
 				:
 					<div className="div-key-wordwrap" title={obj?.name}>
-						<span className="at-shield-star-win pr-1" />{obj?.name}
+						<span className="at-shield-star-win pe-1" />{obj?.name}
 					</div>
 				}
 			</td>
@@ -381,7 +382,7 @@ function TableRow (props) {
 			<td className="p-2 td-not-display align-middle">
 				<DateTime value={obj?.last_login}/>
 			</td>
-			<td className="p-2 align-middle text-right">
+			<td className="p-2 align-middle text-end">
 				<ButtonGroup className="table-button-group">
 					{(localEditMode && props.globalEditMode && (obj?.id == props.getValues("id"))) ?
 						<>
@@ -424,7 +425,7 @@ function TableRow (props) {
 								color="danger"
 								type="button"
 								title={t("WebAuthnScreen|Unregister authenticator")}
-								className="float-right"
+								className="float-end"
 								onClick={(e) => {props.confirmWebAuthnUnregister(obj?.id), e.preventDefault()}}
 								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
@@ -437,4 +438,3 @@ function TableRow (props) {
 		</tr>
 	)
 }
-

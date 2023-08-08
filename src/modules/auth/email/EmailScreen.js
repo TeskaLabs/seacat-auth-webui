@@ -7,7 +7,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormFeedback, Input, Button
+	Form, FormFeedback, FormGroup, Input, Button
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
@@ -160,7 +160,6 @@ function ManageEmail(props) {
 					</CardSubtitle>
 				</div>
 			</CardHeader>
-
 			<CardBody className="text-center pb-1">
 				<FormGroup tag="fieldset" disabled={props.isSubmitting}>
 					<Input

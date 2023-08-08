@@ -108,7 +108,7 @@ function AcceptInvitationCard(props) {
 			<CardBody>
 				<Row className="justify-content-center">
 					<h5>
-						<Label for="acceptas" style={{display: "block"}}>
+						<Label for="acceptas" style={{display: "block"}} className='form-label'>
 							{t(`AcceptInvitationCard|Accept invitation as`)}
 							<span className="primary-span">{props.credentials}</span>
 						</Label>

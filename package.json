@@ -47,7 +47,7 @@
 	"dependencies": {
 		"@vectopus/atlas-icons": "^0.0.7",
 		"axios": "^0.21.1",
-		"bootstrap": "4.6.0",
+		"bootstrap": "^5",
 		"core-js": "3",
 		"date-fns": "^2.28.0",
 		"i18next": "^19.7.0",
@@ -63,7 +63,7 @@
 		"react-redux": "^7.2.0",
 		"react-router-dom": "^5.1.2",
 		"react-simple-tree-menu": "^1.1.18",
-		"reactstrap": "^8.4.1",
+		"reactstrap": "^9.2.0",
 		"redux": "^4.0.1"
 	}
 }

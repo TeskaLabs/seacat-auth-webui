@@ -7,7 +7,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormFeedback, Label, Input, Button
+	Form, FormFeedback, FormGroup, Label, Input, Button
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";

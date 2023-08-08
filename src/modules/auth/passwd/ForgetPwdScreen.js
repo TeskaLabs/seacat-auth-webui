@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
@@ -147,7 +147,7 @@ function ForgetPwdCard(props) {
 					{/* ident */}
 					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
 						<h5>
-							<Label for="username" style={{display: "block"}}>
+							<Label className='form-label d-block' for="username">
 								{t('ForgetPwdScreen|Username, email or phone')}
 							</Label>
 						</h5>

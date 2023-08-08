@@ -1,7 +1,7 @@
-import React, { useState }  from 'react';
+import React from 'react';
 import {
-	FormGroup, Input, Label,
-	Button, InputGroupAddon, InputGroup, FormFeedback, FormText
+	Input, Label,
+	InputGroup, FormFeedback, FormText
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -22,8 +22,8 @@ export function PhoneField(props) {
 		}
 	);
 	return (
-		<FormGroup>
-			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="phone">
+		<FormGroup className="mb-3">
+			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="phone" className='form-label'>
 				{t("FormFields|Phone")}{props.content?.required && '*'}
 			</Label>
 			<Input
@@ -61,8 +61,8 @@ export function EmailField(props) {
 	);
 
 	return (
-		<FormGroup>
-			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="email">
+		<FormGroup className="mb-3">
+			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="email" className='form-label'>
 				{t("FormFields|Email")}{props.content?.required && '*'}
 			</Label>
 			<Input
@@ -102,8 +102,8 @@ export function UserNameField(props) {
 	}
 
 	return (
-		<FormGroup>
-			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="username">
+		<FormGroup className="mb-3">
+			<Label title={props.content?.required ? t("FormFields|Required field") : undefined} for="username" className='form-label'>
 				{t("FormFields|Username")}{props.content?.required && '*'}
 			</Label>
 			<Input
@@ -155,10 +155,11 @@ export function PasswordField(props) {
 
 	return(
 		<>
-			<FormGroup>
+			<FormGroup className="mb-3">
 				<Label
 					title={props.content?.required ? t("FormFields|Required field") : undefined}
 					for="password"
+					className='form-label'
 				>
 					{t("FormFields|Password")}{props.content?.required && (props.content?.set == false) && '*'}
 				</Label>
@@ -177,7 +178,7 @@ export function PasswordField(props) {
 				</InputGroup>
 			</FormGroup>
 
-			<FormGroup>
+			<FormGroup className="mb-3">
 				<Label for="password2">{t("FormFields|Re-enter Password")}</Label>
 				<InputGroup>
 					<Input
