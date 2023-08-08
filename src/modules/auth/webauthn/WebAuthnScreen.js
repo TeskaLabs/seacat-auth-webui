@@ -372,7 +372,7 @@ function TableRow (props) {
 					</>
 				:
 					<div className="div-key-wordwrap" title={obj?.name}>
-						<span className="cil-shield-alt pe-1" />{obj?.name}
+						<span className="at-shield-star-win pe-1" />{obj?.name}
 					</div>
 				}
 			</td>
@@ -414,11 +414,10 @@ function TableRow (props) {
 								title={t("WebAuthnScreen|Edit authenticator")}
 								size="sm"
 								color="secondary"
-								icon="cil-cloud-download"
 								onClick={(e) => editAuthenticatorName(e, obj?.id)}
 								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
-								<span className="cil-color-border"></span>
+								<span className="at-pencil-box"></span>
 							</Button>
 							<Button
 								outline
@@ -439,4 +438,3 @@ function TableRow (props) {
 		</tr>
 	)
 }
-
