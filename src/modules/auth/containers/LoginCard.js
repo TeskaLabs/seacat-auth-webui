@@ -192,7 +192,7 @@ function LoginCard(props) {
 		setDescriptor(lds[0]);
 		setUsername(getValues().username);
 
-			}
+	}
 
 	const onSubmit = async (values) => {
 		values.descriptor = descriptor.id;
