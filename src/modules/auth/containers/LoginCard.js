@@ -17,11 +17,6 @@ import base64url from '../utils/base64url';
 
 // TODO: Reset the form is it stays too long in "after prologue" state (serverLoginKey !== undefined)
 
-function focusPasswordInputField() {
-	let foc = document.getElementsByClassName("focus-me")[0];
-	if (foc !== undefined) foc.focus();
-}
-
 function LoginCard(props) {
 	var rememberedIdent = window.localStorage.getItem('SeaCatIdent');
 	const [username, setUsername] = useState("");
@@ -959,4 +954,9 @@ const ExternalLogin = ({ t, ext, stateCode, isSubmitting, isOnClickSubmitting, s
 			{t("LoginCard|" + ext.label)}
 		</Button>
 	);
+}
+
+function focusPasswordInputField() {
+	let foc = document.getElementsByClassName("focus-me")[0];
+	if (foc !== undefined) foc.focus();
 }
