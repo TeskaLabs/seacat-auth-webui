@@ -799,7 +799,7 @@ function WebAuthnField(props) {
 		<div className="text-center">
 			<h6>
 				<Label for={props.factor.type} style={{display: "block"}}>
-					<span className="cil-shield-alt pr-1" />{t('LoginCard|You will be prompted to login with FIDO2/WebAuthn')}
+					<span className="at-shield-star-win pr-1" />{t('LoginCard|You will be prompted to login with FIDO2/WebAuthn')}
 				</Label>
 			</h6>
 

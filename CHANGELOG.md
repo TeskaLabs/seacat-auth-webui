@@ -2,7 +2,13 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[9fc06df](https://github.com/TeskaLabs/asab-webui/commit/9fc06df046dcb114262cfd04506fb0dcef22325b)] commit (INDIGO Sprint 230804, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
+
 ### Refactoring
+
+- Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230804, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
 
 - Change visibility of username to readonly and focus on password input field after wrong password. (INDIGO Sprint 230623, [!35](https://github.com/TeskaLabs/seacat-auth-webui/pull/35))
 
