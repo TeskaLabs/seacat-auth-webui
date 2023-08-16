@@ -371,7 +371,7 @@ function TableRow (props) {
 					</>
 				:
 					<div className="div-key-wordwrap" title={obj?.name}>
-						<span className="at-shield-star-win pr-1" />{obj?.name}
+						<span className="cil-shield-alt pr-1" />{obj?.name}
 					</div>
 				}
 			</td>
@@ -416,7 +416,7 @@ function TableRow (props) {
 								onClick={(e) => editAuthenticatorName(e, obj?.id)}
 								disabled={props.isSubmitting || (props.globalEditMode == true)}
 							>
-								<span className="at-pencil-box"></span>
+								<span className="cil-color-border"></span>
 							</Button>
 							<Button
 								outline
