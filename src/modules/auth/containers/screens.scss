@@ -29,3 +29,14 @@
 .card-footer-button-flex {
 	flex: 1 !important
 }
+
+.disabled-username-input{
+	border: none !important;
+	box-shadow: none !important;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 1.25rem;
+}
+

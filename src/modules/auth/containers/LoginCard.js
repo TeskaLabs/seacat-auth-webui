@@ -19,6 +19,7 @@ import base64url from '../utils/base64url';
 
 function LoginCard(props) {
 	var rememberedIdent = window.localStorage.getItem('SeaCatIdent');
+	const [username, setUsername] = useState("");
 
 	const { t } = useTranslation();
 
@@ -184,9 +185,9 @@ function LoginCard(props) {
 
 		setDescriptors(lds);
 		setDescriptor(lds[0]);
+		setUsername(getValues().username);
 
 	}
-
 
 	const onSubmit = async (values) => {
 		values.descriptor = descriptor.id;
@@ -324,7 +325,7 @@ function LoginCard(props) {
 				</CardHeader>
 				<CardBody>
 					{/* ident */}
-					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className="text-center">
+					<FormGroup tag="fieldset" disabled={isSubmitting || isOnClickSubmitting} className={!lsid ? "text-center" : "text-center mb-2"}>
 						<h5>
 							<Label for="username" style={{display: "block"}}>
 								{t('LoginCard|Username, email or phone')}
@@ -334,7 +335,7 @@ function LoginCard(props) {
 							id="username"
 							name="username"
 							type="text"
-							title={t('LoginCard|Please fill this field')}
+							title={lsid !== undefined ? username : t('LoginCard|Please fill this field')}
 							autoComplete="off"
 							autoCapitalize="none"
 							autoCorrect="off"
@@ -344,15 +345,15 @@ function LoginCard(props) {
 							onChange={usernameRegister.onChange}
 							onBlur={usernameRegister.onBlur}
 							innerRef={usernameRegister.ref}
+							className={lsid !== undefined ? "disabled-username-input" : null}
 						/>
-						<FormText>{t('LoginCard|Fill in your login credentials')}</FormText>
+						{!lsid ? <FormText>{t('LoginCard|Fill in your login credentials')}</FormText> : null}
 					</FormGroup>
 
 					<Collapse
 						isOpen={descriptor !== undefined}
 						onEntered={() => {
-							let fi = document.getElementsByClassName("focus-me")[0];
-							if (fi !== undefined) fi.focus();
+							focusPasswordInputField()
 						}}
 					>
 
@@ -509,9 +510,15 @@ function Alternatives(props) {
 }
 
 
+
 function PasswordField(props) {
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
+
+	useEffect(()=>{
+		focusPasswordInputField()
+	},[props])
+
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
@@ -582,6 +589,11 @@ function YubiKeyField(props) {
 function TOTPField(props) {
 	const { t } = useTranslation();
 	const reg = props.register(`${props.factor.type}`);
+
+	useEffect(()=>{
+		focusPasswordInputField()
+	},[props])
+
 	return(
 		<FormGroup tag="fieldset" disabled={props.isSubmitting} className="text-center">
 			<h5>
@@ -804,11 +816,14 @@ function WebAuthnField(props) {
 
 
 function SMSLoginField(props) {
-
 	const { t } = useTranslation();
 	const [ codeSent, setCodeSent ] = useState(false);
 	const [ disable, setDisable ] = useState(false);
 	const reg = props.register(`${props.factor.type}`);
+	
+	useEffect(()=>{
+		focusPasswordInputField()
+	},[props])
 
 	// Set loginButtonHidden to true when login by SMS is being triggered and codeSent is set to false
 	useEffect(() => {
@@ -850,8 +865,6 @@ function SMSLoginField(props) {
 
 		setCodeSent(true);
 		props.setLoginButtonHidden(false);
-
-		document.getElementById(props.factor.type).focus();
 	}
 
 	if (codeSent) {
@@ -873,6 +886,7 @@ function SMSLoginField(props) {
 					onBlur={reg.onBlur}
 					innerRef={reg.ref}
 					style={{width: "10em", marginLeft: "auto", marginRight: "auto", fontFamily: "monospace"}}
+					className={props.idx == 0 ? "focus-me" : ""}
 				/>
 			</FormGroup>
 		);
@@ -940,4 +954,9 @@ const ExternalLogin = ({ t, ext, stateCode, isSubmitting, isOnClickSubmitting, s
 			{t("LoginCard|" + ext.label)}
 		</Button>
 	);
+}
+
+function focusPasswordInputField() {
+	let foc = document.getElementsByClassName("focus-me")[0];
+	if (foc !== undefined) foc.focus();
 }

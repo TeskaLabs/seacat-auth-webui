@@ -10,6 +10,8 @@
 
 - Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230804, [!29](https://github.com/TeskaLabs/seacat-auth-webui/pull/29))
 
+- Change visibility of username to readonly and focus on password input field after wrong password. (INDIGO Sprint 230623, [!35](https://github.com/TeskaLabs/seacat-auth-webui/pull/35))
+
 ## v23.29-alpha
 
 ### Breaking change
