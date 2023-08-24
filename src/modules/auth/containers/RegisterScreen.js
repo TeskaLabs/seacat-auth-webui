@@ -15,7 +15,6 @@ function RegisterScreen(props) {
 	const [features, setFeatures] = useState({ "login": {} });
 	const [registerFeatures, setRegisterFeatures] = useState({});
 	const [registerToken, setRegisterToken] = useState(undefined);
-	const [width, height] = useWindowSize();
 	const [stateCode, setStateCode] = useState("");
 	const [credentials, setCredentials] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,6 +24,8 @@ function RegisterScreen(props) {
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const userinfo = useSelector(state => state.auth.userinfo);
+
+	generatePenrose();
 
 	useEffect(() => {
 		// Fetch register features from the server
