@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 
 import { getParams } from '../utils/paramsActions';
+import generatePenrose from '../utils/generatePenrose';
 
 function ForgetPwdScreen(props) {
 
@@ -38,6 +39,8 @@ function ForgetPwdCard(props) {
 	let invalidCode = getParams("invalid_code");
 
 	const usernameRegister = register('username');
+
+	generatePenrose();
 
 	const onSubmit = async (values) => {
 		/* 

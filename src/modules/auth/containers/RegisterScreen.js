@@ -8,13 +8,13 @@ import LoginCard from './LoginCard.js';
 import RegistrationCard from './RegistrationCard.js';
 import AcceptInvitationCard from './AcceptInvitationCard.js';
 import { getParams } from '../utils/paramsActions';
+import generatePenrose from '../utils/generatePenrose.js';
 
 function RegisterScreen(props) {
 	const { t } = useTranslation();
 	const [features, setFeatures] = useState({ "login": {} });
 	const [registerFeatures, setRegisterFeatures] = useState({});
 	const [registerToken, setRegisterToken] = useState(undefined);
-	const [width, height] = useWindowSize();
 	const [stateCode, setStateCode] = useState("");
 	const [credentials, setCredentials] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,6 +24,8 @@ function RegisterScreen(props) {
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const userinfo = useSelector(state => state.auth.userinfo);
+
+	generatePenrose();
 
 	useEffect(() => {
 		// Fetch register features from the server
@@ -42,14 +44,6 @@ function RegisterScreen(props) {
 			saveRedirectUri();
 		}
 	}, [features])
-
-	// upon screen size change, removes current background and generates new one
-	useEffect(() => {
-		const bgScript = document.getElementById("bg-script");
-		if (bgScript) bgScript.remove();
-
-		generatePenrose()
-	}, [height, width])
 
 	useEffect(() => {
 		if (registrationSuccessful == true) {
@@ -80,31 +74,6 @@ function RegisterScreen(props) {
 				[code]: { redirectUri, expirationDate }
 			}))
 			setStateCode(code); // TODO: state code should be randomly generated (16 chars)
-		}
-	}
-
-	function useWindowSize() {
-		const [size, setSize] = useState([0, 0]);
-		useLayoutEffect(() => {
-		  function updateSize() {
-			setSize([window.innerWidth, window.innerHeight]);
-		  }
-		  window.addEventListener('resize', updateSize);
-		  updateSize();
-		  return () => window.removeEventListener('resize', updateSize);
-		}, []);
-		return size;
-	}
-
-	// generates new background
-	const generatePenrose = () => {
-		const script = document.createElement('script');
-		script.id = "bg-script"
-		script.src = "./media/login-bg.js"
-		script.async = true;
-		document.body.appendChild(script);
-		return () => {
-			document.body.removeChild(script);
 		}
 	}
 

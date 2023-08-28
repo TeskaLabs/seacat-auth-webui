@@ -11,8 +11,11 @@ import {
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
+import generatePenrose from '../utils/generatePenrose';
 
 function EmailScreen(props) {
+	generatePenrose();
+	
 	return (
 		<Container>
 			<Row className="justify-content-center">

@@ -10,6 +10,8 @@
 
 - Change visibility of username to readonly and focus on password input field after wrong password. (INDIGO Sprint 230623, [!35](https://github.com/TeskaLabs/seacat-auth-webui/pull/35))
 
+- Add penrose background to be used in all screens. (INDIGO Sprint 230804, [!40](https://github.com/TeskaLabs/seacat-auth-webui/pull/40))
+
 ## v23.29-alpha
 
 ### Breaking change

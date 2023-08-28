@@ -10,8 +10,11 @@ import {
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
+import generatePenrose from '../utils/generatePenrose';
 
 function ChangePwdScreen(props) {
+
+	generatePenrose();
 
 	return (
 		<Container>

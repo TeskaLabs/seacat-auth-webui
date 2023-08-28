@@ -6,11 +6,11 @@ import { Container, Row, Col } from 'reactstrap';
 import LoginCard from './LoginCard.js';
 import RegistrationCard from './RegistrationCard.js';
 import { getParams } from '../utils/paramsActions';
+import generatePenrose from '../utils/generatePenrose.js';
 
 function LoginScreen(props) {
 	const { t } = useTranslation();
 	const [features, setFeatures] = useState({ "login": {} });
-	const [width, height] = useWindowSize();
 	const [stateCode, setStateCode] = useState("");
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
@@ -29,13 +29,7 @@ function LoginScreen(props) {
 		}
 	}, [features])
 
-	// upon screen size change, removes current background and generates new one
-	useEffect(() => {
-		const bgScript = document.getElementById("bg-script");
-		if (bgScript) bgScript.remove();
-
-		generatePenrose()
-	}, [height, width])
+	generatePenrose()
 
 	const checkExternalLoginStatus = () => {
 		const err = getParams("error");
@@ -56,31 +50,6 @@ function LoginScreen(props) {
 				[code]: { redirectUri, expirationDate }
 			}))
 			setStateCode(code); // TODO: state code should be randomly generated (16 chars)
-		}
-	}
-
-	function useWindowSize() {
-		const [size, setSize] = useState([0, 0]);
-		useLayoutEffect(() => {
-		  function updateSize() {
-			setSize([window.innerWidth, window.innerHeight]);
-		  }
-		  window.addEventListener('resize', updateSize);
-		  updateSize();
-		  return () => window.removeEventListener('resize', updateSize);
-		}, []);
-		return size;
-	}
-
-	// generates new background
-	const generatePenrose = () => {
-		const script = document.createElement('script');
-		script.id = "bg-script"
-		script.src = "./media/login-bg.js"
-		script.async = true;
-		document.body.appendChild(script);
-		return () => {
-			document.body.removeChild(script);
 		}
 	}
 

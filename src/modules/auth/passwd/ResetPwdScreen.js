@@ -8,6 +8,7 @@ import {
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
 	Form, FormGroup, FormText, Label, Input, Button, FormFeedback
 } from 'reactstrap';
+import generatePenrose from '../utils/generatePenrose';
 
 function ResetPwdScreen(props) {
 
@@ -28,6 +29,9 @@ export default ResetPwdScreen;
 function ResetPwdCard(props) {
 	const { t, i18n } = useTranslation();
 	const { handleSubmit, register, getValues, formState: { errors, isSubmitting } } = useForm();
+
+	generatePenrose();
+	
 	let history = useHistory();
 
 	const [ completed, setCompleted ] = useState(false);
