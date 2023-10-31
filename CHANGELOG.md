@@ -1,6 +1,12 @@
 # CHANGELOG
 
-## Release Candidate
+## v23.29
+
+- v23.29-beta
+- v23.29-alpha
+- v23.27-beta
+- v23.16-beta
+- v23.13-beta
 
 ## v23.29-beta
 
