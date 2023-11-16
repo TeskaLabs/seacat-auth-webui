@@ -28,6 +28,7 @@ function HomeScreen(props) {
 	const { t } = useTranslation();
 	const history = useHistory();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
+	const SeaCatAccountAPI = props.app.axiosCreate('seacat-auth/account');
 
 	generatePenrose();
 	
@@ -70,7 +71,7 @@ function HomeScreen(props) {
 
 	const fetchUpdateFeatures = async () => {
 		try {
-			const response = await SeaCatAuthAPI.get("/public/provider");
+			const response = await SeaCatAccountAPI.get("/provider");
 
 			if (response.data.result != "OK") throw response;
 
@@ -87,7 +88,7 @@ function HomeScreen(props) {
 
 	const fetchLastLogin = async () => {
 		try {
-			const response = await SeaCatAuthAPI.get("/public/last_login");
+			const response = await SeaCatAccountAPI.get("/last_login");
 			setLastLogin(response.data);
 		} catch (e) {
 			console.error(e);
@@ -148,7 +149,7 @@ function HomeScreen(props) {
 	const logoutAll = async () => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.delete('/public/sessions');
+			response = await SeaCatAccountAPI.delete('/public/sessions');
 			if (response.data.result !== "OK") {
 				throw new Error(t("HomeScreen|Something went wrong when logging you out from all devices"));
 			}
@@ -188,7 +189,7 @@ function HomeScreen(props) {
 	// Remove external service method
 	const removeExternalService = async (provider) => {
 		try {
-			await SeaCatAuthAPI.delete("/public/ext-login/" + provider);
+			await SeaCatAccountAPI.delete("/ext-login/" + provider);
 			props.app.addAlert("success", t("HomeScreen|Service was successfully disconnected"));
 			// reload in order to get updated userinfo
 			window.location.reload();
