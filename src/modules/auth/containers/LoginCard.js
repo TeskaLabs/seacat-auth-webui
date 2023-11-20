@@ -142,7 +142,7 @@ function LoginCard(props) {
 		let SeaCatAuthPrologueAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		try {
-			response = await SeaCatAuthPrologueAPI.put('/public/login.prologue', jwk)
+			response = await SeaCatAuthPrologueAPI.put('/public/login-prologue', jwk)
 		} catch (e) {
 			props.app.addAlert(
 				"danger",
