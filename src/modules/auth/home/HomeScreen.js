@@ -149,7 +149,7 @@ function HomeScreen(props) {
 	const logoutAll = async () => {
 		let response;
 		try {
-			response = await SeaCatAccountAPI.delete('/public/sessions');
+			response = await SeaCatAccountAPI.delete('/sessions');
 			if (response.data.result !== "OK") {
 				throw new Error(t("HomeScreen|Something went wrong when logging you out from all devices"));
 			}
