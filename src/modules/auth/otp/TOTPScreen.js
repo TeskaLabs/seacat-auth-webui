@@ -36,7 +36,7 @@ function SetTOTPCard(props) {
 	const { t, i18n } = useTranslation();
 	const { handleSubmit, register, getValues, formState: { errors } } = useForm();
 	let history = useHistory();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
+	let SeaCatAccountAPI = props.app.axiosCreate('seacat-auth/account');
 
 	let params = new URLSearchParams(useLocation().search);
 	let redirect_uri = params.get("redirect_uri");
@@ -71,7 +71,7 @@ function SetTOTPCard(props) {
 	const getData = async () => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get("/public/totp");
+			response = await SeaCatAccountAPI.get("/totp");
 			if (response.data.result == 'OK') {
 				setActive(response.data.active);
 				setConfigURL(response.data.url);
@@ -91,7 +91,7 @@ function SetTOTPCard(props) {
 		let response;
 		if (active) {
 			try {
-				response = await SeaCatAuthAPI.put("/public/unset-totp");
+				response = await SeaCatAccountAPI.put("/unset-totp");
 				if (response.data.result !== "OK") {
 					throw new Error(t("TOTPScreen|Something went wrong, can't deactivate OTP"));
 				}
@@ -117,7 +117,7 @@ function SetTOTPCard(props) {
 
 		} else {
 			try {
-				response = await SeaCatAuthAPI.put("/public/set-totp",
+				response = await SeaCatAccountAPI.put("/set-totp",
 					JSON.stringify(values),
 					{ headers: {
 						'Content-Type': 'application/json'

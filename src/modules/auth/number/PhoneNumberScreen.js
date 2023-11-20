@@ -44,7 +44,7 @@ function ManageNumberCard(props) {
 	let redirect_uri = params.get("redirect_uri");
 
 	let history = useHistory();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
+	let SeaCatAccountAPI = props.app.axiosCreate('seacat-auth/account');
 	let number = props.userinfo?.phone;
 	let email = props.userinfo?.email ? props.userinfo.email : "";
 
@@ -68,7 +68,7 @@ function ManageNumberCard(props) {
 	const onSubmit = async (values) => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.put("/public/credentials",
+			response = await SeaCatAccountAPI.put("/credentials",
 				JSON.stringify(values),
 				{ headers: {
 					'Content-Type': 'application/json'

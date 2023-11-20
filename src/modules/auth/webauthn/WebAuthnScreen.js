@@ -33,7 +33,7 @@ export default function WebAuthnScreen(props) {
 function WebAuthnCard(props) {
 	const { t, i18n } = useTranslation();
 	let history = useHistory();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
+	let SeaCatAccountAPI = props.app.axiosCreate('seacat-auth/account');
 
 	let params = new URLSearchParams(useLocation().search);
 	let redirect_uri = params.get("redirect_uri");
@@ -69,7 +69,7 @@ function WebAuthnCard(props) {
 	const getAuthenticators = async () => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get('/public/webauthn');
+			response = await SeaCatAccountAPI.get('/webauthn');
 			// TODO: enable validation, when ready in SA service
 			if (response.data.result != 'OK') {
 				throw new Error(t("WebAuthnScreen|Something went wrong, can't retrieve authenticators"));
@@ -97,7 +97,7 @@ function WebAuthnCard(props) {
 		// Get register options for WebAuthn
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get('/public/webauthn/register-options');
+			response = await SeaCatAccountAPI.get('/webauthn/register-options');
 			// TODO: enable validation, when ready in SA service
 			// if (response.data.result != 'OK') {
 			// 	throw new Error(t("WebAuthnScreen|Something went wrong, registration of authenticator failed"));
@@ -151,7 +151,7 @@ function WebAuthnCard(props) {
 		// Register credentials
 		let registerResponse;
 		try {
-			registerResponse = await SeaCatAuthAPI.put('/public/webauthn/register', credToJSON);
+			registerResponse = await SeaCatAccountAPI.put('/webauthn/register', credToJSON);
 			if (registerResponse.data.result != 'OK') {
 				throw new Error(t("WebAuthnScreen|Something went wrong, registration of authenticator failed"));
 			}
@@ -178,7 +178,7 @@ function WebAuthnCard(props) {
 	const onUnregister = async (id) => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.delete(`/public/webauthn/${id}`);
+			response = await SeaCatAccountAPI.delete(`/webauthn/${id}`);
 			// TODO: enable validation, when ready in SA service
 			if (response.data.result != 'OK') {
 				throw new Error(t("WebAuthnScreen|Something went wrong, can't unregister authenticator"));
@@ -203,7 +203,7 @@ function WebAuthnCard(props) {
 	const onSubmitKeyName = async (values) => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.put(`/public/webauthn/${values.id}`,
+			response = await SeaCatAccountAPI.put(`/webauthn/${values.id}`,
 				{"name": `${values.name}`}
 			);
 			if (response.data.result != 'OK') {

@@ -54,11 +54,11 @@ function ChangePwdCard(props) {
 	});
 
 	const onSubmit = async (values) => {
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
+		let SeaCatAccountAPI = props.app.axiosCreate('seacat-auth/account');
 		let response;
 
 		try {
-			response = await SeaCatAuthAPI.put("/public/password-change", values)
+			response = await SeaCatAccountAPI.put("/password-change", values)
 		} catch (e) {
 			props.app.addAlert("danger", `${t("ChangePwdScreen|Something went wrong")}. ${e?.response?.data?.message}`, 30);
 			return;

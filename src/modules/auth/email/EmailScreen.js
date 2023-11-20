@@ -43,7 +43,7 @@ function ManageEmailCard(props) {
 	let redirect_uri = params.get("redirect_uri");
 
 	let history = useHistory();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
+	let SeaCatAccountAPI = props.app.axiosCreate('seacat-auth/account');
 	let email = props.userinfo?.email;
 	let number = props.userinfo?.phone ? props.userinfo.phone : "";
 
@@ -66,7 +66,7 @@ function ManageEmailCard(props) {
 	const onSubmit = async (values) => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.put("/public/credentials",
+			response = await SeaCatAccountAPI.put("/credentials",
 				JSON.stringify(values),
 				{ headers: {
 					'Content-Type': 'application/json'
