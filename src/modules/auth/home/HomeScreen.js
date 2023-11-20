@@ -88,7 +88,7 @@ function HomeScreen(props) {
 
 	const fetchLastLogin = async () => {
 		try {
-			const response = await SeaCatAccountAPI.get("/last_login");
+			const response = await SeaCatAccountAPI.get("/last-login");
 			setLastLogin(response.data);
 		} catch (e) {
 			console.error(e);
