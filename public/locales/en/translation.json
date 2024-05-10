@@ -190,7 +190,8 @@
 	},
 	"ResetPwdScreen": {
 		"Set password": "Set password",
-		"Set new password here": "You can set your new password here",
+		"Set new password": "Set new password",
+		"Set a new password here": "You can set your new password here",
 		"Current Password": "Current password",
 		"New Password": "New password",
 		"Re-enter Password": "Re-enter the new password",
@@ -198,7 +199,7 @@
 		"Passwords do not match": "Passwords do not match!",
 		"Short password": "Password is too short!",
 		"Something went wrong, unable to set the password": "Something went wrong, unable to set the password",
-		"Invalid password reset link, please set your password again": "Invalid password reset link, please set your password again",
+		"Your password reset link has likely expired. You can request a new one.": "Your password reset link has likely expired. You can request a new one.",
 		"CompletedResetPwdCard": {
 			"Password set": "Password has been set",
 			"Continue": "Continue"

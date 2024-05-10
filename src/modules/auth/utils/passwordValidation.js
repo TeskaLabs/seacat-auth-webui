@@ -35,7 +35,7 @@ export function validatePasswordSpecialCount(password, minSpecialCount) {
 export function PasswordCriteriaFeedback({ passwordCriteria, validatePassword, watchedPassword, passwordErrors }) {
 	const { t } = useTranslation();
 	const validatedNewPassword = validatePassword(watchedPassword);
-	const invalidColor = (passwordErrors?.type == 'passwordCriteria') ? 'text-danger' : '';
+	const invalidColor = (passwordErrors?.type == 'passwordCriteria') ? 'text-danger' : 'text-muted';
 
 	return (
 		<FormText className='text-left'>

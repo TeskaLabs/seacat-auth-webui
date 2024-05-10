@@ -108,16 +108,17 @@ function ResetPwdCard(props) {
 
 		try {
 			response = await SeaCatAuthAPI.put("/public/password-reset", values);
-			if (response.data.result === 'INVALID-CODE') {
-				props.app.addAlert("danger", t("ResetPwdScreen|Invalid password reset link, please set your password again"), 30);
-				onRedirect("/cant-login", true);
-				return;
-			}
 			if (response.data.result !== 'OK') {
 				throw new Error(t("ResetPwdScreen|Something went wrong, unable to set the password"));
 			}
 		} catch (e) {
-			props.app.addAlert("danger", `${t("ResetPwdScreen|Something went wrong, unable to set the password")}. ${e?.response?.data?.message}`, 30);
+			if (e?.response?.status == 401 || e?.response?.data?.result == 'UNAUTHORIZED') {
+				props.app.addAlertFromException(e, t('ResetPwdScreen|Your password reset link has likely expired. Please request a new one.'));
+				onRedirect("/cant-login", true);
+			} else {
+				props.app.addAlertFromException(e, t('ResetPwdScreen|Password change failed'));
+			}
+
 			return;
 		}
 		setCompleted(true);
@@ -201,7 +202,7 @@ function ResetPwdCard(props) {
 					<div className="card-header-title" >
 						<CardTitle className="text-primary" tag="h2">{t('ResetPwdScreen|Set password')}</CardTitle>
 						<CardSubtitle tag="p">
-							{t('ResetPwdScreen|Set new password here')}
+							{t('ResetPwdScreen|Set a new password here')}
 						</CardSubtitle>
 					</div>
 				</CardHeader>
@@ -263,7 +264,7 @@ function ResetPwdCard(props) {
 							type="submit"
 							disabled={isSubmitting}
 						>
-							{t("ResetPwdScreen|Set password")}
+							{t("ResetPwdScreen|Set new password")}
 						</Button>
 					</FormGroup>
 				</CardBody>

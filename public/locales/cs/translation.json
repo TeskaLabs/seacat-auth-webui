@@ -190,7 +190,8 @@
 	},
 	"ResetPwdScreen": {
 		"Set password": "Nastavení hesla",
-		"Set new password here": "Zde si můžete nastavit Vaše nové heslo",
+		"Set new password": "Nastavit nové heslo",
+		"Set a new password here": "Zde si můžete nastavit Vaše nové heslo",
 		"Current Password": "Stávající heslo",
 		"New Password": "Nové heslo",
 		"Re-enter Password": "Nové heslo znovu",
@@ -198,7 +199,7 @@
 		"Passwords do not match": "Hesla se neshodují!",
 		"Short password": "Heslo je příliš krátké!",
 		"Something went wrong, unable to set the password": "Něco je špatně, nepodařilo se nastavit heslo",
-		"Invalid password reset link, please set your password again": "Neplatný odkaz k obnovení hesla, prosím nastavte Vaše heslo znovu",
+		"Your password reset link has likely expired. You can request a new one.": "Váš odkaz k obnovení hesla pravděpodobně vypršel. Můžete si nechat zaslat odkaz nový.",
 		"CompletedResetPwdCard": {
 			"Password set": "Heslo bylo nastaveno",
 			"Continue": "Pokračovat"

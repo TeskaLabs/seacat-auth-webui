@@ -106,7 +106,7 @@ function ChangePwdCard(props) {
 		try {
 			const response = await SeaCatAuthAPI.put('/account/password-change', values);
 
-			if (response.data.result != 'OK') {
+			if (response.data.result !== 'OK') {
 				throw new Error(t('ChangePwdScreen|Unexpected server response'));
 			}
 		} catch (e) {
@@ -228,7 +228,7 @@ function ChangePwdCard(props) {
 						{errors.newpassword2 ?
 							<FormFeedback>{errors.newpassword2.message}</FormFeedback>
 							:
-							<FormText>
+							<FormText className='text-left'>
 								{t('ChangePwdScreen|Enter new password a second time to verify it')}
 							</FormText>
 						}
