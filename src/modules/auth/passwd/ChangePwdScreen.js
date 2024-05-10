@@ -104,7 +104,7 @@ function ChangePwdCard(props) {
 
 	const onSubmit = async (values) => {
 		try {
-			const response = await SeaCatAuthAPI.put('/account/password-change', values);
+			const response = await SeaCatAuthAPI.put('/public/password-change', values);
 
 			if (response.data.result !== 'OK') {
 				throw new Error(t('ChangePwdScreen|Unexpected server response'));
