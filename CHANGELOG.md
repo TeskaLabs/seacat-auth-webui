@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v24.19
+
+### Releases
+
+- v24.19-alpha
+
+### Features
+
+- Advanced password validation (#43, v24.19-alpha, PLUM Sprint 240503)
+
+
 ## v23.29
 
 - v23.29-beta
