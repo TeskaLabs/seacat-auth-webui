@@ -159,7 +159,14 @@
 			"Password changed": "Password has been changed",
 			"Go back": "Go back"
 		},
-		"Something went wrong": "Something went wrong"
+		"Something went wrong": "Something went wrong",
+		"New password must be different from your old password": "New password must be different from your old password",
+		"The password must meet the following criteria:": "The password must meet the following criteria:",
+		"It must consist of {{minLength}} or more characters": "It must consist of {{minLength}} or more characters",
+		"It must contain at least {{minLowercaseCount}} lowercase characters": "It must contain at least {{minLowercaseCount}} lowercase characters",
+		"It must contain at least {{minUppercaseCount}} uppercase characters": "It must contain at least {{minUppercaseCount}} uppercase characters",
+		"It must contain at least {{minDigitCount}} digits": "It must contain at least {{minDigitCount}} digits",
+		"It must contain at least {{minSpecialCount}} special characters": "It must contain at least {{minSpecialCount}} special characters"
 	},
 	"PhoneNumberScreen": {
 		"Do you want to change your number?": "Do you want to change your number?",

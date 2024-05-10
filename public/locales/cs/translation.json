@@ -159,7 +159,14 @@
 			"Password changed": "Heslo bylo změněno",
 			"Go back": "Zpět"
 		},
-		"Something went wrong": "Something went wrong"
+		"Something went wrong": "Something went wrong",
+		"New password must be different from your old password": "Nové heslo nesmí být stejné jako vaše stávající heslo",
+		"The password must meet the following criteria:": "Heslo musí splňovat tato kritéria:",
+		"It must consist of {{minLength}} or more characters": "Musí být alespoň {{minLength}} znaků dlouhé",
+		"It must contain at least {{minLowercaseCount}} lowercase characters": "Musí obsahovat alespoň {{minLowercaseCount}} malých písmen",
+		"It must contain at least {{minUppercaseCount}} uppercase characters": "Musí obsahovat alespoň {{minUppercaseCount}} velkých písmen",
+		"It must contain at least {{minDigitCount}} digits": "Musí obsahovat alespoň {{minDigitCount}} číslic",
+		"It must contain at least {{minSpecialCount}} special characters": "Musí obsahovat alespoň {{minSpecialCount}} speciálních znaků"
 	},
 	"PhoneNumberScreen": {
 		"Do you want to change your number?": "Opravdu chcete změnit vaše telefonní číslo?",
