@@ -92,6 +92,8 @@ function ChangePwdCard(props) {
 		validate: {
 			passwordCriteria: (value) => (Object.values(validateNewPassword(value)).every(Boolean)
 			|| t('ChangePwdScreen|Password does not meet security requirements')),
+			dontReuseOldPassword: (value) => (value !== getValues('oldpassword'))
+			|| t('ChangePwdScreen|New password must be different from your old password'),
 		}
 	});
 	const regNewpwd2 = register("newpassword2", {
@@ -101,26 +103,19 @@ function ChangePwdCard(props) {
 	});
 
 	const onSubmit = async (values) => {
-		let response;
-
 		try {
-			response = await SeaCatAuthAPI.put("/public/password-change", values)
-		} catch (e) {
-			props.app.addAlert("danger", `${t("ChangePwdScreen|Something went wrong")}. ${e?.response?.data?.message}`, 30);
-			return;
-		}
+			const response = await SeaCatAuthAPI.put('/account/password-change', values);
 
-		if (response.data.result == 'FAILED') {
-			props.app.addAlert(
-				"danger",
-				t("ChangePwdScreen|Something went wrong"), 30
-			);
-			return;
-		} else if (response.data.result == 'UNAUTHORIZED') {
-			props.app.addAlert(
-				"danger",
-				t("ChangePwdScreen|The current password is incorrect"), 30
-			);
+			if (response.data.result != 'OK') {
+				throw new Error(t('ChangePwdScreen|Unexpected server response'));
+			}
+		} catch (e) {
+			if (e?.response?.status == 401 || e?.response?.data?.result == 'UNAUTHORIZED') {
+				props.app.addAlertFromException(e, t('ChangePwdScreen|The current password is incorrect'));
+			} else {
+				props.app.addAlertFromException(e, t('ChangePwdScreen|Password change failed'));
+			}
+
 			return;
 		}
 
@@ -158,7 +153,7 @@ function ChangePwdCard(props) {
 			<Card className="shadow animated fadeIn auth-card">
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
-						<CardTitle className="text-primary" tag="h2">{t('ChangePwdScreen|Set password')}</CardTitle>
+						<CardTitle className="text-primary" tag="h2">{t('ChangePwdScreen|Password change')}</CardTitle>
 						<CardSubtitle tag="p">
 							{t('ChangePwdScreen|Set new password here')}
 						</CardSubtitle>

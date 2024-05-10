@@ -38,7 +38,7 @@ export function PasswordCriteriaFeedback({ passwordCriteria, validatePassword, w
 	const invalidColor = (passwordErrors?.type == 'passwordCriteria') ? 'text-danger' : '';
 
 	return (
-		<FormText>
+		<FormText className='text-left'>
 			{/*
 				Every password requirement has the default (muted) color until fulfilled or form is submitted.
 				Once fulfilled, it **immediately** turns green.
@@ -51,35 +51,35 @@ export function PasswordCriteriaFeedback({ passwordCriteria, validatePassword, w
 			{Boolean(passwordCriteria.minLength)
 				&& <div className={validatedNewPassword.minLength ? 'text-success' : invalidColor
 				}>
-					<i className={validatedNewPassword.minLength ? 'cis-check-alt pe-1' : 'cis-x pe-1'} />
+					<i className={validatedNewPassword.minLength ? 'cil-check-alt px-1' : 'cil-x px-1'} />
 					{t('ChangePwdScreen|It must consist of {{minLength}} or more characters', passwordCriteria)}
 				</div>
 			}
 			{Boolean(passwordCriteria.minLowercaseCount)
 				&& <div className={validatedNewPassword.minLowercaseCount ? 'text-success' : invalidColor
 				}>
-					<i className={validatedNewPassword.minLowercaseCount ? 'cis-check-alt pe-1' : 'cis-x pe-1'} />
+					<i className={validatedNewPassword.minLowercaseCount ? 'cil-check-alt px-1' : 'cil-x px-1'} />
 					{t('ChangePwdScreen|It must contain at least {{minLowercaseCount}} lowercase characters', passwordCriteria)}
 				</div>
 			}
 			{Boolean(passwordCriteria.minUppercaseCount)
 				&& <div className={validatedNewPassword.minUppercaseCount ? 'text-success' : invalidColor
 				}>
-					<i className={validatedNewPassword.minUppercaseCount ? 'cis-check-alt pe-1' : 'cis-x pe-1'} />
+					<i className={validatedNewPassword.minUppercaseCount ? 'cil-check-alt px-1' : 'cil-x px-1'} />
 					{t('ChangePwdScreen|It must contain at least {{minUppercaseCount}} uppercase characters', passwordCriteria)}
 				</div>
 			}
 			{Boolean(passwordCriteria.minDigitCount)
 				&& <div className={validatedNewPassword.minDigitCount ? 'text-success' : invalidColor
 				}>
-					<i className={validatedNewPassword.minDigitCount ? 'cis-check-alt pe-1' : 'cis-x pe-1'} />
+					<i className={validatedNewPassword.minDigitCount ? 'cil-check-alt px-1' : 'cil-x px-1'} />
 					{t('ChangePwdScreen|It must contain at least {{minDigitCount}} digits', passwordCriteria)}
 				</div>
 			}
 			{Boolean(passwordCriteria.minSpecialCount)
 				&& <div className={validatedNewPassword.minSpecialCount ? 'text-success' : invalidColor
 				}>
-					<i className={validatedNewPassword.minSpecialCount ? 'cis-check-alt pe-1' : 'cis-x pe-1'} />
+					<i className={validatedNewPassword.minSpecialCount ? 'cil-check-alt px-1' : 'cil-x px-1'} />
 					{t('ChangePwdScreen|It must contain at least {{minSpecialCount}} special characters', passwordCriteria)}
 				</div>
 			}

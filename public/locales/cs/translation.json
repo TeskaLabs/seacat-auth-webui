@@ -145,8 +145,9 @@
 		"Fill in your login credentials": "Vložte prosím Vaše přihlašovací údaje"
 	},
 	"ChangePwdScreen": {
-		"Set password": "Nastavení hesla",
-		"Set new password here": "Zde si můžete nastavit Vaše nové heslo",
+		"Password change": "Změna hesla",
+		"Set password": "Změnit heslo",
+		"Set new password here": "Zde si můžete nastavit nové heslo",
 		"Current Password": "Stávající heslo",
 		"New Password": "Nové heslo",
 		"Re-enter Password": "Nové heslo znovu",

@@ -145,6 +145,7 @@
 		"Fill in your login credentials": "Please fill in your login credentials"
 	},
 	"ChangePwdScreen": {
+		"Password change": "Password change",
 		"Set password": "Set password",
 		"Set new password here": "You can set your new password here",
 		"Current Password": "Current password",
