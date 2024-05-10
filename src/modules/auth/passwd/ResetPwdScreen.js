@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import {
 	Container, Row, Col,
-	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
+	Card, CardHeader, CardTitle, CardSubtitle, CardBody,
 	Form, FormGroup, FormText, Label, Input, Button, FormFeedback
 } from 'reactstrap';
 import generatePenrose from '../utils/generatePenrose';
@@ -35,7 +35,7 @@ function ResetPwdScreen(props) {
 export default ResetPwdScreen;
 
 function ResetPwdCard(props) {
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { handleSubmit, register, getValues, watch, formState: { errors, isSubmitting } } = useForm();
 
@@ -89,13 +89,13 @@ function ResetPwdCard(props) {
 	let params = new URLSearchParams(qs);
 	let resetPasswordCode = params.get("pwd_token");
 
-	const regNewpwd = register("newpassword",{
+	const regNewpwd = register("newpassword", {
 		validate: {
 			passwordCriteria: (value) => (Object.values(validateNewPassword(value)).every(Boolean)
 			|| t('ChangePwdScreen|Password does not meet security requirements')),
 		}
 	});
-	const regNewpwd2 = register("newpassword2",{
+	const regNewpwd2 = register("newpassword2", {
 		validate: {
 			passEqual: value => (value === getValues().newpassword) || t("ResetPwdScreen|Passwords do not match"),
 		}
