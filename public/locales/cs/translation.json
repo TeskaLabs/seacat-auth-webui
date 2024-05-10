@@ -199,7 +199,7 @@
 		"Passwords do not match": "Hesla se neshodují!",
 		"Short password": "Heslo je příliš krátké!",
 		"Something went wrong, unable to set the password": "Něco je špatně, nepodařilo se nastavit heslo",
-		"Your password reset link has likely expired. You can request a new one.": "Váš odkaz k obnovení hesla pravděpodobně vypršel. Můžete si nechat zaslat odkaz nový.",
+		"Your password reset link has likely expired. Please request a new one.": "Váš odkaz k obnovení hesla pravděpodobně vypršel. Můžete si nechat zaslat odkaz nový.",
 		"CompletedResetPwdCard": {
 			"Password set": "Heslo bylo nastaveno",
 			"Continue": "Pokračovat"

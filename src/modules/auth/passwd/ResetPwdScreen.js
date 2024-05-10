@@ -113,10 +113,10 @@ function ResetPwdCard(props) {
 			}
 		} catch (e) {
 			if (e?.response?.status == 401 || e?.response?.data?.result == 'UNAUTHORIZED') {
-				props.app.addAlertFromException(e, t('ResetPwdScreen|Your password reset link has likely expired. Please request a new one.'));
+				props.app.addAlert("danger", t('ResetPwdScreen|Your password reset link has likely expired. Please request a new one.', 30));
 				onRedirect("/cant-login", true);
 			} else {
-				props.app.addAlertFromException(e, t('ResetPwdScreen|Password change failed'));
+				props.app.addAlert("danger", `${t("ResetPwdScreen|Password change failed")}. ${e?.response?.data?.message}`, 30);
 			}
 
 			return;
@@ -209,7 +209,7 @@ function ResetPwdCard(props) {
 				<CardBody className="pb-1">
 					<FormGroup tag='fieldset' disabled={isSubmitting}>
 						<Label for='newpassword'>
-							{t('ChangePwdScreen|New password')}
+							{t('ResetPwdScreen|New Password')}
 						</Label>
 						<Input
 							id='newpassword'
@@ -235,7 +235,7 @@ function ResetPwdCard(props) {
 
 					<FormGroup tag='fieldset' disabled={isSubmitting}>
 						<Label for='newpassword2'>
-							{t('ChangePwdScreen|Re-enter password')}
+							{t('ResetPwdScreen|Re-enter Password')}
 						</Label>
 						<Input
 							id='newpassword2'
@@ -251,7 +251,7 @@ function ResetPwdCard(props) {
 						{errors?.newpassword2
 							? <FormFeedback>{errors?.newpassword2.message}</FormFeedback>
 							: <FormText>
-								{t('ChangePwdScreen|Enter your new password again for verification')}
+								{t('ResetPwdScreen|Enter new password a second time to verify it')}
 							</FormText>
 						}
 					</FormGroup>

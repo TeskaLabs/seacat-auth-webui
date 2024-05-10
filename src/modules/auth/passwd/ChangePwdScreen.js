@@ -111,9 +111,9 @@ function ChangePwdCard(props) {
 			}
 		} catch (e) {
 			if (e?.response?.status == 401 || e?.response?.data?.result == 'UNAUTHORIZED') {
-				props.app.addAlertFromException(e, t('ChangePwdScreen|The current password is incorrect'));
+				props.app.addAlert("danger", t('ChangePwdScreen|The current password is incorrect'), 30);
 			} else {
-				props.app.addAlertFromException(e, t('ChangePwdScreen|Password change failed'));
+				props.app.addAlert("danger", `${t("ResetPwdScreen|Password change failed")}. ${e?.response?.data?.message}`, 30);
 			}
 
 			return;
