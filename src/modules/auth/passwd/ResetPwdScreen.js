@@ -40,8 +40,8 @@ function ResetPwdCard(props) {
 	const { handleSubmit, register, getValues, watch, formState: { errors, isSubmitting } } = useForm();
 
 	generatePenrose();
-	
-	let history = useHistory();
+
+	const history = useHistory();
 
 	const [ completed, setCompleted ] = useState(false);
 	const [ passwordCriteria, setPasswordCriteria ] = useState({
