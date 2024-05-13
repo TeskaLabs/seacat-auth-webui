@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## v24.19
+
+### Releases
+
+- v24.19-alpha
+
+### Compatibility
+
+No breaking changes, tested with Seacat Auth v24.17-beta2
+
+### Features
+
+- Advanced password validation (#43, v24.19-alpha, PLUM Sprint 240503)
+
+
 ## v23.29
 
 - v23.29-beta

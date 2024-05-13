@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import {
 	Container, Row, Col,
@@ -11,6 +11,14 @@ import {
 
 import { factorChaining } from "../utils/factorChaining";
 import generatePenrose from '../utils/generatePenrose';
+import {
+	validatePasswordLength,
+	validatePasswordLowercaseCount,
+	validatePasswordUppercaseCount,
+	validatePasswordDigitCount,
+	validatePasswordSpecialCount,
+	PasswordCriteriaFeedback,
+} from '../utils/passwordValidation';
 
 function ChangePwdScreen(props) {
 
@@ -31,8 +39,9 @@ function ChangePwdScreen(props) {
 export default ChangePwdScreen;
 
 function ChangePwdCard(props) {
-	const { t, i18n } = useTranslation();
-	const { handleSubmit, register, getValues, formState: { errors, isSubmitting } } = useForm();
+	const { t } = useTranslation();
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
+	const { handleSubmit, register, getValues, watch, formState: { errors, isSubmitting } } = useForm();
 
 	let history = useHistory();
 
@@ -40,41 +49,73 @@ function ChangePwdCard(props) {
 	let redirect_uri = params.get("redirect_uri");
 
 	const [ completed, setCompleted ] = useState(false);
+	const [ passwordCriteria, setPasswordCriteria ] = useState({
+		minLength: 10,
+	});
+
+	useEffect(() => {
+		loadPasswordCriteria();
+	}, []);
+
+	const loadPasswordCriteria = async () => {
+		try {
+			const response = await SeaCatAuthAPI.get('/public/password/policy');
+			setPasswordCriteria({
+				minLength: response.data?.min_length,
+				minLowercaseCount: response.data?.min_lowercase_count,
+				minUppercaseCount: response.data?.min_uppercase_count,
+				minDigitCount: response.data?.min_digit_count,
+				minSpecialCount: response.data?.min_special_count,
+			});
+		} catch (e) {
+			if (e?.response?.status == 404) {
+				// Most likely older service version which does not have this endpoint
+				console.error(e);
+			} else {
+				props.app.addAlertFromException(e, t('ChangePwdScreen|Failed to load password criteria'));
+			}
+		}
+	};
+
+	// Password is watched for immediate feedback to the user
+	const watchedNewPassword = watch('newpassword', '');
+	const validateNewPassword = (value) => ({
+		minLength: validatePasswordLength(value, passwordCriteria?.minLength),
+		minLowercaseCount: validatePasswordLowercaseCount(value, passwordCriteria?.minLowercaseCount),
+		minUppercaseCount: validatePasswordUppercaseCount(value, passwordCriteria?.minUppercaseCount),
+		minDigitCount: validatePasswordDigitCount(value, passwordCriteria?.minDigitCount),
+		minSpecialCount: validatePasswordSpecialCount(value, passwordCriteria?.minSpecialCount),
+	});
 
 	const regOldpwd = register("oldpassword");
-	const regNewpwd = register("newpassword",{
+	const regNewpwd = register("newpassword", {
 		validate: {
-			shortInput: value => (getValues().newpassword.length >= 4)|| t("ChangePwdScreen|Short password"),
+			passwordCriteria: (value) => (Object.values(validateNewPassword(value)).every(Boolean)
+			|| t('ChangePwdScreen|Password does not meet security requirements')),
+			dontReuseOldPassword: (value) => (value !== getValues('oldpassword'))
+			|| t('ChangePwdScreen|New password must be different from your old password'),
 		}
 	});
-	const regNewpwd2 = register("newpassword2",{
+	const regNewpwd2 = register("newpassword2", {
 		validate: {
 			passEqual: value => (value === getValues().newpassword) || t("ChangePwdScreen|Passwords do not match"),
 		}
 	});
 
 	const onSubmit = async (values) => {
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
-		let response;
-
 		try {
-			response = await SeaCatAuthAPI.put("/public/password-change", values)
-		} catch (e) {
-			props.app.addAlert("danger", `${t("ChangePwdScreen|Something went wrong")}. ${e?.response?.data?.message}`, 30);
-			return;
-		}
+			const response = await SeaCatAuthAPI.put('/public/password-change', values);
 
-		if (response.data.result == 'FAILED') {
-			props.app.addAlert(
-				"danger",
-				t("ChangePwdScreen|Something went wrong"), 30
-			);
-			return;
-		} else if (response.data.result == 'UNAUTHORIZED') {
-			props.app.addAlert(
-				"danger",
-				t("ChangePwdScreen|The current password is incorrect"), 30
-			);
+			if (response.data.result !== 'OK') {
+				throw new Error(t('ChangePwdScreen|Unexpected server response'));
+			}
+		} catch (e) {
+			if (e?.response?.status == 401 || e?.response?.data?.result == 'UNAUTHORIZED') {
+				props.app.addAlert("danger", t('ChangePwdScreen|The current password is incorrect'), 30);
+			} else {
+				props.app.addAlert("danger", `${t("ResetPwdScreen|Password change failed")}. ${e?.response?.data?.message}`, 30);
+			}
+
 			return;
 		}
 
@@ -112,7 +153,7 @@ function ChangePwdCard(props) {
 			<Card className="shadow animated fadeIn auth-card">
 				<CardHeader className="border-bottom card-header-login">
 					<div className="card-header-title" >
-						<CardTitle className="text-primary" tag="h2">{t('ChangePwdScreen|Set password')}</CardTitle>
+						<CardTitle className="text-primary" tag="h2">{t('ChangePwdScreen|Password change')}</CardTitle>
 						<CardSubtitle tag="p">
 							{t('ChangePwdScreen|Set new password here')}
 						</CardSubtitle>
@@ -146,17 +187,25 @@ function ChangePwdCard(props) {
 							</Label>
 						</h5>
 						<Input
-							id="newpassword"
-							name="newpassword"
-							type="password"
-							autoComplete="new-password"
-							required="required"
-							invalid={errors.newpassword}
+							id='newpassword'
+							name='newpassword'
+							type='password'
+							autoComplete='new-password'
+							required='required'
+							invalid={Boolean(errors?.newpassword)}
 							onBlur={regNewpwd.onBlur}
 							innerRef={regNewpwd.ref}
 							onChange={regNewpwd.onChange}
 						/>
-						{errors.newpassword && <FormFeedback>{errors.newpassword.message}</FormFeedback>}
+						{errors?.newpassword?.type !== 'passwordCriteria'
+							&& <FormFeedback>{errors?.newpassword?.message}</FormFeedback>
+						}
+						<PasswordCriteriaFeedback
+							passwordCriteria={passwordCriteria}
+							validatePassword={validateNewPassword}
+							watchedPassword={watchedNewPassword}
+							passwordErrors={errors?.newpassword}
+						/>
 					</FormGroup>
 
 					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
@@ -179,7 +228,7 @@ function ChangePwdCard(props) {
 						{errors.newpassword2 ?
 							<FormFeedback>{errors.newpassword2.message}</FormFeedback>
 							:
-							<FormText>
+							<FormText className='text-left'>
 								{t('ChangePwdScreen|Enter new password a second time to verify it')}
 							</FormText>
 						}

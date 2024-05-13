@@ -145,8 +145,9 @@
 		"Fill in your login credentials": "Vložte prosím Vaše přihlašovací údaje"
 	},
 	"ChangePwdScreen": {
-		"Set password": "Nastavení hesla",
-		"Set new password here": "Zde si můžete nastavit Vaše nové heslo",
+		"Password change": "Změna hesla",
+		"Set password": "Změnit heslo",
+		"Set new password here": "Zde si můžete nastavit nové heslo",
 		"Current Password": "Stávající heslo",
 		"New Password": "Nové heslo",
 		"Re-enter Password": "Nové heslo znovu",
@@ -159,7 +160,14 @@
 			"Password changed": "Heslo bylo změněno",
 			"Go back": "Zpět"
 		},
-		"Something went wrong": "Something went wrong"
+		"Something went wrong": "Something went wrong",
+		"New password must be different from your old password": "Nové heslo nesmí být stejné jako vaše stávající heslo",
+		"The password must meet the following criteria:": "Heslo musí splňovat tato kritéria:",
+		"It must consist of {{minLength}} or more characters": "Musí být alespoň {{minLength}} znaků dlouhé",
+		"It must contain at least {{minLowercaseCount}} lowercase characters": "Musí obsahovat alespoň {{minLowercaseCount}} malých písmen",
+		"It must contain at least {{minUppercaseCount}} uppercase characters": "Musí obsahovat alespoň {{minUppercaseCount}} velkých písmen",
+		"It must contain at least {{minDigitCount}} digits": "Musí obsahovat alespoň {{minDigitCount}} číslic",
+		"It must contain at least {{minSpecialCount}} special characters": "Musí obsahovat alespoň {{minSpecialCount}} speciálních znaků"
 	},
 	"PhoneNumberScreen": {
 		"Do you want to change your number?": "Opravdu chcete změnit vaše telefonní číslo?",
@@ -182,7 +190,8 @@
 	},
 	"ResetPwdScreen": {
 		"Set password": "Nastavení hesla",
-		"Set new password here": "Zde si můžete nastavit Vaše nové heslo",
+		"Set new password": "Nastavit nové heslo",
+		"Set a new password here": "Zde si můžete nastavit Vaše nové heslo",
 		"Current Password": "Stávající heslo",
 		"New Password": "Nové heslo",
 		"Re-enter Password": "Nové heslo znovu",
@@ -190,7 +199,7 @@
 		"Passwords do not match": "Hesla se neshodují!",
 		"Short password": "Heslo je příliš krátké!",
 		"Something went wrong, unable to set the password": "Něco je špatně, nepodařilo se nastavit heslo",
-		"Invalid password reset link, please set your password again": "Neplatný odkaz k obnovení hesla, prosím nastavte Vaše heslo znovu",
+		"Your password reset link has likely expired. Please request a new one.": "Váš odkaz k obnovení hesla pravděpodobně vypršel. Můžete si nechat zaslat odkaz nový.",
 		"CompletedResetPwdCard": {
 			"Password set": "Heslo bylo nastaveno",
 			"Continue": "Pokračovat"
