@@ -46,41 +46,41 @@ export function PasswordCriteriaFeedback({ passwordCriteria, validatePassword, w
 			*/}
 			<div className={Object.values(validatedNewPassword).every(Boolean) ? 'text-success' : invalidColor
 			}>
-				{t('ChangePwdScreen|The password must meet the following criteria:')}
+				{t('FormFields|PasswordChange|The password must meet the following criteria:')}
 			</div>
 			{Boolean(passwordCriteria.minLength)
 				&& <div className={validatedNewPassword.minLength ? 'text-success' : invalidColor
 				}>
 					<i className={validatedNewPassword.minLength ? 'cil-check-alt px-1' : 'cil-x px-1'} />
-					{t('ChangePwdScreen|It must consist of {{minLength}} or more characters', passwordCriteria)}
+					{t('FormFields|PasswordChange|It must consist of {{minLength}} or more characters', passwordCriteria)}
 				</div>
 			}
 			{Boolean(passwordCriteria.minLowercaseCount)
 				&& <div className={validatedNewPassword.minLowercaseCount ? 'text-success' : invalidColor
 				}>
 					<i className={validatedNewPassword.minLowercaseCount ? 'cil-check-alt px-1' : 'cil-x px-1'} />
-					{t('ChangePwdScreen|It must contain at least {{minLowercaseCount}} lowercase characters', passwordCriteria)}
+					{t('FormFields|PasswordChange|It must contain at least {{minLowercaseCount}} lowercase characters', passwordCriteria)}
 				</div>
 			}
 			{Boolean(passwordCriteria.minUppercaseCount)
 				&& <div className={validatedNewPassword.minUppercaseCount ? 'text-success' : invalidColor
 				}>
 					<i className={validatedNewPassword.minUppercaseCount ? 'cil-check-alt px-1' : 'cil-x px-1'} />
-					{t('ChangePwdScreen|It must contain at least {{minUppercaseCount}} uppercase characters', passwordCriteria)}
+					{t('FormFields|PasswordChange|It must contain at least {{minUppercaseCount}} uppercase characters', passwordCriteria)}
 				</div>
 			}
 			{Boolean(passwordCriteria.minDigitCount)
 				&& <div className={validatedNewPassword.minDigitCount ? 'text-success' : invalidColor
 				}>
 					<i className={validatedNewPassword.minDigitCount ? 'cil-check-alt px-1' : 'cil-x px-1'} />
-					{t('ChangePwdScreen|It must contain at least {{minDigitCount}} digits', passwordCriteria)}
+					{t('FormFields|PasswordChange|It must contain at least {{minDigitCount}} digits', passwordCriteria)}
 				</div>
 			}
 			{Boolean(passwordCriteria.minSpecialCount)
 				&& <div className={validatedNewPassword.minSpecialCount ? 'text-success' : invalidColor
 				}>
 					<i className={validatedNewPassword.minSpecialCount ? 'cil-check-alt px-1' : 'cil-x px-1'} />
-					{t('ChangePwdScreen|It must contain at least {{minSpecialCount}} special characters', passwordCriteria)}
+					{t('FormFields|PasswordChange|It must contain at least {{minSpecialCount}} special characters', passwordCriteria)}
 				</div>
 			}
 		</FormText>
