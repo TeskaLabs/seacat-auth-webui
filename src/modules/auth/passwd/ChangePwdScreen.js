@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from "react-router-dom";
@@ -6,19 +6,15 @@ import { useHistory, useLocation } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormText, FormFeedback, Label, Input, Button
+	Form, FormGroup, Button
 } from 'reactstrap';
 
 import { factorChaining } from "../utils/factorChaining";
 import generatePenrose from '../utils/generatePenrose';
+
 import {
-	validatePasswordLength,
-	validatePasswordLowercaseCount,
-	validatePasswordUppercaseCount,
-	validatePasswordDigitCount,
-	validatePasswordSpecialCount,
-	PasswordCriteriaFeedback,
-} from '../utils/passwordValidation';
+	PasswordChangeFieldGroup
+} from '../containers/FormFields';
 
 function ChangePwdScreen(props) {
 
@@ -41,7 +37,8 @@ export default ChangePwdScreen;
 function ChangePwdCard(props) {
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
-	const { handleSubmit, register, getValues, watch, formState: { errors, isSubmitting } } = useForm();
+	const changePasswordForm = useForm();
+	const { handleSubmit, formState: { isSubmitting } } = changePasswordForm;
 
 	let history = useHistory();
 
@@ -49,58 +46,6 @@ function ChangePwdCard(props) {
 	let redirect_uri = params.get("redirect_uri");
 
 	const [ completed, setCompleted ] = useState(false);
-	const [ passwordCriteria, setPasswordCriteria ] = useState({
-		minLength: 10,
-	});
-
-	useEffect(() => {
-		loadPasswordCriteria();
-	}, []);
-
-	const loadPasswordCriteria = async () => {
-		try {
-			const response = await SeaCatAuthAPI.get('/public/password/policy');
-			setPasswordCriteria({
-				minLength: response.data?.min_length,
-				minLowercaseCount: response.data?.min_lowercase_count,
-				minUppercaseCount: response.data?.min_uppercase_count,
-				minDigitCount: response.data?.min_digit_count,
-				minSpecialCount: response.data?.min_special_count,
-			});
-		} catch (e) {
-			if (e?.response?.status == 404) {
-				// Most likely older service version which does not have this endpoint
-				console.error(e);
-			} else {
-				props.app.addAlertFromException(e, t('ChangePwdScreen|Failed to load password criteria'));
-			}
-		}
-	};
-
-	// Password is watched for immediate feedback to the user
-	const watchedNewPassword = watch('newpassword', '');
-	const validateNewPassword = (value) => ({
-		minLength: validatePasswordLength(value, passwordCriteria?.minLength),
-		minLowercaseCount: validatePasswordLowercaseCount(value, passwordCriteria?.minLowercaseCount),
-		minUppercaseCount: validatePasswordUppercaseCount(value, passwordCriteria?.minUppercaseCount),
-		minDigitCount: validatePasswordDigitCount(value, passwordCriteria?.minDigitCount),
-		minSpecialCount: validatePasswordSpecialCount(value, passwordCriteria?.minSpecialCount),
-	});
-
-	const regOldpwd = register("oldpassword");
-	const regNewpwd = register("newpassword", {
-		validate: {
-			passwordCriteria: (value) => (Object.values(validateNewPassword(value)).every(Boolean)
-			|| t('ChangePwdScreen|Password does not meet security requirements')),
-			dontReuseOldPassword: (value) => (value !== getValues('oldpassword'))
-			|| t('ChangePwdScreen|New password must be different from your old password'),
-		}
-	});
-	const regNewpwd2 = register("newpassword2", {
-		validate: {
-			passEqual: value => (value === getValues().newpassword) || t("ChangePwdScreen|Passwords do not match"),
-		}
-	});
 
 	const onSubmit = async (values) => {
 		try {
@@ -161,78 +106,11 @@ function ChangePwdCard(props) {
 				</CardHeader>
 
 				<CardBody className="pb-1">
-					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-						<h5>
-							<Label for="oldpassword" style={{display: "block"}}>
-								{t('ChangePwdScreen|Current Password')}
-							</Label>
-						</h5>
-						<Input
-							autoFocus
-							id="oldpassword"
-							name="oldpassword"
-							type="password"
-							autoComplete="off"
-							required="required"
-							onChange={regOldpwd.onChange}
-							onBlur={regOldpwd.onBlur}
-							innerRef={regOldpwd.ref}
-						/>
-					</FormGroup>
-
-					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-						<h5>
-							<Label for="newpassword" style={{display: "block"}}>
-								{t('ChangePwdScreen|New Password')}
-							</Label>
-						</h5>
-						<Input
-							id='newpassword'
-							name='newpassword'
-							type='password'
-							autoComplete='new-password'
-							required='required'
-							invalid={Boolean(errors?.newpassword)}
-							onBlur={regNewpwd.onBlur}
-							innerRef={regNewpwd.ref}
-							onChange={regNewpwd.onChange}
-						/>
-						{errors?.newpassword?.type !== 'passwordCriteria'
-							&& <FormFeedback>{errors?.newpassword?.message}</FormFeedback>
-						}
-						<PasswordCriteriaFeedback
-							passwordCriteria={passwordCriteria}
-							validatePassword={validateNewPassword}
-							watchedPassword={watchedNewPassword}
-							passwordErrors={errors?.newpassword}
-						/>
-					</FormGroup>
-
-					<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-						<h5>
-							<Label for="newpassword2" style={{display: "block"}}>
-								{t('ChangePwdScreen|Re-enter Password')}
-							</Label>
-						</h5>
-						<Input
-							id="newpassword2"
-							name="newpassword2"
-							type="password"
-							autoComplete="new-password"
-							required="required"
-							invalid={errors.newpassword2}
-							onChange={regNewpwd2.onChange}
-							onBlur={regNewpwd2.onBlur}
-							innerRef={regNewpwd2.ref}
-						/>
-						{errors.newpassword2 ?
-							<FormFeedback>{errors.newpassword2.message}</FormFeedback>
-							:
-							<FormText className='text-left'>
-								{t('ChangePwdScreen|Enter new password a second time to verify it')}
-							</FormText>
-						}
-					</FormGroup>
+					<PasswordChangeFieldGroup 
+						app={props.app}
+						form={changePasswordForm}
+						oldPasswordInput={true}
+					/>
 
 					<FormGroup style={{textAlign: "center"}}>
 						<Button
