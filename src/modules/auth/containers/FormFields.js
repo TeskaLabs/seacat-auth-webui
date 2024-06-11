@@ -136,7 +136,11 @@ export function UserNameField(props) {
 }
 
 
-export function PasswordChangeFieldGroup({ app, form: { watch, register, getValues, formState: { errors, isSubmitting } }, oldPasswordInput = true }) {
+export function PasswordChangeFieldGroup({
+	app,
+	form: { watch, register, getValues, formState: { errors, isSubmitting } },
+	oldPasswordInput = true,
+}) {
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = app.axiosCreate('seacat-auth');
 
@@ -178,43 +182,43 @@ export function PasswordChangeFieldGroup({ app, form: { watch, register, getValu
 		minSpecialCount: validatePasswordSpecialCount(value, passwordCriteria?.minSpecialCount),
 	});
 
-	const regOldPassword = register("oldpassword");
-	const regNewPassword = register("newpassword", {
+	const regOldPassword = register('oldpassword');
+	const regNewPassword = register('newpassword', {
 		validate: {
 			passwordCriteria: (value) => (Object.values(validateNewPassword(value)).every(Boolean)
 			|| t('FormFields|PasswordChange|Password does not meet security requirements')),
 			dontReuseOldPassword: (value) => (value !== getValues('oldpassword'))
 			|| t('FormFields|PasswordChange|New password must be different from your old password'),
-		}
+		},
 	});
-	const regNewPasswordRepeat = register("newpassword2", {
+	const regNewPasswordRepeat = register('newpassword2', {
 		validate: {
-			passEqual: value => (value === getValues().newpassword) || t("FormFields|PasswordChange|Passwords do not match"),
-		}
+			passEqual: value => (value === getValues().newpassword) || t('FormFields|PasswordChange|Passwords do not match'),
+		},
 	});
 
 	return (<>
-		{oldPasswordInput && <FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
+		{oldPasswordInput && <FormGroup tag='fieldset' disabled={isSubmitting} className='text-center'>
 			<h5>
-				<Label for="oldpassword" style={{display: "block"}}>
+				<Label for='oldpassword' style={{ display: 'block' }}>
 					{t('ChangePwdScreen|Current Password')}
 				</Label>
 			</h5>
 			<Input
 				autoFocus
-				id="oldpassword"
-				name="oldpassword"
-				type="password"
-				autoComplete="off"
-				required="required"
+				id='oldpassword'
+				name='oldpassword'
+				type='password'
+				autoComplete='off'
+				required='required'
 				onChange={regOldPassword.onChange}
 				onBlur={regOldPassword.onBlur}
 				innerRef={regOldPassword.ref}
 			/>
 		</FormGroup>}
-		<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
+		<FormGroup tag='fieldset' disabled={isSubmitting} className='text-center'>
 			<h5>
-				<Label for="newpassword" style={{display: "block"}}>
+				<Label for='newpassword' style={{ display: 'block' }}>
 					{t('FormFields|PasswordChange|New Password')}
 				</Label>
 			</h5>
@@ -240,18 +244,18 @@ export function PasswordChangeFieldGroup({ app, form: { watch, register, getValu
 			/>
 		</FormGroup>
 
-		<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
+		<FormGroup tag='fieldset' disabled={isSubmitting} className='text-center'>
 			<h5>
-				<Label for="newpassword2" style={{display: "block"}}>
+				<Label for='newpassword2' style={{ display: 'block' }}>
 					{t('FormFields|PasswordChange|Re-enter Password')}
 				</Label>
 			</h5>
 			<Input
-				id="newpassword2"
-				name="newpassword2"
-				type="password"
-				autoComplete="new-password"
-				required="required"
+				id='newpassword2'
+				name='newpassword2'
+				type='password'
+				autoComplete='new-password'
+				required='required'
 				invalid={errors.newpassword2}
 				onChange={regNewPasswordRepeat.onChange}
 				onBlur={regNewPasswordRepeat.onBlur}
@@ -264,5 +268,5 @@ export function PasswordChangeFieldGroup({ app, form: { watch, register, getValu
 				</FormText>
 			}
 		</FormGroup>
-	</>)
+	</>);
 }
