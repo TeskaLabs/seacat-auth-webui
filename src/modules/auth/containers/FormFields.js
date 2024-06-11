@@ -193,78 +193,76 @@ export function PasswordChangeFieldGroup({ app, form: { watch, register, getValu
 		}
 	});
 
-	return (
-		<>
-			{oldPasswordInput && <FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-				<h5>
-					<Label for="oldpassword" style={{display: "block"}}>
-						{t('ChangePwdScreen|Current Password')}
-					</Label>
-				</h5>
-				<Input
-					autoFocus
-					id="oldpassword"
-					name="oldpassword"
-					type="password"
-					autoComplete="off"
-					required="required"
-					onChange={regOldPassword.onChange}
-					onBlur={regOldPassword.onBlur}
-					innerRef={regOldPassword.ref}
-				/>
-			</FormGroup>}
-			<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-				<h5>
-					<Label for="newpassword" style={{display: "block"}}>
-						{t('FormFields|PasswordChange|New Password')}
-					</Label>
-				</h5>
-				<Input
-					id='newpassword'
-					name='newpassword'
-					type='password'
-					autoComplete='new-password'
-					required='required'
-					invalid={Boolean(errors?.newpassword)}
-					onBlur={regNewPassword.onBlur}
-					innerRef={regNewPassword.ref}
-					onChange={regNewPassword.onChange}
-				/>
-				{errors?.newpassword?.type !== 'passwordCriteria'
-					&& <FormFeedback>{errors?.newpassword?.message}</FormFeedback>
-				}
-				<PasswordCriteriaFeedback
-					passwordCriteria={passwordCriteria}
-					validatePassword={validateNewPassword}
-					watchedPassword={watchedNewPassword}
-					passwordErrors={errors?.newpassword}
-				/>
-			</FormGroup>
+	return (<>
+		{oldPasswordInput && <FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
+			<h5>
+				<Label for="oldpassword" style={{display: "block"}}>
+					{t('ChangePwdScreen|Current Password')}
+				</Label>
+			</h5>
+			<Input
+				autoFocus
+				id="oldpassword"
+				name="oldpassword"
+				type="password"
+				autoComplete="off"
+				required="required"
+				onChange={regOldPassword.onChange}
+				onBlur={regOldPassword.onBlur}
+				innerRef={regOldPassword.ref}
+			/>
+		</FormGroup>}
+		<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
+			<h5>
+				<Label for="newpassword" style={{display: "block"}}>
+					{t('FormFields|PasswordChange|New Password')}
+				</Label>
+			</h5>
+			<Input
+				id='newpassword'
+				name='newpassword'
+				type='password'
+				autoComplete='new-password'
+				required='required'
+				invalid={Boolean(errors?.newpassword)}
+				onBlur={regNewPassword.onBlur}
+				innerRef={regNewPassword.ref}
+				onChange={regNewPassword.onChange}
+			/>
+			{errors?.newpassword?.type !== 'passwordCriteria'
+				&& <FormFeedback>{errors?.newpassword?.message}</FormFeedback>
+			}
+			<PasswordCriteriaFeedback
+				passwordCriteria={passwordCriteria}
+				validatePassword={validateNewPassword}
+				watchedPassword={watchedNewPassword}
+				passwordErrors={errors?.newpassword}
+			/>
+		</FormGroup>
 
-			<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
-				<h5>
-					<Label for="newpassword2" style={{display: "block"}}>
-						{t('FormFields|PasswordChange|Re-enter Password')}
-					</Label>
-				</h5>
-				<Input
-					id="newpassword2"
-					name="newpassword2"
-					type="password"
-					autoComplete="new-password"
-					required="required"
-					invalid={errors.newpassword2}
-					onChange={regNewPasswordRepeat.onChange}
-					onBlur={regNewPasswordRepeat.onBlur}
-					innerRef={regNewPasswordRepeat.ref}
-				/>
-				{errors.newpassword2
-					? <FormFeedback>{errors.newpassword2.message}</FormFeedback>
-					: <FormText className='text-left'>
-						{t('FormFields|PasswordChange|Enter new password a second time to verify it')}
-					</FormText>
-				}
-			</FormGroup>
-		</>
-	)
+		<FormGroup tag="fieldset" disabled={isSubmitting} className="text-center">
+			<h5>
+				<Label for="newpassword2" style={{display: "block"}}>
+					{t('FormFields|PasswordChange|Re-enter Password')}
+				</Label>
+			</h5>
+			<Input
+				id="newpassword2"
+				name="newpassword2"
+				type="password"
+				autoComplete="new-password"
+				required="required"
+				invalid={errors.newpassword2}
+				onChange={regNewPasswordRepeat.onChange}
+				onBlur={regNewPasswordRepeat.onBlur}
+				innerRef={regNewPasswordRepeat.ref}
+			/>
+			{errors.newpassword2
+				? <FormFeedback>{errors.newpassword2.message}</FormFeedback>
+				: <FormText className='text-left'>
+					{t('FormFields|PasswordChange|Enter new password a second time to verify it')}
+				</FormText>
+			}
+		</FormGroup>
+	</>)
 }
