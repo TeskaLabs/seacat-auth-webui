@@ -1,27 +1,26 @@
-import React from 'react'
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 
 import {
-	Container, Row, Col,
+	Row, Col,
 	Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter,
-	Form, FormGroup, FormFeedback, FormText,
-	Label, Input, InputGroup, InputGroupAddon, InputGroupText,
-	Button
+	Form, Button,
 } from 'reactstrap';
 
 import {
 	PhoneField,
 	EmailField,
-	PasswordField,
-	UserNameField
+	UserNameField,
+	PasswordChangeFieldGroup,
 } from './FormFields';
 
 function RegistrationCard(props) {
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
-	const { handleSubmit, register, getValues, setValue, formState: { errors, isSubmitting } } = useForm();
+	const registrationForm = useForm();
+	const { handleSubmit, register, getValues, setValue, formState: { errors } } = registrationForm;
 
 	/*
 		TODO: implement option to save values with this endpoint and avoid validation
@@ -88,12 +87,39 @@ function RegistrationCard(props) {
 				{/*TODO*/}
 				<CardBody>
 					{props.registerFeatures && props.registerFeatures?.credentials && Object.keys(props.registerFeatures?.credentials).map((key, idx) => {
-						switch(key) {
-							case 'username': return(<UserNameField key={idx} content={props.registerFeatures?.credentials?.username} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
-							case 'email': return(<EmailField key={idx} content={props.registerFeatures?.credentials?.email} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
-							case 'password': return(<PasswordField key={idx} content={props.registerFeatures?.credentials?.password} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
-							case 'phone': return(<PhoneField key={idx} content={props.registerFeatures?.credentials?.phone} register={register} getValues={getValues} setValue={setValue} errors={errors} />)
-							default: return(<div key={idx}>Unknown item: "{key}"</div>)
+						switch (key) {
+							case 'username': return (<UserNameField
+								key={idx}
+								content={props.registerFeatures?.credentials?.username}
+								register={register}
+								getValues={getValues}
+								setValue={setValue}
+								errors={errors}
+							/>);
+							case 'email': return (<EmailField
+								key={idx}
+								content={props.registerFeatures?.credentials?.email}
+								register={register}
+								getValues={getValues}
+								setValue={setValue}
+								errors={errors}
+							/>);
+							case 'password': return (<PasswordChangeFieldGroup
+								key={idx}
+								app={props.app}
+								form={registrationForm}
+								oldPasswordInput={false}
+								markRequired={true}
+							/>);
+							case 'phone': return (<PhoneField
+								key={idx}
+								content={props.registerFeatures?.credentials?.phone}
+								register={register}
+								getValues={getValues}
+								setValue={setValue}
+								errors={errors}
+							/>);
+							default: return (<div key={idx}>Unknown item: "{key}"</div>);
 						}
 					})}
 
