@@ -201,7 +201,7 @@ export function PasswordChangeFieldGroup({
 	return (<>
 		{oldPasswordInput && <FormGroup tag='fieldset' disabled={isSubmitting}>
 			<Label for='oldpassword'>
-				{t('ChangePwdScreen|Current Password')}{markRequired && '*'}
+				{t('FormFields|PasswordChange|Current password')}{markRequired && '*'}
 			</Label>
 			<Input
 				autoFocus
@@ -217,7 +217,7 @@ export function PasswordChangeFieldGroup({
 		</FormGroup>}
 		<FormGroup tag='fieldset' disabled={isSubmitting}>
 			<Label for='newpassword'>
-				{t('FormFields|PasswordChange|New Password')}{markRequired && '*'}
+				{t('FormFields|PasswordChange|New password')}{markRequired && '*'}
 			</Label>
 			<Input
 				id='newpassword'
@@ -243,7 +243,7 @@ export function PasswordChangeFieldGroup({
 
 		<FormGroup tag='fieldset' disabled={isSubmitting}>
 			<Label for='newpassword2'>
-				{t('FormFields|PasswordChange|Re-enter Password')}{markRequired && '*'}
+				{t('FormFields|PasswordChange|Re-type new password')}{markRequired && '*'}
 			</Label>
 			<Input
 				id='newpassword2'
@@ -259,7 +259,7 @@ export function PasswordChangeFieldGroup({
 			{errors.newpassword2
 				? <FormFeedback>{errors.newpassword2.message}</FormFeedback>
 				: <FormText className='text-left'>
-					{t('FormFields|PasswordChange|Enter new password a second time to verify it')}
+					{t('FormFields|PasswordChange|Enter the new password a second time to verify it')}
 				</FormText>
 			}
 		</FormGroup>
