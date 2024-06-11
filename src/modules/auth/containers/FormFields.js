@@ -140,6 +140,7 @@ export function PasswordChangeFieldGroup({
 	app,
 	form: { watch, register, getValues, formState: { errors, isSubmitting } },
 	oldPasswordInput = true,
+	markRequired = false,
 }) {
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = app.axiosCreate('seacat-auth');
@@ -198,12 +199,10 @@ export function PasswordChangeFieldGroup({
 	});
 
 	return (<>
-		{oldPasswordInput && <FormGroup tag='fieldset' disabled={isSubmitting} className='text-center'>
-			<h5>
-				<Label for='oldpassword' style={{ display: 'block' }}>
-					{t('ChangePwdScreen|Current Password')}
-				</Label>
-			</h5>
+		{oldPasswordInput && <FormGroup tag='fieldset' disabled={isSubmitting}>
+			<Label for='oldpassword'>
+				{t('ChangePwdScreen|Current Password')}{markRequired && '*'}
+			</Label>
 			<Input
 				autoFocus
 				id='oldpassword'
@@ -216,12 +215,10 @@ export function PasswordChangeFieldGroup({
 				innerRef={regOldPassword.ref}
 			/>
 		</FormGroup>}
-		<FormGroup tag='fieldset' disabled={isSubmitting} className='text-center'>
-			<h5>
-				<Label for='newpassword' style={{ display: 'block' }}>
-					{t('FormFields|PasswordChange|New Password')}
-				</Label>
-			</h5>
+		<FormGroup tag='fieldset' disabled={isSubmitting}>
+			<Label for='newpassword'>
+				{t('FormFields|PasswordChange|New Password')}{markRequired && '*'}
+			</Label>
 			<Input
 				id='newpassword'
 				name='newpassword'
@@ -244,12 +241,10 @@ export function PasswordChangeFieldGroup({
 			/>
 		</FormGroup>
 
-		<FormGroup tag='fieldset' disabled={isSubmitting} className='text-center'>
-			<h5>
-				<Label for='newpassword2' style={{ display: 'block' }}>
-					{t('FormFields|PasswordChange|Re-enter Password')}
-				</Label>
-			</h5>
+		<FormGroup tag='fieldset' disabled={isSubmitting}>
+			<Label for='newpassword2'>
+				{t('FormFields|PasswordChange|Re-enter Password')}{markRequired && '*'}
+			</Label>
 			<Input
 				id='newpassword2'
 				name='newpassword2'
