@@ -4,6 +4,7 @@
 
 ### Releases
 
+- v24.19-alpha2
 - v24.19-alpha
 
 ### Compatibility
@@ -12,6 +13,7 @@ No breaking changes, tested with Seacat Auth v24.17-beta2
 
 ### Features
 
+- Advanced password validation in new user registration form (#44, v24.19-alpha2, PLUM Sprint 240531)
 - Advanced password validation (#43, v24.19-alpha, PLUM Sprint 240503)
 
 
