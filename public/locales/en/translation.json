@@ -47,23 +47,23 @@
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Invalid format, only lower-case letters, numbers, dash and underscore are allowed",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
 		"Username editing is not allowed": "Username editing is not allowed",
-		"Required field": "Required field",
-		"PasswordChange": {
-			"Current password": "Current password",
-			"New password": "New password",
-			"Re-type new password": "Re-type new password",
-			"Failed to load password criteria": "Failed to load password criteria",
-			"Password does not meet security requirements": "Password does not meet security requirements",
-			"New password must be different from your old password": "New password must be different from your old password",
-			"Passwords do not match": "Passwords do not match",
-			"Enter the new password a second time to verify it": "Enter the new password a second time to verify it",
-			"The password must meet the following criteria:": "The password must meet the following criteria:",
-			"It must consist of {{minLength}} or more characters": "It must consist of {{minLength}} or more characters",
-			"It must contain at least {{minLowercaseCount}} lowercase characters": "It must contain at least {{minLowercaseCount}} lowercase characters",
-			"It must contain at least {{minUppercaseCount}} uppercase characters": "It must contain at least {{minUppercaseCount}} uppercase characters",
-			"It must contain at least {{minDigitCount}} digits": "It must contain at least {{minDigitCount}} digits",
-			"It must contain at least {{minSpecialCount}} special characters": "It must contain at least {{minSpecialCount}} special characters"
-		}
+		"Required field": "Required field"
+	},
+	"PasswordChangeField": {
+		"Current password": "Current password",
+		"New password": "New password",
+		"Re-type new password": "Re-type new password",
+		"Failed to load password criteria": "Failed to load password criteria",
+		"Password does not meet security requirements": "Password does not meet security requirements",
+		"New password must be different from your old password": "New password must be different from your old password",
+		"Passwords do not match": "Passwords do not match",
+		"Enter the new password a second time to verify it": "Enter the new password a second time to verify it",
+		"The password must meet the following criteria:": "The password must meet the following criteria:",
+		"It must consist of {{minLength}} or more characters": "It must consist of {{minLength}} or more characters",
+		"It must contain at least {{minLowercaseCount}} lowercase characters": "It must contain at least {{minLowercaseCount}} lowercase characters",
+		"It must contain at least {{minUppercaseCount}} uppercase characters": "It must contain at least {{minUppercaseCount}} uppercase characters",
+		"It must contain at least {{minDigitCount}} digits": "It must contain at least {{minDigitCount}} digits",
+		"It must contain at least {{minSpecialCount}} special characters": "It must contain at least {{minSpecialCount}} special characters"
 	},
 	"HomeScreen": {
 		"My account": "My account",

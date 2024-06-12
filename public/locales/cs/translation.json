@@ -47,23 +47,23 @@
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Nesprávný formát, pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Username editing is not allowed": "Není povoleno upravit uživatelské jméno",
-		"Required field": "Povinný údaj",
-		"PasswordChange": {
-			"Current password": "Vaše stávající heslo",
-			"New password": "Nové heslo",
-			"Re-type new password": "Zadejte nové heslo znovu",
-			"Failed to load password criteria": "Nepodařilo se načíst požadavky na nastavení hesla",
-			"Password does not meet security requirements": "Heslo nevyhovuje bezpečnostním požadavkům",
-			"New password must be different from your old password": "Nové heslo nesmí být stejné jako vaše stávající heslo",
-			"Passwords do not match": "Hesla se neshodují",
-			"Enter the new password a second time to verify it": "Pro kontrolu zadejte své nové heslo znovu",
-			"The password must meet the following criteria:": "Heslo musí splňovat tato kritéria:",
-			"It must consist of {{minLength}} or more characters": "Musí být alespoň {{minLength}} znaků dlouhé",
-			"It must contain at least {{minLowercaseCount}} lowercase characters": "Musí obsahovat alespoň {{minLowercaseCount}} malých písmen",
-			"It must contain at least {{minUppercaseCount}} uppercase characters": "Musí obsahovat alespoň {{minUppercaseCount}} velkých písmen",
-			"It must contain at least {{minDigitCount}} digits": "Musí obsahovat alespoň {{minDigitCount}} číslic",
-			"It must contain at least {{minSpecialCount}} special characters": "Musí obsahovat alespoň {{minSpecialCount}} speciálních znaků"
-		}
+		"Required field": "Povinný údaj"
+	},
+	"PasswordChangeField": {
+		"Current password": "Vaše stávající heslo",
+		"New password": "Nové heslo",
+		"Re-type new password": "Zadejte nové heslo znovu",
+		"Failed to load password criteria": "Nepodařilo se načíst požadavky na nastavení hesla",
+		"Password does not meet security requirements": "Heslo nevyhovuje bezpečnostním požadavkům",
+		"New password must be different from your old password": "Nové heslo nesmí být stejné jako vaše stávající heslo",
+		"Passwords do not match": "Hesla se neshodují",
+		"Enter the new password a second time to verify it": "Pro kontrolu zadejte své nové heslo znovu",
+		"The password must meet the following criteria:": "Heslo musí splňovat tato kritéria:",
+		"It must consist of {{minLength}} or more characters": "Musí být alespoň {{minLength}} znaků dlouhé",
+		"It must contain at least {{minLowercaseCount}} lowercase characters": "Musí obsahovat alespoň {{minLowercaseCount}} malých písmen",
+		"It must contain at least {{minUppercaseCount}} uppercase characters": "Musí obsahovat alespoň {{minUppercaseCount}} velkých písmen",
+		"It must contain at least {{minDigitCount}} digits": "Musí obsahovat alespoň {{minDigitCount}} číslic",
+		"It must contain at least {{minSpecialCount}} special characters": "Musí obsahovat alespoň {{minSpecialCount}} speciálních znaků"
 	},
 	"HomeScreen": {
 		"My account": "Můj účet",

@@ -175,7 +175,7 @@ export function PasswordChangeFieldGroup({
 				// Most likely older service version which does not have this endpoint
 				console.error(e);
 			} else {
-				app.addAlertFromException(e, t('FormFields|PasswordChange|Failed to load password criteria'));
+				app.addAlertFromException(e, t('PasswordChangeField|Failed to load password criteria'));
 			}
 		}
 	};
@@ -194,21 +194,21 @@ export function PasswordChangeFieldGroup({
 	const regNewPassword = register('newpassword', {
 		validate: {
 			passwordCriteria: (value) => (Object.values(validateNewPassword(value)).every(Boolean)
-			|| t('FormFields|PasswordChange|Password does not meet security requirements')),
+			|| t('PasswordChangeField|Password does not meet security requirements')),
 			dontReuseOldPassword: (value) => (value !== getValues('oldpassword'))
-			|| t('FormFields|PasswordChange|New password must be different from your old password'),
+			|| t('PasswordChangeField|New password must be different from your old password'),
 		},
 	});
 	const regNewPasswordRepeat = register('newpassword2', {
 		validate: {
-			passEqual: value => (value === getValues().newpassword) || t('FormFields|PasswordChange|Passwords do not match'),
+			passEqual: value => (value === getValues().newpassword) || t('PasswordChangeField|Passwords do not match'),
 		},
 	});
 
 	return (<>
 		{currentPasswordInput && <FormGroup tag='fieldset' disabled={isSubmitting}>
 			<Label for='oldpassword'>
-				{t('FormFields|PasswordChange|Current password')}{markRequired && '*'}
+				{t('PasswordChangeField|Current password')}{markRequired && '*'}
 			</Label>
 			<Input
 				autoFocus
@@ -224,7 +224,7 @@ export function PasswordChangeFieldGroup({
 		</FormGroup>}
 		<FormGroup tag='fieldset' disabled={isSubmitting}>
 			<Label for='newpassword'>
-				{t('FormFields|PasswordChange|New password')}{markRequired && '*'}
+				{t('PasswordChangeField|New password')}{markRequired && '*'}
 			</Label>
 			<Input
 				id='newpassword'
@@ -250,7 +250,7 @@ export function PasswordChangeFieldGroup({
 
 		<FormGroup tag='fieldset' disabled={isSubmitting}>
 			<Label for='newpassword2'>
-				{t('FormFields|PasswordChange|Re-type new password')}{markRequired && '*'}
+				{t('PasswordChangeField|Re-type new password')}{markRequired && '*'}
 			</Label>
 			<Input
 				id='newpassword2'
@@ -266,7 +266,7 @@ export function PasswordChangeFieldGroup({
 			{errors.newpassword2
 				? <FormFeedback>{errors.newpassword2.message}</FormFeedback>
 				: <FormText className='text-left'>
-					{t('FormFields|PasswordChange|Enter the new password a second time to verify it')}
+					{t('PasswordChangeField|Enter the new password a second time to verify it')}
 				</FormText>
 			}
 		</FormGroup>
