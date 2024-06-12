@@ -109,7 +109,7 @@ function ChangePwdCard(props) {
 					<PasswordChangeFieldGroup 
 						app={props.app}
 						form={changePasswordForm}
-						oldPasswordInput={true}
+						currentPasswordInput={true}
 					/>
 
 					<FormGroup style={{textAlign: "center"}}>

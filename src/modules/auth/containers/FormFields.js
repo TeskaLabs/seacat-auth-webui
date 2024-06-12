@@ -135,12 +135,19 @@ export function UserNameField(props) {
 	)
 }
 
-
+/*
+	Render input fields for password change:
+	- The first field `oldpassword` is optional and prompts the user for their current password for authentication.
+	  It can be disabled by setting `currentPasswordInput` to `false`.
+	- The second field `newpassword` prompts the user for their new password and displays validation feedback
+	  according to password criteria provided by the backend.
+	- The third field `newpassword2` prompts the user to repeat their new password for verification.
+*/
 export function PasswordChangeFieldGroup({
 	app,
 	form: { watch, register, getValues, formState: { errors, isSubmitting } },
-	oldPasswordInput = true,
-	markRequired = false,
+	currentPasswordInput = true, // Require authentication with the user's current password
+	markRequired = false, // Mark the input labels with asterisk
 }) {
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = app.axiosCreate('seacat-auth');
@@ -199,7 +206,7 @@ export function PasswordChangeFieldGroup({
 	});
 
 	return (<>
-		{oldPasswordInput && <FormGroup tag='fieldset' disabled={isSubmitting}>
+		{currentPasswordInput && <FormGroup tag='fieldset' disabled={isSubmitting}>
 			<Label for='oldpassword'>
 				{t('FormFields|PasswordChange|Current password')}{markRequired && '*'}
 			</Label>

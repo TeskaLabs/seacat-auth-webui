@@ -108,7 +108,7 @@ function RegistrationCard(props) {
 								key={idx}
 								app={props.app}
 								form={registrationForm}
-								oldPasswordInput={false}
+								currentPasswordInput={false}
 								markRequired={true}
 							/>);
 							case 'phone': return (<PhoneField

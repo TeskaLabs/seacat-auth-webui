@@ -155,7 +155,7 @@ function ResetPwdCard(props) {
 					<PasswordChangeFieldGroup
 						app={props.app}
 						form={resetPasswordForm}
-						oldPasswordInput={false}
+						currentPasswordInput={false}
 					/>
 
 					<FormGroup style={{textAlign: "center"}}>
