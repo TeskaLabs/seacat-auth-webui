@@ -237,7 +237,7 @@ export function PasswordChangeFieldGroup({
 				innerRef={regNewPassword.ref}
 				onChange={regNewPassword.onChange}
 			/>
-			{errors?.newpassword?.type !== 'passwordCriteria'
+			{(errors?.newpassword?.type !== 'passwordCriteria')
 				&& <FormFeedback>{errors?.newpassword?.message}</FormFeedback>
 			}
 			<PasswordCriteriaFeedback
