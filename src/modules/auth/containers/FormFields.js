@@ -1,9 +1,17 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	FormGroup, Input, Label,
-	Button, InputGroupAddon, InputGroup, FormFeedback, FormText
+	FormFeedback, FormText,
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
+import {
+	validatePasswordLength,
+	validatePasswordLowercaseCount,
+	validatePasswordUppercaseCount,
+	validatePasswordDigitCount,
+	validatePasswordSpecialCount,
+	PasswordCriteriaFeedback,
+} from '../utils/passwordValidation';
 
 export function PhoneField(props) {
 	const { t } = useTranslation();
@@ -127,72 +135,140 @@ export function UserNameField(props) {
 	)
 }
 
+/*
+	Render input fields for password change:
+	- The first field `oldpassword` is optional and prompts the user for their current password for authentication.
+	  It can be disabled by setting `currentPasswordInput` to `false`.
+	- The second field `newpassword` prompts the user for their new password and displays validation feedback
+	  according to password criteria provided by the backend.
+	- The third field `newpassword2` prompts the user to repeat their new password for verification.
+*/
+export function PasswordChangeFieldGroup({
+	app,
+	form: { watch, register, getValues, formState: { errors, isSubmitting } },
+	currentPasswordInput = true, // Require authentication with the user's current password
+	markRequired = false, // Mark the input labels with asterisk
+}) {
+	const { t } = useTranslation();
+	const SeaCatAuthAPI = app.axiosCreate('seacat-auth');
 
-// TODO: Password complexity check (configurable)
-// TODO: Another types of password validation (length, characters, etc.)
-export function PasswordField(props) {
-	// If password is already set, dont render password input
-	if (props.content?.set == true) {
-		return null;
-	}
-	const { t, i18n } = useTranslation();
-	const regPwd1 = props.register(
-		"password",
-		{
-			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || (props.content?.required == false) || t("FormFields|Password can't be empty!"),
+	const [ passwordCriteria, setPasswordCriteria ] = useState({
+		minLength: 10,
+	});
+
+	useEffect(() => {
+		loadPasswordCriteria();
+	}, []);
+
+	const loadPasswordCriteria = async () => {
+		try {
+			const response = await SeaCatAuthAPI.get('/public/password/policy');
+			setPasswordCriteria({
+				minLength: response.data?.min_length,
+				minLowercaseCount: response.data?.min_lowercase_count,
+				minUppercaseCount: response.data?.min_uppercase_count,
+				minDigitCount: response.data?.min_digit_count,
+				minSpecialCount: response.data?.min_special_count,
+			});
+		} catch (e) {
+			if (e?.response?.status == 404) {
+				// Most likely older service version which does not have this endpoint
+				console.error(e);
+			} else {
+				app.addAlertFromException(e, t('PasswordChangeField|Failed to load password criteria'));
 			}
 		}
-	);
-	const regPwd2 = props.register(
-		"password2",
-		{
-			validate: {
-				passEqual: value => (value === props.getValues("password")) || (props.content?.required == false) || t("FormFields|Passwords do not match!"),
+	};
+
+	// Password is watched for immediate feedback to the user
+	const watchedNewPassword = watch('newpassword', '');
+	const validateNewPassword = (value) => ({
+		minLength: validatePasswordLength(value, passwordCriteria?.minLength),
+		minLowercaseCount: validatePasswordLowercaseCount(value, passwordCriteria?.minLowercaseCount),
+		minUppercaseCount: validatePasswordUppercaseCount(value, passwordCriteria?.minUppercaseCount),
+		minDigitCount: validatePasswordDigitCount(value, passwordCriteria?.minDigitCount),
+		minSpecialCount: validatePasswordSpecialCount(value, passwordCriteria?.minSpecialCount),
+	});
+
+	const regOldPassword = register('oldpassword');
+	const regNewPassword = register('newpassword', {
+		validate: {
+			passwordCriteria: (value) => (Object.values(validateNewPassword(value)).every(Boolean)
+			|| t('PasswordChangeField|Password does not meet security requirements')),
+			dontReuseOldPassword: (value) => (value !== getValues('oldpassword'))
+			|| t('PasswordChangeField|New password must be different from your old password'),
+		},
+	});
+	const regNewPasswordRepeat = register('newpassword2', {
+		validate: {
+			passEqual: value => (value === getValues().newpassword) || t('PasswordChangeField|Passwords do not match'),
+		},
+	});
+
+	return (<>
+		{currentPasswordInput && <FormGroup tag='fieldset' disabled={isSubmitting}>
+			<Label for='oldpassword'>
+				{t('PasswordChangeField|Current password')}{markRequired && '*'}
+			</Label>
+			<Input
+				autoFocus
+				id='oldpassword'
+				name='oldpassword'
+				type='password'
+				autoComplete='off'
+				required='required'
+				onChange={regOldPassword.onChange}
+				onBlur={regOldPassword.onBlur}
+				innerRef={regOldPassword.ref}
+			/>
+		</FormGroup>}
+		<FormGroup tag='fieldset' disabled={isSubmitting}>
+			<Label for='newpassword'>
+				{t('PasswordChangeField|New password')}{markRequired && '*'}
+			</Label>
+			<Input
+				id='newpassword'
+				name='newpassword'
+				type='password'
+				autoComplete='new-password'
+				required='required'
+				invalid={Boolean(errors?.newpassword)}
+				onBlur={regNewPassword.onBlur}
+				innerRef={regNewPassword.ref}
+				onChange={regNewPassword.onChange}
+			/>
+			{(errors?.newpassword?.type !== 'passwordCriteria')
+				&& <FormFeedback>{errors?.newpassword?.message}</FormFeedback>
 			}
-		}
-	);
+			<PasswordCriteriaFeedback
+				passwordCriteria={passwordCriteria}
+				validatePassword={validateNewPassword}
+				watchedPassword={watchedNewPassword}
+				passwordErrors={errors?.newpassword}
+			/>
+		</FormGroup>
 
-	return(
-		<>
-			<FormGroup>
-				<Label
-					title={props.content?.required ? t("FormFields|Required field") : undefined}
-					for="password"
-				>
-					{t("FormFields|Password")}{props.content?.required && (props.content?.set == false) && '*'}
-				</Label>
-				<InputGroup>
-					<Input
-						id="password"
-						name="password"
-						type="password"
-						invalid={props.errors.password}
-						autoComplete="new-password"
-						onChange={regPwd1.onChange}
-						onBlur={regPwd1.onBlur}
-						innerRef={regPwd1.ref}
-					/>
-					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
-				</InputGroup>
-			</FormGroup>
-
-			<FormGroup>
-				<Label for="password2">{t("FormFields|Re-enter Password")}</Label>
-				<InputGroup>
-					<Input
-						id="password2"
-						name="password2"
-						type="password"
-						invalid={props.errors.password2}
-						autoComplete="new-password"
-						onChange={regPwd2.onChange}
-						onBlur={regPwd2.onBlur}
-						innerRef={regPwd2.ref}
-					/>
-					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
-				</InputGroup>
-			</FormGroup>
-		</>
-	)
+		<FormGroup tag='fieldset' disabled={isSubmitting}>
+			<Label for='newpassword2'>
+				{t('PasswordChangeField|Re-type new password')}{markRequired && '*'}
+			</Label>
+			<Input
+				id='newpassword2'
+				name='newpassword2'
+				type='password'
+				autoComplete='new-password'
+				required='required'
+				invalid={errors.newpassword2}
+				onChange={regNewPasswordRepeat.onChange}
+				onBlur={regNewPasswordRepeat.onBlur}
+				innerRef={regNewPasswordRepeat.ref}
+			/>
+			{errors.newpassword2
+				? <FormFeedback>{errors.newpassword2.message}</FormFeedback>
+				: <FormText className='text-left'>
+					{t('PasswordChangeField|Enter the new password a second time to verify it')}
+				</FormText>
+			}
+		</FormGroup>
+	</>);
 }

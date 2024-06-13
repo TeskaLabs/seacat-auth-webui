@@ -47,11 +47,23 @@
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Invalid format, only lower-case letters, numbers, dash and underscore are allowed",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
 		"Username editing is not allowed": "Username editing is not allowed",
-		"Password": "Password",
-		"Re-enter Password": "Re-enter Password",
-		"Password can't be empty!": "Password can't be empty!",
-		"Passwords do not match!": "Passwords do not match!",
 		"Required field": "Required field"
+	},
+	"PasswordChangeField": {
+		"Current password": "Current password",
+		"New password": "New password",
+		"Re-type new password": "Re-type new password",
+		"Failed to load password criteria": "Failed to load password criteria",
+		"Password does not meet security requirements": "Password does not meet security requirements",
+		"New password must be different from your old password": "New password must be different from your old password",
+		"Passwords do not match": "Passwords do not match",
+		"Enter the new password a second time to verify it": "Enter the new password a second time to verify it",
+		"The password must meet the following criteria:": "The password must meet the following criteria:",
+		"It must consist of {{minLength}} or more characters": "It must consist of {{minLength}} or more characters",
+		"It must contain at least {{minLowercaseCount}} lowercase characters": "It must contain at least {{minLowercaseCount}} lowercase characters",
+		"It must contain at least {{minUppercaseCount}} uppercase characters": "It must contain at least {{minUppercaseCount}} uppercase characters",
+		"It must contain at least {{minDigitCount}} digits": "It must contain at least {{minDigitCount}} digits",
+		"It must contain at least {{minSpecialCount}} special characters": "It must contain at least {{minSpecialCount}} special characters"
 	},
 	"HomeScreen": {
 		"My account": "My account",
@@ -148,26 +160,13 @@
 		"Password change": "Password change",
 		"Set password": "Set password",
 		"Set new password here": "You can set your new password here",
-		"Current Password": "Current password",
-		"New Password": "New password",
-		"Re-enter Password": "Re-enter the new password",
-		"Enter new password a second time to verify it": "Enter new password a second time to verify it",
 		"Go back": "Go back",
-		"Passwords do not match": "Passwords do not match!",
-		"Short password": "Password is too short!",
 		"The current password is incorrect": "The current password is incorrect, please try again",
 		"CompletedChangePwdCard": {
 			"Password changed": "Password has been changed",
 			"Go back": "Go back"
 		},
-		"Something went wrong": "Something went wrong",
-		"New password must be different from your old password": "New password must be different from your old password",
-		"The password must meet the following criteria:": "The password must meet the following criteria:",
-		"It must consist of {{minLength}} or more characters": "It must consist of {{minLength}} or more characters",
-		"It must contain at least {{minLowercaseCount}} lowercase characters": "It must contain at least {{minLowercaseCount}} lowercase characters",
-		"It must contain at least {{minUppercaseCount}} uppercase characters": "It must contain at least {{minUppercaseCount}} uppercase characters",
-		"It must contain at least {{minDigitCount}} digits": "It must contain at least {{minDigitCount}} digits",
-		"It must contain at least {{minSpecialCount}} special characters": "It must contain at least {{minSpecialCount}} special characters"
+		"Something went wrong": "Something went wrong"
 	},
 	"PhoneNumberScreen": {
 		"Do you want to change your number?": "Do you want to change your number?",
@@ -192,12 +191,6 @@
 		"Set password": "Set password",
 		"Set new password": "Set new password",
 		"Set a new password here": "You can set your new password here",
-		"Current Password": "Current password",
-		"New Password": "New password",
-		"Re-enter Password": "Re-enter the new password",
-		"Enter new password a second time to verify it": "Enter new password a second time to verify it",
-		"Passwords do not match": "Passwords do not match!",
-		"Short password": "Password is too short!",
 		"Something went wrong, unable to set the password": "Something went wrong, unable to set the password",
 		"Your password reset link has likely expired. Please request a new one.": "Your password reset link has likely expired. Please request a new one.",
 		"CompletedResetPwdCard": {
