@@ -14,7 +14,7 @@ No breaking changes, tested with Seacat Auth v24.17-beta2
 
 ### Fix
 
-- Rename password field in registration form (#45, v24.19-alpha2, PLUM Sprint 240531)
+- Rename password field in registration form (#45, v24.19-alpha3, PLUM Sprint 240531)
 
 ### Features
 
