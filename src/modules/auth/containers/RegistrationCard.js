@@ -28,8 +28,10 @@ function RegistrationCard(props) {
 		filled input data (on press Save)
 	*/
 	const onSubmit = async (values) => {
-		let body = values;
-		delete body["password2"];
+		const body = values;
+		body.password = values.newpassword;
+		delete body.newpassword;
+		delete body.newpassword2;
 		Promise.all(Object.keys(body).map((key, i) => {
 			if ((body[key] == undefined) || (body[key].length == 0)) {
 				delete body[key];
