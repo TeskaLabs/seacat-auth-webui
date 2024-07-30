@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v24.31
+
+### Releases
+
+- v24.31-alpha1
+
+### Features
+
+- Advanced password validation in new user registration form (#46, v24.31-alpha1, PLUM Sprint 240726)
+
 ## v24.19
 
 ### Releases
