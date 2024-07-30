@@ -112,6 +112,7 @@ function ResetPwdCard(props) {
 	}
 
 	if (!resetPasswordCode || resetPasswordCode.length == 0) {
+		// Show the "Invalid or expired code, reset your password again" page when there is no password reset code in query
 		onRedirect("/cant-login", true);
 	}
 
