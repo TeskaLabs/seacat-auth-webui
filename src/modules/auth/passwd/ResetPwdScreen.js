@@ -111,6 +111,10 @@ function ResetPwdCard(props) {
 		return redirect_uri
 	}
 
+	if (!resetPasswordCode || resetPasswordCode.length == 0) {
+		onRedirect("/cant-login", true);
+	}
+
 	if (completed) {
 		return (
 			<Card className="shadow animated fadeIn auth-card">
