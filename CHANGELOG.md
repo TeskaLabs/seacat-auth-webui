@@ -8,7 +8,7 @@
 
 ### Features
 
-- Advanced password validation in new user registration form (#46, v24.31-alpha1, PLUM Sprint 240726)
+- Redirect to invalid code page when pwd_token is missing in query (#46, v24.31-alpha1, PLUM Sprint 240726)
 
 ## v24.19
 
