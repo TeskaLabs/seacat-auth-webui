@@ -111,6 +111,11 @@ function ResetPwdCard(props) {
 		return redirect_uri
 	}
 
+	if (!resetPasswordCode || resetPasswordCode.length == 0) {
+		// Show the "Invalid or expired code, reset your password again" page when there is no password reset code in query
+		onRedirect("/cant-login", true);
+	}
+
 	if (completed) {
 		return (
 			<Card className="shadow animated fadeIn auth-card">

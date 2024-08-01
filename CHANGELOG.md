@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v24.31
+
+### Releases
+
+- v24.31-alpha1
+
+### Features
+
+- Redirect to invalid code page when pwd_token is missing in query (#46, v24.31-alpha1, PLUM Sprint 240726)
+
 ## v24.19
 
 ### Releases
