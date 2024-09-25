@@ -13,7 +13,7 @@
 
 ### Fix
 
-- Fix dynamic page title (#47, v24.31-alpha2, PLUM Sprint 240906)
+- Fix dynamic page title (#48, v24.31-alpha2, PLUM Sprint 240906)
 
 ## v24.19
 
