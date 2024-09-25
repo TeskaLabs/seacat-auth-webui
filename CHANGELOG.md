@@ -4,11 +4,16 @@
 
 ### Releases
 
+- v24.31-alpha2
 - v24.31-alpha1
 
 ### Features
 
 - Redirect to invalid code page when pwd_token is missing in query (#46, v24.31-alpha1, PLUM Sprint 240726)
+
+### Fix
+
+- Fix dynamic page title (#47, v24.31-alpha2, PLUM Sprint 240906)
 
 ## v24.19
 
