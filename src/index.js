@@ -25,6 +25,10 @@ if (__CONFIG__.css_file_path != undefined) {
 
 // Configuration
 const ConfigDefaults = {
+	title: 'TeskaLabs SeaCat Auth',
+	vendor: 'TeskaLabs',
+	website: 'https://teskalabs.com',
+	email: 'info@teskalabs.com',
 	i18n: {
 		fallbackLng: 'en',
 		supportedLngs: ['en', 'cs'],
