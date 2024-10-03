@@ -4,6 +4,7 @@
 
 ### Releases
 
+- v24.31-alpha3
 - v24.31-alpha2
 - v24.31-alpha1
 
@@ -13,6 +14,7 @@
 
 ### Fix
 
+- Fix on Help button displaying on SeaCat Auth header (#49, v24.31-alpha3, INDIGO Sprint 240913)
 - Fix dynamic page title (#48, v24.31-alpha2, PLUM Sprint 240906)
 
 ## v24.19
