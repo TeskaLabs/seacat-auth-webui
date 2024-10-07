@@ -4,6 +4,7 @@
 
 ### Releases
 
+- v24.31-beta
 - v24.31-alpha3
 - v24.31-alpha2
 - v24.31-alpha1
