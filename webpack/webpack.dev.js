@@ -38,13 +38,13 @@ const devConfig = {
 	mode: 'development',
 
 	devServer: {
-		port: 3081,
+		port: 3031,
 		client: {
 			overlay: false // Disable full screen overlay in dev mode (errors will be printer only in console)
 		},
 		proxy: {
 			'/api/seacat-auth': {
-				target: "http://localhost:8081",
+				target: "http://localhost:3081",
 				pathRewrite: {'^/api/seacat-auth' : ''}
 			},
 		}

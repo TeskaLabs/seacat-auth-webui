@@ -38,6 +38,7 @@
 		"reactstrap": "^9.2.0",
 		"redux": "^4.0.5",
 
+		"i18next-browser-languagedetector": "^6.1.2",
 		"react-hook-form": "^7.45.4",
 		"react-qr-code": "^2.0.12",
 		"asab_webui_components": "^25.1.1",

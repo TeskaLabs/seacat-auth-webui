@@ -33,6 +33,7 @@ const ConfigDefaults = {
 		},
 	},
 	hasSidebar: false,
+	hasHeaderTitle: false,
 };
 
 // Render
