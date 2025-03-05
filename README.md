@@ -29,20 +29,12 @@ $ cd seacat-auth-webui
 
 ## Prerequisities
 
-### Initiate ASAB-WebUI submodule
-
-`asab-webui` must be pulled so that can be referenced from the UI project.
-
-```
-$ git submodule update --init --recursive
-```
-
 ## Installation
 
 Install all necessary dependecies
 
 ```
-$ yarn install
+$ pnpm install
 ```
 
 ## Start in dev environment
@@ -50,11 +42,11 @@ $ yarn install
 Run application in dev environment
 
 ```
-$ yarn start -c conf/config.js
+$ pnpm start
 ```
 
 ## Build to production or build environment
 
 ```
-$ yarn build
+$ pnpm build
 ```
