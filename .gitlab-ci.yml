@@ -2,32 +2,34 @@ stages:
   - build
   - distribute
 
-yarn:
+build:
   stage: build
   image: node:lts-alpine3.19
   tags:
     - docker
     - amd64
 
-  script:
-    # Install GIT and the submodules
+  before_script:
     - apk update
-    - apk add git
     - apk add curl
     - apk add xz
-    - apk add build-base
-    - git submodule init
-    - git submodule update
+    - apk add --no-cache git
+    - npm install -g pnpm
+
+  script:
     # Install all dependencies
-    - yarn install
+    - pnpm install
     # Build the distribtion
-    - yarn build
+    - pnpm build
     # Compress the distribution in the artefact file
     - tar cf seacat-auth-webui.tar dist
     - lzma -9 -e -T 0 seacat-auth-webui.tar
+    # Calculate the checksum
+    - sha256sum seacat-auth-webui.tar.xz > seacat-auth-webui.tar.xz.sha256
   artifacts:
     paths:
       - seacat-auth-webui.tar.lzma
+      - seacat-auth-webui.tar.xz.sha256
 
 
 azure main:
@@ -39,14 +41,14 @@ azure main:
     - amd64
 
   dependencies:
-    - yarn
+    - build
 
   only:
     - main
 
   script:
     - az storage blob upload --overwrite --file seacat-auth-webui.tar.lzma --container-name "\$web" --name "seacat-auth/master/seacat-auth-webui.tar.lzma" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
-
+    - az storage blob upload --overwrite --file seacat-auth-webui.tar.xz.sha256 --container-name "\$web" --name "seacat-auth/master/seacat-auth-webui.tar.xz.sha256" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
 
 azure tags:
   stage: distribute
@@ -57,10 +59,11 @@ azure tags:
     - amd64
 
   dependencies:
-    - yarn
+    - build
 
   only:
     - tags
 
   script:
     - az storage blob upload --overwrite --file seacat-auth-webui.tar.lzma --container-name "\$web" --name "seacat-auth/${CI_COMMIT_TAG}/seacat-auth-webui.tar.lzma" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
+    - az storage blob upload --overwrite --file seacat-auth-webui.tar.xz.sha256 --container-name "\$web" --name "seacat-auth/${CI_COMMIT_TAG}/seacat-auth-webui.tar.xz.sha256" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
